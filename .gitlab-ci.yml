@@ -11,13 +11,14 @@ stages:
   - test
   - deploy
 
-# Runs the docker login on each jobs
+# Runs the docker login on each jobs and pulls the already built container
 before_script:
  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+ - docker pull registry.gitlab.com/viseo-digital-squads/welinktalent-client:$CI_BUILD_REF_NAME || true
 
 # Runs lint and unit tests
 # Note:
-#  - Unit test currently now working
+#  - Unit test currently not working
 test:
   stage: test
   script:
