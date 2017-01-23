@@ -14,7 +14,7 @@ stages:
 # Runs the docker login on each jobs and pulls the already built container
 before_script:
  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
- - docker pull registry.gitlab.com/viseo-digital-squads/welinktalent-client:$CI_BUILD_REF_NAME || true
+ - docker pull $IMAGE_NAME:$CI_BUILD_REF_NAME || true
 
 # Runs lint and unit tests
 # Note:
@@ -22,8 +22,8 @@ before_script:
 test:
   stage: test
   script:
-    - docker build -t $IMAGE_NAME:test .
-    - docker run -d --name welinktalent-client-test $IMAGE_NAME:test /bin/bash -c 'npm run lint'
+    - docker build --cache-from $IMAGE_NAME:$CI_BUILD_REF_NAME -t $IMAGE_NAME:$CI_BUILD_REF_NAME .
+    - docker run -d --name welinktalent-client-test $IMAGE_NAME:$CI_BUILD_REF_NAME /bin/bash -c 'npm run lint'
 
 # Pushes the built container to registry only if in upstream repository
 deploy:
@@ -31,5 +31,5 @@ deploy:
   only:
     - branches@viseo-digital-squads/welinktalent-client
   script:
-    - docker build -t $IMAGE_NAME:$CI_BUILD_REF_NAME .
+    - docker build --cache-from $IMAGE_NAME:$CI_BUILD_REF_NAME -t $IMAGE_NAME:$CI_BUILD_REF_NAME .
     - docker push $IMAGE_NAME:$CI_BUILD_REF_NAME
