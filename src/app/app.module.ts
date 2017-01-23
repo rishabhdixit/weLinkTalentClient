@@ -7,17 +7,22 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [
-    {provide: 'api', useValue: environment.api}
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule
+	],
+	providers: [
+		{
+			provide: 'api',
+			useValue: environment.api
+		}
+	],
+	bootstrap: [
+		AppComponent
+	]
 })
 export class AppModule { }

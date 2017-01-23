@@ -23,7 +23,7 @@ test:
   stage: test
   script:
     - docker build --cache-from $IMAGE_NAME:$CI_BUILD_REF_NAME -t $IMAGE_NAME:$CI_BUILD_REF_NAME .
-    - docker run -d --name welinktalent-client-test $IMAGE_NAME:$CI_BUILD_REF_NAME /bin/bash -c 'npm run lint'
+    - docker run --name welinktalent-client-test $IMAGE_NAME:$CI_BUILD_REF_NAME /bin/bash -c 'npm run lint'
 
 # Pushes the built container to registry only if in upstream repository
 deploy:
