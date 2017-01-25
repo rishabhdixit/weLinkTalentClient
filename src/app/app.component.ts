@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-root',
 	template: `
-		<h1>
-			{{title}}
-		</h1>
+	<router-outlet></router-outlet>
 	`,
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	title = 'app works!';
+	title = 'WeLinkTalent.com';
+	constructor() {
+	}
+
 }

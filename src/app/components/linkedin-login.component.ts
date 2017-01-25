@@ -9,7 +9,7 @@ import * as $ from 'jquery';
 			Sign in with LinkedIn
 		</button>
 	`,
-	styleUrls: ['./linkedin-login.component.css']
+	styleUrls: []
 })
 export class LinkedinLoginComponent implements OnInit {
 
