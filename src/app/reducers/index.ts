@@ -22,4 +22,4 @@ export const getLoginState = (state: State) => state.login;
 
 export const isLoggedIn = createSelector(getLoginState, fromLogin.isLoggedIn);
 export const getUser = createSelector(getLoginState, fromLogin.getUser);
-
+export  const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail);

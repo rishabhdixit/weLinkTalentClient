@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 
-import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
+import {Observable} from 'rxjs';
 
 @Component({
 	selector: 'app-profile-page',
@@ -15,7 +15,7 @@ import * as fromRoot from '../reducers';
 						<div class='col-md-3'>
 						</div>
 						<div class='col-md-6'>
-								<h1>Welcome {{displayname}}</h1>
+								<h1>Welcome {{ userEmail$ | async}}</h1>
 						</div>
 						<div class='col-md-3'>
 						</div>
@@ -26,15 +26,12 @@ import * as fromRoot from '../reducers';
 	styles: []
 })
 export class ProfilePageComponent {
-	user: User;
+	userEmail$: Observable<string>;
 
 	constructor(private store: Store<fromRoot.State>) {
-		this.store.select(fromRoot.getUser)
-			.subscribe((user: User 	) => this.user = user);
+		this.userEmail$ = this.store.select(fromRoot.getUserEmail);
 	}
 
-	get displayname() {
-		return this.user.displayname;
-	}
+
 
 }

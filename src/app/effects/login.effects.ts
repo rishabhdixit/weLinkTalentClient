@@ -40,9 +40,18 @@ export class LogInEffects {
 	@Effect()
 	sigIn: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN)
-		.map((action: login.LoginAction) =>
-			this.logInService.signIn(action.payload))
-		.map((data) => new login.LoginSuccessAction(data));
+		.map((action: login.LoginAction) => action.payload.login)
+		.switchMap((payload)=>
+			this.logInService.signIn(payload)
+				.map((data)=> {
+						data.email = payload.username;
+						return new login.LoginSuccessAction(data);
+				})
+				.catch(()=> Observable.of(new login.LoginFailAction('')))
+		);
+
+
+
 
 
 	@Effect({ dispatch: false })

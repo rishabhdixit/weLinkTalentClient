@@ -1,13 +1,24 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs';
+import {LogIn} from '../models/login.model';
+
 
 @Injectable()
 export class LoginService {
+	api_url: string;
 
-	constructor() {
+	constructor(private http: Http, @Inject('api') api: string) {
+		this.api_url = api;
 	}
 
-	signIn(login: any): any {
-		return { login: login.login, user: { displayname: login.login.username } };
+	signIn(login: LogIn): Observable<any> {
+		return this.http.post(this.api_url + '/authenticate',
+			{
+				email: login.username,
+				password: login.password
+			})
+			.map((res: Response) => res.json());
 	}
 
 }

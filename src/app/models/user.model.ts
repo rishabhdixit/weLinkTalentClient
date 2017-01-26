@@ -1,7 +1,5 @@
-export class User {
-	displayname: string;
+export interface User {
+	email: string;
 	token: string;
 	avatar: string;
-
-	constructor() {}
 }
