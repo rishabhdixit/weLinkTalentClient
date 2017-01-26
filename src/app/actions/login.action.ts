@@ -2,9 +2,9 @@ import { type } from '../util';
 import { Action } from '@ngrx/store';
 
 export const ActionTypes = {
-	LOGIN: type('[LOGIN] Login'),
+	LOGIN:         type('[LOGIN] Login'),
 	LOGIN_SUCCESS: type('[LOGIN] Login Success'),
-	LOGIN_FAIL: type('[LOGIN] Login Fail')
+	LOGIN_FAIL:    type('[LOGIN] Login Fail')
 };
 
 export class LoginAction implements Action {

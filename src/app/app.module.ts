@@ -15,10 +15,12 @@ import { reducer } from './reducers';
 
 import { LogInEffects } from'./effects/login.effects';
 import { LoginService } from './services/login.service';
+import { ProfileEffects } from './effects/profile.effects';
 
 import { LoginComponent } from './components/login.component';
 import { LinkedinLoginComponent } from  './components/linkedin-login.component';
 import { OrSeperatorComponent } from './components/or-seperator.component';
+import { ProfileViewComponent } from './components/profile-view.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
@@ -29,6 +31,7 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 		LinkedinLoginComponent,
 		LoginComponent,
 		OrSeperatorComponent,
+		ProfileViewComponent,
 		LoginPageComponent,
 		ProfilePageComponent,
 	],
@@ -39,6 +42,7 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 		RouterModule.forRoot(routes),
 		StoreModule.provideStore(reducer),
 		EffectsModule.run(LogInEffects),
+		EffectsModule.run(ProfileEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		})

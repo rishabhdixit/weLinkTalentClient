@@ -2,36 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 
 import * as fromRoot from '../reducers';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { Profile } from '../models/profile.model';
 
 @Component({
 	selector: 'app-profile-page',
 	template: `
-  <div class='container'>
+	<div class='container'>
 		<div class='container-fluid'>
-				<br>
-				<br>
-				<div class='row'>
-						<div class='col-md-3'>
-						</div>
-						<div class='col-md-6'>
-								<h1>Welcome {{ userEmail$ | async}}</h1>
-						</div>
-						<div class='col-md-3'>
-						</div>
+			<div class='row'>
+				<div class='col-md-3'>
 				</div>
-		</div>		
-	</div>	
-  `,
+				<div class='col-md-6'>
+					<h3>Profile</h3>
+					<app-profile-view [profile]="profile$ | async"></app-profile-view>
+				</div>
+			</div>
+		</div>
+	</div>
+	`,
 	styles: []
 })
 export class ProfilePageComponent {
-	userEmail$: Observable<string>;
+	email$: Observable<string>;
+	profile$: Observable<Profile>;
 
 	constructor(private store: Store<fromRoot.State>) {
-		this.userEmail$ = this.store.select(fromRoot.getUserEmail);
+		this.email$ = this.store.select(fromRoot.getUserEmail);
+		this.profile$ = this.store.select(fromRoot.getUserProfile);
 	}
-
-
-
 }

@@ -4,12 +4,6 @@ import { LogIn } from '../models/login.model';
 @Component({
 	selector: 'app-login',
 	template: `
-<div class="row">
-    <div class="col-md-12">
-        <app-linkedin-login></app-linkedin-login>
-    </div>
-</div>
-
 <app-or-seperator></app-or-seperator>
 <form #loginForm="ngForm" (ngSubmit)="signInButtonClick()">
     <div class="row">

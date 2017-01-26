@@ -6,8 +6,7 @@ import * as login from '../actions/login.action';
 export interface State {
 	loginSuccess: boolean;
 	user: User;
-}
-;
+};
 
 const initialState: State = {
 	loginSuccess: false,
@@ -23,10 +22,10 @@ export function reducer(state = initialState, action: login.Actions): State {
 			};
 
 		case login.ActionTypes.LOGIN_SUCCESS:
-			return {
+			return Object.assign({}, state, {
 				user: action.payload,
 				loginSuccess: true
-			};
+			});
 
 		case login.ActionTypes.LOGIN_FAIL:
 			return {

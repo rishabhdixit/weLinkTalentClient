@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
@@ -12,8 +12,7 @@ import * as $ from 'jquery';
 	styleUrls: []
 })
 export class LinkedinLoginComponent implements OnInit {
-
-	constructor() { }
+	@Output() profile = new EventEmitter();
 
 	ngOnInit() {
 		$.getScript('https://platform.linkedin.com/in.js?async=true', () => {
@@ -26,7 +25,11 @@ export class LinkedinLoginComponent implements OnInit {
 
 	login() {
 		IN.User.authorize(() => {
-
+			IN.API.Raw('/people/~:(id,email-address,first-name,last-name,headline,specialties,positions,picture-url)?format=json').result((res) => {
+				this.profile.emit(res);
+			}).error((error) => {
+				console.log(error);
+			});
 		});
 	}
 

@@ -16,7 +16,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'home',
-		canActivate: [LoggedInGuard],
+		canActivate: [ LoggedInGuard ],
 		component: ProfilePageComponent,
 	},
 ];
