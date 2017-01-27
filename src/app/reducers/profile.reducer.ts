@@ -24,7 +24,8 @@ export function reducer(state = initialState, action: profile.Actions): State {
 			};
 
 			return Object.assign({}, state, { profile: payload });
-
+		case profile.ActionTypes.PROFILE_LOGOUT:
+			return initialState;
 		default:
 			return state;
 	}

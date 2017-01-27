@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { LogIn } from '../models/login.model';
 
 @Component({
@@ -8,6 +8,9 @@ import { LogIn } from '../models/login.model';
 <form #loginForm="ngForm" (ngSubmit)="signInButtonClick()">
     <div class="row">
         <div class="col-md-12">
+        		<div *ngIf="loginFail" class="alert alert-warning" role="alert" >
+   							Incorrect Email address or Password entered. Please try again.
+ 						</div> 						
             <div class="form-group">
                 <label for="username">Email address</label>
                 <input type="email" class="form-control" id="username" name="username" placeholder="Email address"
@@ -33,7 +36,7 @@ import { LogIn } from '../models/login.model';
 	styles: []
 })
 export class LoginComponent {
-
+	@Input() loginFail: boolean;
 	@Output() signInButtonClicked = new EventEmitter<LogIn>();
 	loginInfo: LogIn = new LogIn();
 	constructor() {

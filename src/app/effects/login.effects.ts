@@ -27,19 +27,14 @@ export class LogInEffects {
 	 *
 	 */
 
-	/**
-	 * TODO :1) save jwt-token in localstorage or in state
-	 */
 	@Effect()
 	signIn$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN)
 		.map((action: login.LoginAction) => action.payload.login)
 		.switchMap((payload) =>
 			this.logInService.signIn(payload)
-				.map((data) => {
-						data.email = payload.username;
-						return new login.LoginSuccessAction(data);
-				})
+				.map((data) => localStorage.setItem('id_token', data.token))
+				.map((data) => new login.LoginSuccessAction(data))
 				.catch(() => Observable.of(new login.LoginFailAction('')))
 		);
 

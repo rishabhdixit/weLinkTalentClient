@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, State } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { LogIn } from '../models/login.model';
 
 import * as loginAction from '../actions/login.action';
 import * as profileAction from '../actions/profile.action';
 import * as fromRoot from '../reducers';
+
 
 
 @Component({
@@ -25,7 +27,7 @@ import * as fromRoot from '../reducers';
 										<app-linkedin-login (profile)="linkedinProfile($event)"></app-linkedin-login>
 								</div>
 							</div>
-							<app-login (signInButtonClicked)="onSignIn($event)"></app-login>
+							<app-login [loginFail]="loginFail | async" (signInButtonClicked)="onSignIn($event)"></app-login>
 						</div>
 
 						<div class="col-md-4">
@@ -37,8 +39,9 @@ import * as fromRoot from '../reducers';
 	styles: []
 })
 export class LoginPageComponent {
-
+	loginFail: Observable<boolean>;
 	constructor(private store: Store<fromRoot.State>) {
+		this.loginFail = this.store.select(fromRoot.isLoggedFail);
 	}
 
 	onSignIn(login: LogIn) {

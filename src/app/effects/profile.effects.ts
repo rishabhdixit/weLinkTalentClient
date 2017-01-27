@@ -18,9 +18,15 @@ export class ProfileEffects {
 	linkedinSuccess$: Observable<Action> = this.actions
 		.ofType(profile.ActionTypes.PROFILE_LINKEDIN_SUCCESS)
 		.map((action: profile.ProfileLinkedinSuccessAction) => {
-			return new login.LoginSuccessAction({ email: action.payload.email });
+			return new login.LoginSuccessAction({email: action.payload.email});
 		});
 
+	@Effect({dispatch: false})
+	logout$ = this.actions
+		.ofType(profile.ActionTypes.PROFILE_LOGOUT)
+		.do(() => localStorage.removeItem('id_token'))
+		.do(() => this.router.navigate(['login']));
 
-	constructor(private actions: Actions, private router: Router) {}
+	constructor(private actions: Actions, private router: Router) {
+	}
 }

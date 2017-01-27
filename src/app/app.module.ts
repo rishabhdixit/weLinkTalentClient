@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthHttp } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
+import { AuthHttpServiceFactory } from './auth-http.factory';
 
 import { routes } from './routes';
 import { reducer } from './reducers';
@@ -24,6 +26,7 @@ import { ProfileViewComponent } from './components/profile-view.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
+import { CandidateGuard } from './guards/candidate.guard';
 
 @NgModule({
 	declarations: [
@@ -52,8 +55,14 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 			provide: 'api',
 			useValue: environment.api
 		},
+		{
+			provide: AuthHttp,
+			useFactory: AuthHttpServiceFactory,
+			deps: [Http, RequestOptions]
+		},
 		LoginService,
-		LoggedInGuard
+		LoggedInGuard,
+		CandidateGuard
 	],
 	bootstrap: [
 		AppComponent

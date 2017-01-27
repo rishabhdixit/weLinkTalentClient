@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 
 export const ActionTypes = {
 	PROFILE_LINKEDIN_SUCCESS: type('[PROFILE] Profile Linkedin Success'),
-	PROFILE_LINKEDIN_FAIL:    type('[PROFILE] Profile Linkedin Fail')
+	PROFILE_LINKEDIN_FAIL:    type('[PROFILE] Profile Linkedin Fail'),
+	PROFILE_LOGOUT:						type('[PROFILE] Profile clear')
 };
 
 export class ProfileLinkedinSuccessAction implements Action {
@@ -20,5 +21,13 @@ export class ProfileLinkedinFailAction implements Action {
 	}
 }
 
+export class ProfileLogOutAction implements Action {
+	type = ActionTypes.PROFILE_LOGOUT;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = ProfileLinkedinSuccessAction
-	| ProfileLinkedinFailAction;
+	| ProfileLinkedinFailAction
+	| ProfileLogOutAction;
