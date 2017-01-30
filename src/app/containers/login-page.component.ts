@@ -8,8 +8,6 @@ import * as loginAction from '../actions/login.action';
 import * as profileAction from '../actions/profile.action';
 import * as fromRoot from '../reducers';
 
-
-
 @Component({
 	selector: 'app-login-page',
 	template: `

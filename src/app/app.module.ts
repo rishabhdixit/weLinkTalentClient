@@ -18,6 +18,10 @@ import { reducer } from './reducers';
 import { LogInEffects } from'./effects/login.effects';
 import { LoginService } from './services/login.service';
 import { ProfileEffects } from './effects/profile.effects';
+import { LoggedInGuard } from './guards/logged-in.guard';
+import { CandidateGuard } from './guards/candidate.guard';
+import { JobService } from './services/job.service';
+import { JobEffects } from './effects/job.effects';
 
 import { LoginComponent } from './components/login.component';
 import { LinkedinLoginComponent } from  './components/linkedin-login.component';
@@ -25,8 +29,10 @@ import { OrSeperatorComponent } from './components/or-seperator.component';
 import { ProfileViewComponent } from './components/profile-view.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
-import { LoggedInGuard } from './guards/logged-in.guard';
-import { CandidateGuard } from './guards/candidate.guard';
+import { JobSearchPageComponent } from './containers/job-search-page.component';
+import { JobViewComponent } from './components/job-view.component';
+import { JobSeachComponent } from './components/job-seach.component';
+import { PaginationComponent } from './components/pagination.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +43,10 @@ import { CandidateGuard } from './guards/candidate.guard';
 		ProfileViewComponent,
 		LoginPageComponent,
 		ProfilePageComponent,
+		JobSearchPageComponent,
+		JobViewComponent,
+		JobSeachComponent,
+		PaginationComponent
 	],
 	imports: [
 		BrowserModule,
@@ -46,6 +56,7 @@ import { CandidateGuard } from './guards/candidate.guard';
 		StoreModule.provideStore(reducer),
 		EffectsModule.run(LogInEffects),
 		EffectsModule.run(ProfileEffects),
+		EffectsModule.run(JobEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		})
@@ -62,7 +73,8 @@ import { CandidateGuard } from './guards/candidate.guard';
 		},
 		LoginService,
 		LoggedInGuard,
-		CandidateGuard
+		CandidateGuard,
+		JobService
 	],
 	bootstrap: [
 		AppComponent
