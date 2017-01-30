@@ -38,7 +38,6 @@ export class LogInEffects {
 				.catch(() => Observable.of(new login.LoginFailAction('')))
 		);
 
-
 	@Effect({ dispatch: false })
 	signInSuccess$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN_SUCCESS)

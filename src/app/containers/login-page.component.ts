@@ -40,6 +40,7 @@ import * as fromRoot from '../reducers';
 })
 export class LoginPageComponent {
 	loginFail: Observable<boolean>;
+
 	constructor(private store: Store<fromRoot.State>) {
 		this.loginFail = this.store.select(fromRoot.isLoggedFail);
 	}
@@ -51,5 +52,4 @@ export class LoginPageComponent {
 	linkedinProfile(profile: any) {
 		this.store.dispatch(new profileAction.ProfileLinkedinSuccessAction(profile));
 	}
-
 }

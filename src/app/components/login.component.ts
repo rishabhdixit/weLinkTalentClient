@@ -10,7 +10,7 @@ import { LogIn } from '../models/login.model';
         <div class="col-md-12">
         		<div *ngIf="loginFail" class="alert alert-warning" role="alert" >
    							Incorrect Email address or Password entered. Please try again.
- 						</div> 						
+ 						</div>
             <div class="form-group">
                 <label for="username">Email address</label>
                 <input type="email" class="form-control" id="username" name="username" placeholder="Email address"
@@ -39,8 +39,8 @@ export class LoginComponent {
 	@Input() loginFail: boolean;
 	@Output() signInButtonClicked = new EventEmitter<LogIn>();
 	loginInfo: LogIn = new LogIn();
-	constructor() {
-	}
+
+	constructor() {}
 
 	signInButtonClick() {
 		this.signInButtonClicked.emit(this.loginInfo);

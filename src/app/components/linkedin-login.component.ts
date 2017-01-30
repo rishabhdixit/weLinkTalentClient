@@ -28,6 +28,8 @@ export class LinkedinLoginComponent implements OnInit {
 			IN.API.Raw('/people/~:(id,email-address,first-name,last-name,headline,specialties,positions,picture-url)?format=json').result((res) => {
 				this.profile.emit(res);
 			}).error((error) => {
+				// Note: what instance does error happen?
+				// TODO: Add component error view
 				console.log(error);
 			});
 		});

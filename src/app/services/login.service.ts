@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { LogIn } from '../models/login.model';
+import { Profile } from '../models/profile.model';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
@@ -18,6 +19,11 @@ export class LoginService {
 			password: login.password
 		})
 		.map((res: Response) => res.json());
+	}
+
+	linkedinSignIn(profile: Profile): Observable<any> {
+		return this.http.post(this.apiUrl + '/authenticate/linkedin', profile)
+			.map((res: Response) => res.json());
 	}
 
 	isLoggedIn() {

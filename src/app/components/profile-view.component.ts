@@ -11,7 +11,7 @@ import { Profile } from '../models/profile.model';
 			<div class="col-md-10">
 				<p>{{ profile.firstName }} {{ profile.lastName }}</p>
 				<p>{{ profile.headline }}</p>
-				<p>{{ profile.email }}</p>
+				<p>{{ profile.emailAddress }}</p>
 			</div>
 			<div class="col-md-12">
 				<h3>Work history</h3>
