@@ -6,7 +6,7 @@ import { Job } from '../models/job.model';
 	template: `
 <div class="row">
     <div class="col-md-12">
-        <div>
+        <div class="row col-md-12">
             <h4><a routerLink="/jobDetails/{{job.id}}"> {{job.title}}</a></h4>
             <span class="label label-default">{{job.company}}</span> 
             <span class="label label-info">{{job.location}}</span>
@@ -24,7 +24,7 @@ import { Job } from '../models/job.model';
         </div>
     </div>
 </div>
-  `,
+`,
 	styles: [`
 		.jobTxt{
 			white-space: nowrap;
@@ -33,6 +33,9 @@ import { Job } from '../models/job.model';
     	margin-bottom: 5px;
     	line-height: 1.2;
     	outline: none;
+		}
+		.label{
+			border-radius: .1em;
 		}
 `]
 })

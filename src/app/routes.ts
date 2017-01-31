@@ -9,8 +9,7 @@ import { CandidateGuard } from './guards/candidate.guard';
 export const routes: Routes = [
 	{
 		path: '',
-		canActivate: [ CandidateGuard ],
-		component: LoginPageComponent
+		component: JobSearchPageComponent
 	},
 	{
 		path: 'login',

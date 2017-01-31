@@ -10,6 +10,7 @@ export class JobEffects {
 	@Effect()
 	searchJobs$ = this.actions
 		.ofType(jobsAction.ActionTypes.JOBS_LOAD)
+		.startWith(new jobsAction.JobsLoadAction(''))
 		.map((action: jobsAction.JobsLoadAction) => action.payload)
 		.switchMap((query) => this.jobService.search('')
 			.map((res) => new jobsAction.JobsLoadSuccessAction(res))

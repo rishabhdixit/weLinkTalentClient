@@ -31,8 +31,9 @@ import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobViewComponent } from './components/job-view.component';
-import { JobSeachComponent } from './components/job-seach.component';
+import { JobSearchComponent } from './components/job-search.component';
 import { PaginationComponent } from './components/pagination.component';
+import { HeaderComponent } from './components/header.component';
 
 @NgModule({
 	declarations: [
@@ -45,8 +46,9 @@ import { PaginationComponent } from './components/pagination.component';
 		ProfilePageComponent,
 		JobSearchPageComponent,
 		JobViewComponent,
-		JobSeachComponent,
-		PaginationComponent
+		JobSearchComponent,
+		PaginationComponent,
+		HeaderComponent
 	],
 	imports: [
 		BrowserModule,

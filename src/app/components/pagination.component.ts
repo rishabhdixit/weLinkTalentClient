@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 	selector: 'app-pagination',
 	template: `
 <div class="col-md-12">
+	<hr>
 	<ul class="pagination pagination-sm">
 		<li>
 			<a href="#">Prev</a>
@@ -29,10 +30,14 @@ import { Component, OnInit } from '@angular/core';
 	</ul>
 </div>
 	`,
-	styles: []
+	styles: [`
+	hr {
+			margin-top: -20px;
+			margin-bottom: 0px;
+		}
+`]
 })
 export class PaginationComponent {
-
 	constructor() {
 	}
 }
