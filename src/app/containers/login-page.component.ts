@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { LogIn } from '../models/login.model';
+import { Login } from '../models/login.model';
 
 import * as loginAction from '../actions/login.action';
 import * as profileAction from '../actions/profile.action';
@@ -43,8 +43,8 @@ export class LoginPageComponent {
 		this.loginFail = this.store.select(fromRoot.isLoggedFail);
 	}
 
-	onSignIn(login: LogIn) {
-		this.store.dispatch(new loginAction.LoginAction({ login }));
+	onSignIn(login: Login) {
+		this.store.dispatch(new loginAction.LoginAction(login));
 	}
 
 	linkedinProfile(profile: any) {

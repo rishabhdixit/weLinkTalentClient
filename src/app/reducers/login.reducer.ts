@@ -5,25 +5,25 @@ import * as login from '../actions/login.action';
 
 export interface State {
 	loginFail: boolean;
-	user: User;
+	loaded:    boolean;
+	user:      User;
 };
 
 const initialState: State = {
 	loginFail: false,
-	user: {} as User
+	loaded:    false,
+	user:      null,
 };
 
 export function reducer(state = initialState, action: login.Actions): State {
 	switch (action.type) {
 		case login.ActionTypes.LOGIN:
-			return {
-				user: null,
-				loginFail: false
-			};
+			return initialState;
 
 		case login.ActionTypes.LOGIN_SUCCESS:
 			return Object.assign({}, state, {
 				user: action.payload,
+				loaded: true,
 				loginFail: false
 			});
 
@@ -41,5 +41,6 @@ export function reducer(state = initialState, action: login.Actions): State {
 export const isLoggedFail = (state: State) => state.loginFail;
 export const getUser = (state: State) => state.user;
 export const getUserEmail = (state: State) => state.user.email;
-
+export const getUserId = (state: State) => state.user.id;
+export const getLoaded = (state: State) => state.loaded;
 

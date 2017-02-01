@@ -1,20 +1,22 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs';
-import { LogIn } from '../models/login.model';
+import { Login } from '../models/login.model';
+import { User } from '../models/user.model';
 import { Profile } from '../models/profile.model';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class LoginService {
-	apiUrl: string;
+	constructor(
+		private http: Http,
+		private authHttp: AuthHttp,
+		@Inject('api') private api: string,
+	) {}
 
-	constructor(private http: Http, @Inject('api') api: string) {
-		this.apiUrl = api;
-	}
-
-	signIn(login: LogIn): Observable<any> {
-		return this.http.post(this.apiUrl + '/authenticate', {
+	signIn(login: Login): Observable<any> {
+		return this.http.post(`${this.api}/authenticate`, {
 			email:    login.username,
 			password: login.password
 		})
@@ -22,7 +24,12 @@ export class LoginService {
 	}
 
 	linkedinSignIn(profile: Profile): Observable<any> {
-		return this.http.post(this.apiUrl + '/authenticate/linkedin', profile)
+		return this.http.post(`${this.api}/authenticate/linkedin`, profile)
+			.map((res: Response) => res.json());
+	}
+
+	retrieveUser(): Observable<any> {
+		return this.authHttp.get(`${this.api}/api/users/`)
 			.map((res: Response) => res.json());
 	}
 

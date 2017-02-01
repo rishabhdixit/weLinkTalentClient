@@ -18,6 +18,8 @@ import { reducer } from './reducers';
 import { LogInEffects } from'./effects/login.effects';
 import { LoginService } from './services/login.service';
 import { ProfileEffects } from './effects/profile.effects';
+import { ProfileService } from './services/profile.service';
+import { ProfileResolve } from './resolves/profile.resolve';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
 import { JobService } from './services/job.service';
@@ -74,6 +76,8 @@ import { HeaderComponent } from './components/header.component';
 			deps: [Http, RequestOptions]
 		},
 		LoginService,
+		ProfileService,
+		ProfileResolve,
 		LoggedInGuard,
 		CandidateGuard,
 		JobService

@@ -1,5 +1,5 @@
 import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import { LogIn } from '../models/login.model';
+import { Login } from '../models/login.model';
 
 @Component({
 	selector: 'app-login',
@@ -37,8 +37,8 @@ import { LogIn } from '../models/login.model';
 })
 export class LoginComponent {
 	@Input() loginFail: boolean;
-	@Output() signInButtonClicked = new EventEmitter<LogIn>();
-	loginInfo: LogIn = new LogIn();
+	@Output() signInButtonClicked = new EventEmitter<Login>();
+	loginInfo: Login = new Login();
 
 	constructor() {}
 

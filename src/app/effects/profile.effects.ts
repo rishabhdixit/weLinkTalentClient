@@ -26,15 +26,18 @@ export class ProfileEffects {
 				.do((data) => console.log('Linked in sign-in success!'))
 				.map((data) => {
 					localStorage.setItem('id_token', data.token);
-					return new login.LoginSuccessAction(data);
+					return new login.LoginSuccessAction('');
 				})
-				.catch(() => Observable.of(new profile.ProfileLinkedinFailAction('')));
+				.catch(() => Observable.of(new profile.ProfileLinkedinFailAction(false)));
 		});
 
 	@Effect({dispatch: false})
 	logout$ = this.actions
 		.ofType(profile.ActionTypes.PROFILE_LOGOUT)
-		.do(() => localStorage.removeItem('id_token'))
+		.do(() => {
+			localStorage.removeItem('id_token');
+			localStorage.removeItem('user');
+		})
 		.do(() => this.router.navigate(['login']));
 
 	constructor(private actions: Actions, private loginService: LoginService, private router: Router) {}

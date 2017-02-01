@@ -1,5 +1,7 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
+import { User } from '../models/user.model';
+import { Login } from '../models/login.model';
 
 export const ActionTypes = {
 	LOGIN:         type('[LOGIN] Login'),
@@ -10,7 +12,7 @@ export const ActionTypes = {
 export class LoginAction implements Action {
 	type = ActionTypes.LOGIN;
 
-	constructor(public payload: any) {
+	constructor(public payload: Login) {
 	}
 }
 

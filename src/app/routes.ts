@@ -5,6 +5,7 @@ import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
+import { ProfileResolve } from './resolves/profile.resolve';
 
 export const routes: Routes = [
 	{
@@ -17,9 +18,12 @@ export const routes: Routes = [
 		component: LoginPageComponent
 	},
 	{
-		path: 'home',
+		path: 'profile',
 		canActivate: [ LoggedInGuard ],
 		component: ProfilePageComponent,
+		resolve: {
+			loaded: ProfileResolve
+		}
 	},
 	{
 		path: 'jobs',

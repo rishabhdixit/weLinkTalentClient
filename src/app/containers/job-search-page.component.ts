@@ -9,7 +9,7 @@ import * as fromRoot from '../reducers';
 @Component({
 	selector: 'app-job-search-page',
 	template: `
-<app-header></app-header>     			
+<app-header></app-header>
 <div class="container">
     <div class="container-fluid">
         <div class="row col-md-12">

@@ -1,18 +1,30 @@
-export interface Position {
-	title:     string;
-	company:   any;
-	isCurrent: boolean;
-	location:  any;
-	startDate: any;
-	summary:   string;
+export class Skill {
+	constructor(
+		public id:   number,
+		public name: string,
+	) {}
 }
 
-export interface Profile {
-	id:           string;
-	emailAddress: string;
-	firstName:    string;
-	lastName:     string;
-	pictureUrl:   string;
-	headline:     string;
-	positions:    Position[];
+export class Position {
+	constructor(
+		public title:     string,
+		public company:   any,
+		public isCurrent: boolean,
+		public location:  any,
+		public startDate: any,
+		public summary:   string,
+	) {}
+}
+
+export class Profile {
+	constructor(
+		public id:           string,
+		public emailAddress: string,
+		public firstName:    string,
+		public lastName:     string,
+		public pictureUrl:   string,
+		public headline:     string,
+		public positions?:   Position[],
+		public skills?:      Skill[],
+	) {}
 }

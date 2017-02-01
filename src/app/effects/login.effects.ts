@@ -30,18 +30,20 @@ export class LogInEffects {
 	@Effect()
 	signIn$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN)
-		.map((action: login.LoginAction) => action.payload.login)
+		.map((action: login.LoginAction) => action.payload)
 		.switchMap((payload) =>
 			this.logInService.signIn(payload)
-				.map((data) => localStorage.setItem('id_token', data.token))
-				.map((data) => new login.LoginSuccessAction(data))
+				.map((data) => {
+					localStorage.setItem('id_token', data.token);
+					return new login.LoginSuccessAction('');
+				})
 				.catch(() => Observable.of(new login.LoginFailAction('')))
 		);
 
 	@Effect({ dispatch: false })
 	signInSuccess$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN_SUCCESS)
-		.do(() => this.router.navigate(['/home']));
+		.do(() => this.router.navigate(['/profile']));
 
 	constructor(private actions: Actions, private logInService: LoginService, private router: Router) {}
 }

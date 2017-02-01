@@ -12,7 +12,7 @@ export class JobEffects {
 		.ofType(jobsAction.ActionTypes.JOBS_LOAD)
 		.startWith(new jobsAction.JobsLoadAction(''))
 		.map((action: jobsAction.JobsLoadAction) => action.payload)
-		.switchMap((query) => this.jobService.search('')
+		.switchMap((query) => this.jobService.search(query)
 			.map((res) => new jobsAction.JobsLoadSuccessAction(res))
 			.catch(() => Observable.of(new jobsAction.JobsLoadFailAction('')))
 		);

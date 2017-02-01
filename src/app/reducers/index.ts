@@ -61,8 +61,13 @@ export const getProfileState = (state: State) => state.profile;
 export const getJobsState = (state: State) => state.jobs;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
-export const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail);
 
-export const getUserProfile = createSelector(getProfileState, fromProfile.getProfile);
+export const getUser = createSelector(getLoginState, fromLogin.getUser);
+export const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail);
+export const getUserId = createSelector(getLoginState, fromLogin.getUserId);
+export const getUserLoaded = createSelector(getLoginState, fromLogin.getLoaded);
 
 export const getJobs = createSelector(getJobsState, fromJobs.getJobs);
+
+export const getUserProfile = createSelector(getProfileState, fromProfile.getProfile);
+export const getProfileLoaded = createSelector(getProfileState, fromProfile.getLoaded);
