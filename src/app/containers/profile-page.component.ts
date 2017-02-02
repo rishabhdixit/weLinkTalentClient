@@ -6,7 +6,6 @@ import { Profile } from '../models/profile.model';
 
 import * as fromRoot from '../reducers';
 import * as profile from '../actions/profile.action';
-import * as position from '../actions/profile-position.action';
 import * as ui from '../actions/ui.action';
 
 @Component({
@@ -19,8 +18,11 @@ import * as ui from '../actions/ui.action';
 					<app-profile-view
 						[profile]="profile$ | async"
 						[edit]="edit$ | async"
-						(editEvent)="editEvent($event)"
-						(savePositionEvent)="savePositionEvent($event)">
+						[loading]="profileLoading$ | async"
+						(editEvent)="onEdit($event)"
+						(saveProfileEvent)="onProfileEvent($event)"
+						(savePositionEvent)="onSavePosition($event)"
+						(createPositionEvent)="onCreatePosition($event)">
 					</app-profile-view>
 				</div>
 			</div>
@@ -32,11 +34,13 @@ import * as ui from '../actions/ui.action';
 export class ProfilePageComponent {
 	email$: Observable<string>;
 	profile$: Observable<Profile>;
+	profileLoading$: Observable<boolean>;
 	edit$: Observable<string>;
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.email$ = this.store.select(fromRoot.getUserEmail);
 		this.profile$ = this.store.select(fromRoot.getUserProfile);
+		this.profileLoading$ = this.store.select(fromRoot.getProfileLoading);
 		this.edit$ = this.store.select(fromRoot.getUiEditId);
 	}
 
@@ -44,11 +48,19 @@ export class ProfilePageComponent {
 		this.store.dispatch(new profile.ProfileLogOutAction(''));
 	}
 
-	editEvent(editId: string) {
+	onEdit(editId: string) {
 		this.store.dispatch(new ui.FormEditMode(editId));
 	}
 
-	savePositionEvent(payload) {
-		this.store.dispatch(new position.PositionUpdateAction(payload));
+	onProfileEvent(payload) {
+		this.store.dispatch(new profile.ProfileUpdateAction(payload));
+	}
+
+	onSavePosition(payload) {
+		this.store.dispatch(new profile.PositionUpdateAction(payload));
+	}
+
+	onCreatePosition(payload) {
+		this.store.dispatch(new profile.PositionCreateAction(payload));
 	}
 }

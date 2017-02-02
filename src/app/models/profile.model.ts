@@ -19,12 +19,13 @@ export class Position {
 
 export class Profile {
 	constructor(
-		public id:           string,
+		public linkedinId:   string,
 		public emailAddress: string,
 		public firstName:    string,
 		public lastName:     string,
 		public pictureUrl:   string,
 		public headline:     string,
+		public id?:          string,
 		public positions?:   Position[],
 		public skills?:      Skill[],
 	) {}

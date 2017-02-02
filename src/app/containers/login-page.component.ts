@@ -48,6 +48,6 @@ export class LoginPageComponent {
 	}
 
 	linkedinProfile(profile: any) {
-		this.store.dispatch(new profileAction.ProfileLinkedinSuccessAction(profile));
+		this.store.dispatch(new profileAction.ProfileLinkedinAction(profile));
 	}
 }

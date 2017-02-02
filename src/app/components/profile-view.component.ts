@@ -18,8 +18,12 @@ import { Profile } from '../models/profile.model';
 export class ProfileViewComponent implements OnInit {
 	@Input() profile: Profile;
 	@Input() edit: string;
+	@Input() loading: boolean;
+
 	@Output() editEvent = new EventEmitter<string>();
+	@Output() saveProfileEvent = new EventEmitter<any>();
 	@Output() savePositionEvent = new EventEmitter<any>();
+	@Output() createPositionEvent = new EventEmitter<any>();
 
 	profileForm: FormGroup;
 
@@ -31,17 +35,21 @@ export class ProfileViewComponent implements OnInit {
 
 	ngOnInit() {
 		this.profileForm = this.fb.group({
-			firstName: '',
-			lastName:  '',
-			headline:  '',
-			positions: this.fb.array([this.positionFormGroup()]),
+			firstName:    '',
+			lastName:     '',
+			headline:     '',
+			emailAddress: '',
+			positions:    this.fb.array(
+				this.profile.positions.map(() => this.positionFormGroup())
+			),
 		});
 
 		this.profileForm.patchValue({
-			firtName:  this.profile.firstName,
-			lastName:  this.profile.lastName,
-			headline:  this.profile.headline,
-			positions: this.profile.positions,
+			firstName:    this.profile.firstName,
+			lastName:     this.profile.lastName,
+			headline:     this.profile.headline,
+			emailAddress: this.profile.emailAddress,
+			positions:    this.profile.positions,
 		});
 	}
 
@@ -56,19 +64,49 @@ export class ProfileViewComponent implements OnInit {
 
 	editMode(event, editId) {
 		this.editEvent.emit(editId);
-
 		event.preventDefault();
 	}
 
+	saveProfile() {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+	}
+
+	cancelProfile(event) {
+		this.editMode(event, '');
+	}
+
 	savePosition(index) {
-		const position = Object.assign(
-			{},
-			{ id: this.profile.positions[index].id },
-			this.positions.value[index],
-		);
+		const position = this.positions.value[index];
+		const id = this.profile.positions[index] ?
+			this.profile.positions[index].id : null;
 
-		console.log(position);
+		if (id) {
+			this.savePositionEvent.emit({ id, position });
+		} else {
+			this.createPositionEvent.emit({ position });
+		}
+	}
 
-		this.savePositionEvent.emit(position);
+	addPosition(event, editId) {
+		this.positions.push(this.positionFormGroup());
+
+		this.editMode(event, 'position' + (this.positions.length - 1));
+	}
+
+	// Cancel editing position.
+	// If position is empty or has not been save yet to server remove form from formarray.
+	cancelPosition(event, index) {
+		const position = this.profile.positions[index];
+
+		if (!position || !position.id) {
+			this.positions.removeAt(index);
+		}
+
+		this.editMode(event, '');
 	}
 }

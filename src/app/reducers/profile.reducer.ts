@@ -3,15 +3,22 @@ import { Profile } from '../models/profile.model';
 
 export interface State {
 	loaded:  boolean;
+	loading: boolean;
 	profile: Profile;
 };
 
 const initialState: State = {
 	loaded:  false,
+	loading: false,
 	profile: {} as Profile
 };
 
+// Transform profile data from linkedin into
+// profile object compatible with db record
 export function createProfile(payload: any): Profile {
+	const positions = payload.positions.values || [];
+	const skills    = payload.positions.skills || [];
+
 	const profile = new Profile(
 		payload.id,
 		payload.emailAddress,
@@ -19,7 +26,9 @@ export function createProfile(payload: any): Profile {
 		payload.lastName,
 		payload.pictureUrl,
 		payload.headline,
-		payload.positions.values.map((position) => position),
+		undefined,
+		positions.map((position) => position),
+		skills.map((skill) => skill),
 	);
 
 	return profile;
@@ -27,21 +36,50 @@ export function createProfile(payload: any): Profile {
 
 export function reducer(state = initialState, action: profile.Actions): State {
 	switch (action.type) {
-		case profile.ActionTypes.PROFILE_LINKEDIN_SUCCESS: {
-			return Object.assign({}, state,
-				{
-					profile: createProfile(action.payload),
-					loaded:  true,
-				});
-		}
-
-		case profile.ActionTypes.PROFILE_LOAD_SUCCESS: {
+		case profile.ActionTypes.LINKEDIN_SUCCESS: {
 			return Object.assign({}, state, { profile: action.payload, loaded: true });
 		}
 
-		case profile.ActionTypes.PROFILE_LOAD:
-		case profile.ActionTypes.PROFILE_LOGOUT: {
+		case profile.ActionTypes.LOAD_SUCCESS: {
+			return Object.assign({}, state, { profile: action.payload, loaded: true });
+		}
+
+		case profile.ActionTypes.LOAD:
+		case profile.ActionTypes.LOGOUT: {
 			return Object.assign({}, state, { loaded: false });
+		}
+
+		case profile.ActionTypes.UPDATE:
+		case profile.ActionTypes.POSITION_CREATE:
+		case profile.ActionTypes.POSITION_UPDATE: {
+			return Object.assign({}, state, { loading: true });
+		}
+
+		case profile.ActionTypes.UPDATE_SUCCESS: {
+			const profile = action.payload;
+
+			return Object.assign({}, state, { profile, loading: false });
+		}
+
+		case profile.ActionTypes.POSITION_CREATE_SUCCESS: {
+			const positions = state.profile.positions.concat(action.payload);
+			const profile = Object.assign({}, state.profile, { positions });
+
+			return Object.assign({}, state, { profile, loading: false });
+		}
+
+		case profile.ActionTypes.POSITION_UPDATE_SUCCESS: {
+			const payload = action.payload;
+			const positions = state.profile.positions.map((position) => {
+				if (position.id === payload.id) {
+					return Object.assign({}, position, payload);
+				}
+				return position;
+			});
+
+			const profile = Object.assign({}, state.profile, { positions });
+
+			return Object.assign({}, state, { profile, loading: false });
 		}
 
 		default: {
@@ -52,3 +90,4 @@ export function reducer(state = initialState, action: profile.Actions): State {
 
 export const getProfile = (state: State) => state.profile;
 export const getLoaded = (state: State) => state.loaded;
+export const getLoading = (state: State) => state.loading;

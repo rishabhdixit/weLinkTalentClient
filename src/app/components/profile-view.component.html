@@ -5,10 +5,46 @@
 		<div id="avatar" class="col-md-2">
 			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
 		</div>
-		<div class="col-md-10">
+		<div *ngIf="edit != 'basic'" class="col-md-10">
+			<a href="#" (click)="editMode($event, 'basic')" class="edit">Edit</a>
 			<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
 			<p>{{ profile.headline }}</p>
 			<p>{{ profile.emailAddress }}</p>
+		</div>
+
+		<div *ngIf="edit == 'basic'" class="col-md-10 form-group clearfix">
+			<div class="row">
+				<div class="col-md-6">
+					<label class="control-label" for="firstName">First Name</label>
+					<input type="text" id="firstName"
+						class="form-control"
+						formControlName="firstName">
+				</div>
+				<div class="col-md-6">
+					<label class="control-label" for="lastName">Last Name</label>
+					<input type="text" id="lastName"
+						class="form-control"
+						formControlName="lastName">
+				</div>
+				<div class="col-md-12">
+					<label class="control-label" for="headline">Headline</label>
+					<input type="text" id="headline"
+						class="form-control"
+						formControlName="headline">
+				</div>
+				<div class="col-md-12">
+					<label class="control-label" for="emailAddress">Email Address</label>
+					<input type="text" id="emailAddress"
+						class="form-control"
+						formControlName="emailAddress">
+				</div>
+				<div class="col-md-12">
+					<div class="position-action">
+						<button class="btn btn-primary" (click)="saveProfile()" [disabled]="loading">Save</button>
+						<button class="btn btn-primary" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -19,7 +55,7 @@
 			<br>
 
 			<!-- Work experience loop -->
-			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
+			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
 				<div [formGroupName]="i">
 					<div *ngIf="edit != 'position'+i" class="view">
 						<a href="#" (click)="editMode($event, 'position'+i)" class="edit">Edit</a>
@@ -66,16 +102,18 @@
 
 						<div class="col-md-12">
 							<div class="position-action">
-								<button class="btn btn-primary" (click)="savePosition(i)">Save</button>
-								<button class="btn btn-primary" (click)="editMode($event, '')">Cancel</button>
+								<button class="btn btn-primary" (click)="savePosition(i)" [disabled]="loading">Save</button>
+								<button class="btn btn-primary" (click)="cancelPosition($event, i)" [disabled]="loading">Cancel</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="add-btn-container">
+				<a href="#" (click)="addPosition($event)" class="add-btn">Add Experience</a>
+			</div>
 		</div>
 	</div>
-
 
 </form>
