@@ -71,9 +71,12 @@ export const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail
 export const getUserId = createSelector(getLoginState, fromLogin.getUserId);
 export const getUserLoaded = createSelector(getLoginState, fromLogin.getLoaded);
 
-export const getJobs = createSelector(getJobsState, fromJobs.getJobs);
-
 export const getUserProfile = createSelector(getProfileState, fromProfile.getProfile);
 export const getProfileLoaded = createSelector(getProfileState, fromProfile.getLoaded);
 
 export const getUiEditId = createSelector(getUiState, fromUi.getEditId);
+
+export const getAllJobs = createSelector(getJobsState, fromJobs.getAllJobs);
+export const getLoaded = createSelector(getJobsState, fromJobs.getLoaded);
+export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
+export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);

@@ -5,28 +5,28 @@ import { Job } from '../models/job.model';
 	selector: 'app-job-view',
 	template: `
 <div class="row">
-    <div class="col-md-12">
-        <div class="row col-md-12">
-            <h4><a routerLink="/jobDetails/{{job.id}}"> {{job.title}}</a></h4>
-            <span class="label label-default">{{job.company}}</span> 
-            <span class="label label-info">{{job.location}}</span>
-            <dl>
-                <dt> Description </dt>
-                <dd class="jobTxt">{{job.description}}</dd>
-
-                <dt> Skills </dt>
-                <dd class="jobTxt">{{job.skills}}</dd>
-
-                <dt> Experience </dt>
-                <dd>{{job.yearsExperience}}</dd>
-                <a routerLink="/jobDetails/{{job.id}}">more ... »</a>
-            </dl>
+    <div class="col-md-9">
+        <h4><a routerLink="/jobs/{{job.id}}"> {{job.title}}</a></h4>
+        <div class="div-padding">
+            <span class="jobCompany">{{job.company}}</span> |
+            <span class="jobLocation">{{job.location}}</span>
         </div>
+        <dl>
+            <dt> Description </dt>
+            <dd class="jobTxt">{{job.description}}</dd>
+            <dt> Skills </dt>
+            <dd class="jobTxt">{{job.skills}}</dd>
+            <dt> Experience </dt>
+            <dd>{{job.yearsExperience}}</dd>
+            <a routerLink="/jobs/{{job.id}}">more ... »</a>
+        </dl>
+    </div>
+    <div class="col-md-3">
     </div>
 </div>
 `,
 	styles: [`
-		.jobTxt{
+		.jobTxt {
 			white-space: nowrap;
     	overflow: hidden;
     	text-overflow: ellipsis;
@@ -34,8 +34,18 @@ import { Job } from '../models/job.model';
     	line-height: 1.2;
     	outline: none;
 		}
-		.label{
-			border-radius: .1em;
+		.jobCompany {
+			color: #0275d8;
+			font-weight: 700;
+			text-decoration: underline;
+		}
+		.jobLocation {
+			color: #0275d8;
+			font-weight: 500;
+			font-style: italic;
+		}
+		.div-padding {
+			padding-bottom: 10px;
 		}
 `]
 })

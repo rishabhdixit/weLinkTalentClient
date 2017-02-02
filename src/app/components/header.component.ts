@@ -1,24 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Profile } from '../models/profile.model';
+import * as fromRoot from '../reducers';
+import * as profile from '../actions/profile.action';
 
 @Component({
 	selector: 'app-header',
 	template: `
-	<nav class="navbar navbar-default navbar-static-top">
-		<div class="col-sm-11">
-		</div>
-		<div class="col-sm-1">
-			<a routerLink="/login"> <span class="align-middle">Sign-In</span> </a>
-		</div>
-	</nav>	
+<ul class="nav nav-pills justify-content-end">
+    <li *ngIf="!isLoggedIn" class="nav-item">
+        <a routerLink="/login" class="nav-link label">Sign-In</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="nav-item">
+        <span class="nav-link label">{{profile.emailAddress}}</span>
+    </li> 
+     <li *ngIf="isLoggedIn" class="nav-item">
+        <a href="#" class="nav-link label" (click)="logout()">Sign-Out</a>
+    </li> 
+</ul>
+<hr>
 	`,
 	styles: [`
-	.navbar-default {
-		background-color: white;
-		min-height:30px;
-		margin-bottom: 5px;	
+	.label{
+		line-height: 3px;
+		color: #337ab7;
+		margin: auto;
+    padding-top: 18px;
+    font-weight: 500;
+    text-decoration: underline;
 	}
-`]})
+`]
+})
 export class HeaderComponent {
-	constructor() {
+	@Input() profile: Profile;
+
+	constructor(private store: Store<fromRoot.State>) { }
+
+	logout() {
+		this.store.dispatch(new profile.ProfileLogOutAction(''));
+	}
+
+	get isLoggedIn() {
+		return this.profile.emailAddress ? true : false;
 	}
 }

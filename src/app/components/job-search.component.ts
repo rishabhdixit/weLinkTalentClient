@@ -8,24 +8,25 @@ import { Component, OnInit } from '@angular/core';
         <img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-rounded image" />
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-12">
-        <div class="col-md-5">
-            <label for="searchWhat">What</label>
-            <input id="searchWhat" name="searchWhat" class="form-control" />
-        </div>
-        <div class="col-md-5">
-            <label for="searchWhere">Where</label>
-            <input id="searchWhere" name="searchWhere" class="form-control" />
-        </div>
-        <div class="col-md-2">
-            <label for="searchButton">&nbsp;</label>
-            <button type="button" class="btn btn-primary form-control align-bottom">Find Jobs</button>
-        </div>
+    <div class="col-md-5">
+        <label for="searchWhat">What</label>
+        <input id="searchWhat" name="searchWhat" class="form-control"/>
+    </div>
+    <div class="col-md-5">
+        <label for="searchWhere">Where</label>
+        <input id="searchWhere" name="searchWhere" class="form-control" />
+    </div>
+    <div class="col-md-2">
+        <label for="searchButton">&nbsp;</label>
+        <button type="button" class="btn btn-primary form-control">Find Jobs</button>
     </div>
 </div>
-<div class="col-md-12"><hr></div>
+<div class="row">
+    <div class="col-md-12">
+        <hr>
+    </div>
+</div>
 	`,
 	styles: [`
 		.image {
@@ -34,13 +35,6 @@ import { Component, OnInit } from '@angular/core';
 			width: 219px;
 			height: 70px;
 			background-size: 219px 70px
-		}
-		.form-control{
-			border-radius: 2px;
-		}
-		hr {
-			margin-top: 18px;
-			margin-bottom: -5px;
 		}
 	`]
 })

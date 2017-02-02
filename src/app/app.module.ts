@@ -14,6 +14,7 @@ import { AuthHttpServiceFactory } from './auth-http.factory';
 
 import { routes } from './routes';
 import { reducer } from './reducers';
+import { ComponentsModule } from './components';
 
 import { LogInEffects } from'./effects/login.effects';
 import { LoginService } from './services/login.service';
@@ -22,39 +23,29 @@ import { ProfileService } from './services/profile.service';
 import { ProfileResolve } from './resolves/profile.resolve';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
+import { JobExistsGuard } from './guards/job-exist.guard';
 import { JobService } from './services/job.service';
 import { JobEffects } from './effects/job.effects';
 
-import { LoginComponent } from './components/login.component';
-import { LinkedinLoginComponent } from  './components/linkedin-login.component';
-import { OrSeperatorComponent } from './components/or-seperator.component';
-import { ProfileViewComponent } from './components/profile-view.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
-import { JobViewComponent } from './components/job-view.component';
-import { JobSearchComponent } from './components/job-search.component';
-import { PaginationComponent } from './components/pagination.component';
-import { HeaderComponent } from './components/header.component';
+import { JobFullPageComponent } from './containers/job-full-page.component';
+import { JobSelectedPageComponent } from './containers/job-selected-page.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		LinkedinLoginComponent,
-		LoginComponent,
-		OrSeperatorComponent,
-		ProfileViewComponent,
 		LoginPageComponent,
 		ProfilePageComponent,
 		JobSearchPageComponent,
-		JobViewComponent,
-		JobSearchComponent,
-		PaginationComponent,
-		HeaderComponent
+		JobFullPageComponent,
+		JobSelectedPageComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
+		ComponentsModule,
 		HttpModule,
 		RouterModule.forRoot(routes),
 		StoreModule.provideStore(reducer),
@@ -81,7 +72,8 @@ import { HeaderComponent } from './components/header.component';
 		ProfileResolve,
 		LoggedInGuard,
 		CandidateGuard,
-		JobService
+		JobService,
+		JobExistsGuard
 	],
 	bootstrap: [
 		AppComponent

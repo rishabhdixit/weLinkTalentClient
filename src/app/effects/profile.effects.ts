@@ -31,7 +31,7 @@ export class ProfileEffects {
 				.catch(() => Observable.of(new profile.ProfileLinkedinFailAction(false)));
 		});
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	logout$ = this.actions
 		.ofType(profile.ActionTypes.PROFILE_LOGOUT)
 		.do(() => {

@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ProfileService } from './profile.service';
 
-describe('ProfileService', () => {
+xdescribe('ProfileService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			providers: [ProfileService]
