@@ -30,8 +30,7 @@ import { JobEffects } from './effects/job.effects';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
-import { JobFullPageComponent } from './containers/job-full-page.component';
-import { JobSelectedPageComponent } from './containers/job-selected-page.component';
+import { JobDetailPageComponent } from './containers/job-detail-page.component';
 
 @NgModule({
 	declarations: [
@@ -39,8 +38,7 @@ import { JobSelectedPageComponent } from './containers/job-selected-page.compone
 		LoginPageComponent,
 		ProfilePageComponent,
 		JobSearchPageComponent,
-		JobFullPageComponent,
-		JobSelectedPageComponent
+		JobDetailPageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -73,7 +71,7 @@ import { JobSelectedPageComponent } from './containers/job-selected-page.compone
 		LoggedInGuard,
 		CandidateGuard,
 		JobService,
-		JobExistsGuard
+		JobExistsGuard,
 	],
 	bootstrap: [
 		AppComponent

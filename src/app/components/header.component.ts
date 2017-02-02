@@ -8,7 +8,7 @@ import * as profile from '../actions/profile.action';
 @Component({
 	selector: 'app-header',
 	template: `
-		<ul class="nav nav-pills justify-content-end">
+		<ul *ngIf="!isLoggedInUrl"  class="nav nav-pills justify-content-end">
 				<li *ngIf="!isLoggedIn" class="nav-item">
 						<a routerLink="/login" class="nav-link label">Sign-In</a>
 				</li>
@@ -33,6 +33,7 @@ import * as profile from '../actions/profile.action';
 })
 export class HeaderComponent {
 	@Input() user: User;
+	@Input() routerEvent: any;
 
 	constructor(private store: Store<fromRoot.State>) { }
 
@@ -42,5 +43,12 @@ export class HeaderComponent {
 
 	get isLoggedIn() {
 		return this.user ? this.user.email : false;
+	}
+
+	get isLoggedInUrl() {
+		if (this.routerEvent && this.routerEvent[1].url === '/login') {
+			return true;
+		}
+		return false;
 	}
 }

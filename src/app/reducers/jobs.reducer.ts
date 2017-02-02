@@ -20,13 +20,13 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: jobs.Actions): State {
 	switch (action.type) {
-		case jobs.ActionTypes.JOBS_LOAD: {
+		case jobs.ActionTypes.LOAD: {
 			return Object.assign({}, state, {
 				loading: true,
 				selectedJobId: null
 			});
 		}
-		case jobs.ActionTypes.JOBS_LOAD_SUCCESS: {
+		case jobs.ActionTypes.LOAD_SUCCESS: {
 			const jobs = action.payload;
 			const newJobs = jobs.filter(job => !state.entities[job.id]);
 
@@ -44,7 +44,7 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId
 			};
 		}
-		case jobs.ActionTypes.JOBS_SELECT: {
+		case jobs.ActionTypes.SELECT: {
 			return Object.assign({}, state, {
 				selectedJobId: action.payload
 			});

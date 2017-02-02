@@ -2,21 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import {JobFullPageComponent} from './job-full-page.component';
+import {JobDetailPageComponent} from './job-detail-page.component';
 
-xdescribe('JobFullPageComponent', () => {
-	let component: JobFullPageComponent;
-	let fixture: ComponentFixture<JobFullPageComponent>;
+xdescribe('JobDetailPageComponent', () => {
+	let component: JobDetailPageComponent;
+	let fixture: ComponentFixture<JobDetailPageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [JobFullPageComponent]
+			declarations: [JobDetailPageComponent]
 		})
 			.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(JobFullPageComponent);
+		fixture = TestBed.createComponent(JobDetailPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
