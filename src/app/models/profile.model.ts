@@ -1,12 +1,13 @@
 export class Skill {
 	constructor(
-		public id:   number,
+		public id:   string,
 		public name: string,
 	) {}
 }
 
 export class Position {
 	constructor(
+		public id:        string,
 		public title:     string,
 		public company:   any,
 		public isCurrent: boolean,

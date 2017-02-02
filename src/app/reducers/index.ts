@@ -28,11 +28,13 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import * as fromLogin from './login.reducer';
 import * as fromProfile from './profile.reducer';
 import * as fromJobs from './jobs.reducer';
+import * as fromUi from './ui.reducer';
 
 export interface State {
 	login:   fromLogin.State;
 	profile: fromProfile.State;
-	jobs:		 fromJobs.State;
+	jobs:    fromJobs.State;
+	ui:      fromUi.State;
 }
 
 /**
@@ -42,7 +44,8 @@ export interface State {
 const reducers = {
 	login:   fromLogin.reducer,
 	profile: fromProfile.reducer,
-	jobs:		 fromJobs.reducer,
+	jobs:    fromJobs.reducer,
+	ui:      fromUi.reducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -59,6 +62,7 @@ export function reducer(state: any, action: any) {
 export const getLoginState = (state: State) => state.login;
 export const getProfileState = (state: State) => state.profile;
 export const getJobsState = (state: State) => state.jobs;
+export const getUiState = (state: State) => state.ui;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -71,3 +75,5 @@ export const getJobs = createSelector(getJobsState, fromJobs.getJobs);
 
 export const getUserProfile = createSelector(getProfileState, fromProfile.getProfile);
 export const getProfileLoaded = createSelector(getProfileState, fromProfile.getLoaded);
+
+export const getUiEditId = createSelector(getUiState, fromUi.getEditId);

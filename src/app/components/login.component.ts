@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Login } from '../models/login.model';
 
 @Component({
@@ -24,11 +24,6 @@ import { Login } from '../models/login.model';
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox">Remember me
-                </label>
-            </div>
         </div>
     </div>
 </form>

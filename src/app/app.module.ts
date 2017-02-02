@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -63,7 +63,8 @@ import { HeaderComponent } from './components/header.component';
 		EffectsModule.run(JobEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
-		})
+		}),
+		ReactiveFormsModule
 	],
 	providers: [
 		{

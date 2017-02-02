@@ -1,20 +1,81 @@
-<div class="row">
-	<div class="col-md-2">
-		<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
+<form class="form-horizontal"
+	novalidate
+	[formGroup]="profileForm">
+	<div class="row">
+		<div id="avatar" class="col-md-2">
+			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
+		</div>
+		<div class="col-md-10">
+			<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
+			<p>{{ profile.headline }}</p>
+			<p>{{ profile.emailAddress }}</p>
+		</div>
 	</div>
-	<div class="col-md-10">
-		<p>{{ profile.firstName }} {{ profile.lastName }}</p>
-		<p>{{ profile.headline }}</p>
-		<p>{{ profile.emailAddress }}</p>
+
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Work Experience</h3>
+			<br>
+
+			<!-- Work experience loop -->
+			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
+				<div [formGroupName]="i">
+					<div *ngIf="edit != 'position'+i" class="view">
+						<a href="#" (click)="editMode($event, 'position'+i)" class="edit">Edit</a>
+						<p class="highlight-p">{{ position.value.title }}</p>
+						<p>{{ position.value.company?.name }} - {{ position.value.location?.name }}</p>
+						<p>{{ position.value.summary }}</p>
+					</div>
+
+					<div *ngIf="edit == 'position'+i" class="form-group clearfix">
+						<label class="col-md-12 control-label"
+							attr.for="{{ 'title' + i }}">Title</label>
+						<div class="col-md-12">
+							<input type="text" id="{{ 'title' + i }}"
+								class="form-control"
+								placeholder="e.g. Software Engineer"
+								formControlName="title">
+						</div>
+
+						<label class="col-md-12 control-label"
+							attr.for="{{ 'company' + i }}">Company</label>
+						<div formGroupName="company" class="col-md-12">
+							<input type="text" id="{{ 'company' + i }}"
+								class="form-control"
+								placeholder="e.g. WeLink Talent"
+								formControlName="name">
+						</div>
+
+						<label class="col-md-12 control-label"
+							attr.for="{{ 'location' + i }}">Location</label>
+						<div formGroupName="location" class="col-md-12">
+							<input type="text" id="{{ 'location' + i }}"
+								class="form-control"
+								placeholder="e.g. Singapore, Singapore"
+								formControlName="name">
+						</div>
+
+						<label class="col-md-12 control-label"
+							attr.for="{{ 'summary' + i }}">Summary</label>
+						<div class="col-md-12">
+							<textarea id="{{ 'summary' + i }}" rows="3"
+								class="form-control"
+								formControlName="summary"></textarea>
+						</div>
+
+						<div class="col-md-12">
+							<div class="position-action">
+								<button class="btn btn-primary" (click)="savePosition(i)">Save</button>
+								<button class="btn btn-primary" (click)="editMode($event, '')">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
-	<div class="col-md-12">
-		<h3>Work history</h3>
-		<ul>
-			<li *ngFor="let position of profile.positions">
-				<h4>{{ position.company.name }} <small>{{ position.location.name }}</small></h4>
-				<p>{{ position.title }}</p>
-				<p>{{ position.summary }}</p>
-			</li>
-		</ul>
-	</div>
-</div>
+
+
+</form>

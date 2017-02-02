@@ -1,0 +1,42 @@
+h3 {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+p {
+	margin-bottom: 0px;
+}
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
+img {
+	width: 120px;
+}
+label {
+	margin-top: 10px;
+}
+.highlight-p {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.form-group {
+	background: #eee;
+	padding-bottom: 10px;
+	border-radius: 2px;
+}
+.position-action {
+	margin-top: 10px;
+	float: right;
+}
+.view {
+	position: relative;
+}
+.edit {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+#avatar {
+	width: 140px;
+	min-height: 100%;
+}

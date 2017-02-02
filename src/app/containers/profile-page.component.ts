@@ -3,8 +3,11 @@ import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Profile } from '../models/profile.model';
+
 import * as fromRoot from '../reducers';
-import * as profileAction from '../actions/profile.action';
+import * as profile from '../actions/profile.action';
+import * as position from '../actions/profile-position.action';
+import * as ui from '../actions/ui.action';
 
 @Component({
 	selector: 'app-profile-page',
@@ -12,12 +15,13 @@ import * as profileAction from '../actions/profile.action';
 	<div class='container'>
 		<div class='container-fluid'>
 			<div class='row'>
-				<div class='col-md-3'>
-				</div>
-				<div class='col-md-6'>
-					<h3>Profile</h3>
-					<app-profile-view [profile]="profile$ | async"></app-profile-view>
-					<button type="button" class="btn btn-warning" (click)="logout()">Sign-out</button>
+				<div class='col-md-12'>
+					<app-profile-view
+						[profile]="profile$ | async"
+						[edit]="edit$ | async"
+						(editEvent)="editEvent($event)"
+						(savePositionEvent)="savePositionEvent($event)">
+					</app-profile-view>
 				</div>
 			</div>
 		</div>
@@ -28,13 +32,23 @@ import * as profileAction from '../actions/profile.action';
 export class ProfilePageComponent {
 	email$: Observable<string>;
 	profile$: Observable<Profile>;
+	edit$: Observable<string>;
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.email$ = this.store.select(fromRoot.getUserEmail);
 		this.profile$ = this.store.select(fromRoot.getUserProfile);
+		this.edit$ = this.store.select(fromRoot.getUiEditId);
 	}
 
 	logout() {
-		this.store.dispatch(new profileAction.ProfileLogOutAction(''));
+		this.store.dispatch(new profile.ProfileLogOutAction(''));
+	}
+
+	editEvent(editId: string) {
+		this.store.dispatch(new ui.FormEditMode(editId));
+	}
+
+	savePositionEvent(payload) {
+		this.store.dispatch(new position.PositionUpdateAction(payload));
 	}
 }
