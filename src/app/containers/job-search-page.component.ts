@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Job } from '../models/job.model';
@@ -8,16 +8,17 @@ import * as fromRoot from '../reducers';
 
 @Component({
 	selector: 'app-job-search-page',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-<div class="container">
-    <div class="container-fluid">
-			<!--// TODO: Fully implement search-->
-			<app-job-search></app-job-search>
-			<app-job-view *ngFor="let job of jobList$ | async" [job]="job">Loading ... </app-job-view>
-			<!--// TODO: Fully implement paging-->
-			<app-pagination></app-pagination>
-    </div>
-</div>
+	<div class="container">
+			<div class="container-fluid">
+				<!--// TODO: Fully implement search-->
+				<app-job-search></app-job-search>
+				<app-job-view *ngFor="let job of jobList$ | async" [job]="job">Loading ... </app-job-view>
+				<!--// TODO: Fully implement paging-->
+				<app-pagination></app-pagination>
+			</div>
+	</div>
   `,
 	styles: []
 })

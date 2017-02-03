@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ import * as ui from '../actions/ui.action';
 
 @Component({
 	selector: 'app-profile-page',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 	<div class='container'>
 		<div class='container-fluid'>

@@ -8,13 +8,13 @@ import * as fromRoot from '../reducers';
 	selector: 'app-job-detail-page',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-<div class="container">
-  <div class="container-fluid">
-    <app-job-full-header [job]="job$ | async"></app-job-full-header>
-		<app-job-full-body [job]="job$ | async"></app-job-full-body>
-		<app-job-buttons [job]="job$ | async"></app-job-buttons>
+	<div class="container">
+		<div class="container-fluid">
+			<app-job-full-header [job]="job$ | async"></app-job-full-header>
+			<app-job-full-body [job]="job$ | async"></app-job-full-body>
+			<app-job-buttons [job]="job$ | async"></app-job-buttons>
+		</div>
 	</div>
-</div>
   `,
 	styles: []
 })

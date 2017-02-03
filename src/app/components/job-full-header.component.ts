@@ -4,28 +4,28 @@ import { Job } from '../models/job.model';
 @Component({
 	selector: 'app-job-full-header',
 	template: `
-<div class="row">
-    <div class='col-md-12'>
-        <img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-rounded" />
-    </div>
-</div>
-<div class='row'>
-    <div class='col-md-10 div-padding'>
-        <h3 class="jobTitle">{{job.title}}</h3>
-        <h4 class="jobCompany">{{job.company}} | {{job.location}}</h4>
-    </div>
-    <div class="col-md-2"> &nbsp; </div>
-</div>
+	<div class="row">
+			<div class='col-md-12'>
+					<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-rounded" />
+			</div>
+	</div>
+	<div class='row'>
+			<div class='col-md-10 div-padding'>
+					<h3 class="job-title">{{job.title}}</h3>
+					<h4 class="job-company">{{job.company}} | {{job.location}}</h4>
+			</div>
+			<div class="col-md-2"> &nbsp; </div>
+	</div>
 	`,
 	styles: [`
 	img {
 		width: 300px;
 		height: 100px;
 	}
-	.jobTitle {
+	.job-title {
 		font-weight: 700;
 	}
-	.jobCompany {
+	.job-company {
 		font-weight: 500;
 		font-style: italic;
 	}
