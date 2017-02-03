@@ -24,11 +24,16 @@ export class ProfileViewComponent implements OnInit {
 	@Output() saveProfileEvent = new EventEmitter<any>();
 	@Output() savePositionEvent = new EventEmitter<any>();
 	@Output() createPositionEvent = new EventEmitter<any>();
+	@Output() createSkillEvent = new EventEmitter<any>();
 
 	profileForm: FormGroup;
 
 	get positions(): FormArray{
 		return <FormArray>this.profileForm.get('positions');
+	}
+
+	get skills(): FormArray{
+		return <FormArray>this.profileForm.get('skills');
 	}
 
 	constructor(private fb: FormBuilder) {}
@@ -39,9 +44,9 @@ export class ProfileViewComponent implements OnInit {
 			lastName:     '',
 			headline:     '',
 			emailAddress: '',
-			positions:    this.fb.array(
-				this.profile.positions.map(() => this.positionFormGroup())
-			),
+			summary:      '',
+			positions:    this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
+			skills:       this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
 		});
 
 		this.profileForm.patchValue({
@@ -49,7 +54,9 @@ export class ProfileViewComponent implements OnInit {
 			lastName:     this.profile.lastName,
 			headline:     this.profile.headline,
 			emailAddress: this.profile.emailAddress,
+			summary:      this.profile.summary,
 			positions:    this.profile.positions,
+			skills:       this.profile.skills,
 		});
 	}
 
@@ -59,6 +66,12 @@ export class ProfileViewComponent implements OnInit {
 			company:  this.fb.group({ name: '' }),
 			location: this.fb.group({ name: '' }),
 			summary:  ''
+		});
+	}
+
+	skillsFormGroup(): FormGroup {
+		return this.fb.group({
+			name: ''
 		});
 	}
 
@@ -92,9 +105,8 @@ export class ProfileViewComponent implements OnInit {
 		}
 	}
 
-	addPosition(event, editId) {
+	addPosition(event) {
 		this.positions.push(this.positionFormGroup());
-
 		this.editMode(event, 'position' + (this.positions.length - 1));
 	}
 
@@ -105,6 +117,27 @@ export class ProfileViewComponent implements OnInit {
 
 		if (!position || !position.id) {
 			this.positions.removeAt(index);
+		}
+
+		this.editMode(event, '');
+	}
+
+	saveSkill(index) {
+		const skill = this.skills.value[index];
+
+		this.createSkillEvent.emit({ skill });
+	}
+
+	addSkill(event) {
+		this.skills.push(this.skillsFormGroup());
+		this.editMode(event, 'skill' + (this.skills.length - 1));
+	}
+
+	cancelSkill(event, index) {
+		const skill = this.profile.skills[index];
+
+		if (!skill || !skill.id) {
+			this.skills.removeAt(index);
 		}
 
 		this.editMode(event, '');

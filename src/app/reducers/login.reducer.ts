@@ -18,14 +18,16 @@ const initialState: State = {
 export function reducer(state = initialState, action: login.Actions): State {
 	switch (action.type) {
 		case login.ActionTypes.LOGIN:
+		case login.ActionTypes.LOGOUT:
 			return initialState;
 
-		case login.ActionTypes.LOGIN_SUCCESS:
+		case login.ActionTypes.LOGIN_SUCCESS: {
 			return Object.assign({}, state, {
 				user: action.payload,
 				loaded: true,
 				loginFail: false
 			});
+		}
 
 		case login.ActionTypes.LOGIN_FAIL:
 			return Object.assign({}, state, {

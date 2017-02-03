@@ -31,7 +31,7 @@ export class ProfileEffects {
 					localStorage.setItem('id_token', data.token);
 
 					return Observable.from([
-						new login.LoginSuccessAction(''),
+						new login.LoginSuccessAction(data.user),
 						new profile.ProfileLinkedinSuccessAction(data.profile),
 					]);
 				})
@@ -40,11 +40,8 @@ export class ProfileEffects {
 
 	@Effect({ dispatch: false })
 	logout$ = this.actions
-		.ofType(profile.ActionTypes.LOGOUT)
-		.do(() => {
-			localStorage.removeItem('id_token');
-			localStorage.removeItem('user');
-		})
+		.ofType(login.ActionTypes.LOGOUT)
+		.do(() => localStorage.removeItem('id_token'))
 		.do(() => this.router.navigate(['login']));
 
 	@Effect()
@@ -109,6 +106,28 @@ export class ProfileEffects {
 				.mergeMap((response) => {
 					return Observable.from([
 						new profile.PositionCreateSuccessAction(response),
+						new ui.FormEditMode(''),
+					]);
+				});
+		});
+
+	@Effect()
+	createSkill$: Observable<Action> = this.actions
+		.ofType(profile.ActionTypes.SKILLS_CREATE)
+		.withLatestFrom(this.store, (action, state) => {
+			return {
+				userId:    state.login.user.id,
+				profileId: state.profile.profile.id,
+				data:      action.payload.skill
+			};
+		})
+		.switchMap((payload) => {
+			const { userId, profileId, data } = payload;
+
+			return this.profileService.createSkill(userId, profileId, data)
+				.mergeMap((response) => {
+					return Observable.from([
+						new profile.SkillCreateSuccessAction(response),
 						new ui.FormEditMode(''),
 					]);
 				});

@@ -1,7 +1,7 @@
 <form class="form-horizontal"
 	novalidate
 	[formGroup]="profileForm">
-	<div class="row">
+	<div class="row" id="basic_profile">
 		<div id="avatar" class="col-md-2">
 			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
 		</div>
@@ -10,6 +10,7 @@
 			<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
 			<p>{{ profile.headline }}</p>
 			<p>{{ profile.emailAddress }}</p>
+			<p>{{ profile.summary }}</p>
 		</div>
 
 		<div *ngIf="edit == 'basic'" class="col-md-10 form-group clearfix">
@@ -37,6 +38,12 @@
 					<input type="text" id="emailAddress"
 						class="form-control"
 						formControlName="emailAddress">
+				</div>
+				<div class="col-md-12">
+					<label class="control-label" for="summary">Summary</label>
+					<textarea  id="summary" rows="3"
+						class="form-control"
+						formControlName="summary"></textarea>
 				</div>
 				<div class="col-md-12">
 					<div class="position-action">
@@ -112,6 +119,38 @@
 
 			<div class="add-btn-container">
 				<a href="#" (click)="addPosition($event)" class="add-btn">Add Experience</a>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<h3>Skills</h3>
+			<br>
+
+			<div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;" class="skill">
+				<div [formGroupName]="i">
+					<div *ngIf="edit != 'skill'+i">
+						<span>{{ skill.value.name }}</span>
+					</div>
+
+					<div *ngIf="edit == 'skill'+i" class="form-group clearfix">
+						<label class="col-md-12 control-label"
+							attr.for="{{ 'skill' + i }}">Skill Name</label>
+						<div class="col-md-12">
+							<input type="text" id="{{ 'skill' + i }}"
+								class="form-control"
+								formControlName="name">
+						</div>
+						<div class="col-md-12">
+							<div class="skill-action">
+								<button class="btn btn-primary" (click)="saveSkill(i)" [disabled]="loading">Add</button>
+								<button class="btn btn-primary" (click)="cancelSkill($event, i)" [disabled]="loading">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="add-btn-container">
+				<a href="#" (click)="addSkill($event)" class="add-btn">Add Skill</a>
 			</div>
 		</div>
 	</div>

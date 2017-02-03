@@ -16,6 +16,8 @@ export const ActionTypes = {
 	POSITION_CREATE_SUCCESS: type('[PROFILE] Profile Position Create Success'),
 	POSITION_UPDATE:         type('[PROFILE] Profile Position Update'),
 	POSITION_UPDATE_SUCCESS: type('[PROFILE] Profile Position Update Success'),
+	SKILLS_CREATE:           type('[PROFILE] Profile Skills Create'),
+	SKILLS_CREATE_SUCCESS:   type('[PROFILE] Profile Skills Create Success')
 };
 
 export class ProfileLoadAction implements Action {
@@ -102,6 +104,20 @@ export class PositionUpdateSuccessAction implements Action {
 	}
 }
 
+export class SkillCreateAction implements Action {
+	type = ActionTypes.SKILLS_CREATE;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class SkillCreateSuccessAction implements Action {
+	type = ActionTypes.SKILLS_CREATE_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = ProfileLinkedinAction
 	| ProfileLinkedinSuccessAction
 	| ProfileLinkedinFailAction
@@ -113,4 +129,6 @@ export type Actions = ProfileLinkedinAction
 	| PositionCreateAction
 	| PositionCreateSuccessAction
 	| PositionUpdateAction
-	| PositionUpdateSuccessAction;
+	| PositionUpdateSuccessAction
+	| SkillCreateAction
+	| SkillCreateSuccessAction;

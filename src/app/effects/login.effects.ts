@@ -35,7 +35,7 @@ export class LogInEffects {
 			this.logInService.signIn(payload)
 				.map((data) => {
 					localStorage.setItem('id_token', data.token);
-					return new login.LoginSuccessAction('');
+					return new login.LoginSuccessAction(data.user);
 				})
 				.catch(() => Observable.of(new login.LoginFailAction('')))
 		);

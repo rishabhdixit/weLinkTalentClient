@@ -25,7 +25,19 @@ export class LinkedinLoginComponent implements OnInit {
 
 	login() {
 		IN.User.authorize(() => {
-			IN.API.Raw('/people/~:(id,email-address,first-name,last-name,headline,specialties,positions,picture-url)?format=json').result((res) => {
+			const fields = [
+				'id',
+				'email-address',
+				'first-name',
+				'last-name',
+				'headline',
+				'specialties',
+				'positions',
+				'picture-url',
+				'summary',
+			].join(',');
+
+			IN.API.Raw(`/people/~:(${fields})?format=json`).result((res) => {
 				this.profile.emit(res);
 			}).error((error) => {
 				// Note: what instance does error happen?

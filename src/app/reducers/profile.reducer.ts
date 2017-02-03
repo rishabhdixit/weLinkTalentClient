@@ -1,3 +1,5 @@
+import * as lodash from 'lodash';
+
 import * as profile from '../actions/profile.action';
 import { Profile } from '../models/profile.model';
 
@@ -26,6 +28,7 @@ export function createProfile(payload: any): Profile {
 		payload.lastName,
 		payload.pictureUrl,
 		payload.headline,
+		payload.summary,
 		undefined,
 		positions.map((position) => position),
 		skills.map((skill) => skill),
@@ -44,8 +47,7 @@ export function reducer(state = initialState, action: profile.Actions): State {
 			return Object.assign({}, state, { profile: action.payload, loaded: true });
 		}
 
-		case profile.ActionTypes.LOAD:
-		case profile.ActionTypes.LOGOUT: {
+		case profile.ActionTypes.LOAD: {
 			return Object.assign({}, state, { loaded: false });
 		}
 
@@ -58,7 +60,7 @@ export function reducer(state = initialState, action: profile.Actions): State {
 		case profile.ActionTypes.UPDATE_SUCCESS: {
 			const profile = action.payload;
 
-			return Object.assign({}, state, { profile, loading: false });
+			return lodash.merge({}, state, { profile, loading: false });
 		}
 
 		case profile.ActionTypes.POSITION_CREATE_SUCCESS: {

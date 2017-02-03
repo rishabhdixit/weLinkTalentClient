@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header.component';
+import { ComponentNameComponent } from './footer.component';
 import { JobFullBodyComponent } from './job-full-body.component';
 import { JobFullHeaderComponent } from './job-full-header.component';
 import { JobSearchComponent } from './job-search.component';
@@ -17,6 +18,7 @@ import { JobButtonsComponent } from './job-buttons.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
+	ComponentNameComponent,
 	JobFullBodyComponent,
 	JobFullHeaderComponent,
 	JobSearchComponent,

@@ -30,7 +30,8 @@ label {
 .position {
 	margin-bottom: 20px;
 }
-.position-action {
+.position-action,
+.skill-action {
 	margin-top: 10px;
 	float: right;
 }
@@ -43,12 +44,16 @@ label {
 }
 .add-btn-container {
 	position: relative;
+	text-align: right;
 }
 .add-btn {
-	position: absolute;
-	right: 0;
+	// position: absolute;
+	// right: 0;
 }
 #avatar {
 	width: 140px;
 	min-height: 100%;
+}
+#basic_profile {
+	margin-bottom: 50px;
 }

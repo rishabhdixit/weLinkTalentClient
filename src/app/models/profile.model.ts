@@ -25,6 +25,7 @@ export class Profile {
 		public lastName:     string,
 		public pictureUrl:   string,
 		public headline:     string,
+		public summary:      string,
 		public id?:          string,
 		public positions?:   Position[],
 		public skills?:      Skill[],

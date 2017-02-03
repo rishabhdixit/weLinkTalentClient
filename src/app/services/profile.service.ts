@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
-import { Profile, Position } from '../models/profile.model';
+import { Profile, Position, Skill } from '../models/profile.model';
 
 @Injectable()
 export class ProfileService {
@@ -25,7 +25,7 @@ export class ProfileService {
 	updateProfile(
 		userId: string,
 		profileId: string,
-		data: any,
+		data: any
 	): Observable<Position> {
 		return this.authHttp.put(
 			`${this.api}/api/users/${userId}/profiles/${profileId}`,
@@ -37,7 +37,7 @@ export class ProfileService {
 		userId: string,
 		profileId: string,
 		positionId: string,
-		data: any,
+		data: any
 	): Observable<Position> {
 		return this.authHttp.put(
 			`${this.api}/api/users/${userId}/profiles/${profileId}/positions/${positionId}`,
@@ -52,6 +52,17 @@ export class ProfileService {
 	): Observable<Position> {
 		return this.authHttp.post(
 			`${this.api}/api/users/${userId}/profiles/${profileId}/positions`,
+			data
+		).map(res => res.json());
+	}
+
+	createSkill(
+		userId: string,
+		profileId: string,
+		data: any
+	): Observable<Skill> {
+		return this.authHttp.post(
+			`${this.api}/api/users/${userId}/profiles/${profileId}/skills`,
 			data
 		).map(res => res.json());
 	}

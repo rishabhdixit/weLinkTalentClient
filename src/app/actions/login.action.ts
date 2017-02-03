@@ -4,15 +4,23 @@ import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
 
 export const ActionTypes = {
-	LOGIN:         type('[LOGIN] Login'),
-	LOGIN_SUCCESS: type('[LOGIN] Login Success'),
-	LOGIN_FAIL:    type('[LOGIN] Login Fail')
+	LOGIN:         type('[USER] Login'),
+	LOGOUT:        type('[USER] Logout'),
+	LOGIN_SUCCESS: type('[USER] Login Success'),
+	LOGIN_FAIL:    type('[USER] Login Fail')
 };
 
 export class LoginAction implements Action {
 	type = ActionTypes.LOGIN;
 
 	constructor(public payload: Login) {
+	}
+}
+
+export class LogoutAction implements Action {
+	type = ActionTypes.LOGOUT;
+
+	constructor(public payload: any) {
 	}
 }
 
@@ -31,5 +39,6 @@ export class LoginFailAction implements Action {
 }
 
 export type Actions = LoginAction
+	| LogoutAction
 	| LoginSuccessAction
 	| LoginFailAction;

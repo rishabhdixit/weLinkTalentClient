@@ -1,24 +1,27 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
-import * as profile from '../actions/profile.action';
+import * as login from '../actions/login.action';
 
 @Component({
 	selector: 'app-header',
 	template: `
-		<ul *ngIf="!isLoggedInUrl"  class="nav nav-pills justify-content-end">
-				<li *ngIf="!isLoggedIn" class="nav-item">
-						<a routerLink="/login" class="nav-link label">Sign-In</a>
-				</li>
-				<li *ngIf="isLoggedIn" class="nav-item">
-						<span class="nav-link label">{{ user?.email }}</span>
-				</li>
-				 <li *ngIf="isLoggedIn" class="nav-item">
-						<a href="#" class="nav-link label" (click)="logout()">Sign-Out</a>
-				</li>
-		</ul>
+		<header>
+			<ul *ngIf="isNotLoginUrl" class="nav nav-pills justify-content-end">
+					<li *ngIf="!isLoggedIn" class="nav-item">
+							<a routerLink="/login" class="nav-link label">Sign-In</a>
+					</li>
+					<li *ngIf="isLoggedIn" class="nav-item">
+							<span class="nav-link label">{{ user?.email }}</span>
+					</li>
+					 <li *ngIf="isLoggedIn" class="nav-item">
+							<a href="#" class="nav-link label" (click)="logout($event)">Sign-Out</a>
+					</li>
+			</ul>
+		</header>
 	`,
 	styles: [`
 		ul {
@@ -33,22 +36,25 @@ import * as profile from '../actions/profile.action';
 })
 export class HeaderComponent {
 	@Input() user: User;
-	@Input() routerEvent: any;
+	@Input() route: NavigationEnd;
 
 	constructor(private store: Store<fromRoot.State>) { }
 
-	logout() {
-		this.store.dispatch(new profile.ProfileLogOutAction(''));
+	logout(event) {
+		event.preventDefault();
+
+		this.store.dispatch(new login.LogoutAction(''));
 	}
 
 	get isLoggedIn() {
 		return this.user ? this.user.email : false;
 	}
 
-	get isLoggedInUrl() {
-		if (this.routerEvent && this.routerEvent[1].url === '/login') {
-			return true;
+	get isNotLoginUrl() {
+		if (this.route && this.route.url === '/login') {
+			return false;
 		}
-		return false;
+
+		return true;
 	}
 }
