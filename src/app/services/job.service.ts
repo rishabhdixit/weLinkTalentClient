@@ -9,14 +9,12 @@ export class JobService {
 	}
 
 	search(query: String): Observable<any> {
-		return this.http.get(this.api + '/api/jobs?' + query)
+		return this.http.get(`${this.api}/api/jobs?${query}`)
 			.map((res: Response) => res.json());
 	}
 
-	/**
-	 * TODO : create an API
-	 */
 	get(id: string): Observable<any> {
-		return Observable.of({});
+		return this.http.get(`${this.api}/api/jobs/${id}`)
+			.map((res: Response) => res.json());
 	}
 }

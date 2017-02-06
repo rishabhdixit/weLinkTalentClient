@@ -5,12 +5,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/let';
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { JobService } from '../services/job.service';
+import {Injectable} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Router, CanActivate, ActivatedRouteSnapshot} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {JobService} from '../services/job.service';
 import * as fromRoot from '../reducers';
 import * as jobAction from '../actions/jobs.action';
 
@@ -23,10 +23,7 @@ export class JobExistsGuard implements CanActivate {
 
 	hasJobInStore(id: string): Observable<boolean> {
 		return this.store.select(fromRoot.getJobEntites)
-			.map(entities => {
-				this.store.dispatch(new jobAction.JobsSelectAction(id));
-				return !!entities[id];
-			})
+			.map(entities => !!entities[id])
 			.take(1);
 	}
 
@@ -36,28 +33,23 @@ export class JobExistsGuard implements CanActivate {
 				if (inStore) {
 					return of(inStore);
 				}
+				return this.hasJobInApi(id);
+			});
+	}
+
+	hasJobInApi(id: string): Observable<boolean> {
+		return this.jobService.get(id)
+			.map((data) => new jobAction.JobsLoadSuccessAction([ ... data ]))
+			.do((action: jobAction.JobsLoadSuccessAction) => this.store.dispatch(action))
+			.map((job) => !!job)
+			.catch(() => {
 				this.router.navigate(['jobs']);
 				return of(false);
 			});
 	}
 
-	hasJobInApi(id: string): Observable<boolean> {
-		/** TODO : trigger this if API is Ready **/
-		return this.jobService.get(id)
-			.map((data) => {
-				if (data) {
-					this.store.dispatch(new jobAction.JobsLoadSuccessAction([data]));
-					this.store.dispatch(new jobAction.JobsSelectAction(id));
-					return of(true);
-				}
-				this.router.navigate(['notfound page']);
-				return of(false);
-			})
-			.catch(() => of(false));
-
-	}
-
 	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-		return this.hasJob(route.params['id']);
+		this.store.dispatch(new jobAction.JobsSelectAction(route.params['id']));
+		return  this.hasJob(route.params['id']);
 	}
 }
