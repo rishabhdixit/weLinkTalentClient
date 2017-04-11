@@ -9,7 +9,6 @@ import * as $ from 'jquery';
 			Sign in with LinkedIn
 		</button>
 	`,
-	styleUrls: []
 })
 export class LinkedinLoginComponent implements OnInit {
 	@Output() profile = new EventEmitter();
