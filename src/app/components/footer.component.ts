@@ -4,14 +4,36 @@ import { Component } from '@angular/core';
 	selector: 'app-footer',
 	template: `
 		<footer>
-			WelinkTalent © 2017
+			<div class="col-md-12">
+				<div class="col-md-8">
+					<img alt="We Link Talent" src="./assets/images/W.png" class="img-rounded"/>
+					<div class="socialButton">
+						<a href="https://plus.google.com" target="_blank"><img alt="We Link Talent" src="./assets/images/google-plus-logo-button.png" class="img-rounded" class="img-responsive socialButton"/></a>
+						<a href="https://www.facebook.com/"><img alt="We Link Talent" src="./assets/images/facebook-logo-button.png" class="img-rounded" class="img-responsive socialButton betweenSpaces"/></a>
+						<a href="https://twitter.com/"><img alt="We Link Talent" src="./assets/images/twitter.png" class="img-rounded" class="img-responsive socialButton betweenSpaces"/></a>
+						<a href="https://www.linkedin.com"><img alt="We Link Talent" src="./assets/images/linkedin-logo.png" class="img-rounded" class="img-responsive socialButton betweenSpaces"/></a>
+					</div>
+					<div>
+						<p class="pull-left"> © 2017 by WeLinkTalent Pte Ltd</p>
+						<p class="pull-right betweenSpaces">Engineered by VISEO</p>
+					</div>
+				</div>
+			</div>
 		</footer>
 	`,
 	styles: [`
 		footer {
-			margin-top: 100px;
+			margin-bottom: 0;
 			height: 60px;
-			text-align: center;
+			margin-left: 25%;
+		}
+		.socialButton{
+			width: 20%;
+			float: right;
+    		margin-top: 7%;
+		}
+		.betweenSpaces{
+			margin-right:7px;
 		}
 	`]
 })

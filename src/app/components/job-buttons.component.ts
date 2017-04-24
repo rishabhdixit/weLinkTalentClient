@@ -4,14 +4,14 @@ import { Job } from '../models/job.model';
 @Component({
 	selector: 'app-job-buttons',
 	template: `
-	<div class="row">
-		<div class="col-md-9">
-			<button type="button" class="btn btn-warning">Save Jobs</button>
+	<div class="row col-md-12">
+		<div class="col-md-2"></div>
+		<div class="col-md-5">
+			<button type="button" class="btn btn-basic btn-lg">Back</button>
 		</div>
-		<div class="col-md-1">
-			<button type="button" class="btn btn-primary">Apply</button>
+		<div class="col-md-5">
+			<button type="button" class="btn btn-primary btn-lg">Apply</button>
 		</div>
-		<div class="col-md-2"> &nbsp; </div>
 	</div>
 	`,
 	styles: []

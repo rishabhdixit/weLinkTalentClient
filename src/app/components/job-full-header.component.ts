@@ -4,17 +4,18 @@ import { Job } from '../models/job.model';
 @Component({
 	selector: 'app-job-full-header',
 	template: `
-	<div class="row">
-			<div class='col-md-12'>
-					<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-rounded" />
+	
+	<div class='row col-md-12'>
+			<div class='col-md-10 div-padding text-center'>
+					<h3 class="job-title mb-0 text-primary">{{job.title}}</h3>
+					<p class="job-company mb-0">Job ID: {{job.id}}</p>
+					<p class="date-posted mb-0">Posted: {{job.created_at}}</p>
 			</div>
-	</div>
-	<div class='row'>
-			<div class='col-md-10 div-padding'>
-					<h3 class="job-title">{{job.title}}</h3>
-					<h4 class="job-company">{{job.company}} | {{job.location}}</h4>
+			<div class='col-md-2 text-center'>
+				<button class="btn">StarNi</button>
+				<p class="addBookmark">Add to Bookmark</p>
 			</div>
-			<div class="col-md-2"> &nbsp; </div>
+			
 	</div>
 	`,
 	styles: [`
@@ -25,14 +26,18 @@ import { Job } from '../models/job.model';
 	.job-title {
 		font-weight: 700;
 	}
-	.job-company {
-		font-weight: 500;
-		font-style: italic;
-	}
 	.div-padding {
 		padding-bottom: 10px;
 	}
-`]})
+	.mb-0 {
+		margin-bottom: 0;
+		line-height: 1;
+	}
+	.addBookmark{
+		font-size: smaller;
+	}
+	`]
+})
 
 export class JobFullHeaderComponent {
 	@Input() job: Job;

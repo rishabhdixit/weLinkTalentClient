@@ -3,11 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
 	selector: 'app-job-search',
 	template: `
-	<div class="row">
-			<div class="col-md-12">
-					<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-rounded image" />
-			</div>
-	</div>
+	
+	
 	<div class="row">
 			<div class="col-md-5">
 					<label for="searchWhat">What</label>

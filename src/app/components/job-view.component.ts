@@ -15,7 +15,7 @@ import { Job } from '../models/job.model';
 							<dt> Description </dt>
 							<dd class="job-txt">{{job.description}}</dd>
 							<dt> Skills </dt>
-							<dd class="job-txt">{{job.skills}}</dd>
+							<dd class="job-txt">{{job.idealTalent}}</dd>
 							<dt> Experience </dt>
 							<dd>{{job.yearsExperience}}</dd>
 							<a routerLink="/jobs/{{job.id}}">more ... »</a>

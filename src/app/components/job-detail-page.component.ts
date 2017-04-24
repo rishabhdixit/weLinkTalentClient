@@ -10,18 +10,18 @@ import * as fromRoot from '../reducers';
 	template: `
 	<div class="container">
 		<div class="row container-fluid">
-				<div class="col-md-8">
-					<app-job-full-header [job]="job$ | async"></app-job-full-header>
-					<app-job-full-body [job]="job$ | async"></app-job-full-body>
-					<app-job-buttons [job]="job$ | async"></app-job-buttons>
-				</div>
-				<div class="col-md-4">
-					<app-job-full-side [job]="job$ | async"></app-job-full-side>
-				</div>
+			<div class="col-md-8">
+				<app-job-full-header [job]="job$ | async"></app-job-full-header>
+				<app-job-full-body [job]="job$ | async"></app-job-full-body>
+				<app-job-buttons [job]="job$ | async"></app-job-buttons>
+			</div>
+			<div class="col-md-4">
+				<app-job-full-side [job]="job$ | async"></app-job-full-side>
+			</div>
 		</div>
 	</div>
   `,
-	styles: [``],
+	styles: [`	`],
 })
 export class JobDetailPageComponent {
 	job$: Observable<Job>;

@@ -15,6 +15,8 @@ import { OrSeperatorComponent } from './or-seperator.component';
 import { PaginationComponent } from './pagination.component';
 import { ProfileViewComponent } from './profile-view.component';
 import { JobButtonsComponent } from './job-buttons.component';
+import { JobFullSideComponent } from './job-full-side.component';
+import { ShareButtonsModule } from "ng2-sharebuttons";
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -28,7 +30,8 @@ export const COMPONENTS = [
 	OrSeperatorComponent,
 	PaginationComponent,
 	ProfileViewComponent,
-	JobButtonsComponent
+	JobButtonsComponent,
+	JobFullSideComponent
 ];
 
 @NgModule({
@@ -36,7 +39,8 @@ export const COMPONENTS = [
 		CommonModule,
 		FormsModule,
 		RouterModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		ShareButtonsModule.forRoot()
 	],
 	declarations: COMPONENTS,
 	exports: COMPONENTS
