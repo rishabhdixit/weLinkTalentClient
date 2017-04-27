@@ -12,7 +12,7 @@ import { Job } from '../models/job.model';
 					<p class="date-posted mb-0">Posted: {{job.created_at}}</p>
 			</div>
 			<div class='col-md-2 text-center'>
-				<button class="btn">StarNi</button>
+				<a href="#"><span class="glyphicon glyphicon-star-empty"></span></a>
 				<p class="addBookmark">Add to Bookmark</p>
 			</div>
 			

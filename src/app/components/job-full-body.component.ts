@@ -98,6 +98,8 @@ import { Job } from '../models/job.model';
 	`,
 	styles: [`
 		.tableBorder td{
+			padding-top: 5px;
+			padding-bottom: 0px;
 			border: none;
 		}
 		.companyLogo{

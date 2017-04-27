@@ -17,16 +17,22 @@ import { Job } from '../models/job.model';
             <h4> Share This Page </h4>
             <hr>
             <div>
-                <a class="btn btn-social-icon btn-twitter btn-lg">
+                <a class="btn btn-social-icon btn-twitter btn-lg"
+                href="https://twitter.com/home?status=http%3A//localhost%3A4200/jobs/{{job.id}}">
                     <span class="fa fa-twitter generalColor"></span>
                 </a>
-                <a class="btn btn-social-icon btn-twitter btn-lg">
+                <a class="btn btn-social-icon btn-twitter btn-lg"
+                href="https://www.facebook.com/sharer.php?u=http%3A//localhost%3A4200/jobs/{{job.id}}"
+                target="_blank">
                     <span class="fa fa-facebook generalColor"></span>
                 </a>                
-                <a class="btn btn-social-icon btn-twitter btn-lg">
+                <a class="btn btn-social-icon btn-twitter btn-lg"
+            href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//localhost%3A4200/jobs/{{job.id}}&title=&summary=&source="
+                target="_blank">
                     <span class="fa fa-linkedin generalColor"></span>
                 </a>  
-                <a class="btn btn-social-icon btn-twitter btn-lg">
+                <a class="btn btn-social-icon btn-twitter btn-lg"
+                href="https://plus.google.com/share?url=localhost%253A4200/jobs/{{job.id}}">
                     <span class="fa fa-google-plus generalColor"></span>
                 </a>
                 <a class="btn btn-social-icon btn-twitter btn-lg">
@@ -47,7 +53,7 @@ import { Job } from '../models/job.model';
                         </tr >
                         <tr>
                             <td class="labelType">Job Type:<td>
-                            <td></td>
+                            <td>Permanent</td>
                         </tr>
                         <tr>
                             <td class="labelType">Emp Type:<td>
@@ -71,7 +77,7 @@ import { Job } from '../models/job.model';
                         </tr>
                         <tr>
                             <td class="labelType">Job Type:<td>
-                            <td></td>
+                            <td>Permanent</td>
                         </tr>
                         <tr>
                             <td class="labelType">Emp Type:<td>
@@ -94,8 +100,9 @@ import { Job } from '../models/job.model';
        color: #4D308E
     }
     .tableBorder td{
+        padding-top: 2px;
+        padding-bottom: 0px;
         border: none;
-        line-height: 2;
     }
     .labelType{
         font-weight: 700;

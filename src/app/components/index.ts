@@ -16,6 +16,8 @@ import { PaginationComponent } from './pagination.component';
 import { ProfileViewComponent } from './profile-view.component';
 import { JobButtonsComponent } from './job-buttons.component';
 import { JobFullSideComponent } from './job-full-side.component';
+import { ProfileBasicInfoComponent } from './profile-basic-info.component';
+import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
 import { ShareButtonsModule } from "ng2-sharebuttons";
 
 export const COMPONENTS = [
@@ -31,7 +33,9 @@ export const COMPONENTS = [
 	PaginationComponent,
 	ProfileViewComponent,
 	JobButtonsComponent,
-	JobFullSideComponent
+	JobFullSideComponent,
+	ProfileBasicInfoComponent,
+	ProfileCurrentSalaryInfoComponent
 ];
 
 @NgModule({

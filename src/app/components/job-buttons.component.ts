@@ -7,7 +7,7 @@ import { Job } from '../models/job.model';
 	<div class="row col-md-12">
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
-			<button type="button" class="btn btn-basic btn-lg">Back</button>
+			<a href="/jobs/"><button type="button" class="btn btn-basic btn-lg">Back</button></a>
 		</div>
 		<div class="col-md-5">
 			<button type="button" class="btn btn-primary btn-lg">Apply</button>

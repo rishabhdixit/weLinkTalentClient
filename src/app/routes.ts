@@ -4,6 +4,7 @@ import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
+import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
 import { ProfileResolve } from './resolves/profile.resolve';
@@ -17,12 +18,12 @@ export const routes: Routes = [
 	},
 	{
 		path: 'login',
-		canActivate: [ CandidateGuard ],
+		canActivate: [CandidateGuard],
 		component: LoginPageComponent
 	},
 	{
 		path: 'profile',
-		canActivate: [ LoggedInGuard ],
+		canActivate: [LoggedInGuard],
 		component: ProfilePageComponent,
 		resolve: { loaded: ProfileResolve }
 	},
@@ -33,8 +34,12 @@ export const routes: Routes = [
 	},
 	{
 		path: 'jobs/:id',
-		canActivate: [ JobExistsGuard ],
+		canActivate: [JobExistsGuard],
 		component: JobDetailPageComponent,
 		// resolve: { loaded: UserResolve }
 	},
+	{
+		path: 'about-us',
+		component: AboutUsPageComponent,
+	}
 ];

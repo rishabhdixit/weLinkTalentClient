@@ -31,6 +31,8 @@ import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
+import { AboutUsPageComponent } from './containers/about-us-page.component';
+
 
 @NgModule({
 	declarations: [
@@ -38,7 +40,8 @@ import { JobDetailPageComponent } from './containers/job-detail-page.component';
 		LoginPageComponent,
 		ProfilePageComponent,
 		JobSearchPageComponent,
-		JobDetailPageComponent
+		JobDetailPageComponent,
+		AboutUsPageComponent
 	],
 	imports: [
 		BrowserModule,

@@ -14,24 +14,20 @@ import * as fromRoot from '../reducers';
 	template: `
 	 <div class="container">
 		<div class="container-fluid">
-				<br>
-				<br>
-				<div class="row">
-						<div class="col-md-3">
+		<br><br>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-12">
+							<app-linkedin-login (profile)="linkedinProfile($event)"></app-linkedin-login>
 						</div>
-
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-md-12">
-										<app-linkedin-login (profile)="linkedinProfile($event)"></app-linkedin-login>
-								</div>
-							</div>
-							<app-login [loginFail]="loginFail | async" (signInButtonClicked)="onSignIn($event)"></app-login>
-						</div>
-
-						<div class="col-md-3">
-						</div>
+					</div>
+					<app-login [loginFail]="loginFail | async" (signInButtonClicked)="onSignIn($event)"></app-login>
 				</div>
+
+				<div class="col-md-3"></div>
+			</div>
 		</div>
 	</div>
 	`,

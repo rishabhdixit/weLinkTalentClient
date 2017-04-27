@@ -10,27 +10,63 @@ import * as login from '../actions/login.action';
 	selector: 'app-header',
 	template: `
 		<header>
-			<ul *ngIf="isNotLoginUrl" class="nav nav-pills justify-content-end">
-					<li *ngIf="!isLoggedIn" class="nav-item">
-							<a routerLink="/login" class="nav-link label">Sign-In</a>
-					</li>
-					<li *ngIf="isLoggedIn" class="nav-item">
-							<span class="nav-link label">{{ user?.email }}</span>
-					</li>
-					 <li *ngIf="isLoggedIn" class="nav-item">
-							<a href="#" class="nav-link label" (click)="logout($event)">Sign-Out</a>
-					</li>
-			</ul>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div>
+							<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-responsive image-banner"/>
+						</div>
+						<ul *ngIf="isNotLoginUrl" class="nav nav-pills justify-content-end">
+							<li *ngIf="isLoggedIn" class="nav-item">
+								<div class="btn-group btn-group-vertical pull-right groupButton">
+									<a href="/profile">
+										<button type="button" class="btn btn-primary btn-lg" style="width:111px;">Profile</button>
+									</a>
+									<a href="/login">
+										<button type="button" class="btn btn-basic btn-lg" (click)="logout($event)">Logout</button>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<nav class="col-md-12" style="font-size:large;">
+					<ul class="nav-list">
+						<li><a href="/profile"> Home </a></li>
+						<li><a href="/about-us"> About Us </a></li>
+						<li><a href="/jobs"> All Job Offers </a></li>
+						<li><a href="#"> Contact Us </a></li>
+						<li><a href="#"> Bookmarks </a></li>
+					</ul>
+				</nav>
+				<hr>
+			</div>
 		</header>
 	`,
 	styles: [`
-		ul {
-			border-bottom: 1px solid rgba(0,0,0,.15);
-		}
 		.label{
 			color: #337ab7;
 			font-weight: 500;
 			text-decoration: underline;
+		}
+		.image-banner{
+			width: 50%;
+		}
+
+		.nav-list{
+			list-style: none;
+			padding: 0;
+			width: 100%;
+		}
+
+		.nav-list li {
+			display: inline-block;
+			width: 19%;
+			text-align: center;
+		}
+
+		.groupButton{
+			margin-top: -140px;
 		}
 	`]
 })
@@ -42,8 +78,8 @@ export class HeaderComponent {
 
 	logout(event) {
 		event.preventDefault();
-
 		this.store.dispatch(new login.LogoutAction(''));
+		this.route.url = '/login/';
 	}
 
 	get isLoggedIn() {

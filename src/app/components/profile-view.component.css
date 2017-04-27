@@ -46,9 +46,13 @@ label {
 	position: relative;
 	text-align: right;
 }
-.add-btn {
-	// position: absolute;
-	// right: 0;
+.add-btn-work {
+	font-weight: bolder;
+    font-size: xx-large;
+    float: right;
+    margin-top: -55px;
+    margin-right: 77%;
+    color: black;
 }
 #avatar {
 	width: 140px;
@@ -56,4 +60,31 @@ label {
 }
 #basic_profile {
 	margin-bottom: 50px;
+	text-align: center;
+}
+h2{
+	color: blue;
+	margin-bottom: 0;
+	margin-top: -30px;
+    font-weight: 600;
+}
+h3{
+	color: blue;
+	font-size: x-large;
+}
+.add-btn{
+	font-size: xx-large;
+    font-weight: bolder;
+    color: black;
+    margin-right: 91%;
+    float: right;
+    margin-top: -6%;
+}
+.inputPosition{
+	float: right;
+    margin-right: 30px;
+    margin-top: -34px;
+}
+.inputPlace{
+	float: right;
 }

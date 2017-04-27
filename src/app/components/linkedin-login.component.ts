@@ -32,10 +32,9 @@ export class LinkedinLoginComponent implements OnInit {
 				'headline',
 				'specialties',
 				'positions',
-				'picture-url',
+				'pictureUrl',
 				'summary',
 			].join(',');
-
 			IN.API.Raw(`/people/~:(${fields})?format=json`).result((res) => {
 				this.profile.emit(res);
 			}).error((error) => {
