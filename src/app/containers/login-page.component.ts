@@ -25,7 +25,6 @@ import * as fromRoot from '../reducers';
 					</div>
 					<app-login [loginFail]="loginFail | async" (signInButtonClicked)="onSignIn($event)"></app-login>
 				</div>
-
 				<div class="col-md-3"></div>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Job } from '../models/job.model';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'app-job-buttons',
@@ -10,7 +11,7 @@ import { Job } from '../models/job.model';
 			<a href="/jobs/"><button type="button" class="btn btn-basic btn-lg">Back</button></a>
 		</div>
 		<div class="col-md-5">
-			<button type="button" class="btn btn-primary btn-lg">Apply</button>
+			<a href="/application-concept"><button type="button" class="btn btn-primary btn-lg">Apply</button></a>
 		</div>
 	</div>
 	`,

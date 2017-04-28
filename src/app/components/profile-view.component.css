@@ -88,3 +88,9 @@ h3{
 .inputPlace{
 	float: right;
 }
+.form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+	border-width: thin;
+    border-color: gray;
+}

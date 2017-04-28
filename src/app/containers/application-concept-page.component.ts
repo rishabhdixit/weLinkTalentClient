@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import * as fromRoot from '../reducers';
 
 @Component({
-	selector: 'app-about-us-page',
+	selector: 'app-application-concept-page',
 	template: `
 	<div class="container">
 		<div class="row container-fluid">
@@ -19,11 +19,19 @@ import * as fromRoot from '../reducers';
 			skills, potential and personal ambition of our talent as well as the mutual benefits to joining your organisation.</p>
 			<p>We link the right talent to the right organisation.</p>
 		</div>
+		<a href="/login"><button class="btn btn-primary nextButton">Next</button></a>
 	</div>
-  `,
-	styles: [``],
+	`,
+
+	styles: [`
+		.nextButton{
+			float: right;
+		}
+	`],
 })
-export class AboutUsPageComponent {
+
+export class ApplicationConceptPageComponent {
 	constructor() {
+
 	}
 }

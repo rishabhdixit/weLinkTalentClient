@@ -58,6 +58,8 @@ export class ProfileViewComponent implements OnInit {
 			positions:    this.profile.positions,
 			skills:       this.profile.skills,
 		});
+
+
 	}
 
 	positionFormGroup(): FormGroup {

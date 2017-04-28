@@ -32,6 +32,7 @@ import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
+import { ApplicationConceptPageComponent } from 'app/containers/application-concept-page.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AboutUsPageComponent } from './containers/about-us-page.component';
 		ProfilePageComponent,
 		JobSearchPageComponent,
 		JobDetailPageComponent,
-		AboutUsPageComponent
+		AboutUsPageComponent,
+		ApplicationConceptPageComponent,
 	],
 	imports: [
 		BrowserModule,

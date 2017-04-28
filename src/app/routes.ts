@@ -10,6 +10,7 @@ import { CandidateGuard } from './guards/candidate.guard';
 import { ProfileResolve } from './resolves/profile.resolve';
 // import { UserResolve } from './resolves/user.resolve';
 import { JobExistsGuard } from './guards/job-exist.guard';
+import { ApplicationConceptPageComponent } from 'app/containers/application-concept-page.component';
 
 export const routes: Routes = [
 	{
@@ -41,5 +42,9 @@ export const routes: Routes = [
 	{
 		path: 'about-us',
 		component: AboutUsPageComponent,
+	},
+	{
+		path: 'application-concept',
+		component: ApplicationConceptPageComponent,
 	}
 ];

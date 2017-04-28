@@ -5,11 +5,12 @@
 		<div id="avatar" class="col-md-12">
 			<h2>Welcome!</h2>
 			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
-			<a href="#" (click)="editMode($event, 'basic')" class="edit">Edit</a>
-			<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
-			<p>{{ profile.emailAddress }}</p>
-			<p>{{ position.value.title }}</p>
-			<p>{{ position.value.company?.name }}</p>
+			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
+				<a href="#" (click)="editMode($event, 'basic')" class="edit" *ngIf="i === 0">Edit</a>
+				<p class="highlight-p" *ngIf="i === 0">{{ profile.firstName }} {{ profile.lastName }}</p>
+				<p *ngIf="i === 0">{{ position.value.title }}</p>
+				<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
+			</div>
 		</div>
 
 		<div *ngIf="edit == 'basic'" class="col-md-10 form-group clearfix">
@@ -27,24 +28,6 @@
 						formControlName="lastName">
 				</div>
 				<div class="col-md-12">
-					<label class="control-label" for="headline">Headline</label>
-					<input type="text" id="headline"
-						class="form-control"
-						formControlName="headline">
-				</div>
-				<div class="col-md-12">
-					<label class="control-label" for="emailAddress">Email Address</label>
-					<input type="text" id="emailAddress"
-						class="form-control"
-						formControlName="emailAddress">
-				</div>
-				<div class="col-md-12">
-					<label class="control-label" for="summary">Summary</label>
-					<textarea  id="summary" rows="3"
-						class="form-control"
-						formControlName="summary"></textarea>
-				</div>
-				<div class="col-md-12">
 					<div class="position-action">
 						<button class="btn btn-primary" (click)="saveProfile()" [disabled]="loading">Save</button>
 						<button class="btn btn-primary" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
@@ -53,9 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<hr>
-	<br>
-	<div class="row">
+	<div class="row" style="margin-top: -35px;">
 		<div class="col-md-12">
 			<app-profile-basic-info></app-profile-basic-info>
 		</div>
@@ -83,11 +64,10 @@
 			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
 				<div [formGroupName]="i">
 					<div *ngIf="edit != 'position'+i" class="view">
-						<input type="text" value="{{ position.value.title }}" style="margin-bottom: 8px;" placeholder="Position"/>
+						<input type="text" value="{{ position.value.title }}" style="margin-bottom:8px;" placeholder="Position"/>
 						<input type="text" class="inputPlace" value="{{ position.value.startDate?.name }}" placeholder="Time Period"/><br>
 						<input type="text" value="{{position.value.company?.name}}" style="margin-bottom:8px;" placeholder="Company"/><br>
-						<textarea class="form-control" rows="10" value="{{position.value.summary}}" 
-							placeholder="Responsibilities and Achievements"></textarea>
+						<textarea readonly class="form-control" rows="10" placeholder="Responsibilities and Achievements"></textarea>
 						<a href="#" (click)="editMode($event, 'position'+i)" class="edit" style="float: right">edit</a>
 					</div>
 					<div *ngIf="edit == 'position'+i" class="form-group clearfix">
@@ -142,11 +122,10 @@
 				<a href="#" (click)="addSkill($event)" class="add-btn">+</a>
 			</div>
 			<br>
-			<textarea class="form-control" rows="10"></textarea>
 			<div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;" class="skill">
 				<div [formGroupName]="i">
 					<div *ngIf="edit != 'skill'+i">
-						<span>{{ skill.value.name }}</span>
+						<span>{{skill.value.name}}</span>
 					</div>
 
 					<div *ngIf="edit == 'skill'+i" class="form-group clearfix">
