@@ -1,0 +1,39 @@
+h2{
+	text-align: center;
+	color: #4D308E;
+}
+.hlabel{
+	text-align:center;
+	font-size:small;
+	color:darkgray;
+	margin-bottom:5px;
+}
+.labelweight{
+	font-weight: bolder;
+}
+.refereeStyle{
+	color: #4D308E;
+	font-weight: 700;
+}
+.betweenSpace{
+	margin-bottom: 5px;
+}
+.cb{
+	border-radius: 0.25em;
+	width: 1.7em;
+	height: 1.7em;
+}
+.pWeight{
+	font-weight: bolder;
+	margin-bottom: 0;
+}
+.addBtn{
+	font-size: x-large;
+	float: right;
+	margin-right: 88%;
+	margin-top: -55px;
+	font-weight: 800;
+}
+.view {
+	position: relative;
+}

@@ -12,15 +12,15 @@ import * as fromRoot from '../reducers';
 					<form role="form" class="form-inline">
 						<div class="form-group">
 							<label for="basePerMonth" class="labelWeight">Base per month: SGD</label>
-							<input type="text" class="form-control formSpace" id="basePerMonth" style="margin-left: 22px;"/>
+							<input type="number" class="form-control formSpace" id="basePerMonth" style="margin-left: 22px;"/>
 						</div>
 						<div class="form-group">
 							<label for="bonus" class="labelWeight">Bonus: SGD</label>
-							<input type="text" class="form-control formSpace" id="bonus" style="margin-left: 92px;"/>
+							<input type="number" class="form-control formSpace" id="bonus" style="margin-left: 92px;"/>
 						</div>
 						<div class="form-group">
 							<label for="allowance" class="labelWeight">Allowances: SGD</label>
-							<input type="text" class="form-control formSpace" id="allowance" style="margin-left: 55px;"/>
+							<input type="number" class="form-control formSpace" id="allowance" style="margin-left: 55px;"/>
 						</div>
 						<div class="form-group">
 							<label for="longTermIncentives" class="labelWeight">Any Long Term Incentive: &nbsp;</label>
@@ -45,7 +45,7 @@ import * as fromRoot from '../reducers';
 						</div>
 						<div class="form-group">
 							<label for="vestingPeriod" class="labelWeight">Vesting Period:  </label>
-							<input type="text" class="form-control" id="vestingPeriod" style="margin-left: 96px;"/>
+							<input type="date" class="form-control" id="vestingPeriod" style="margin-left:96px; width:219px;"/>
 						</div>
 					</form>
 				</div>

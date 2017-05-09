@@ -12,6 +12,8 @@ export const ActionTypes = {
 	LINKEDIN_SUCCESS:        type('[PROFILE] Profile Linkedin Sign-in Success'),
 	LINKEDIN_FAIL:           type('[PROFILE] Profile Linkedin Sign-in Fail'),
 	LOGOUT:                  type('[PROFILE] Profile Clear'),
+	POSITION_REMOVE:		 type('[PROFILE] Profile Position Remove'),
+	POSITION_REMOVE_SUCCESS: type('[PROFILE] Profile RPosition Remove Success'),
 	POSITION_CREATE:         type('[PROFILE] Profile Position Create'),
 	POSITION_CREATE_SUCCESS: type('[PROFILE] Profile Position Create Success'),
 	POSITION_UPDATE:         type('[PROFILE] Profile Position Update'),
@@ -76,6 +78,20 @@ export class ProfileUpdateSuccessAction implements Action {
 	}
 }
 
+export class PositionRemoveAction implements Action {
+	type = ActionTypes.POSITION_REMOVE;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class PositionRemoveSuccessAction implements Action {
+	type = ActionTypes.POSITION_REMOVE_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+
 export class PositionCreateAction implements Action {
 	type = ActionTypes.POSITION_CREATE;
 
@@ -126,6 +142,8 @@ export type Actions = ProfileLinkedinAction
 	| ProfileLoadSuccessAction
 	| ProfileUpdateAction
 	| ProfileUpdateSuccessAction
+	| PositionRemoveAction
+	| PositionRemoveSuccessAction
 	| PositionCreateAction
 	| PositionCreateSuccessAction
 	| PositionUpdateAction

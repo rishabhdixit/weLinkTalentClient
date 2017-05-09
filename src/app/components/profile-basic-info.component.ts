@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../reducers';
+import { Profile } from '../models/profile.model';
 
 @Component({
 	selector: 'app-profile-basic-info',
@@ -20,7 +21,7 @@ import * as fromRoot from '../reducers';
 					</div>
 					<div class="form-group">
 						<label for="FINNumber" class="labelweight">NRIC / FIN Number: </label>
-						<input type="text" class="form-control formSpace" id="FINNumber" style="margin-left: 19px;"/>
+						<input type="number" class="form-control formSpace" id="FINNumber" style="margin-left: 19px;"/>
 					</div>
 					<div class="form-group">
 						<label for="SingaporeVisa" class="labelweight">Visa for Singapore: </label>
@@ -119,16 +120,18 @@ import * as fromRoot from '../reducers';
 		}
 		.marital{
 			margin-left: 100px;
-    		width: 220px;
+			width: 220px;
 		}
 		.totalChildren{
 			margin-left: 56px;
-    		width: 221px;
+			width: 221px;
 		}
 	`],
 })
 
 export class ProfileBasicInfoComponent {
+	@Input() profile: Profile;
+
 	constructor () {
 
 	}

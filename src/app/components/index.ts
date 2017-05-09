@@ -18,7 +18,10 @@ import { JobButtonsComponent } from './job-buttons.component';
 import { JobFullSideComponent } from './job-full-side.component';
 import { ProfileBasicInfoComponent } from './profile-basic-info.component';
 import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
+import { JobApplicationFormPageComponent } from './job-application-form-page.component';
+import { JobApplicationFormPage2Component } from './job-application-form-page2.component';
 import { ShareButtonsModule } from 'ng2-sharebuttons';
+import { RatingModule } from 'ng2-rating';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -35,7 +38,9 @@ export const COMPONENTS = [
 	JobButtonsComponent,
 	JobFullSideComponent,
 	ProfileBasicInfoComponent,
-	ProfileCurrentSalaryInfoComponent
+	ProfileCurrentSalaryInfoComponent,
+	JobApplicationFormPageComponent,
+	JobApplicationFormPage2Component,
 ];
 
 @NgModule({
@@ -44,7 +49,7 @@ export const COMPONENTS = [
 		FormsModule,
 		RouterModule,
 		ReactiveFormsModule,
-		ShareButtonsModule.forRoot()
+		ShareButtonsModule.forRoot(),
 	],
 	declarations: COMPONENTS,
 	exports: COMPONENTS

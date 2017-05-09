@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
 import * as login from '../actions/login.action';
+import { LoginService } from 'app/services/login.service';
 
 @Component({
 	selector: 'app-header',
@@ -16,12 +17,14 @@ import * as login from '../actions/login.action';
 						<div>
 							<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-responsive image-banner"/>
 						</div>
-						<ul *ngIf="isNotLoginUrl" class="nav nav-pills justify-content-end">
+						<ul class="nav nav-pills justify-content-end">
 							<li *ngIf="isLoggedIn" class="nav-item">
 								<div class="btn-group btn-group-vertical pull-right groupButton">
-									<a href="/profile">
-										<button type="button" class="btn btn-primary btn-lg" style="width:111px;">Profile</button>
-									</a>
+									<div *ngIf="isNotProfileUrl">
+										<a href="/profile">
+											<button type="button" class="btn btn-primary btn-lg" style="width:111px;">Profile</button>
+										</a>
+									</div>
 									<a href="/login">
 										<button type="button" class="btn btn-basic btn-lg" (click)="logout($event)">Logout</button>
 									</a>
@@ -74,7 +77,7 @@ export class HeaderComponent {
 	@Input() user: User;
 	@Input() route: NavigationEnd;
 
-	constructor(private store: Store<fromRoot.State>) { }
+	constructor(private store: Store<fromRoot.State>, private loginService: LoginService) { }
 
 	logout(event) {
 		event.preventDefault();
@@ -82,15 +85,21 @@ export class HeaderComponent {
 		this.route.url = '/login/';
 	}
 
-	get isLoggedIn() {
-		return this.user ? this.user.email : false;
-	}
-
 	get isNotLoginUrl() {
 		if (this.route && this.route.url === '/login') {
 			return false;
 		}
-
 		return true;
+	}
+
+	get isNotProfileUrl() {
+		if (this.route && this.route.url === '/profile') {
+			return false;
+		}
+		return true;
+	}
+
+	get isLoggedIn() {
+		return this.loginService.isLoggedIn();
 	}
 }

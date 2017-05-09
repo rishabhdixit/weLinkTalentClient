@@ -18,8 +18,8 @@ const initialState: State = {
 // Transform profile data from linkedin into
 // profile object compatible with db record
 export function createProfile(payload: any): Profile {
-	const positions = payload.positions.values || [];
-	const skills    = payload.positions.skills || [];
+	const positions = payload.positions.values		|| [];
+	const skills    = payload.positions.skills		|| [];
 
 	const profile = new Profile(
 		payload.id,
@@ -82,6 +82,14 @@ export function reducer(state = initialState, action: profile.Actions): State {
 			const profile = Object.assign({}, state.profile, { positions });
 
 			return Object.assign({}, state, { profile, loading: false });
+		}
+
+		case profile.ActionTypes.POSITION_REMOVE_SUCCESS: {
+			const payload = action.payload;
+
+			return Object.assign({}, state, {
+				positions: state.profile.positions.splice(payload, 1)
+			});
 		}
 
 		default: {

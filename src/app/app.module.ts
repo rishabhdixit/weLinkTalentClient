@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
@@ -27,13 +27,23 @@ import { JobExistsGuard } from './guards/job-exist.guard';
 import { JobService } from './services/job.service';
 import { JobEffects } from './effects/job.effects';
 
+
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { ApplicationConceptPageComponent } from 'app/containers/application-concept-page.component';
+import { ApplicationPageViewComponent } from './containers/application-page-view.component';
+import { ApplicationPageView2Component } from './containers/application-page-view2.component';
+import { ThankYouPageComponent } from './containers/thank-you-page.component';
 
+// Library for Star Rating
+import { StarRatingModule } from 'angular-star-rating';
+import { RatingModule } from 'ng2-rating';
+
+// Pagination
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
 	declarations: [
@@ -44,6 +54,9 @@ import { ApplicationConceptPageComponent } from 'app/containers/application-conc
 		JobDetailPageComponent,
 		AboutUsPageComponent,
 		ApplicationConceptPageComponent,
+		ApplicationPageViewComponent,
+		ApplicationPageView2Component,
+		ThankYouPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -58,7 +71,10 @@ import { ApplicationConceptPageComponent } from 'app/containers/application-conc
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		StarRatingModule,
+		RatingModule,
+		NgxPaginationModule
 	],
 	providers: [
 		{
@@ -77,10 +93,14 @@ import { ApplicationConceptPageComponent } from 'app/containers/application-conc
 		CandidateGuard,
 		JobService,
 		JobExistsGuard,
+
 	],
 	bootstrap: [
 		AppComponent
-	]
+	],
+	schemas: [
+		CUSTOM_ELEMENTS_SCHEMA
+	],
 })
 export class AppModule {
 }

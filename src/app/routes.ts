@@ -10,7 +10,10 @@ import { CandidateGuard } from './guards/candidate.guard';
 import { ProfileResolve } from './resolves/profile.resolve';
 // import { UserResolve } from './resolves/user.resolve';
 import { JobExistsGuard } from './guards/job-exist.guard';
-import { ApplicationConceptPageComponent } from 'app/containers/application-concept-page.component';
+import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
+import { ApplicationPageViewComponent } from './containers/application-page-view.component';
+import { ApplicationPageView2Component } from './containers/application-page-view2.component';
+import { ThankYouPageComponent } from './containers/thank-you-page.component';
 
 export const routes: Routes = [
 	{
@@ -46,5 +49,17 @@ export const routes: Routes = [
 	{
 		path: 'application-concept',
 		component: ApplicationConceptPageComponent,
+	},
+	{
+		path: 'application-form',
+		component: ApplicationPageViewComponent,
+	},
+	{
+		path: 'application-form2',
+		component: ApplicationPageView2Component,
+	},
+	{
+		path: 'thank-page',
+		component: ThankYouPageComponent,
 	}
 ];

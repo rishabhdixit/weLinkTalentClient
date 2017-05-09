@@ -29,12 +29,14 @@ import * as fromLogin from './login.reducer';
 import * as fromProfile from './profile.reducer';
 import * as fromJobs from './jobs.reducer';
 import * as fromUi from './ui.reducer';
+import * as fromApplication from './job-application.reducer';
 
 export interface State {
-	login:   fromLogin.State;
-	profile: fromProfile.State;
-	jobs:    fromJobs.State;
-	ui:      fromUi.State;
+	login:   		fromLogin.State;
+	profile: 		fromProfile.State;
+	jobs:    		fromJobs.State;
+	ui:      		fromUi.State;
+	application:	fromApplication.State;
 }
 
 /**
@@ -46,6 +48,7 @@ const reducers = {
 	profile: fromProfile.reducer,
 	jobs:    fromJobs.reducer,
 	ui:      fromUi.reducer,
+	application: fromApplication.reducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -63,6 +66,7 @@ export const getLoginState = (state: State) => state.login;
 export const getProfileState = (state: State) => state.profile;
 export const getJobsState = (state: State) => state.jobs;
 export const getUiState = (state: State) => state.ui;
+export const getApplicationState = (state: State) => state.application;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -81,4 +85,6 @@ export const getAllJobs = createSelector(getJobsState, fromJobs.getAllJobs);
 export const getLoaded = createSelector(getJobsState, fromJobs.getLoaded);
 export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
 export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);
+export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);
 
+// export const for application.

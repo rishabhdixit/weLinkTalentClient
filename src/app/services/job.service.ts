@@ -17,4 +17,5 @@ export class JobService {
 		return this.http.get(`${this.api}/api/jobs/${id}`)
 			.map((res: Response) => res.json());
 	}
+
 }

@@ -3,10 +3,10 @@ import { Action } from '@ngrx/store';
 
 export const ActionTypes = {
 	LOAD: 					type('[JOBS] Jobs load'),
-	LOAD_SUCCESS: 	type('[JOBS] Jobs load success'),
-	LOAD_FAIL: 		type('[JOBS] Jobs load fail'),
-	SEARCH:        type('[JOBS] Search'),
-	SELECT:        type('[JOBS] Select'),
+	LOAD_SUCCESS: 			type('[JOBS] Jobs load success'),
+	LOAD_FAIL: 				type('[JOBS] Jobs load fail'),
+	SEARCH:        			type('[JOBS] Search'),
+	SELECT:        			type('[JOBS] Select'),
 };
 
 export class JobsLoadAction implements Action {

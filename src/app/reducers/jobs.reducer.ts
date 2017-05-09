@@ -1,13 +1,15 @@
 import { Job } from '../models/job.model';
+import { PageMetaData } from '../models/page-metadata.model';
 import { createSelector } from 'reselect';
 import * as jobs from '../actions/jobs.action';
 
 export interface State {
 	loaded: boolean;
 	loading: boolean;
-	entities: {[id: string]: Job};
+	entities: { [id: string]: Job };
 	ids: string[];
 	selectedJobId: string;
+	pageMetaData: PageMetaData;
 }
 
 const initialState: State = {
@@ -15,7 +17,8 @@ const initialState: State = {
 	loading: false,
 	ids: [],
 	entities: {},
-	selectedJobId: null
+	selectedJobId: null,
+	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -23,25 +26,30 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 		case jobs.ActionTypes.LOAD: {
 			return Object.assign({}, state, {
 				loading: true,
-				selectedJobId: null
+				selectedJobId: null,
 			});
 		}
 		case jobs.ActionTypes.LOAD_SUCCESS: {
 			const jobs = action.payload;
-			const newJobs = jobs.filter(job => !state.entities[job.id]);
+			// const newJobs = jobs.jobsList.filter(job => !state.entities[job.id]);
 
-			const newJobIds = newJobs.map(job => job.id);
-			const newJobEntities = newJobs.reduce((entities: {[id: string]: Job}, job: Job) => {
+			const newJobIds = jobs.jobsList.map(job => job._id);
+
+			console.log(JSON.stringify(newJobIds));
+
+			const newJobEntities = jobs.jobsList.reduce((entities: { [id: string]: Job }, job: Job) => {
 				return Object.assign(entities, {
-					[job.id]: job
+					[job._id]: job
 				});
 			}, {});
+
 			return {
 				loaded: true,
 				loading: false,
-				ids: [...state.ids, ...newJobIds],
-				entities: Object.assign({}, state.entities, newJobEntities),
-				selectedJobId: state.selectedJobId
+				ids: [...newJobIds],
+				entities: Object.assign({}, {}, newJobEntities),
+				selectedJobId: state.selectedJobId,
+				pageMetaData: jobs.pageMetaData,
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
@@ -64,6 +72,8 @@ export const getSelectedJobId = (state: State) => state.selectedJobId;
 export const getLoaded = (state: State) => state.loaded;
 
 export const getLoading = (state: State) => state.loading;
+
+export const getTotalJobsSearch = (state: State) => state.pageMetaData.totalSize;
 
 //noinspection TypeScriptValidateTypes
 export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (entities, selectedId) => {

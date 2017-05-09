@@ -112,6 +112,28 @@ export class ProfileEffects {
 		});
 
 	@Effect()
+	removePosition$: Observable<Action> = this.actions
+		.ofType(profile.ActionTypes.POSITION_REMOVE)
+		.withLatestFrom(this.store, (action, state) => {
+			return {
+				userId:     state.login.user.id,
+				profileId:  state.profile.profile.id,
+				positionId: action.payload.id,
+				data:       action.payload.position,
+			};
+		})
+		.switchMap((payload) => {
+			const { userId, profileId, positionId, data } = payload;
+
+			return this.profileService.removePosition(userId, profileId, positionId, data)
+				.mergeMap((response) => {
+					return Observable.from([
+						new profile.PositionRemoveSuccessAction(response),
+					]);
+				});
+		});
+
+	@Effect()
 	createSkill$: Observable<Action> = this.actions
 		.ofType(profile.ActionTypes.SKILLS_CREATE)
 		.withLatestFrom(this.store, (action, state) => {

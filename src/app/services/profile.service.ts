@@ -56,6 +56,18 @@ export class ProfileService {
 		).map(res => res.json());
 	}
 
+	removePosition(
+		userId: string,
+		profileId: string,
+		positionId: string,
+		data: any
+	): Observable<Position> {
+		return this.authHttp.delete(
+			`${this.api}/api/users/${userId}/profiles/${profileId}/positions/${positionId}`,
+			data
+		).map(res => res.json());
+	}
+
 	createSkill(
 		userId: string,
 		profileId: string,

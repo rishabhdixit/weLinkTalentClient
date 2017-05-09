@@ -24,7 +24,8 @@ import * as ui from '../actions/ui.action';
 						(saveProfileEvent)="onProfileEvent($event)"
 						(savePositionEvent)="onSavePosition($event)"
 						(createPositionEvent)="onCreatePosition($event)"
-						(createSkillEvent)="onCreateSkill($event)">
+						(createSkillEvent)="onCreateSkill($event)"
+						(removePositionEvent)="onRemovePosition($event)">
 					</app-profile-view>
 				</div>
 			</div>
@@ -68,5 +69,9 @@ export class ProfilePageComponent {
 
 	onCreateSkill(payload) {
 		this.store.dispatch(new profile.SkillCreateAction(payload));
+	}
+
+	onRemovePosition(payload) {
+		this.store.dispatch(new profile.PositionRemoveAction(payload));
 	}
 }

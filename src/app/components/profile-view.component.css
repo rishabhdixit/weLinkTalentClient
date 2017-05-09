@@ -81,9 +81,9 @@ h3{
     margin-top: -6%;
 }
 .inputPosition{
-	float: right;
+	float: left;
     margin-right: 30px;
-    margin-top: -34px;
+    margin-top: -65px;
 }
 .inputPlace{
 	float: right;
@@ -93,4 +93,24 @@ h3{
     opacity: 1;
 	border-width: thin;
     border-color: gray;
+}
+.tableBorder td {
+	border: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.sDate {
+	width: 45%;
+}
+
+.eDate {
+	width: 45%;
+	float: right;
+    margin-top: -33px;
+}
+
+.to {
+	margin-left: 48.5%;
+    margin-top: -33px;
 }

@@ -27,22 +27,28 @@
     "@ngrx/effects": "^2.0.0",
     "@ngrx/store": "^2.2.1",
     "@ngrx/store-devtools": "^3.2.3",
+    "angular-star-rating": "^2.0.0-rc.5",
+    "angular2": "^2.0.0-beta.21",
     "angular2-jwt": "^0.1.28",
     "bootstrap": "v4.0.0-alpha.6",
     "bootstrap-social": "^5.1.1",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "glyphicons": "^0.2.0",
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "ng2-bootstrap": "^1.2.2",
+    "ng2-rating": "0.0.7",
     "ng2-sharebuttons": "^2.1.2",
+    "ng2-uploader": "^2.0.0",
     "ngrx-store-freeze": "^0.1.6",
+    "ngx-pagination": "^3.0.0",
     "reselect": "^2.5.4",
     "rxjs": "^5.0.1",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
+    "@angular/cli": "^1.0.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.39",
@@ -60,7 +66,7 @@
     "karma-remap-istanbul": "^0.6.0",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "tslint": "~4.5.1",
+    "typescript": "~2.3.2"
   }
 }

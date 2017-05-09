@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<footer>
 			<div class="col-md-12">
-				<div class="col-md-8">
+				<div class="col-md-8" style="margin-top: 20%;">
 					<img alt="We Link Talent" src="./assets/images/W.png" class="img-rounded"/>
 					<div class="socialButton">
 						<a href="https://plus.google.com/share.php?" target="_blank">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../reducers';
@@ -21,7 +21,6 @@ import * as fromRoot from '../reducers';
 		</div>
 	</div>
   `,
-	styles: [``],
 })
 export class AboutUsPageComponent {
 	constructor() {

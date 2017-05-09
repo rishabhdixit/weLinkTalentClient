@@ -7,90 +7,99 @@ import { Job } from '../models/job.model';
 	template: `
 	<div>
 		<div>
-			<p class="slotsLeft">?</p>
-			<h1 style="margin-left: 90px;">5</h1>
-			<h5 class="slots">Application Slots Left</h5>
+			<div class="card" style="margin-top: 20px;">
+				<div class="card-block">
+					<p style="font-size: xx-large;font-weight: 900;margin-left: 150px;margin-bottom: -47px;">?</p>
+					<h1 class="card-title">5</h1>
+					<h5 class="slots">Application Slots Left</h5>
+				</div>  
+			</div>
 		</div>
-		<hr>
 		<div>
-			<hr>
-			<h4> Share This Page </h4>
-			<hr>
-			<div>
-				<a class="btn btn-social-icon btn-twitter btn-lg"
-				href="https://twitter.com/home?status=http%3A//localhost%3A4200/jobs/{{job.id}}">
-					<span class="fa fa-twitter generalColor"></span>
-				</a>
-				<a class="btn btn-social-icon btn-twitter btn-lg"
-				href="https://www.facebook.com/sharer.php?u=http%3A//localhost%3A4200/jobs/{{job.id}}"
-				target="_blank">
-					<span class="fa fa-facebook generalColor"></span>
-				</a>                
-				<a class="btn btn-social-icon btn-twitter btn-lg"
-			href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//localhost%3A4200/jobs/{{job.id}}&title=&summary=&source="
-				target="_blank">
-					<span class="fa fa-linkedin generalColor"></span>
-				</a>  
-				<a class="btn btn-social-icon btn-twitter btn-lg"
-				href="https://plus.google.com/share?url=localhost%253A4200/jobs/{{job.id}}">
-					<span class="fa fa-google-plus generalColor"></span>
-				</a>
-				<a class="btn btn-social-icon btn-twitter btn-lg">
-					<img src="./assets/images/emailSquareIcon.png" />
-				</a>
+			<div class="card" style="margin-top: 20px;">
+				<div class="card-block" style="padding: 17px;">
+					<h4 class="card-title">Share This Page</h4>
+					<hr style="background: darkgray;">
+					<div>
+						<a class="btn btn-social-icon btn-twitter btn-lg"
+						href="https://twitter.com/home?status=http%3A//localhost%3A4200/jobs/{{job._id}}">
+							<span class="fa fa-twitter generalColor"></span>
+						</a>
+						<a class="btn btn-social-icon btn-twitter btn-lg"
+						href="https://www.facebook.com/sharer.php?u=http%3A//localhost%3A4200/jobs/{{job._id}}"
+						target="_blank">
+							<span class="fa fa-facebook generalColor"></span>
+						</a>                
+						<a class="btn btn-social-icon btn-twitter btn-lg" 
+			href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//localhost%3A4200/jobs/{{job._id}}&title=&summary=&source="
+						target="_blank">
+							<span class="fa fa-linkedin generalColor"></span>
+						</a>  
+						<a class="btn btn-social-icon btn-twitter btn-lg"
+						href="https://plus.google.com/share?url=localhost%253A4200/jobs/{{job._id}}">
+							<span class="fa fa-google-plus generalColor"></span>
+						</a>
+						<a class="btn btn-social-icon btn-twitter btn-lg">
+							<img src="./assets/images/emailSquareIcon.png" />
+						</a>
+					</div>
+				</div>
 			</div>
-		</div><br><br>
+		</div>
 		<div>
-			<h3> Similar Jobs</h3>
-			<hr>
-			<h5 class="jobTitle">{{job.title}}</h5>
-			<div>
-				<table class="table table-condensed tableBorder">
-					<tbody>
-						<tr>
-							<td class="labelType">Location:<td>
-							<td>{{job.location}}</td>
-						</tr >
-						<tr>
-							<td class="labelType">Job Type:<td>
-							<td>Permanent</td>
-						</tr>
-						<tr>
-							<td class="labelType">Emp Type:<td>
-							<td>{{job.employmentType}}</td>
-						</tr>
-						<tr>
-							<td class="labelType">Salary:<td>
-							<td>Negotiable</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="card" style="margin-top: 20px;">
+				<div class="card-block">
+					<h3 class="card-title"> Similar Jobs</h3>
+					<hr style="background: darkgray;">
+					<h5 class="jobTitle"><a routerLink="/jobs/{{job._id}}">{{job.title}}</a></h5>
+					<div>
+						<table class="table table-condensed tableBorder">
+							<tbody>
+								<tr>
+									<td class="labelType">Location:<td>
+									<td>{{job.location}}</td>
+								</tr >
+								<tr>
+									<td class="labelType">Job Type:<td>
+									<td>Permanent</td>
+								</tr>
+								<tr>
+									<td class="labelType">Emp Type:<td>
+									<td>{{job.employmentType}}</td>
+								</tr>
+								<tr>
+									<td class="labelType">Salary:<td>
+									<td>Negotiable</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<hr style="background: darkgray;">
+					<h5 class="jobTitle"><a routerLink="/jobs/{{job._id}}">{{job.title}}</a></h5>
+					<div>
+						<table class="table tableBorder">
+							<tbody>
+								<tr>
+									<td class="labelType">Location:<td>
+									<td>{{job.location}}</td>
+								</tr>
+								<tr>
+									<td class="labelType">Job Type:<td>
+									<td>Permanent</td>
+								</tr>
+								<tr>
+									<td class="labelType">Emp Type:<td>
+									<td>{{job.employmentType}}</td>
+								</tr>
+								<tr>
+									<td class="labelType">Salary:<td>
+									<td>Negotiable</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
-			<hr>
-			<h5 class="jobTitle">{{job.title}}</h5>
-			<div>
-				<table class="table tableBorder">
-					<tbody>
-						<tr>
-							<td class="labelType">Location:<td>
-							<td>{{job.location}}</td>
-						</tr>
-						<tr>
-							<td class="labelType">Job Type:<td>
-							<td>Permanent</td>
-						</tr>
-						<tr>
-							<td class="labelType">Emp Type:<td>
-							<td>{{job.employmentType}}</td>
-						</tr>
-						<tr>
-							<td class="labelType">Salary:<td>
-							<td>Negotiable</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<hr>
 		</div>
 	</div>
 	`,
@@ -109,6 +118,7 @@ import { Job } from '../models/job.model';
 	}
 	h1{
 		font-size: 115px;
+		font-weight: bolder;
 		text-align: center;
 		color: #4D308E;
 		margin:  auto;
@@ -134,7 +144,7 @@ import { Job } from '../models/job.model';
 	}
 	.generalColor{
 		color: #FFFFFF;
-		font-size: 1.2em;
+		font-size: 1.1em;
 	}
 	.fa-google-plus{
 		background-color: #DD4B39;

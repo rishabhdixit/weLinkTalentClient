@@ -25,6 +25,7 @@ export class ProfileViewComponent implements OnInit {
 	@Output() savePositionEvent = new EventEmitter<any>();
 	@Output() createPositionEvent = new EventEmitter<any>();
 	@Output() createSkillEvent = new EventEmitter<any>();
+	@Output() removePositionEvent = new EventEmitter<any>();
 
 	profileForm: FormGroup;
 
@@ -40,11 +41,11 @@ export class ProfileViewComponent implements OnInit {
 
 	ngOnInit() {
 		this.profileForm = this.fb.group({
-			firstName:    '',
-			lastName:     '',
-			headline:     '',
-			emailAddress: '',
-			summary:      '',
+			firstName:    ['', Validators.required],
+			lastName:     ['', Validators.required],
+			headline:     ['', Validators.required],
+			emailAddress: ['', Validators.required],
+			summary:      ['', Validators.required],
 			positions:    this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
 			skills:       this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
 		});
@@ -64,10 +65,10 @@ export class ProfileViewComponent implements OnInit {
 
 	positionFormGroup(): FormGroup {
 		return this.fb.group({
-			title:    '',
-			company:  this.fb.group({ name: '' }),
+			title:    ['', Validators.required],
+			company:  this.fb.group({ name: ['', Validators.required] }),
 			location: this.fb.group({ name: '' }),
-			summary:  ''
+			responsibilities:  ['', Validators.required]
 		});
 	}
 
@@ -144,4 +145,10 @@ export class ProfileViewComponent implements OnInit {
 
 		this.editMode(event, '');
 	}
+
+	removePosition(index) {
+		const position = this.positions.value[index];
+		this.removePositionEvent.emit({ position });
+	}
+
 }
