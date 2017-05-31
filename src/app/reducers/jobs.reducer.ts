@@ -35,8 +35,6 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 
 			const newJobIds = jobs.jobsList.map(job => job._id);
 
-			console.log(JSON.stringify(newJobIds));
-
 			const newJobEntities = jobs.jobsList.reduce((entities: { [id: string]: Job }, job: Job) => {
 				return Object.assign(entities, {
 					[job._id]: job

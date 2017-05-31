@@ -1,55 +1,37 @@
 import * as lodash from 'lodash';
 
 import * as application from '../actions/job-application.action';
-import { Application } from '../models/job-application.model';
+import { Application, Reference } from '../models/job-application.model';
+import { Job } from 'app/models/job.model';
 
 export interface State {
-	loaded: boolean;
-	loading: boolean;
+	job: Job;
 	application: Application;
+	condition: boolean;
+	reference: Reference[];
 }
 
 const initialState: State = {
-	loaded:      false,
-	loading:     false,
+	job: {} as Job,
 	application: {} as Application,
+	condition: false,
+	reference: null,
+
 };
-
-export function addReference(payload: any): Application {
-	const references = payload.references		|| [];
-
-	const application = new Application (
-		payload.fileUpload,
-		payload.reasonForLeaving,
-		payload.basePerMonth,
-		payload.bonus,
-		payload.starRate,
-		payload.strength,
-		payload.improvements,
-		payload.achievements,
-		payload.management,
-		payload.references
-	);
-	return application;
-}
 
 export function reducer(state = initialState, action: application.Actions): State {
 	switch (action.type) {
-		case application.ActionType.LOAD_SUCCESS: {
-			return Object.assign({}, state, {application: action.payload, loaded: true});
-		}
-
-		case application.ActionType.LOAD: {
-			return Object.assign({}, state, {loaded: false});
-		}
-
-		case application.ActionType.REFERENCE_ADD:
-		case application.ActionType.APPLICATION_SUBMIT: {
-			return Object.assign({}, state, {loading: true});
-		}
+		case application.ActionType.APPLICATION_CONCEPT_LOAD:
+			return Object.assign({}, state, {
+				job : action.payload
+			});
+		case application.ActionType.APPLICATION_CONCEPT_ACCEPT:
+		case application.ActionType.APPLICATON_FORM_LOAD:
+		console.log(action.payload);
+			return Object.assign({}, state, {
+				condition: action.payload
+			});
+		default:
+			return state;
 	}
 }
-
-export const getApplication = (state: State) => state.application;
-export const getLoaded = (state: State) => state.loaded;
-export const getLoading = (state: State) => state.loading;

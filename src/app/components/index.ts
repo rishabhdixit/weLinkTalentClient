@@ -18,6 +18,7 @@ import { JobButtonsComponent } from './job-buttons.component';
 import { JobFullSideComponent } from './job-full-side.component';
 import { ProfileBasicInfoComponent } from './profile-basic-info.component';
 import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
+import { ApplicationConceptComponent } from './application-concept.component';
 import { JobApplicationFormPageComponent } from './job-application-form-page.component';
 import { JobApplicationFormPage2Component } from './job-application-form-page2.component';
 import { ShareButtonsModule } from 'ng2-sharebuttons';
@@ -39,6 +40,7 @@ export const COMPONENTS = [
 	JobFullSideComponent,
 	ProfileBasicInfoComponent,
 	ProfileCurrentSalaryInfoComponent,
+	ApplicationConceptComponent,
 	JobApplicationFormPageComponent,
 	JobApplicationFormPage2Component,
 ];

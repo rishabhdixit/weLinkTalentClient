@@ -27,6 +27,8 @@ import { JobExistsGuard } from './guards/job-exist.guard';
 import { JobService } from './services/job.service';
 import { JobEffects } from './effects/job.effects';
 
+import { ApplicationEffects } from './effects/application.effects';
+
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -68,6 +70,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 		EffectsModule.run(LogInEffects),
 		EffectsModule.run(ProfileEffects),
 		EffectsModule.run(JobEffects),
+		EffectsModule.run(ApplicationEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),

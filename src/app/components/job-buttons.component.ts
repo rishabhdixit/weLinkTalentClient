@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../models/job.model';
 import { NavigationEnd } from '@angular/router';
 
@@ -8,10 +8,12 @@ import { NavigationEnd } from '@angular/router';
 	<div class="row col-md-12">
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
-			<a href="/jobs/"><button type="button" class="btn btn-basic btn-lg">Back</button></a>
+			<a routerLink="/jobs/"><button type="button" class="btn btn-basic btn-lg">Back</button></a>
 		</div>
 		<div class="col-md-5">
-			<a href="/application-concept"><button type="button" class="btn btn-primary btn-lg">Apply</button></a>
+			<a [routerLink]="['/application-concept', {data: job._id}]">
+				<button type="button" class="btn btn-primary btn-lg" (click)="applyButtonClick()">Apply</button>
+			</a>
 		</div>
 	</div>
 	`,
@@ -19,6 +21,11 @@ import { NavigationEnd } from '@angular/router';
 })
 export class JobButtonsComponent {
 	@Input() job: Job;
+	@Output() applyButtonClickEvent = new EventEmitter<Job>();
 	constructor() {
+	}
+
+	applyButtonClick() {
+		this.applyButtonClickEvent.emit(this.job);
 	}
 }

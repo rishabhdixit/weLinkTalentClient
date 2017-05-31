@@ -46,7 +46,7 @@ import { Validators } from '@angular/forms/forms';
 							<input type="text" placeholder="E.g. JavaScript"/>
 							<ul class="list-unstyled ulStyle">
 								<li *ngFor="let a of starCount;" class="listStyle">
-									<i class="fa fa-star-o" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true" (mouseover)="onClicked(a)" [class.clicked]="isClicked(a)"></i>
 								</li>
 							</ul>
 						</div>
@@ -114,10 +114,6 @@ import { Validators } from '@angular/forms/forms';
 			margin-top: -5px;
 			margin-bottom: 0;
 		}
-		i:hover:before{
-			color: #FFFF00;
-			cursor: pointer;
-		}
 		.pBottom{
 			margin-bottom: 0;
 			font-size: x-small;
@@ -127,15 +123,35 @@ import { Validators } from '@angular/forms/forms';
 			background: deepskyblue;
 			color: white;
 		}
+		.clicked {
+			color: yellow;
+		}
+		i:hover:before{
+			color: #FFFF00;
+			cursor: pointer;
+		}
 	`],
 })
 
 export class JobApplicationFormPageComponent {
-	starCount = new Array(5);
+	starCount: number[] = [1, 2, 3, 4, 5];
 	@Input() job: Job;
-	job$: Observable<Job>;
+	// job$: Observable<Job>;
 
-	constructor(private store: Store<fromRoot.State>) {
-		this.job$ = this.store.select(fromRoot.getSelectedJob);
+	maxClick = 0;
+
+	constructor() {
+		// this.job$ = this.store.select(fromRoot.getSelectedJob);
+	}
+
+	onClicked(item: any) {
+		this.maxClick = item + 1;
+	}
+
+	isClicked(item: any) {
+		if (this.maxClick > item) {
+			return true;
+		}
+		return false;
 	}
 }

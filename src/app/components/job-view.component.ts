@@ -51,6 +51,7 @@ import { Job } from '../models/job.model';
 })
 export class JobViewComponent {
 	@Input() job: Job;
+
 	constructor() {
 	}
 }
