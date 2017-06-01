@@ -13,4 +13,8 @@ export class JobApplicationService {
 		@Inject('api') private api: string
 	) {}
 
+	saveApplication(data: any): Observable<Application> {
+		return this.http.post(`${this.api}/api/applications`, data)
+			.map((res: Response) => res.json());
+	}
 }

@@ -28,10 +28,10 @@ import { Observable } from 'rxjs';
 					</div>
 					<div class="col-md-12">
 						<div class="col-md-6" style="margin-top: 50px;">
-							<a href="/application-form"><button type="button" class="btn btn-basic btn-lg back-btn">Back</button></a>
+							<a routerLink="/application-form"><button type="button" class="btn btn-basic btn-lg back-btn">Back</button></a>
 						</div>
 						<div class="col-md-6" style="float:right; margin-top:-50px;">
-							<a href="/thank-page"><button type="button" class="btn btn-primary btn-lg">Submit</button></a>
+							<a routerLink="/thank-page"><button type="button" class="btn btn-primary btn-lg">Submit</button></a>
 						</div>
 					</div>
 				</div>

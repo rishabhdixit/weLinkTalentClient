@@ -23,15 +23,21 @@ export function reducer(state = initialState, action: application.Actions): Stat
 	switch (action.type) {
 		case application.ActionType.APPLICATION_CONCEPT_LOAD:
 			return Object.assign({}, state, {
-				job : action.payload
+				job: action.payload
 			});
 		case application.ActionType.APPLICATION_CONCEPT_ACCEPT:
-		case application.ActionType.APPLICATON_FORM_LOAD:
-		console.log(action.payload);
+		case application.ActionType.APPLICATION_FORM_LOAD:
 			return Object.assign({}, state, {
 				condition: action.payload
+			});
+		case application.ActionType.APPLICATION_FORM_SUBMIT_SUCCESS:
+			return Object.assign({}, state, {
+				application: action.payload
 			});
 		default:
 			return state;
 	}
 }
+
+
+export const getApplicationJob = (state: State) => state.job;

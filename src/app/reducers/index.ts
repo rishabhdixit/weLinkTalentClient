@@ -87,4 +87,5 @@ export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
 export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);
 export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);
 
-// export const for application.
+
+export const getApplicationJob = createSelector(getApplicationState, fromApplication.getApplicationJob);

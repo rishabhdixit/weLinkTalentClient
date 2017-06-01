@@ -5,6 +5,9 @@ import { Job } from '../models/job.model';
 import * as fromRoot from '../reducers';
 
 import * as jobsApplicationAction from '../actions/job-application.action';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {publishBehavior} from 'rxjs/operator/publishBehavior';
+import {State} from '../reducers/job-application.reducer';
 
 @Component({
 	selector: 'app-job-detail-page',
@@ -39,4 +42,5 @@ export class JobDetailPageComponent {
 	applyButtonClickHandler(job: Job) {
 		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction(job));
 	}
+
 }

@@ -1,134 +1,139 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import * as fromRoot from '../reducers';
-import { Job } from 'app/models/job.model';
-import { Profile, Position } from '../models/profile.model';
-import { Validators } from '@angular/forms/forms';
+import {Job} from 'app/models/job.model';
+import {Profile, Position} from '../models/profile.model';
+import {Validators} from '@angular/forms/forms';
+import {Application} from '../models/job-application.model';
 
 @Component({
-	selector: 'app-job-app-application-form-page',
+	selector: 'app-job-application-form-page',
 	template: `
-		<div class="container">
-			<div class="row container-fluid">
-					<div class="col-md-12">
-						<h2>Talent Application Form</h2>
-						<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">This application is confidential.
-						Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
-						<div class="form-group" style="text-align: center; margin-bottom: 0px;">
-							<input type="file" id="file" multiple>
+		<form #applicationForm="ngForm">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Talent Application Form</h2>
+					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">This application is
+						confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
+					<div class="form-group">
+						<input type="file" class="form-control" id="file" name="file" multiple [(ngModel)]="application.fileUpload" required>
+					</div>
+					<div class="form-group">
+						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
+						<textarea class="form-control" id="reasonForLeaving" name="reasonForLeaving" rows="5"
+								[(ngModel)]="application.reasonForLeaving" required></textarea>
+					</div>
+					<div class="col-md-12 div-padding">
+						<p class="labelStyle">Expected Salary:</p>
+						<div class="form-group">
+							<label for="basePerMonth" class="label-margin">Base per month: SGD&emsp;</label>
+							<input type="number" class="form-control input-base" id="basePerMonth" name="basePerMonth" 
+									[(ngModel)]="application.basePerMonth" required/>
+						</div>
+						<div class="form-group">
+							<label for="bonus" class="bonusLabel">Base per month: SGD&emsp;</label>
+							<input type="number" class="form-control input-bonus" id="bonus" name="bonus" [(ngModel)]="application.bonus" required/>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div>
-							<p class="labelStyle">Reason for leaving the current company:</p>
-							<textarea class="form-control" rows="10" id="reasonForLeaving" required></textarea>
-						</div>
-						<div>
-							<p style=" margin-top:10px; margin-bottom:1px; color:#800080; font-weight:700;">Expected Salary:</p>
-							<form role="form" class="form-inline">
-								<div class="form-group">
-									<label for="basePerMonth" style="font-weight: bolder;">Base per month: SGD&emsp;</label>
-									<input type="number" class="form-control" id="basePerMonth" required>
-								</div>
-								<div class="form-group" style="margin-left: 100px;">
-									<label for="bonus" style="font-weight: bolder;">&emsp;&emsp;Bonus: SGD&emsp;</label>
-									<input type="number" class="form-control" id="bonus" required>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="col-md-12" style="margin-top:10px;">
-						<p class="pStyle">Please score yourself accordingly for the skills listed below.</p>
+					<div class="col-md-12 div-padding">
+						<p class="skillStyle">Please score yourself accordingly for the skills listed below.</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-						<form class="form">
-						<div class="betweenSpace">
-							<input type="text" placeholder="E.g. JavaScript"/>
+						<div class="form-group" *ngFor="let skill of job.skills">
+							<input type="text" value="{{skill}}"/>
 							<ul class="list-unstyled ulStyle">
 								<li *ngFor="let a of starCount;" class="listStyle">
-									<i class="fa fa-star" aria-hidden="true" (mouseover)="onClicked(a)" [class.clicked]="isClicked(a)"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
 								</li>
 							</ul>
 						</div>
-					</form>
-					</div>
-					<div class="col-md-12" style="margin-top: 10px;">
-						<form class="form">
-							<div class="form-group">
-								<label for="strenghts" class="labelStyle">What are your strengths?</label>
-								<textarea class="form-control" rows="5" id="strengths" required></textarea>
-							</div>
-							<div class="form-group">
-								<label for="points" class="labelStyle">What are your points for development/improvement?</label>
-								<textarea class="form-control" rows="5" id="points" required></textarea>
-							</div>
-							<div class="form-group">
-								<label for="achievements" class="labelStyle">What are your main achievements?</label>
-								<textarea class="form-control" rows="5" id="achievements" required></textarea>
-							</div>
-							<div class="form-group">
-								<label for="management" class="labelStyle">What is your management style?</label>
-								<textarea class="form-control" rows="5" id="management" required></textarea>
-							</div>
-						</form>
-					</div>
-					<div class="col-md-12" style="margin-top: 50px; text-align: center;">
-						<a href="/application-form2"><input type="submit" name="Apply?" class="btn btn-primary btn-lg" value="Apply?"></a>
-						<p class="pBottom">Your information will be saved automatically</p>
-					</div>
+				</div>
+				<div class="form-group">
+					<label for="strengths" class="labelStyle">What are your strengths?</label>
+					<textarea class="form-control" rows="5" id="strengths" name="strengths"
+										[(ngModel)]="application.strength" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="points" class="labelStyle">What are your points for development/improvement?</label>
+					<textarea class="form-control" rows="5" id="points" name="points"
+										[(ngModel)]="application.improvements" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="achievements" class="labelStyle">What are your main achievements?</label>
+					<textarea class="form-control" rows="5" id="achievements" name="achievements"
+										[(ngModel)]="application.achievements" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="management" class="labelStyle">What is your management style?</label>
+					<textarea class="form-control" rows="5" id="management" name="managements"
+										[(ngModel)]="application.management" required></textarea>
+				</div>
+				<div class="button-class">
+					<button type="submit" class="btn btn-primary btn-lg" (click)="onApplyClick()">Apply?</button>
+					<p class="bottom-style">Your information will be saved automatically</p>
+				</div>
+				</div>
 			</div>
-		</div>
+		</form>
 	`,
 
 	styles: [`
-		h2{
+		h2 {
 			text-align: center;
 			color: #4D308E;
 		}
-		.pStyle{
+		.div-padding {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.label-margin {
+			margin-top: 6px;
+			font-weight: bolder;
+		}
+		.input-base {
+			width: 28%;
+			float: right;
+			margin-right: 472px;
+		}
+		.bonusLabel {
+			float: right;
+			margin-top: -48px;
+			margin-right: 257px;
+			font-weight: bolder;
+		}
+		.input-bonus {
+			width: 28%;
+			float: right;
+			margin-top: -54px;
+		}
+		.button-class {
+			text-align: center;
+		}
+		.labelStyle {
+			color: #4D308E;
+			font-weight: 700;
+		}
+		.skillStyle {
 			color: #4D308E;
 			font-weight: 700;
 			margin-bottom: 0;
 		}
-		.betweenSpace{
-			margin-bottom: 5px;
-		}
-		.labelStyle{
-			color: #4D308E;
-			font-weight: 700;
-		}
-		.pHeader{
-			font-size: larger;
+		.bottom-style {
+			margin-bottom: 0;
+			font-size: x-small;
 			color: gray;
-			text-align: center;
 		}
-		.listStyle{
+		.listStyle {
 			list-style-type: none;
 			display: inline-block;
 			font-size: 25px;
 			padding-right: 8px;
 		}
-		.ulStyle{
+		.ulStyle {
 			float: right;
 			margin-right: 59%;
 			margin-top: -5px;
 			margin-bottom: 0;
-		}
-		.pBottom{
-			margin-bottom: 0;
-			font-size: x-small;
-			color: gray;
-		}
-		::-webkit-file-upload-button {
-			background: deepskyblue;
-			color: white;
-		}
-		.clicked {
-			color: yellow;
-		}
-		i:hover:before{
-			color: #FFFF00;
-			cursor: pointer;
 		}
 	`],
 })
@@ -136,12 +141,12 @@ import { Validators } from '@angular/forms/forms';
 export class JobApplicationFormPageComponent {
 	starCount: number[] = [1, 2, 3, 4, 5];
 	@Input() job: Job;
-	// job$: Observable<Job>;
+	@Output() applicationEventEmitter = new EventEmitter<Application>();
+	application: Application= new Application();
 
 	maxClick = 0;
 
 	constructor() {
-		// this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}
 
 	onClicked(item: any) {
@@ -153,5 +158,9 @@ export class JobApplicationFormPageComponent {
 			return true;
 		}
 		return false;
+	}
+
+	onApplyClick() {
+		this.applicationEventEmitter.emit(this.application);
 	}
 }

@@ -21,11 +21,11 @@ import { LoginService } from 'app/services/login.service';
 							<li *ngIf="isLoggedIn" class="nav-item">
 								<div class="btn-group btn-group-vertical pull-right groupButton">
 									<div *ngIf="isNotProfileUrl">
-										<a href="/profile">
+										<a routerLink="/profile">
 											<button type="button" class="btn btn-primary btn-lg" style="width:111px;">Profile</button>
 										</a>
 									</div>
-									<a href="/login">
+									<a routerLink="/login">
 										<button type="button" class="btn btn-basic btn-lg" (click)="logout($event)">Logout</button>
 									</a>
 								</div>
@@ -35,11 +35,11 @@ import { LoginService } from 'app/services/login.service';
 				</div>
 				<nav class="col-md-12" style="font-size:large;">
 					<ul class="nav-list">
-						<li><a href="/profile"> Home </a></li>
-						<li><a href="/about-us"> About Us </a></li>
-						<li><a href="/jobs"> All Job Offers </a></li>
-						<li><a href="#"> Contact Us </a></li>
-						<li><a href="#"> Bookmarks </a></li>
+						<li><a routerLink="/profile"> Home </a></li>
+						<li><a routerLink="/about-us"> About Us </a></li>
+						<li><a routerLink="/jobs"> All Job Offers </a></li>
+						<li><a routerLink="#"> Contact Us </a></li>
+						<li><a routerLink="#"> Bookmarks </a></li>
 					</ul>
 				</nav>
 				<hr>

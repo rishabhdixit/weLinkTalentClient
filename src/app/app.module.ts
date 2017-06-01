@@ -27,7 +27,9 @@ import { JobExistsGuard } from './guards/job-exist.guard';
 import { JobService } from './services/job.service';
 import { JobEffects } from './effects/job.effects';
 
+import { JobApplicationService } from './services/job-application.service';
 import { ApplicationEffects } from './effects/application.effects';
+import { JobApplicationGuard } from './guards/job-application.guard';
 
 
 import { LoginPageComponent } from './containers/login-page.component';
@@ -95,6 +97,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 		LoggedInGuard,
 		CandidateGuard,
 		JobService,
+		JobApplicationService,
+		JobApplicationGuard,
 		JobExistsGuard,
 
 	],
