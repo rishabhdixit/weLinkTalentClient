@@ -19,8 +19,10 @@ import { JobFullSideComponent } from './job-full-side.component';
 import { ProfileBasicInfoComponent } from './profile-basic-info.component';
 import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
 import { ApplicationConceptComponent } from './application-concept.component';
-import { JobApplicationFormPageComponent } from './job-application-form-page.component';
-import { JobApplicationFormPage2Component } from './job-application-form-page2.component';
+import { StarsComponent } from './stars.component';
+import { SelectedJobSkillsComponent } from './selected-job-skills.component';
+import { JobApplicationFormComponent } from './job-application-form.component';
+import { ReferenceFormComponent } from './reference-form.component';
 import { ShareButtonsModule } from 'ng2-sharebuttons';
 import { RatingModule } from 'ng2-rating';
 
@@ -41,8 +43,10 @@ export const COMPONENTS = [
 	ProfileBasicInfoComponent,
 	ProfileCurrentSalaryInfoComponent,
 	ApplicationConceptComponent,
-	JobApplicationFormPageComponent,
-	JobApplicationFormPage2Component,
+	StarsComponent,
+	SelectedJobSkillsComponent,
+	JobApplicationFormComponent,
+	ReferenceFormComponent,
 ];
 
 @NgModule({

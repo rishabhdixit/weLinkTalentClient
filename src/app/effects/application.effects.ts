@@ -14,6 +14,7 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
 import * as application from '../actions/job-application.action';
+import {effects} from '@ngrx/effects/src/effects-subscription';
 
 @Injectable()
 export class ApplicationEffects {
@@ -38,9 +39,26 @@ export class ApplicationEffects {
 		.ofType(application.ActionType.APPLICATION_FORM_SUBMIT_SUCCESS)
 		.do(() => this.router.navigate(['/application-form2']));
 
+	@Effect({dispatch: false})
+	loadReferenceForm$: Observable<Action> = this.actions
+		.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_LOAD)
+		.do(() => this.router.navigate(['/application-form2']));
+
+	// @Effect()
+	// saveReference$: Observable<Action> = this.actions
+	// 	.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT)
+	// 	.map((action: application.ApplicationReferenceFormSubmitAction) => action.payload)
+	// 	.switchMap((payload) =>
+	// 		this.JobApplicationService.saveReference(payload)
+	// 			.map((data) => this.application.ApplicationReferenceFormSubmitAction(data)));
+    //
+	// @Effect({dispatch : false})
+	// saveReferenceSuccess$: Observable<Action> = this.actions
+	// 	.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS)
+	// 	.do(() => this.router.navigate(['/thank-page']));
+
 	constructor(private actions: Actions,
 							private JobApplicationService: JobApplicationService,
 							private router: Router) {
 	}
-
 }

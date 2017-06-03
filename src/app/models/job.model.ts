@@ -5,7 +5,7 @@ export class Job {
 	employment_type: 	string;
 	location: 			string;
 	industry: 			string;
-	company:			{};
+	company:			string;
 	expertise: 			string;
 	salary_from: 		string;
 	salary_to: 			string;

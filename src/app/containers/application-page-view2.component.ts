@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Job } from '../models/job.model';
 
 @Component({
 	selector: 'app-application-page-view2',
@@ -9,7 +10,23 @@ import { Observable } from 'rxjs';
 		<div class="container">
 			<div class="container-fluid">
 				<div class="row">
-					<app-job-app-application-form-page2></app-job-app-application-form-page2>
+					<div class="col-md-12">
+						<h2>Talent Application Form</h2>
+						<p>{{ job.title }} - {{ job.company }}</p>
+						<p class="hlabel">This application is confidential. Please contact us at talent@welinktalent.com for any questions
+							1regarding this form.</p>
+						<p style="color: #4D308E; font-size: larger;">Please provide two references:</p>
+					</div>
+					<div class="col-md-12" *ngFor="let i of range(referee)">
+						<p class="refereeStyle">Reference{{i}}</p>
+						<app-reference-form></app-reference-form>
+					</div>
+					<!--<div class="col-md-12">-->
+						<!--<p class="refereeStyle" style="margin-top:20px;">Add Referee</p>-->
+						<!--<div class="addBtn">-->
+							<!--<a routerLink="#">+</a>-->
+						<!--</div>-->
+					<!--</div>-->
 					<div class="col-md-12 div-margin">
 						<div>
 							<p class="top">Privacy Statement</p>
@@ -55,13 +72,43 @@ import { Observable } from 'rxjs';
 		}
 		.div-margin{
 			margin-top: 30px;
-			margin-left: 15px;
+			margin-left: 0;
+		}
+		.hlabel{
+			text-align:center;
+			font-size:small;
+			color:darkgray;
+			margin-bottom:5px;
+		}
+		.refereeStyle{
+			color: #4D308E;
+			font-weight: 700;
+		}
+		h2{
+			text-align: center;
+			color: #4D308E;
+		}
+		.addBtn{
+			font-size: x-large;
+			float: right;
+			margin-right: 88%;
+			margin-top: -55px;
+			font-weight: 800;
 		}
 	`],
 })
 
 export class ApplicationPageView2Component {
-	constructor() {
+	@Input() job: Job;
+	referee = 2;
 
+	constructor() {	}
+
+	range = (value) => {
+		let a = [];
+		for (let i = 0; i < value; ++i) {
+			a.push(i + 1);
+		}
+		return a;
 	}
 }

@@ -15,7 +15,8 @@ import { Job } from 'app/models/job.model';
 		</div>
 		<div class="col-md-2">
 			<label for="searchButton">&nbsp;</label>
-			<button type="button" class="btn btn-primary form-control" (click)="onSearchClick(searchWhat.value,searchWhere.value)">Find Jobs</button>
+			<button type="button" class="btn btn-primary form-control" 
+							(click)="onSearchClick(searchWhat.value,searchWhere.value)">Find Jobs</button>
 		</div>
 	</div>
 	<div class="row">

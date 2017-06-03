@@ -17,4 +17,9 @@ export class JobApplicationService {
 		return this.http.post(`${this.api}/api/applications`, data)
 			.map((res: Response) => res.json());
 	}
+
+	saveReference(data: any): Observable<Application> {
+		return this.http.patch(`${this.api}/api/applications/${data.id}`, data)
+			.map((res: Response) => res.json());
+	}
 }

@@ -11,8 +11,8 @@ import { Job } from '../models/job.model';
 					<p class="date-posted mb-0">Posted: {{job.createdAt | date: 'yyyy-MM-dd'}}</p>
 			</div>
 			<div class='col-md-2 text-center'>
-				<i class="fa fa-star-o bookmark" aria-hidden="true" style="font-size: 25px;"></i>
-				<p class="addBookmark">Add to Bookmarks</p>
+				<!--<i class="fa fa-star-o bookmark" aria-hidden="true" style="font-size: 25px;"></i>-->
+				<!--<p class="addBookmark">Add to Bookmarks</p>-->
 			</div>
 		</div>
 	`,

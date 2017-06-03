@@ -15,7 +15,7 @@ import { LoginService } from 'app/services/login.service';
 				<div class="row">
 					<div class="col-md-12">
 						<div>
-							<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-responsive image-banner"/>
+							<img alt="We Link Talent" src="./assets/images/company-banner.png" class="img-responsive image-banner" />
 						</div>
 						<ul class="nav nav-pills justify-content-end">
 							<li *ngIf="isLoggedIn" class="nav-item">
@@ -35,11 +35,16 @@ import { LoginService } from 'app/services/login.service';
 				</div>
 				<nav class="col-md-12" style="font-size:large;">
 					<ul class="nav-list">
-						<li><a routerLink="/profile"> Home </a></li>
-						<li><a routerLink="/about-us"> About Us </a></li>
-						<li><a routerLink="/jobs"> All Job Offers </a></li>
-						<li><a routerLink="#"> Contact Us </a></li>
-						<li><a routerLink="#"> Bookmarks </a></li>
+						<li><a routerLink="/profile"> Home </a>
+						</li>
+						<li><a routerLink="/about-us"> About Us </a>
+						</li>
+						<li><a routerLink="/jobs"> All Job Offers </a>
+						</li>
+						<li><a routerLink="#"> Contact Us </a>
+						</li>
+						<li><a routerLink="#"> Bookmarks </a>
+						</li>
 					</ul>
 				</nav>
 				<hr>

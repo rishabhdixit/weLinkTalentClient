@@ -4,8 +4,8 @@ import { NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: `app-application-concept`,
-	template: `
-        <div class="col-md-12">
+	template: `		
+		<div class="col-md-12">
 			<p>WeLink Talent was launched to share our recruitment expertise and our market insights with you.  
 			We propose a truly consultative approach for organisations with a mid to long term strategy</p>
 			<p>We believe linking skills, personality and potential to the right company will create value and synergies benefiting 
@@ -19,9 +19,9 @@ import { NavigationEnd } from '@angular/router';
 		</div>
 		<div class="col-md-12" style="margin-top:40px;">
 			<div class="col-md-6 cancelButton">
-				<a id="modal-705575" href="#modal-container-705575" role="button" data-toggle="modal">
-					<button class="btn btn-default btn-lg" style="margin-right:10px;">Cancel</button>
-				</a>
+				<!--<a id="modal-705575" href="#modal-container-705575" role="button" data-toggle="modal">-->
+				<a routerLink="/jobs"><button class="btn btn-default btn-lg" style="margin-right:10px;">Cancel</button></a>
+				<!--</a>-->
 				<div class="modal fade" id="modal-container-705575" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">

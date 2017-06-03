@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { Job } from '../models/job.model';
 import * as _ from 'lodash';
 import { PageMetaData } from '../models/page-metadata.model';
-
-
 import * as jobsAction from '../actions/jobs.action';
 import * as fromRoot from '../reducers';
 import { JobService } from 'app/services/job.service';
@@ -20,15 +18,14 @@ import { JobService } from 'app/services/job.service';
 			<app-job-search (searchButtonClick)="onSearchButtonClick($event)"></app-job-search>
 			<app-job-view *ngFor="let job of jobList$ | async | paginate: { itemsPerPage: 10, 
 				currentPage: currentPage, 
-				totalItems: jobsTotalSize$ | async}" 
+				totalItems: jobsTotalSize$ | async }" 
 				[job]="job">{{ job }}</app-job-view>
 			<!--// TODO: Fully implement paging-->
 			<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
 		</div>
 	</div>
-	
   `,
-	styles: []
+	styles: [``],
 })
 export class JobSearchPageComponent {
 	jobList$: Observable<Job[]>;

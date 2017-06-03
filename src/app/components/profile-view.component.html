@@ -51,105 +51,105 @@
 		</div>
 	</div>
 	<br>
-	<div class="row" style="padding-top: 60px;">
-		<div class="col-md-12">
-			<div class="col-md-12">
-				<label class="btn btn-primary btn-file inputPosition">
-					Upload Resume<input type="file" style="display: none;">
-				</label>
-			</div>
-			<h3>Work Experience</h3>
-			<div class="add-btn-container">
-				<a href="#" (click)="addPosition($event)" class="add-btn-work">+</a>
-			</div><br>
-			<!-- Work experience loop -->
-			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
-				<div [formGroupName]="i">
-					<div *ngIf="edit != 'position'+i" class="view">
-						<input type="text" value="{{ position.value.title }}" style="margin-bottom:8px;" placeholder="Position"/>
-						<input type="text" class="inputPlace" value="{{ position.value.startDate?.name }}" placeholder="Time Period"/><br>
-						<input type="text" value="{{position.value.company?.name}}" style="margin-bottom:8px;" placeholder="Company"/><br>
-						<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements"></textarea>
-						<a href="#" (click)="editMode($event, 'position'+i)" class="edit" style="float: right">edit</a>
-						<button class="btn btn-button btn-danger" (click)="removePosition(i)">Remove</button>
-					</div>
-					<div *ngIf="edit == 'position'+i" class="form-group clearfix">
-						<label class="col-md-12 control-label"
-							attr.for="{{ 'title' + i }}">Title</label>
-						<div class="col-md-12">
-							<input type="text" id="{{ 'title' + i }}"
-								class="form-control"
-								placeholder="e.g. Software Engineer"
-								formControlName="title">
-						</div>
+	<!--<div class="row" style="padding-top: 60px;">-->
+		<!--<div class="col-md-12">-->
+			<!--<div class="col-md-12">-->
+				<!--<label class="btn btn-primary btn-file inputPosition">-->
+					<!--Upload Resume<input type="file" style="display: none;">-->
+				<!--</label>-->
+			<!--</div>-->
+			<!--<h3>Work Experience</h3>-->
+			<!--<div class="add-btn-container">-->
+				<!--<a href="#" (click)="addPosition($event)" class="add-btn-work">+</a>-->
+			<!--</div><br>-->
+			<!--&lt;!&ndash; Work experience loop &ndash;&gt;-->
+			<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">-->
+				<!--<div [formGroupName]="i">-->
+					<!--<div *ngIf="edit != 'position'+i" class="view">-->
+						<!--<input type="text" value="{{ position.value.title }}" style="margin-bottom:8px;" placeholder="Position"/>-->
+						<!--<input type="text" class="inputPlace" value="{{ position.value.startDate?.name }}" placeholder="Time Period"/><br>-->
+						<!--<input type="text" value="{{position.value.company?.name}}" style="margin-bottom:8px;" placeholder="Company"/><br>-->
+						<!--<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements"></textarea>-->
+						<!--<a href="#" (click)="editMode($event, 'position'+i)" class="edit" style="float: right">edit</a>-->
+						<!--<button class="btn btn-button btn-danger" (click)="removePosition(i)">Remove</button>-->
+					<!--</div>-->
+					<!--<div *ngIf="edit == 'position'+i" class="form-group clearfix">-->
+						<!--<label class="col-md-12 control-label"-->
+							<!--attr.for="{{ 'title' + i }}">Title</label>-->
+						<!--<div class="col-md-12">-->
+							<!--<input type="text" id="{{ 'title' + i }}"-->
+								<!--class="form-control"-->
+								<!--placeholder="e.g. Software Engineer"-->
+								<!--formControlName="title">-->
+						<!--</div>-->
 
-						<label class="col-md-12 control-label"
-							attr.for="{{ 'company' + i }}">Company</label>
-						<div formGroupName="company" class="col-md-12">
-							<input type="text" id="{{ 'company' + i }}"
-								class="form-control"
-								placeholder="e.g. WeLink Talent"
-								formControlName="name">
-						</div>
+						<!--<label class="col-md-12 control-label"-->
+							<!--attr.for="{{ 'company' + i }}">Company</label>-->
+						<!--<div formGroupName="company" class="col-md-12">-->
+							<!--<input type="text" id="{{ 'company' + i }}"-->
+								<!--class="form-control"-->
+								<!--placeholder="e.g. WeLink Talent"-->
+								<!--formControlName="name">-->
+						<!--</div>-->
 
-						<label class="col-md-12 control-label">Time Period</label>
-						<div formGroupName="timePeriod" class="col-md-12">
-								<input type="date" id="{{ 'startDate' + i }}" class="form-control sDate"
-								formControlName="name">
-								<p class="to"	>TO</p>
-								<input type="date" id="{{ 'endDate' + i }}" class="form-control eDate"
-								formControlName="name">
-						</div>
+						<!--<label class="col-md-12 control-label">Time Period</label>-->
+						<!--<div formGroupName="timePeriod" class="col-md-12">-->
+								<!--<input type="date" id="{{ 'startDate' + i }}" class="form-control sDate"-->
+								<!--formControlName="name">-->
+								<!--<p class="to"	>TO</p>-->
+								<!--<input type="date" id="{{ 'endDate' + i }}" class="form-control eDate"-->
+								<!--formControlName="name">-->
+						<!--</div>-->
 
-						<label class="col-md-12 control-label"
-							attr.for="{{ 'responsibilities' + i }}">Responsibilities</label>
-						<div class="col-md-12">
-							<textarea id="{{ 'responsibility' + i }}" rows="3" class="form-control"
-								placeholder="Responsibilities and Achievements" formControlName="responsibility"></textarea>
-						</div>
+						<!--<label class="col-md-12 control-label"-->
+							<!--attr.for="{{ 'responsibilities' + i }}">Responsibilities</label>-->
+						<!--<div class="col-md-12">-->
+							<!--<textarea id="{{ 'responsibility' + i }}" rows="3" class="form-control"-->
+								<!--placeholder="Responsibilities and Achievements" formControlName="responsibility"></textarea>-->
+						<!--</div>-->
 
-						<div class="col-md-12">
-							<div class="position-action">
-								<button class="btn btn-primary" (click)="savePosition(i)" [disabled]="loading">Save</button>
-								<button class="btn btn-primary" (click)="cancelPosition($event, i)" [disabled]="loading">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><br>
-		<div class="col-md-12">
-			<h3>Skills</h3>
-			<div class="add-btn-container">
-				<a href="#" (click)="addSkill($event)" class="add-btn">+</a>
-			</div>
-			<br>
-			<table class="table tableBorder" border="1"style="border-color: lightgrey;"><tbody><tr>
-			<div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;" class="skill">
-				<div [formGroupName]="i">
-					<td><div *ngIf="edit != 'skill'+i">
-						<span>{{skill.value.name}}</span>
-					</div></td>
+						<!--<div class="col-md-12">-->
+							<!--<div class="position-action">-->
+								<!--<button class="btn btn-primary" (click)="savePosition(i)" [disabled]="loading">Save</button>-->
+								<!--<button class="btn btn-primary" (click)="cancelPosition($event, i)" [disabled]="loading">Cancel</button>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div><br>-->
+		<!--<div class="col-md-12">-->
+			<!--<h3>Skills</h3>-->
+			<!--<div class="add-btn-container">-->
+				<!--<a href="#" (click)="addSkill($event)" class="add-btn">+</a>-->
+			<!--</div>-->
+			<!--<br>-->
+			<!--<table class="table tableBorder" border="1"style="border-color: lightgrey;"><tbody><tr>-->
+			<!--<div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;" class="skill">-->
+				<!--<div [formGroupName]="i">-->
+					<!--<td><div *ngIf="edit != 'skill'+i">-->
+						<!--<span>{{skill.value.name}}</span>-->
+					<!--</div></td>-->
 
-					<div *ngIf="edit == 'skill'+i" class="form-group clearfix">
-						<label class="col-md-12 control-label"
-							attr.for="{{ 'skill' + i }}">Skill Name</label>
-						<div class="col-md-12">
-							<input type="text" id="{{ 'skill' + i }}"
-								class="form-control"
-								formControlName="name">
-						</div>
-						<div class="col-md-12">
-							<div class="skill-action">
-								<button class="btn btn-primary" (click)="saveSkill(i)" [disabled]="loading">Add</button>
-								<button class="btn btn-primary" (click)="cancelSkill($event, i)" [disabled]="loading">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</tr></tbody></table>
-		</div>
-	</div>
+					<!--<div *ngIf="edit == 'skill'+i" class="form-group clearfix">-->
+						<!--<label class="col-md-12 control-label"-->
+							<!--attr.for="{{ 'skill' + i }}">Skill Name</label>-->
+						<!--<div class="col-md-12">-->
+							<!--<input type="text" id="{{ 'skill' + i }}"-->
+								<!--class="form-control"-->
+								<!--formControlName="name">-->
+						<!--</div>-->
+						<!--<div class="col-md-12">-->
+							<!--<div class="skill-action">-->
+								<!--<button class="btn btn-primary" (click)="saveSkill(i)" [disabled]="loading">Add</button>-->
+								<!--<button class="btn btn-primary" (click)="cancelSkill($event, i)" [disabled]="loading">Cancel</button>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--</tr></tbody></table>-->
+		<!--</div>-->
+	<!--</div>-->
 	<div style="text-align: center;"><button class="btn btn-primary btn-lg" style="margin-top: 10px;">Confirm</button></div>
 </form>
