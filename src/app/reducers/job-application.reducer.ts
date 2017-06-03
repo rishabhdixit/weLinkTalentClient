@@ -1,5 +1,5 @@
 import * as lodash from 'lodash';
-
+import { createSelector } from 'reselect';
 import * as application from '../actions/job-application.action';
 import { Application, Reference } from '../models/job-application.model';
 import { Job } from 'app/models/job.model';
@@ -41,3 +41,23 @@ export function reducer(state = initialState, action: application.Actions): Stat
 
 
 export const getApplicationJob = (state: State) => state.job;
+export const getApplicationForm = (state: State) => state.application;
+export const getApplicationFormReference = (state: State) => state.reference;
+export const getCondition = (state: State) => state.condition;
+
+//noinspection TypeScriptValidateTypes
+export const IsValidApplicationForm = createSelector(getApplicationJob, getCondition, (job, condition) => {
+	return job && condition;
+});
+
+//noinspection TypeScriptValidateTypes
+export const IsValidApplicationFormReference = createSelector(getApplicationJob, getApplicationForm,
+	getCondition, (job, application, condition) => {
+		return job && application && condition;
+	});
+
+//noinspection TypeScriptValidateTypes
+export const IsValidApplicationThankYouPage = createSelector(getApplicationJob, getApplicationForm,
+	getApplicationFormReference, getCondition, (job, application, reference, condition) => {
+		return job && application && reference && condition;
+	});

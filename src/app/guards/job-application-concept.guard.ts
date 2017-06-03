@@ -15,41 +15,30 @@ import * as fromRoot from '../reducers';
 import * as jobAction from '../actions/jobs.action';
 
 @Injectable()
-export class JobExistsGuard implements CanActivate {
+export class JobApplicationConceptGuard implements CanActivate {
 	constructor(private store: Store<fromRoot.State>,
-		private jobService: JobService,
 		private router: Router) {
 	}
 
-	hasJobInStore(id: string): Observable<boolean> {
-		return this.store.select(fromRoot.getJobEntites)
-			.map(entities => !!entities[id])
+	hasSelectedJobInStore(): Observable<boolean> {
+		return this.store.select(fromRoot.getSelectedJob)
+			.map(job => !!job)
 			.take(1);
 	}
 
-	hasJob(id: string): Observable<boolean> {
-		return this.hasJobInStore(id)
+	hasSelectedJob(): Observable<boolean> {
+		return this.hasSelectedJobInStore()
 			.switchMap(inStore => {
 				if (inStore) {
 					return of(inStore);
 				}
-				return this.hasJobInApi(id);
-			});
-	}
 
-	hasJobInApi(id: string): Observable<boolean> {
-		return this.jobService.get(id)
-			.map((data) => new jobAction.JobsLoadDetailAction(data))
-			.do((action: jobAction.JobsLoadDetailAction) => this.store.dispatch(action))
-			.map((job) => !!job)
-			.catch(() => {
 				this.router.navigate(['jobs']);
 				return of(false);
 			});
 	}
 
-	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-		this.store.dispatch(new jobAction.JobsSelectAction(route.params['id']));
-		return this.hasJob(route.params['id']);
+	canActivate(): Observable<boolean> {
+		return this.hasSelectedJob();
 	}
 }

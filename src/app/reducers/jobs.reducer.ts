@@ -31,8 +31,6 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 		}
 		case jobs.ActionTypes.LOAD_SUCCESS: {
 			const jobs = action.payload;
-			// const newJobs = jobs.jobsList.filter(job => !state.entities[job.id]);
-
 			const newJobIds = jobs.jobsList.map(job => job._id);
 
 			const newJobEntities = jobs.jobsList.reduce((entities: { [id: string]: Job }, job: Job) => {
@@ -54,6 +52,23 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 			return Object.assign({}, state, {
 				selectedJobId: action.payload
 			});
+		}
+		case jobs.ActionTypes.LOAD_DETAIL: {
+			const job = action.payload;
+			if (state.ids.indexOf(job.id) > -1) {
+				return state;
+			}
+
+			return {
+				loaded: state.loaded,
+				loading: state.loading,
+				ids: [...state.ids, job.id],
+				entities: Object.assign({}, state.entities, {
+					[job.id]: job
+				}),
+				selectedJobId: state.selectedJobId,
+				pageMetaData: state.pageMetaData,
+			};
 		}
 		default: {
 			return state;

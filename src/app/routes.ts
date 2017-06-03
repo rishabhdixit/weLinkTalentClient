@@ -1,19 +1,25 @@
 import { Routes } from '@angular/router';
 
+import { ProfileResolve } from './resolves/profile.resolve';
+// import { UserResolve } from './resolves/user.resolve';
+
+import { JobExistsGuard } from './guards/job-exist.guard';
+import { LoggedInGuard } from './guards/logged-in.guard';
+import { CandidateGuard } from './guards/candidate.guard';
+import { JobApplicationConceptGuard } from './guards/job-application-concept.guard';
+import { JobApplicationFormGuard } from './guards/job-application-form.guard';
+import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
+import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
+
+import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
+import { ApplicationPageViewComponent } from './containers/application-page-view.component';
+import { ApplicationPageView2Component } from './containers/application-page-view2.component';
+import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
-import { LoggedInGuard } from './guards/logged-in.guard';
-import { CandidateGuard } from './guards/candidate.guard';
-import { ProfileResolve } from './resolves/profile.resolve';
-// import { UserResolve } from './resolves/user.resolve';
-import { JobExistsGuard } from './guards/job-exist.guard';
-import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
-import { ApplicationPageViewComponent } from './containers/application-page-view.component';
-import { ApplicationPageView2Component } from './containers/application-page-view2.component';
-import { ThankYouPageComponent } from './containers/thank-you-page.component';
 
 export const routes: Routes = [
 	{
@@ -49,17 +55,25 @@ export const routes: Routes = [
 	{
 		path: 'application-concept',
 		component: ApplicationConceptPageComponent,
+		canActivate: [JobApplicationConceptGuard],
+		// Step 1 - application concept
 	},
 	{
 		path: 'application-form',
 		component: ApplicationPageViewComponent,
+		canActivate: [JobApplicationConceptGuard],
+		// Step 2 - Fill up application form
 	},
 	{
 		path: 'application-form2',
 		component: ApplicationPageView2Component,
+		canActivate: [JobApplicationFormReferenceGuard],
+		// Step 3 - Fill up reference
 	},
 	{
 		path: 'thank-page',
 		component: ThankYouPageComponent,
+		canActivate: [JobApplicationFormSuccessGuard],
+		// Step 4 - Last stage
 	}
 ];

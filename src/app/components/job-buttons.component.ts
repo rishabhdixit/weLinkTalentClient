@@ -8,12 +8,12 @@ import { NavigationEnd } from '@angular/router';
 	<div class="row col-md-12">
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
-			<a routerLink="/jobs/"><button type="button" class="btn btn-basic btn-lg">Back</button></a>
+			<a routerLink="/jobs/">
+				<button type="button" class="btn btn-basic btn-lg">Back</button>
+			</a>
 		</div>
 		<div class="col-md-5">
-			<a [routerLink]="['/application-concept', {data: job._id}]">
-				<button type="button" class="btn btn-primary btn-lg" (click)="applyButtonClick()">Apply</button>
-			</a>
+			<button type="button" class="btn btn-primary btn-lg" (click)="applyButtonClick()">Apply</button>
 		</div>
 	</div>
 	`,

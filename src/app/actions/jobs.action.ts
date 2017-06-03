@@ -7,6 +7,7 @@ export const ActionTypes = {
 	LOAD_FAIL: 				type('[JOBS] Jobs load fail'),
 	SEARCH:        			type('[JOBS] Search'),
 	SELECT:        			type('[JOBS] Select'),
+	LOAD_DETAIL: 					type('[JOBS] Jobs load detail'),
 };
 
 export class JobsLoadAction implements Action {
@@ -43,9 +44,16 @@ export class JobsSelectAction implements Action {
 	constructor(public payload: any) {
 	}
 }
+export class JobsLoadDetailAction implements Action {
+	type = ActionTypes.LOAD_DETAIL;
+
+	constructor(public payload: any) {
+	}
+}
 
 export type Actions = JobsLoadAction
 	| JobsLoadSuccessAction
 	| JobsLoadFailAction
 	| JobsSearchAction
-	| JobsSelectAction;
+	| JobsSelectAction
+	| JobsLoadDetailAction;

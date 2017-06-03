@@ -16,21 +16,26 @@ import { routes } from './routes';
 import { reducer } from './reducers';
 import { ComponentsModule } from './components';
 
-import { LogInEffects } from'./effects/login.effects';
-import { LoginService } from './services/login.service';
-import { ProfileEffects } from './effects/profile.effects';
-import { ProfileService } from './services/profile.service';
 import { ProfileResolve } from './resolves/profile.resolve';
+
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
 import { JobExistsGuard } from './guards/job-exist.guard';
-import { JobService } from './services/job.service';
-import { JobEffects } from './effects/job.effects';
-
-import { JobApplicationService } from './services/job-application.service';
-import { ApplicationEffects } from './effects/application.effects';
+import { JobApplicationConceptGuard } from './guards/job-application-concept.guard';
 import { JobApplicationGuard } from './guards/job-application.guard';
+import { JobApplicationFormGuard } from './guards/job-application-form.guard';
+import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
+import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 
+import { LoginService } from './services/login.service';
+import { ProfileService } from './services/profile.service';
+import { JobService } from './services/job.service';
+import { JobApplicationService } from './services/job-application.service';
+
+import { ProfileEffects } from './effects/profile.effects';
+import { LogInEffects } from './effects/login.effects';
+import { JobEffects } from './effects/job.effects';
+import { ApplicationEffects } from './effects/application.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -47,7 +52,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { RatingModule } from 'ng2-rating';
 
 // Pagination
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
 	declarations: [
@@ -93,14 +98,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
 		},
 		LoginService,
 		ProfileService,
+		JobService,
+		JobApplicationService,
 		ProfileResolve,
 		LoggedInGuard,
 		CandidateGuard,
-		JobService,
-		JobApplicationService,
 		JobApplicationGuard,
 		JobExistsGuard,
-
+		JobApplicationConceptGuard,
+		JobApplicationFormGuard,
+		JobApplicationFormReferenceGuard,
+		JobApplicationFormSuccessGuard,
 	],
 	bootstrap: [
 		AppComponent
