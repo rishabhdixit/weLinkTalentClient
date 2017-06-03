@@ -88,6 +88,7 @@ export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJ
 export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);
 
 export const getApplicationJob = createSelector(getApplicationState, fromApplication.getApplicationJob);
+export const getApplicationForm = createSelector(getApplicationState, fromApplication.getApplicationForm);
 export const IsValidApplicationForm = createSelector(getApplicationState, fromApplication.IsValidApplicationForm);
 export const IsValidApplicationFormReference = createSelector(getApplicationState, fromApplication.IsValidApplicationFormReference);
 export const IsValidApplicationThankYouPage = createSelector(getApplicationState, fromApplication.IsValidApplicationThankYouPage);

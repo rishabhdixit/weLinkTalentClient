@@ -19,6 +19,7 @@ export const ActionType = {
 };
 
 
+
 export class ApplicationConceptLoadAction implements Action {
 	type = ActionType.APPLICATION_CONCEPT_LOAD;
 

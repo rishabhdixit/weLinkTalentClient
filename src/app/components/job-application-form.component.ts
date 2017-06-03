@@ -15,7 +15,7 @@ const emptyRating: number = -10;
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Talent Application Form</h2>
-					<p class="job-detail">{{job.title}} - {{job.company}}</p>
+					<p class="job-detail">{{job.title}} - {{job.company.name}}</p>
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
 						This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">

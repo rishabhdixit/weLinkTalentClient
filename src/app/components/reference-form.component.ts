@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import * as fromRoot from '../reducers';
-import { Application, Reference } from '../models/job-application.model';
+import { Application } from '../models/job-application.model';
+import { Reference } from '../models/reference.model';
 
 
 @Component({
 	selector: `app-reference-form`,
 	template: `
-		<form #firstReference = "ngForm">
+		<form #Reference = "ngForm">
 			<div class="col-md-6" style="margin-left: -15px;">
 				<div class="form-group">
 					<label for="fname" class="labelweight">First Name: </label>
@@ -47,7 +48,8 @@ import { Application, Reference } from '../models/job-application.model';
 			</div>
 			<div class="form-group">
 				<label for="oldCompany" class="labelweight">In which company, did you work together: </label>
-				<input type="text" class="form-control input-company" id="oldCompany" name="oldCompany" />
+				<input type="text" class="form-control input-company" id="oldCompany" name="oldCompany" 
+							 [(ngModel)]="referee.companyTogether"/>
 			</div>
 			<div class="form-group">
 				<label for="canContact" class="labelweight">Can we contact this reference?</label>
@@ -143,5 +145,10 @@ import { Application, Reference } from '../models/job-application.model';
 
 export class ReferenceFormComponent {
 	application: Application = new Application();
-	reference: Reference = new Reference();
+	referee: Reference = new Reference();
+	@Output() saverRefereeEvent = new EventEmitter<any>();
+
+	constructor() {}
+
+
 }

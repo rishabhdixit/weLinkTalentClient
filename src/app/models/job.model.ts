@@ -1,3 +1,5 @@
+import {Company} from './company.model';
+
 export class Job {
 	_id:              	string;
 	title:           	string;
@@ -5,7 +7,7 @@ export class Job {
 	employment_type: 	string;
 	location: 			string;
 	industry: 			string;
-	company:			string;
+	company:			Company[];
 	expertise: 			string;
 	salary_from: 		string;
 	salary_to: 			string;

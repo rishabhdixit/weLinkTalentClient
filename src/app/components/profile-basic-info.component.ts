@@ -13,7 +13,7 @@ import { Profile } from '../models/profile.model';
 				<form role="form" class="form-inline">
 					<div class="form-group">
 						<label for="dateBirth" class="labelweight">Date of Birth: </label>
-						<input type="date" class="form-control formSpace" id="dateBirth" style="margin-left: 68px; width: 221px;"/>
+						<input type="date" class="form-control formSpace" id="dateBirth" name="birthDate" style="margin-left: 68px; width: 221px;"/>
 					</div>
 					<div class="form-group">
 						<label for="email" class="labelweight">Email:</label>
@@ -130,7 +130,8 @@ import { Profile } from '../models/profile.model';
 })
 
 export class ProfileBasicInfoComponent {
-	@Input() profile: Profile;
+	// @Input() profile: Profile;
+	profileInfo: Profile;
 
 	constructor () {
 
