@@ -61,7 +61,7 @@ export const routes: Routes = [
 	{
 		path: 'application-form',
 		component: ApplicationPageViewComponent,
-		canActivate: [JobApplicationConceptGuard],
+		canActivate: [JobApplicationFormGuard],
 		// Step 2 - Fill up application form
 	},
 	{

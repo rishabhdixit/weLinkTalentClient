@@ -23,7 +23,7 @@ export const ActionType = {
 export class ApplicationConceptLoadAction implements Action {
 	type = ActionType.APPLICATION_CONCEPT_LOAD;
 
-	constructor(public payload: Job) {}
+	constructor(public payload: any) {}
 }
 
 export class ApplicationConceptAccept implements Action {

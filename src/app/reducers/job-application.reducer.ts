@@ -4,8 +4,10 @@ import * as application from '../actions/job-application.action';
 import { Application } from '../models/job-application.model';
 import { Job } from 'app/models/job.model';
 import { Reference } from '../models/reference.model';
+import { User } from 'app/models/user.model';
 
 export interface State {
+	user: User;
 	job: Job;
 	application: Application;
 	condition: boolean;
@@ -13,6 +15,7 @@ export interface State {
 }
 
 const initialState: State = {
+	user: {} as User,
 	job: {} as Job,
 	application: {} as Application,
 	condition: false,
@@ -24,7 +27,8 @@ export function reducer(state = initialState, action: application.Actions): Stat
 	switch (action.type) {
 		case application.ActionType.APPLICATION_CONCEPT_LOAD:
 			return Object.assign({}, state, {
-				job: action.payload
+				job: action.payload.job,
+				user: action.payload.user
 			});
 		case application.ActionType.APPLICATION_CONCEPT_ACCEPT:
 		case application.ActionType.APPLICATION_FORM_LOAD:
@@ -61,20 +65,23 @@ export const getApplicationJob = (state: State) => state.job;
 export const getApplicationForm = (state: State) => state.application;
 export const getApplicationFormReference = (state: State) => state.reference;
 export const getCondition = (state: State) => state.condition;
+export const getLoginUser = (state: State) => state.user;
+
 
 //noinspection TypeScriptValidateTypes
-export const IsValidApplicationForm = createSelector(getApplicationJob, getCondition, (job, condition) => {
-	return job && condition;
+export const IsValidApplicationForm = createSelector(getApplicationJob, getCondition, getLoginUser,
+	(job, condition, user) => {
+	return (job != null && condition && user != null);
 });
 
 //noinspection TypeScriptValidateTypes
 export const IsValidApplicationFormReference = createSelector(getApplicationJob, getApplicationForm,
-	getCondition, (job, application, condition) => {
-		return job && application && condition;
+	getCondition, getLoginUser, (job, application, condition, user) => {
+		return (job != null && application && condition && user != null);
 	});
 
 //noinspection TypeScriptValidateTypes
 export const IsValidApplicationThankYouPage = createSelector(getApplicationJob, getApplicationForm,
-	getApplicationFormReference, getCondition, (job, application, reference, condition) => {
-		return job && application && reference && condition;
+	getApplicationFormReference, getCondition, getLoginUser, (job, application, reference, condition, user) => {
+		return (job != null && application && reference && condition && user != null);
 	});

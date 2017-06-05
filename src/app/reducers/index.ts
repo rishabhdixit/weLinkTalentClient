@@ -75,7 +75,7 @@ export const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail
 export const getUserId = createSelector(getLoginState, fromLogin.getUserId);
 export const getUserLoaded = createSelector(getLoginState, fromLogin.getLoaded);
 
-export const getUserProfile = createSelector(getProfileState, fromProfile.getProfile);
+export const getProfile = createSelector(getProfileState, fromProfile.getProfile);
 export const getProfileLoaded = createSelector(getProfileState, fromProfile.getLoaded);
 export const getProfileLoading = createSelector(getProfileState, fromProfile.getLoading);
 

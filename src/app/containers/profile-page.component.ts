@@ -27,6 +27,7 @@ import * as ui from '../actions/ui.action';
 						(createSkillEvent)="onCreateSkill($event)"
 						(removePositionEvent)="onRemovePosition($event)">
 					</app-profile-view>
+					<app-user-profile-info [profile]="profile$ | async"></app-user-profile-info>
 				</div>
 			</div>
 		</div>
@@ -42,7 +43,7 @@ export class ProfilePageComponent {
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.email$ = this.store.select(fromRoot.getUserEmail);
-		this.profile$ = this.store.select(fromRoot.getUserProfile);
+		this.profile$ = this.store.select(fromRoot.getProfile);
 		this.profileLoading$ = this.store.select(fromRoot.getProfileLoading);
 		this.edit$ = this.store.select(fromRoot.getUiEditId);
 	}
