@@ -20,31 +20,27 @@ export class Position {
 }
 
 export class Profile {
-	constructor(
-		public linkedinId:   	string,
-		public emailAddress: 	string,
-		public firstName:    	string,
-		public lastName:     	string,
-		public pictureUrl:   	string,
-		public headline:     	string,
-		public summary:      	string,
-		public id?:          	string,
-		public positions?:   	Position[],
-		public skills?:      	Skill[],
-		public profileInfo?:	ProfileInfo[],
-	) {}
-}
+	linkedinId:   	string;
+	emailAddress: 	string;
+	firstName:    	string;
+	lastName:     	string;
+	pictureUrl:   	string;
+	headline:     	string;
+	summary:      	string;
+	id?:          	string;
+	positions?:   	Position[];
+	skills?:      	Skill[];
+	// Note : new added fields.
 
-export class ProfileInfo {
-	birthDate: Date;
+	birthDate: string;
 	NRIC: number;
 	email: string;
 	singaporeVisa: string;
-	noticePeriod: Date;
+	noticePeriod: string;
 	maritalStatus: string;
 	mobile: string;
 	children: string;
-	validityEnd: Date;
+	validityEnd: string;
 	negotiable: any;
 	basePerMonth: number;
 	bonus: number;
@@ -53,5 +49,7 @@ export class ProfileInfo {
 	bonusRecieved: any;
 	calculation: string;
 	description: string;
-	vestingPeriod: Date;
+	vestingPeriod: string;
+
 }
+

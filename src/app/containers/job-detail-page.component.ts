@@ -8,6 +8,7 @@ import * as jobsApplicationAction from '../actions/job-application.action';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {publishBehavior} from 'rxjs/operator/publishBehavior';
 import {State} from '../reducers/job-application.reducer';
+import {User} from '../models/user.model';
 
 @Component({
 	selector: 'app-job-detail-page',
@@ -35,12 +36,14 @@ import {State} from '../reducers/job-application.reducer';
 })
 export class JobDetailPageComponent {
 	job$: Observable<Job>;
+	user: User;
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
+		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
 	}
 
 	applyButtonClickHandler(job: Job) {
-		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction(job));
+		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction({job: job , user: this.user}));
 	}
 
 }

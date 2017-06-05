@@ -21,19 +21,15 @@ export function createProfile(payload: any): Profile {
 	const positions = payload.positions.values		|| [];
 	const skills    = payload.positions.skills		|| [];
 
-	const profile = new Profile(
-		payload.id,
-		payload.emailAddress,
-		payload.firstName,
-		payload.lastName,
-		payload.pictureUrl,
-		payload.headline,
-		payload.summary,
-		undefined,
-		positions.map((position) => position),
-		skills.map((skill) => skill),
-	);
-
+	const profile = new Profile();
+	profile.linkedinId = payload.id;
+	profile.emailAddress = payload.email;
+	profile.firstName = payload.firstName;
+	profile.lastName = payload.lastName;
+	profile.pictureUrl = payload.pictureUrl;
+	profile.summary = payload.summary;
+	profile.positions =	positions.map((position) => position);
+	profile.skills = 	skills.map((skill) => skill);
 	return profile;
 };
 
@@ -65,7 +61,8 @@ export function reducer(state = initialState, action: profile.Actions): State {
 
 		// reducer for saving profile info
 		case profile.ActionTypes.PROFILE_SAVE_INFO_SUCCESS: {
-			return Object.assign({}, state, {profile});
+
+			return Object.assign({}, state, {profile: action.payload});
 		}
 
 		case profile.ActionTypes.POSITION_CREATE_SUCCESS: {
