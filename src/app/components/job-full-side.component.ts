@@ -10,7 +10,7 @@ import { Job } from '../models/job.model';
 			<div class="card" style="margin-top: 20px;">
 				<div class="card-block">
 					<p style="font-size: xx-large;font-weight: 900;margin-left: 150px;margin-bottom: -47px;">?</p>
-					<h1 class="card-title">{{ job.slots_left }}</h1>
+					<h1 class="card-title">{{job.remaining_slots || job.application_slots-1}}</h1>
 					<h5 class="slots">Application Slots Left</h5>
 				</div>  
 			</div>

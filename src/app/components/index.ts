@@ -14,6 +14,7 @@ import { LoginComponent } from './login.component';
 import { OrSeperatorComponent } from './or-seperator.component';
 import { PaginationComponent } from './pagination.component';
 import { ProfileViewComponent } from './profile-view.component';
+import { ThankYouViewComponent } from './thank-you-view.component';
 import { JobButtonsComponent } from './job-buttons.component';
 import { JobFullSideComponent } from './job-full-side.component';
 import { ProfileBasicInfoComponent } from './profile-basic-info.component';
@@ -47,6 +48,7 @@ export const COMPONENTS = [
 	SelectedJobSkillsComponent,
 	JobApplicationFormComponent,
 	ReferenceFormComponent,
+	ThankYouViewComponent,
 ];
 
 @NgModule({
