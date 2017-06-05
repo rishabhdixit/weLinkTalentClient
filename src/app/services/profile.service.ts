@@ -78,4 +78,14 @@ export class ProfileService {
 			data
 		).map(res => res.json());
 	}
+
+	saveProfileInfo(
+		userId: string,
+		profileId: string,
+		data: any
+	): Observable<any> {
+		return this.authHttp.put(
+			`${this.api}/api/users/${userId}/profiles/${profileId}`, data)
+			.map(res => res.json());
+	}
 }

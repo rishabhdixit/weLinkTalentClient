@@ -19,6 +19,7 @@ export const ActionType = {
 };
 
 
+
 export class ApplicationConceptLoadAction implements Action {
 	type = ActionType.APPLICATION_CONCEPT_LOAD;
 
@@ -70,6 +71,12 @@ export class ApplicationReferenceFormLoadAction implements Action {
 
 export class ApplicationReferenceFormLoadSuccessAction implements Action {
 	type = ActionType.APPLICATION_REFERENCE_FORM_LOAD_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+
+export class ApplicationReferenceFormLoadFailAction implements Action {
+	type = ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_FAIL;
 
 	constructor(public payload: any) {}
 }

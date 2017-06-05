@@ -3,73 +3,83 @@ import { Action } from '@ngrx/store';
 import { Profile } from '../models/profile.model';
 
 export const ActionTypes = {
-	LOAD:                    type('[PROFILE] Profile Load'),
-	LOAD_SUCCESS:            type('[PROFILE] Profile Load Success'),
-	UPDATE:                  type('[PROFILE] Profile Update'),
-	UPDATE_SUCCESS:          type('[PROFILE] Profile Update Success'),
-	UPDATE_FAIL:             type('[PROFILE] Profile Update Fail'),
-	LINKEDIN:                type('[PROFILE] Profile Linkedin Sign-in'),
-	LINKEDIN_SUCCESS:        type('[PROFILE] Profile Linkedin Sign-in Success'),
-	LINKEDIN_FAIL:           type('[PROFILE] Profile Linkedin Sign-in Fail'),
-	LOGOUT:                  type('[PROFILE] Profile Clear'),
-	POSITION_REMOVE:		 type('[PROFILE] Profile Position Remove'),
-	POSITION_REMOVE_SUCCESS: type('[PROFILE] Profile RPosition Remove Success'),
-	POSITION_CREATE:         type('[PROFILE] Profile Position Create'),
-	POSITION_CREATE_SUCCESS: type('[PROFILE] Profile Position Create Success'),
-	POSITION_UPDATE:         type('[PROFILE] Profile Position Update'),
-	POSITION_UPDATE_SUCCESS: type('[PROFILE] Profile Position Update Success'),
-	SKILLS_CREATE:           type('[PROFILE] Profile Skills Create'),
-	SKILLS_CREATE_SUCCESS:   type('[PROFILE] Profile Skills Create Success')
+	LOAD:                    		type('[PROFILE] Profile Load'),
+	LOAD_SUCCESS:            		type('[PROFILE] Profile Load Success'),
+	UPDATE:                 	 	type('[PROFILE] Profile Update'),
+	UPDATE_SUCCESS:          		type('[PROFILE] Profile Update Success'),
+	UPDATE_FAIL:             		type('[PROFILE] Profile Update Fail'),
+	PROFILE_SAVE_INFO:			 		type('[PROFILE] Profile Save Info'),
+	PROFILE_SAVE_INFO_SUCCESS:	type('[PROFILE] Profile Save Info Success'),
+	LINKEDIN:                		type('[PROFILE] Profile Linkedin Sign-in'),
+	LINKEDIN_SUCCESS:        		type('[PROFILE] Profile Linkedin Sign-in Success'),
+	LINKEDIN_FAIL:           		type('[PROFILE] Profile Linkedin Sign-in Fail'),
+	LOGOUT:                  		type('[PROFILE] Profile Clear'),
+	POSITION_REMOVE:		 		 		type('[PROFILE] Profile Position Remove'),
+	POSITION_REMOVE_SUCCESS: 		type('[PROFILE] Profile Position Remove Success'),
+	POSITION_CREATE:         		type('[PROFILE] Profile Position Create'),
+	POSITION_CREATE_SUCCESS: 		type('[PROFILE] Profile Position Create Success'),
+	POSITION_UPDATE:         		type('[PROFILE] Profile Position Update'),
+	POSITION_UPDATE_SUCCESS: 		type('[PROFILE] Profile Position Update Success'),
+	SKILLS_CREATE:           		type('[PROFILE] Profile Skills Create'),
+	SKILLS_CREATE_SUCCESS:   		type('[PROFILE] Profile Skills Create Success')
 };
 
 export class ProfileLoadAction implements Action {
 	type = ActionTypes.LOAD;
 
-	constructor(public payload: any) {
-	}
+	constructor(public payload: any) {}
 }
 
 export class ProfileLoadSuccessAction implements Action {
 	type = ActionTypes.LOAD_SUCCESS;
 
-	constructor(public payload: any) {
-	}
+	constructor(public payload: any) {}
 }
 
 export class ProfileLinkedinAction implements Action {
 	type = ActionTypes.LINKEDIN;
 
-	constructor(public payload: Profile) {
-	}
+	constructor(public payload: Profile) {}
 }
 
 export class ProfileLinkedinSuccessAction implements Action {
 	type = ActionTypes.LINKEDIN_SUCCESS;
 
-	constructor(public payload: Profile) {
-	}
+	constructor(public payload: Profile) {}
 }
 
 export class ProfileLinkedinFailAction implements Action {
 	type = ActionTypes.LINKEDIN_FAIL;
 
-	constructor(public payload: any) {
-	}
+	constructor(public payload: any) {}
 }
 
 export class ProfileLogOutAction implements Action {
 	type = ActionTypes.LOGOUT;
 
-	constructor(public payload: any) {
-	}
+	constructor(public payload: any) {}
 }
 
 export class ProfileUpdateAction implements Action {
 	type = ActionTypes.UPDATE;
 
-	constructor(public payload: any) {
-	}
+	constructor(public payload: any) {}
 }
+
+// Action for saving profile Info
+export class ProfileSaveInfoAction implements Action {
+	type = ActionTypes.PROFILE_SAVE_INFO;
+
+	constructor(public payload: any) {}
+}
+
+export class ProfileSaveInfoSuccessAction implements Action {
+	type = ActionTypes.PROFILE_SAVE_INFO_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+
+// End of saving profile info actions
 
 export class ProfileUpdateSuccessAction implements Action {
 	type = ActionTypes.UPDATE_SUCCESS;
@@ -142,6 +152,8 @@ export type Actions = ProfileLinkedinAction
 	| ProfileLoadSuccessAction
 	| ProfileUpdateAction
 	| ProfileUpdateSuccessAction
+	| ProfileSaveInfoAction // export actions for saving profile info
+	| ProfileSaveInfoSuccessAction // export actions for saving profile info
 	| PositionRemoveAction
 	| PositionRemoveSuccessAction
 	| PositionCreateAction

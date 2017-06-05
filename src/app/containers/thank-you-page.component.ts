@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { Store, State } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Job } from 'app/models/job.model';
+import * as fromRoot from '../reducers';
 
 @Component({
 	selector: `app-thank-you-page`,
@@ -13,28 +14,7 @@ import { Job } from 'app/models/job.model';
 					 <h2>Thank you for applying to:</h2>
 					 <p class="pHeader">Finance Director APAC - Passerelles Numeriques</p>
 				</div>
-				<div class="col-md-12" style="margin-top: 50px;">
-					<div class="col-md-5" style="margin-left: 35px;">
-						<div class="card cardStyle">
-							<div class="card-block">
-								<h1 class="card-title">5</h1>
-								<p class="card-text fontStyle">Application Slots Left</p>
-							</div>  
-						</div>
-					</div>
-					<div class="col-md-2">
-						<img alt="We Link Talent" src="./assets/images/right_arrow.png" 
-								class="img-responsive arrow"/>
-					</div>
-					<div class="col-md-5 rightPart">
-						<div class="card cardStyle">
-							<div class="card-block">
-								<h1 class="card-title ">4</h1>
-								<p class="card-text fontStyle">Application Slots Left</p>
-							</div>  
-						</div>
-					</div>
-				</div>
+				<app-thank-you-view [job]="job$ | async"></app-thank-you-view>
 				<div class="col-md-12"  style="margin-top:60px; font-size: large;">
 					<p>An email has been sent to your referee(s) to validate your application.</p><br>
 					<p>You will also receive a notification email once your referee has completed the validation form.</p><br>
@@ -134,8 +114,8 @@ import { Job } from 'app/models/job.model';
 })
 
 export class ThankYouPageComponent {
-	@Input() job: Job;
-	constructor() {
-
+	job$: Observable<Job>;
+	constructor(private store: Store<fromRoot.State>) {
+		this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}
 }

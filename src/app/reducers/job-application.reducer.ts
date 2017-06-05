@@ -1,8 +1,9 @@
 import * as lodash from 'lodash';
 import { createSelector } from 'reselect';
 import * as application from '../actions/job-application.action';
-import { Application, Reference } from '../models/job-application.model';
+import { Application } from '../models/job-application.model';
 import { Job } from 'app/models/job.model';
+import { Reference } from '../models/reference.model';
 
 export interface State {
 	job: Job;
@@ -34,6 +35,22 @@ export function reducer(state = initialState, action: application.Actions): Stat
 			return Object.assign({}, state, {
 				application: action.payload
 			});
+
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT:
+			return Object.assign({}, state, {
+				reference: action.payload.references_info
+			});
+
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS:
+			return Object.assign({}, state, {
+				application: action.payload
+			});
+
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_FAIL:
+			return Object.assign({}, state, {
+				reference: null
+			});
+
 		default:
 			return state;
 	}
