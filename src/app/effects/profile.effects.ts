@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, state} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -62,6 +62,28 @@ export class ProfileEffects {
 					return Observable.from([
 						new profile.ProfileUpdateSuccessAction(response),
 						new ui.FormEditMode(''),
+					]);
+				});
+		});
+
+	// effects for saving profile info
+	@Effect()
+	saveProfileInfo$: Observable<Action> = this.actions
+		.ofType(profile.ActionTypes.PROFILE_SAVE_INFO)
+		.withLatestFrom(this.store, (action, state) => {
+			return {
+				userId: state.login.user.id,
+				profileId: state.profile.profile.id,
+				data: action.payload
+			};
+		})
+		.switchMap((payload) => {
+			const { userId, profileId, data } = payload;
+
+			return this.profileService.saveProfileInfo(userId, profileId, data)
+				.mergeMap((response) => {
+					return Observable.from([
+						new profile.ProfileSaveInfoSuccessAction(response),
 					]);
 				});
 		});

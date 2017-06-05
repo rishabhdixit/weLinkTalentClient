@@ -36,10 +36,21 @@ export function reducer(state = initialState, action: application.Actions): Stat
 				application: action.payload
 			});
 
-		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS:
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT:
 			return Object.assign({}, state, {
 				reference: action.payload.references_info
 			});
+
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS:
+			return Object.assign({}, state, {
+				application: action.payload
+			});
+
+		case application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_FAIL:
+			return Object.assign({}, state, {
+				reference: null
+			});
+
 		default:
 			return state;
 	}

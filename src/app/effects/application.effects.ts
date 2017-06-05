@@ -56,7 +56,8 @@ export class ApplicationEffects {
 		.map((action: application.ApplicationReferenceFormSubmitAction) => action.payload)
 		.switchMap((payload) =>
 			this.jobApplicationService.saveReference(payload)
-				.map((data) => new application.ApplicationReferenceFormSubmitSuccessAction(data)));
+				.map((data) => new application.ApplicationReferenceFormSubmitSuccessAction(data)))
+				.catch(() => Observable.of(new application.ApplicationReferenceFormSubmitFailAction(null)));
 
 	@Effect({dispatch: false})
 	saveReferenceSuccess$: Observable<Action> = this.actions

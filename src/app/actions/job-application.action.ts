@@ -75,6 +75,12 @@ export class ApplicationReferenceFormLoadSuccessAction implements Action {
 	constructor(public payload: any) {}
 }
 
+export class ApplicationReferenceFormLoadFailAction implements Action {
+	type = ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_FAIL;
+
+	constructor(public payload: any) {}
+}
+
 export class ApplicationReferenceFormSubmitAction implements Action {
 	type = ActionType.APPLICATION_REFERENCE_FORM_SUBMIT;
 

@@ -22,4 +22,5 @@ export class Job {
 	criteria: 			string;
 	years_experience:	string;
 	visa_passport_constraints:	string;
+	slots_left: number;
 }

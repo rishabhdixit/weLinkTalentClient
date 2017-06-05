@@ -19,13 +19,15 @@ export class JobApplicationService {
 	}
 
 	saveReference(data: any): Observable<Application> {
+		console.log(data);
 		return this.http.put(`${this.api}/api/applications/${data.applicationId}`, data.references_info)
 			.map((res: Response) => {
-			console.log(res.json()); return	res.json();
+				console.log(res.json()); return res.json();
 			})
 			.catch((err) => {
-			console.log(err);
-			return Observable.of({});
-		});
+				console.log(err);
+				return Observable.of({});
+			});
 	}
 }
+

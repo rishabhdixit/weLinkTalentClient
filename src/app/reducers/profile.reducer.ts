@@ -40,27 +40,32 @@ export function createProfile(payload: any): Profile {
 export function reducer(state = initialState, action: profile.Actions): State {
 	switch (action.type) {
 		case profile.ActionTypes.LINKEDIN_SUCCESS: {
-			return Object.assign({}, state, { profile: action.payload, loaded: true });
+			return Object.assign({}, state, {profile: action.payload, loaded: true});
 		}
 
 		case profile.ActionTypes.LOAD_SUCCESS: {
-			return Object.assign({}, state, { profile: action.payload, loaded: true });
+			return Object.assign({}, state, {profile: action.payload, loaded: true});
 		}
 
 		case profile.ActionTypes.LOAD: {
-			return Object.assign({}, state, { loaded: false });
+			return Object.assign({}, state, {loaded: false});
 		}
 
 		case profile.ActionTypes.UPDATE:
 		case profile.ActionTypes.POSITION_CREATE:
 		case profile.ActionTypes.POSITION_UPDATE: {
-			return Object.assign({}, state, { loading: true });
+			return Object.assign({}, state, {loading: true});
 		}
 
 		case profile.ActionTypes.UPDATE_SUCCESS: {
 			const profile = action.payload;
 
-			return lodash.merge({}, state, { profile, loading: false });
+			return lodash.merge({}, state, {profile, loading: false});
+		}
+
+		// reducer for saving profile info
+		case profile.ActionTypes.PROFILE_SAVE_INFO_SUCCESS: {
+			return Object.assign({}, state, {profile});
 		}
 
 		case profile.ActionTypes.POSITION_CREATE_SUCCESS: {

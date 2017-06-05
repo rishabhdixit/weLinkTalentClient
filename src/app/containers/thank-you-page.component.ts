@@ -134,7 +134,7 @@ import { Job } from 'app/models/job.model';
 })
 
 export class ThankYouPageComponent {
-	@Input() job: Job;
+	job: Job;
 	constructor() {
 
 	}

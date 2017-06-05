@@ -22,7 +22,7 @@ import * as application from '../actions/job-application.action';
 						<p style="color: #4D308E; font-size: larger;">Please provide two references:</p>
 					</div>
 					<form #firstReference = "ngForm">
-						<p>Reference 1</p>
+						<p class="refereeStyle">Reference 1</p>
 						<div class="col-md-6" style="margin-left: -15px;">
 							<div class="form-group">
 								<label for="fname" class="labelweight">First Name: </label>
@@ -73,7 +73,7 @@ import * as application from '../actions/job-application.action';
 							<input type="radio" value="no" class="input-box1" id="canContact" name="canContact" #canContact1 />
 						</div>
 					</form>
-					<p>Reference 2</p>
+					<p class="refereeStyle">Reference 2</p>
 					<form #SecondReference = "ngForm">
 						<div class="col-md-6" style="margin-left: -15px;">
 							<div class="form-group">
@@ -151,15 +151,12 @@ import * as application from '../actions/job-application.action';
 							consultants to arrange any candidate interviews.</p>
 						</div>
 					</div>
-					<div class="col-md-12">
-					
-						
-							
-								<button type="button" class="btn btn-primary btn-lg" (click)="onSaveReferee(fname1.value, lname1.value, 
-								currentCompany1.value, currentTitle1.value, phone1.value, email1.value, relation1.value, dateWorked1.value,
-								dateWorked11.value, oldCompany1.value, canContact1.value, fname2.value, lname2.value, currentCompany2.value,
-								currentTitle2.value, phone2.value, email2.value, relation2.value, dateWorked2.value, dateWorked12.value, 
-								oldCompany2.value, canContact2.value)">Submit</button>
+					<div class="col-md-12" style="text-align: center;">
+						<button type="button" class="btn btn-primary btn-lg" (click)="onSaveReferee(fname1.value, lname1.value, 
+							currentCompany1.value, currentTitle1.value, phone1.value, email1.value, relation1.value, dateWorked1.value,
+							dateWorked11.value, oldCompany1.value, canContact1.value, fname2.value, lname2.value, currentCompany2.value,
+							currentTitle2.value, phone2.value, email2.value, relation2.value, dateWorked2.value, dateWorked12.value, 
+							oldCompany2.value, canContact2.value)">Submit</button>
 						</div>
 					
 				</div>
@@ -328,7 +325,6 @@ export class ApplicationPageView2Component {
 		referee2.canContact = canContact1;
 
 		references.push(referee1, referee2);
-		console.log(references);
 
 		this.store.dispatch(new application.ApplicationReferenceFormSubmitAction({references_info : references ,
 			applicationId: this.application.id}));
