@@ -6,12 +6,12 @@
 			<h2>Welcome!</h2>
 			<fieldset>
 				<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
-				<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
-					<a href="#" (click)="editMode($event, 'basic')" class="edit" *ngIf="i === 0">Edit</a>
-					<p class="highlight-p" *ngIf="i === 0">{{ profile.firstName }} {{ profile.lastName }}</p>
-					<p *ngIf="i === 0">{{ position.value.title }}</p>
-					<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
-				</div>
+				<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">-->
+					<a href="#" (click)="editMode($event, 'basic')" class="edit">Edit</a>
+					<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
+					<!--<p *ngIf="i === 0">{{ position.value.title }}</p>-->
+					<!--<p *ngIf="i === 0">{{ position.value.company?.name }}</p>-->
+				<!--</div>-->
 			</fieldset>
 		</div>
 
