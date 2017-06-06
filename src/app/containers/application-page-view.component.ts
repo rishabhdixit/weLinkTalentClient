@@ -1,6 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Store, State} from '@ngrx/store';
 import {Observable} from 'rxjs';
+import * as _ from 'lodash';
 
 import * as fromRoot from '../reducers';
 import * as ui from '../actions/ui.action';
@@ -40,12 +41,12 @@ export class ApplicationPageViewComponent {
 	}
 
 	applyClickHandler(application: Application) {
-		let formData:FormData = new FormData();
+		let formData: FormData = new FormData();
 		let fileList: FileList = application.file;
-		for(let prop in application) {
-			formData.append(prop, application[prop]);
-		}
-		if(fileList.length > 0) {
+		_.forIn(application, function (value, key) {
+			formData.append(key, value);
+		});
+		if (fileList.length > 0) {
 			let file: File = fileList[0];
 			formData.append('file', file, file.name);
 		}
