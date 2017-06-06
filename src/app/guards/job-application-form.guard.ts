@@ -33,7 +33,7 @@ export class JobApplicationFormGuard implements CanActivate {
 					return of(inStore);
 				}
 
-				this.router.navigate(['jobs']);
+				this.router.navigate(['login']);
 				return of(false);
 			});
 	}

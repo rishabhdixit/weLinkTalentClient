@@ -29,7 +29,8 @@ import * as profileAction from '../actions/profile.action';
 							</div>
 							<div class="form-group">
 								<label for="SingaporeVisa" class="labelWeight">Visa for Singapore: </label>
-								<select class="form-control dropdownStyle" id="SingaporeVisa" name="singaporeVisa" #singaporeVisa>
+								<select class="form-control dropdownStyle" id="SingaporeVisa" name="singaporeVisa" #singaporeVisa 
+												value="{{profile?.singaporeVisa}}">
 									<option>Yes, I have</option>
 									<option>No, I don't have</option>
 								</select>
@@ -45,7 +46,7 @@ import * as profileAction from '../actions/profile.action';
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<label for="maritalStatus" class="labelWeight">Marital Status: </label>
-								<select class="form-control formSpace marital" id="maritalStatus" name="status" #status>
+								<select class="form-control formSpace marital" id="maritalStatus" name="status" #status value="{{profile?.maritalStatus}}">
 									<option>Single</option>
 									<option>Married</option>
 									<option>Divorce</option>
@@ -60,8 +61,8 @@ import * as profileAction from '../actions/profile.action';
 							</div>
 							<div class="form-group">
 								<label for="numberOfChildren" class="labelWeight">Number of Children: </label>
-								<select class="form-control formSpace totalChildren" id="numberOfChildren" name="children" #children>
-									<option></option>
+								<select class="form-control formSpace totalChildren" id="numberOfChildren" name="children" #children value="{{profile?.children}}">
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -85,9 +86,9 @@ import * as profileAction from '../actions/profile.action';
 							<div class="form-group">
 								<label for="canNegotiate" class="labelWeight">Negotiable? </label>
 								&emsp;<p class="pWeight p1">Yes&emsp;</p><input type="radio" id="canNegotiate" class="labelweight cb"
-																																name="negotiable" value="Yes, can be Negotiate" #negotiable/>
+																																name="negotiable" value="Yes, can be Negotiate" #negotiable value="{{profile?.negotiable}}"/>
 								&emsp;<p class="pWeight p2">No&emsp;</p><input type="radio" id="canNegotiate" class="labelweight cb"
-																															  name="negotiable" value="No, cannot be Negotiate" #negotiable/>
+																															  name="negotiable" value="No, cannot be Negotiate" #negotiable value="{{profile?.negotiable}}"/>
 							</div>
 						</form>
 					</div>
@@ -124,10 +125,10 @@ import * as profileAction from '../actions/profile.action';
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<label for="1213months" class="labelWeight">&emsp;on </label>&nbsp;
-								<p class="pWeight">&emsp;12 months&nbsp;&nbsp;</p><input type="radio" id="1213months" name="bonusRecieved"
-																																		#bonusRecieved value="12 Month" class="formSpace cb"/>
-								<p class="pWeight">&emsp;13 months&nbsp;&nbsp;</p><input type="radio" id="1213months" name="bonusRecieved"
-																																		#bonusRecieved value="13 Month" class="formSpace cb"/>
+								<p class="pWeight">&emsp;12 months&nbsp;&nbsp;</p>
+									<input type="radio" id="1213months" name="bonusRecieved" #bonusRecieved class="formSpace cb"/>
+								<p class="pWeight">&emsp;13 months&nbsp;&nbsp;</p>
+									<input type="radio" id="1213months" name="bonusRecieved" #bonusRecieved class="formSpace cb"/>
 							</div>
 							<div class="form-group">
 								<label for="calculated" class="labelWeight">How is it calculated? </label>
@@ -151,7 +152,7 @@ import * as profileAction from '../actions/profile.action';
 					<button class="btn btn-primary btn-lg" style="margin-top: 10px;" 
 									(click)="onConfirmButtonClicked(birthDate.value, FINNumber.value, email.value, singaporeVisa.value, noticePeriod.value,
 									status.value, mobile.value, children.value, validityEnd.value, negotiable.value, basePerMonth.value, 
-									bonus.value, allowance.value, incentive.value, bonusRecieved.value, calculation.value, description.value, 
+									bonus.value, allowance.value, incentive.value, bonusRecieved.select(), calculation.value, description.value, 
 									vestingPeriod.value)">Confirm</button>
 				</div>
 			</div>
@@ -229,16 +230,6 @@ export class UserProfileInfoComponent {
 												mobile: string, children: string, validityEnd: string, negotiable: any, basePerMonth: number, bonus: number,
 												allowance: number, incentives: any, bonusRecieved: any, calculation: string, description: string,
 												vestingPeriod: string) {
-		console.log(birthDate);
-		console.log(NRIC);
-		console.log(singaporeVisa);
-		console.log(noticePeriod);
-		console.log(maritalStatus);
-		console.log(mobile);
-		console.log(children);
-		console.log(validityEnd);
-		console.log(negotiable);
-		console.log(bonusRecieved);
 		let profileSave = new Profile();
 
 		profileSave.birthDate = birthDate;
