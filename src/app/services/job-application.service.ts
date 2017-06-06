@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
 import { Application } from '../models/job-application.model';
@@ -14,7 +14,11 @@ export class JobApplicationService {
 	) {}
 
 	saveApplication(data: any): Observable<Application> {
-		return this.http.post(`${this.api}/api/applications`, data)
+		let headers = new Headers();
+		// headers.append('Content-Type', 'multipart/form-data');
+		headers.append('Accept', 'application/json');
+		const options = new RequestOptions({ headers: headers });
+		return this.http.post(`${this.api}/api/applications`, data, options)
 			.map((res: Response) => res.json());
 	}
 

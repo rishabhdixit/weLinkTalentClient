@@ -40,10 +40,17 @@ export class ApplicationPageViewComponent {
 	}
 
 	applyClickHandler(application: Application) {
-		let data = {
-			job_id: this.jobId
-			, form_data: application, user_id: this.user.id
-		};
-		this.store.dispatch(new applicationAction.ApplicationFormSubmitAction(data));
+		let formData:FormData = new FormData();
+		let fileList: FileList = application.file;
+		for(let prop in application) {
+			formData.append(prop, application[prop]);
+		}
+		if(fileList.length > 0) {
+			let file: File = fileList[0];
+			formData.append('file', file, file.name);
+		}
+		formData.append('job_id', this.jobId);
+		formData.append('user_id', this.user.id);
+		this.store.dispatch(new applicationAction.ApplicationFormSubmitAction(formData));
 	}
 }

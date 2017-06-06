@@ -19,7 +19,7 @@ const emptyRating: number = -10;
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
 						This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">
-						<input type="file" class="form-control" id="file" name="file" multiple required>
+						<input type="file" class="form-control" id="file" name="file" (change)="onChange($event)" multiple required>
 					</div>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
@@ -170,10 +170,8 @@ export class JobApplicationFormComponent {
 		this.applicationEventEmitter.emit(this.application);
 	}
 
-	// onChange(event) {
-	// 	console.log('onChange');
-	// 	let files = event.srcElement.files;
-	// 	console.log(files);
-	// 	this.application.file = files;
-	// }
+	onChange(event) {
+		const files = event.target.files;
+		this.application.file = files;
+	}
 }
