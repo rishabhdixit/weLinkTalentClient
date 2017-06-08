@@ -8,6 +8,12 @@ export const ActionTypes = {
 	SEARCH:        			type('[JOBS] Search'),
 	SELECT:        			type('[JOBS] Select'),
 	LOAD_DETAIL: 					type('[JOBS] Jobs load detail'),
+	ADD_BOOKMARK: 	  				type('[USERS] Add bookmark'),
+	ADD_BOOKMARK_SUCCESS: 		type('[USERS] Add bookmark success'),
+	ADD_BOOKMARK_FAIL: 				type('[USERS] Add bookmark failure'),
+	REMOVE_BOOKMARK: 					type('[USERS] Remove bookmark '),
+	REMOVE_BOOKMARK_SUCCESS: 	type('[USERS] Remove bookmark success'),
+	REMOVE_BOOKMARK_FAIL: 		type('[USERS] Remove bookmark failure'),
 };
 
 export class JobsLoadAction implements Action {
@@ -51,9 +57,56 @@ export class JobsLoadDetailAction implements Action {
 	}
 }
 
+export class AddBookmarkAction implements Action {
+	type = ActionTypes.ADD_BOOKMARK;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class AddBookmarkSuccessAction implements Action {
+	type = ActionTypes.ADD_BOOKMARK_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class AddBookmarkFailAction implements Action {
+	type = ActionTypes.ADD_BOOKMARK_FAIL;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class RemoveBookmarkAction implements Action {
+	type = ActionTypes.REMOVE_BOOKMARK;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class RemoveBookmarkSuccessAction implements Action {
+	type = ActionTypes.REMOVE_BOOKMARK_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+export class RemoveBookmarkFailAction implements Action {
+	type = ActionTypes.REMOVE_BOOKMARK_FAIL;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = JobsLoadAction
 	| JobsLoadSuccessAction
 	| JobsLoadFailAction
 	| JobsSearchAction
 	| JobsSelectAction
-	| JobsLoadDetailAction;
+	| JobsLoadDetailAction
+	| AddBookmarkAction
+	| AddBookmarkSuccessAction
+	| AddBookmarkFailAction
+	| RemoveBookmarkAction
+	| RemoveBookmarkSuccessAction
+	| RemoveBookmarkFailAction;

@@ -14,7 +14,7 @@ import { Job } from '../models/job.model';
 			<dl>
 				<dt> Description </dt>
 				<dd class="job-txt">{{job.description}}</dd>
-				<dt> Skills </dt>
+				<dt> Ideal Talent </dt>
 				<dd class="job-txt">{{job.ideal_talent}}</dd>
 				<dt> Experience </dt>
 				<dd>{{job.years_experience}}</dd>

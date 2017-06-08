@@ -30,6 +30,7 @@ import { JobApplicationFormSuccessGuard } from './guards/job-application-form-su
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
 import { JobService } from './services/job.service';
+import { BookmarkService } from './services/bookmark.service';
 import { JobApplicationService } from './services/job-application.service';
 
 import { ProfileEffects } from './effects/profile.effects';
@@ -99,6 +100,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 		LoginService,
 		ProfileService,
 		JobService,
+		BookmarkService,
 		JobApplicationService,
 		ProfileResolve,
 		LoggedInGuard,

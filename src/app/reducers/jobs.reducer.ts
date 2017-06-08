@@ -10,6 +10,7 @@ export interface State {
 	ids: string[];
 	selectedJobId: string;
 	pageMetaData: PageMetaData;
+	isBookmarked: boolean;
 }
 
 const initialState: State = {
@@ -19,6 +20,7 @@ const initialState: State = {
 	entities: {},
 	selectedJobId: null,
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
+	isBookmarked: false,
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -46,11 +48,16 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				entities: Object.assign({}, {}, newJobEntities),
 				selectedJobId: state.selectedJobId,
 				pageMetaData: jobs.pageMetaData,
+				isBookmarked: false,
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
+			// const jobId = action.payload.jobId;
+			// const user = action.payload.user;
+			// const isBookmarked = user && user.bookmark_ids && user.bookmark_ids.indexOf(jobId) > -1 ? true : false;
 			return Object.assign({}, state, {
-				selectedJobId: action.payload
+				selectedJobId: action.payload,
+				// isBookmarked: isBookmarked,
 			});
 		}
 		case jobs.ActionTypes.LOAD_DETAIL: {
@@ -68,7 +75,34 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				}),
 				selectedJobId: state.selectedJobId,
 				pageMetaData: state.pageMetaData,
+				isBookmarked: false,
 			};
+		}
+		case jobs.ActionTypes.ADD_BOOKMARK: {
+			return state;
+		}
+		case jobs.ActionTypes.ADD_BOOKMARK_SUCCESS: {
+			return Object.assign({}, state, {
+				isBookmarked: true
+			});
+		}
+		case jobs.ActionTypes.ADD_BOOKMARK_FAIL: {
+			return Object.assign({}, state, {
+				isBookmarked: false
+			});
+		}
+		case jobs.ActionTypes.REMOVE_BOOKMARK: {
+			return state;
+		}
+		case jobs.ActionTypes.REMOVE_BOOKMARK_SUCCESS: {
+			return Object.assign({}, state, {
+				isBookmarked: false
+			});
+		}
+		case jobs.ActionTypes.REMOVE_BOOKMARK_FAIL: {
+			return Object.assign({}, state, {
+				isBookmarked: true
+			});
 		}
 		default: {
 			return state;

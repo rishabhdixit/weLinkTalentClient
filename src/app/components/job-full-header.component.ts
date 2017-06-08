@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Store, State} from '@ngrx/store';
 import { Job } from '../models/job.model';
+import {User} from '../models/user.model';
+import * as fromRoot from '../reducers';
+import * as jobsAction from '../actions/jobs.action';
 
 @Component({
 	selector: 'app-job-full-header',
@@ -11,8 +15,8 @@ import { Job } from '../models/job.model';
 					<p class="date-posted mb-0">Posted: {{job.createdAt | date: 'yyyy-MM-dd'}}</p>
 			</div>
 			<div class='col-md-2 text-center'>
-				<!--<i class="fa fa-star-o bookmark" aria-hidden="true" style="font-size: 25px;"></i>-->
-				<!--<p class="addBookmark">Add to Bookmarks</p>-->
+				<i class="fa fa-star-o bookmark set-font" [ngClass]="{'bookmark-selected': isBookmarked}" (click)="updateBookmark()"></i>
+				<p class="addBookmark">Add to Bookmarks</p>
 			</div>
 		</div>
 	`,
@@ -41,13 +45,43 @@ import { Job } from '../models/job.model';
     	-webkit-text-stroke-width: 1px;
     	-webkit-text-stroke-color: orange;
 	}
+	.bookmark-selected {
+		color: yellow;
+		cursor: pointer;
+    	-webkit-text-stroke-width: 1px;
+    	-webkit-text-stroke-color: orange;
+	}
+	.set-font {
+		font-size: 25px;
+	}
 	`]
 })
 
-export class JobFullHeaderComponent {
+export class JobFullHeaderComponent implements OnInit {
 	@Input() job: Job;
+	@Input() user: User;
+	isBookmarked: boolean = false;
 
-	constructor() {
+	constructor(private store: Store<fromRoot.State>) {
+	}
+
+	ngOnInit() {
+		if (this.user && this.job) {
+			this.isBookmarked = this.user.bookmark_ids.indexOf(this.job._id) > -1 ? true : false;
+		}
+	}
+
+	updateBookmark() {
+		let payload = {userId: this.user.id};
+		this.isBookmarked = this.isBookmarked ? false : true;
+		if (this.isBookmarked) {
+			payload['body'] = {postId: this.job._id};
+			this.store.dispatch(new jobsAction.AddBookmarkAction(payload));
+		} else {
+			payload['postId'] = this.job._id;
+			this.store.dispatch(new jobsAction.RemoveBookmarkAction(payload));
+		}
+
 	}
 
 }

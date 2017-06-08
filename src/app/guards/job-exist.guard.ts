@@ -51,5 +51,9 @@ export class JobExistsGuard implements CanActivate {
 	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
 		this.store.dispatch(new jobAction.JobsSelectAction(route.params['id']));
 		return this.hasJob(route.params['id']);
+		/*this.store.select(fromRoot.getUser).subscribe((user) => {
+			this.store.dispatch(new jobAction.JobsSelectAction({jobId: route.params['id'], user: user}));
+		});
+		return this.hasJob(route.params['id']);*/
 	}
 }
