@@ -12,8 +12,8 @@ import { JobApplicationFormReferenceGuard } from './guards/job-application-form-
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
-import { ApplicationPageViewComponent } from './containers/application-page-view.component';
-import { ApplicationPageView2Component } from './containers/application-page-view2.component';
+import { ApplicationFormPageComponent } from './containers/application-form-page.component';
+import { ApplicationReferenceFormPageComponent } from './containers/application-reference-form-page.component';
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -60,13 +60,13 @@ export const routes: Routes = [
 	},
 	{
 		path: 'application-form',
-		component: ApplicationPageViewComponent,
+		component: ApplicationFormPageComponent,
 		canActivate: [JobApplicationFormGuard],
 		// Step 2 - Fill up application form
 	},
 	{
 		path: 'application-form2',
-		component: ApplicationPageView2Component,
+		component: ApplicationReferenceFormPageComponent,
 		canActivate: [JobApplicationFormReferenceGuard],
 		// Step 3 - Fill up reference
 	},

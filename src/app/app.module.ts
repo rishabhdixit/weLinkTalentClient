@@ -44,8 +44,8 @@ import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { ApplicationConceptPageComponent } from 'app/containers/application-concept-page.component';
-import { ApplicationPageViewComponent } from './containers/application-page-view.component';
-import { ApplicationPageView2Component } from './containers/application-page-view2.component';
+import { ApplicationFormPageComponent } from './containers/application-form-page.component';
+import { ApplicationReferenceFormPageComponent } from './containers/application-reference-form-page.component';
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
 
 // Library for Star Rating
@@ -64,8 +64,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 		JobDetailPageComponent,
 		AboutUsPageComponent,
 		ApplicationConceptPageComponent,
-		ApplicationPageViewComponent,
-		ApplicationPageView2Component,
+		ApplicationFormPageComponent,
+		ApplicationReferenceFormPageComponent,
 		ThankYouPageComponent,
 	],
 	imports: [

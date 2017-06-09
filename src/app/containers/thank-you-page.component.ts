@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Store, State } from '@ngrx/store';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Job } from 'app/models/job.model';
 import * as fromRoot from '../reducers';
@@ -12,7 +12,7 @@ import * as fromRoot from '../reducers';
 			<div class="row container-fluid">
 				<div class="col-md-12" style="margin-top: 30px;">
 					 <h2>Thank you for applying to:</h2>
-					 <p class="pHeader">Finance Director APAC - Passerelles Numeriques</p>
+					 <p class="pHeader"></p>
 				</div>
 				<app-thank-you-view [job]="job$ | async"></app-thank-you-view>
 				<div class="col-md-12"  style="margin-top:60px; font-size: large;">
@@ -52,8 +52,8 @@ import * as fromRoot from '../reducers';
 							<div class="card-block">
 								<h5 class="card-title ">Job Title</h5>
 								<p class="card-text">Company Name</p>
-								<p class="card-text">Description: Somethin is happening in somethingy.
-										 And that somethin is somethin dangerous.</p>
+								<p class="card-text">Description: Something is happening in something.
+										 And that something is something dangerous.</p>
 							</div>  
 						</div>
 					</div>
@@ -75,19 +75,6 @@ import * as fromRoot from '../reducers';
 			margin-top: -20px;
 			font-weight: bolder;
 		}
-		.fontStyle{
-			color: white;
-			font-size: larger;
-			font-weight: 800;
-			margin-top: -20px;
-		}
-		.rightPart{
-			margin-left: 0;
-			float: right;
-			padding-right: 0;
-			margin-top: -156px;
-			margin-right: -20px;
-		}
 		h2{
 			text-align: center;
 			color: blue;
@@ -96,12 +83,6 @@ import * as fromRoot from '../reducers';
 			font-size: larger;
 			color: gray;
 			text-align: center;
-		}
-		.arrow{
-			width: 149%;
-			float: right;
-			margin-right: -394px;
-			margin-top: -153px;
 		}
 		.div-style{
 			float: right;
@@ -115,6 +96,7 @@ import * as fromRoot from '../reducers';
 
 export class ThankYouPageComponent {
 	job$: Observable<Job>;
+	@Input() job: Job;
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}

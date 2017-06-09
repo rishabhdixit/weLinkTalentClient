@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Store, State} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import { Job } from '../models/job.model';
 import {User} from '../models/user.model';
 import * as fromRoot from '../reducers';
 import * as jobsAction from '../actions/jobs.action';
 
 @Component({
-	selector: 'app-job-full-header',
+	selector: 'app-job-content-header-view',
 	template: `
 		<div class='row col-md-12'>
 			<div class='col-md-10 div-padding text-center'>
@@ -57,7 +57,7 @@ import * as jobsAction from '../actions/jobs.action';
 	`]
 })
 
-export class JobFullHeaderComponent implements OnInit {
+export class JobContentHeaderViewComponent implements OnInit {
 	@Input() job: Job;
 	@Input() user: User;
 	isBookmarked: boolean = false;

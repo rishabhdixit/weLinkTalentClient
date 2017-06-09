@@ -1,13 +1,7 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
-import * as fromRoot from '../reducers';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 import {Job} from 'app/models/job.model';
-import {Profile, Position} from '../models/profile.model';
-import {Validators} from '@angular/forms/forms';
 import {Application} from '../models/job-application.model';
 
-const emptyRating: number = -10;
 @Component({
 	selector: 'app-job-application-form-page',
 	template: `
@@ -19,7 +13,7 @@ const emptyRating: number = -10;
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
 						This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">
-						<input type="file" class="form-control" id="file" name="file" (change)="onChange($event)" multiple required>
+						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required>
 					</div>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
@@ -69,7 +63,7 @@ const emptyRating: number = -10;
 						<textarea class="form-control" rows="5" id="management" name="managements" 
 											[(ngModel)]="application.management" required></textarea>
 					</div>
-					<div class="button-class">
+					<div *ngIf="!forReference" class="button-class">
 						<button type="submit" class="btn btn-primary btn-lg" (click)="onApplyClick()">Apply?</button>
 						<p class="bottom-style">Your information will be saved automatically</p>
 					</div>
@@ -93,12 +87,12 @@ const emptyRating: number = -10;
 		.input-base {
 			width: 28%;
 			float: right;
-			margin-right: 472px;
+			margin-right: 465px;
 		}
 		.bonusLabel {
 			float: right;
 			margin-top: -48px;
-			margin-right: 257px;
+			margin-right: 187px;
 			font-weight: bolder;
 		}
 		.input-bonus {
@@ -123,19 +117,10 @@ const emptyRating: number = -10;
 			font-size: x-small;
 			color: gray;
 		}
-		.listStyle {
-			list-style-type: none;
-			display: inline-block;
-			font-size: 25px;
-			padding-right: 8px;
-		}
 		.ulStyle {
 			float: right;
-			margin-right: 62%;
+			margin-right: 40%;
 			margin-bottom: 0;
-		}
-		.highlight{
-			color:yellow;
 		}
 		i:hover{
 			cursor:pointer;
@@ -146,14 +131,10 @@ const emptyRating: number = -10;
 			font-size: x-large;
 			color: dimgray;
 		}
-		.skill-label {
-			font-size: x-large;
-			font-weight: bolder;
-		}
 		.input-style {
 			font-size: x-large;
 			font-weight: bolder;
-			width: 200px;
+			width: 260px;
 			border: none;
 		}
 	`],
@@ -162,6 +143,8 @@ const emptyRating: number = -10;
 export class JobApplicationFormComponent {
 	@Input() job: Job;
 	@Output() applicationEventEmitter = new EventEmitter<Application>();
+	@Input() forReference: Boolean;
+
 	application: Application= new Application();
 
 	constructor() {	}
@@ -170,7 +153,7 @@ export class JobApplicationFormComponent {
 		this.applicationEventEmitter.emit(this.application);
 	}
 
-	onChange(event) {
+	onFileUpload(event) {
 		const files = event.target.files;
 		this.application.file = files;
 	}

@@ -40,7 +40,6 @@ export class LinkedinLoginComponent implements OnInit {
 			}).error((error) => {
 				// Note: what instance does error happen?
 				// TODO: Add component error view
-				console.log(error);
 			});
 		});
 	}

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Job } from '../models/job.model';
 
 @Component({
-	selector: 'app-job-full-body',
+	selector: 'app-job-content-view',
 	template: `
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-12">
 		<table class="table tableBorder">
 			<tbody>
 				<tr>
@@ -93,7 +93,6 @@ import { Job } from '../models/job.model';
 				</dd>
 			</dl>
 		</div>
-	<div class="col-md-2">&nbsp;</div>
 	</div>
 	`,
 	styles: [`
@@ -110,7 +109,7 @@ import { Job } from '../models/job.model';
 		}
 	`]
 })
-export class JobFullBodyComponent {
+export class JobContentViewComponent {
 	@Input() job: Job;
 
 	constructor() {	}

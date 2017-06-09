@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../models/job.model';
-import { NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'app-job-buttons',
@@ -8,11 +7,11 @@ import { NavigationEnd } from '@angular/router';
 	<div class="row col-md-12">
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
-			<a routerLink="/jobs/">
+			<a routerLink="/jobs">
 				<button type="button" class="btn btn-basic btn-lg">Back</button>
 			</a>
 		</div>
-		<div class="col-md-5">
+		<div  *ngIf="!doneApplied" class="col-md-5">
 			<button type="button" class="btn btn-primary btn-lg" (click)="applyButtonClick()">Apply</button>
 		</div>
 	</div>
@@ -21,6 +20,7 @@ import { NavigationEnd } from '@angular/router';
 })
 export class JobButtonsComponent {
 	@Input() job: Job;
+	@Input() doneApplied: Boolean;
 	@Output() applyButtonClickEvent = new EventEmitter<Job>();
 	constructor() {
 	}

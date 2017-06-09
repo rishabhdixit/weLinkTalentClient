@@ -5,19 +5,18 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header.component';
 import { ComponentNameComponent } from './footer.component';
-import { JobFullBodyComponent } from './job-full-body.component';
-import { JobFullHeaderComponent } from './job-full-header.component';
+import { JobContentViewComponent } from './job-content-view.component';
+import { JobContentHeaderViewComponent } from './job-content-header-view.component';
 import { JobSearchComponent } from './job-search.component';
 import { JobViewComponent } from './job-view.component';
 import { LinkedinLoginComponent } from './linkedin-login.component';
 import { LoginComponent } from './login.component';
 import { OrSeperatorComponent } from './or-seperator.component';
-import { PaginationComponent } from './pagination.component';
-import { UserProfileInfoComponent } from './user-profile-info.component'; // For demo purposes
+import { ProfileUserInfoComponent } from './profile-user-info.component'; // For demo purposes
 import { ProfileViewComponent } from './profile-view.component';
 import { ThankYouViewComponent } from './thank-you-view.component';
 import { JobButtonsComponent } from './job-buttons.component';
-import { JobFullSideComponent } from './job-full-side.component';
+import { JobContentSideViewComponent } from './job-content-side-view.component';
 // import { ProfileBasicInfoComponent } from './profile-basic-info.component';
 // import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
 import { ApplicationConceptComponent } from './application-concept.component';
@@ -31,18 +30,17 @@ import { RatingModule } from 'ng2-rating';
 export const COMPONENTS = [
 	HeaderComponent,
 	ComponentNameComponent,
-	JobFullBodyComponent,
-	JobFullHeaderComponent,
+	JobContentViewComponent,
+	JobContentHeaderViewComponent,
 	JobSearchComponent,
 	JobViewComponent,
 	LinkedinLoginComponent,
 	LoginComponent,
 	OrSeperatorComponent,
-	PaginationComponent,
-	UserProfileInfoComponent, // For demo purposes
+	ProfileUserInfoComponent, // For demo purposes
 	ProfileViewComponent,
 	JobButtonsComponent,
-	JobFullSideComponent,
+	JobContentSideViewComponent,
 	// ProfileBasicInfoComponent,
 	// ProfileCurrentSalaryInfoComponent,
 	ApplicationConceptComponent,

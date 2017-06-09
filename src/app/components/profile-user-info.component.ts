@@ -3,9 +3,10 @@ import { Profile } from '../models/profile.model';
 import { Store } from '@ngrx/store';
 import *as fromRoot from '../reducers';
 import * as profileAction from '../actions/profile.action';
+import { Job } from '../models/job.model';
 
 @Component({
-	selector: `app-user-profile-info`,
+	selector: `app-profile-user-info`,
 	template: `
 		<div class="container">
 			<div class="container-fluid">
@@ -14,31 +15,31 @@ import * as profileAction from '../actions/profile.action';
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<label for="dateBirth" class="labelWeight">Date of Birth: </label>
-								<input type="date" class="form-control formSpace" id="dateBirth" name="birthDate" #birthDate value="{{profile?.birthDate}}"
-											 style="margin-left: 68px; width: 221px;"/>
+								<input type="date" class="form-control formSpace" id="dateBirth" name="birthDate" [(ngModel)]="profile.birthDate"
+											 value="{{ profile?.birthDate }}" style="margin-left: 68px; width: 221px;"/>
 							</div>
 							<div class="form-group">
 								<label for="email" class="labelWeight">Email:</label>
-								<input type="email" class="form-control formSpace" id="email" name="email" #email value="{{profile?.email}}"
-											 style="margin-left:125px;"/>
+								<input type="email" class="form-control formSpace" id="email" name="email" [(ngModel)]="profile.email"
+											 value="{{ profile?.email }}" style="margin-left:125px;"/>
 							</div>
 							<div class="form-group">
 								<label for="FINNumber" class="labelWeight">NRIC / FIN Number: </label>
-								<input type="number" class="form-control formSpace" id="FINNumber" name="FINNumber" #FINNumber  value="{{profile?.NRIC}}"
-											 required style="margin-left: 19px;"/>
+								<input type="number" class="form-control formSpace" id="FINNumber" name="FINNumber" [(ngModel)]="profile.NRIC"
+											 value="{{ profile?.NRIC }}" required style="margin-left: 19px;"/>
 							</div>
 							<div class="form-group">
 								<label for="SingaporeVisa" class="labelWeight">Visa for Singapore: </label>
-								<select class="form-control dropdownStyle" id="SingaporeVisa" name="singaporeVisa" #singaporeVisa 
-												value="{{profile?.singaporeVisa}}">
+								<select class="form-control dropdownStyle" id="SingaporeVisa" name="singaporeVisa" [(ngModel)]="profile.singaporeVisa" 
+												value="{{ profile?.singaporeVisa }}">
 									<option>Yes, I have</option>
 									<option>No, I don't have</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="noticePeriod" class="labelWeight">Notice Period: </label>
-								<input type="date" class="form-control" id="noticePeriod" name="periodNotice" #noticePeriod value="{{profile?.noticePeriod}}"
-											 style="margin-left: 63px; width: 222px;"/>
+								<input type="date" class="form-control" id="noticePeriod" name="periodNotice" [(ngModel)]="profile.noticePeriod"
+											 value="{{ profile?.noticePeriod }}" style="margin-left: 63px; width: 222px;"/>
 							</div>
 						</form>
 					</div>
@@ -46,22 +47,26 @@ import * as profileAction from '../actions/profile.action';
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<label for="maritalStatus" class="labelWeight">Marital Status: </label>
-								<select class="form-control formSpace marital" id="maritalStatus" name="status" #status value="{{profile?.maritalStatus}}">
+								<select class="form-control formSpace marital" id="maritalStatus" name="status" [(ngModel)]="profile.maritalStatus" 
+												value="{{ profile?.maritalStatus }}">
 									<option>Single</option>
 									<option>Married</option>
 									<option>Divorce</option>
-									<option>Seperated</option>
+									<option>Separated</option>
 									<option>Widowed</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="mobileNumber" class="labelWeight">Mobile:  </label>
-								<input type="text" class="form-control formSpace" id="mobileNumber" name="mobile" #mobile value="{{profile?.mobile}}"
-											 style="margin-left: 153px;"/>
+								<input type="text" class="form-control formSpace" id="mobileNumber" name="mobile" [(ngModel)]="profile.mobile"
+											 value="{{ profile?.mobile }}" style="margin-left: 153px;"/>
+								<!--<ReactTelephoneInput defaultCountry="in" flagsImagePath="/path/to/images/flags.png"-->
+									<!--onChange={handleInputChange} onBlur={handleInputBlur} />-->
 							</div>
 							<div class="form-group">
 								<label for="numberOfChildren" class="labelWeight">Number of Children: </label>
-								<select class="form-control formSpace totalChildren" id="numberOfChildren" name="children" #children value="{{profile?.children}}">
+								<select class="form-control formSpace totalChildren" id="numberOfChildren" name="children" [(ngModel)]="profile.children" 
+												value="{{ profile?.children}}">
 									<option>0</option>
 									<option>1</option>
 									<option>2</option>
@@ -80,15 +85,15 @@ import * as profileAction from '../actions/profile.action';
 							</div>
 							<div class="form-group">
 								<label for="validityEnd" class="labelWeight">End of validity: </label>
-								<input type="date" class="form-control formSpace" id="validityEnd" name="validity" #validityEnd value="{{profile?.validityEnd}}"
-											 style="margin-left:97px; width:222px;"/>
+								<input type="date" class="form-control formSpace" id="validityEnd" name="validity" [(ngModel)]="profile.validityEnd"
+											 value="{{ profile?.validityEnd }}" style="margin-left:97px; width:222px;"/>
 							</div>
 							<div class="form-group">
 								<label for="canNegotiate" class="labelWeight">Negotiable? </label>
 								&emsp;<p class="pWeight p1">Yes&emsp;</p><input type="radio" id="canNegotiate" class="labelweight cb"
-																																name="negotiable" value="Yes, can be Negotiate" #negotiable value="{{profile?.negotiable}}"/>
+																																name="negotiable" value="Yes, can be Negotiate"/>
 								&emsp;<p class="pWeight p2">No&emsp;</p><input type="radio" id="canNegotiate" class="labelweight cb"
-																															  name="negotiable" value="No, cannot be Negotiate" #negotiable value="{{profile?.negotiable}}"/>
+																															  name="negotiable" value="No, cannot be Negotiate"/>
 							</div>
 						</form>
 					</div>
@@ -101,23 +106,23 @@ import * as profileAction from '../actions/profile.action';
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<label for="basePerMonth" class="labelWeight">Base per month: SGD</label>
-								<input type="number" class="form-control formSpace" id="basePerMonth" name="basePerMonth" value="{{profile?.basePerMonth}}"
-											 #basePerMonth style="margin-left: 22px;"/>
+								<input type="number" class="form-control formSpace" id="basePerMonth" name="basePerMonth" [(ngModel)]="profile.basePerMonth"
+											 value="{{ profile?.basePerMonth }}" style="margin-left: 22px;"/>
 							</div>
 							<div class="form-group">
 								<label for="bonus" class="labelWeight">Bonus: SGD</label>
-								<input type="number" class="form-control formSpace" id="bonus" name="bonus" value="{{profile?.bonus}}"
-											 #bonus style="margin-left: 92px;"/>
+								<input type="number" class="form-control formSpace" id="bonus" name="bonus" [(ngModel)]="profile.bonus" 
+											 value="{{ profile?.bonus }}" style="margin-left: 92px;"/>
 							</div>
 							<div class="form-group">
 								<label for="allowance" class="labelWeight">Allowances: SGD</label>
-								<input type="number" class="form-control formSpace" id="allowance" name="allowance" value="{{profile?.allowance}}"
-											 #allowance style="margin-left: 55px;"/>
+								<input type="number" class="form-control formSpace" id="allowance" name="allowance" [(ngModel)]="profile.allowance" 
+											 value="{{ profile?.allowance }}" style="margin-left: 55px;"/>
 							</div>
 							<div class="form-group">
 								<label for="longTermIncentives" class="labelWeight">Any Long Term Incentive: &nbsp;</label>
-								<input type="text" class="form-control" id="longTermIncentives" name="longTermIncentives" value="{{profile?.incentives}}"
-											 #incentive style="padding-right: 0;"/>
+								<input type="text" class="form-control" id="longTermIncentives" name="longTermIncentives" [(ngModel)]="profile.incentives" 
+											 value="{{ profile?.incentives }}" style="padding-right: 0;"/>
 							</div>
 						</form>
 					</div>
@@ -132,28 +137,25 @@ import * as profileAction from '../actions/profile.action';
 							</div>
 							<div class="form-group">
 								<label for="calculated" class="labelWeight">How is it calculated? </label>
-								<input type="text" class="form-control formSpace" id="calculated" name="calculation" value="{{profile?.calculation}}"
-											 #calculation style="margin-left: 55px;"/>
+								<input type="text" class="form-control formSpace" id="calculated" name="calculation" [(ngModel)]="profile.calculation" 
+											 value="{{ profile?.calculation }}" style="margin-left: 55px;"/>
 							</div>
 							<div class="form-group">
 								<label for="description" class="labelWeight">Please describe:  </label>
-								<input type="text" class="form-control formSpace" id="description" name="description" value="{{profile?.description}}"
-											 #description style="margin-left: 89px;"/>
+								<input type="text" class="form-control formSpace" id="description" name="description" [(ngModel)]="profile.description"
+											 value="{{ profile?.description }}" style="margin-left: 89px;"/>
 							</div>
 							<div class="form-group">
 								<label for="vestingPeriod" class="labelWeight">Vesting Period:  </label>
-								<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" value="{{profile?.vestingPeriod}}"
-											 #vestingPeriod style="margin-left:96px; width:219px;"/>
+								<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" [(ngModel)]="profile.vestingPeriod"
+											 value="{{ profile?.vestingPeriod }}" style="margin-left:96px; width:219px;"/>
 							</div>
 						</form>
 					</div>
 				</div>
 				<div style="text-align: center; margin-top: 35px;">
 					<button class="btn btn-primary btn-lg" style="margin-top: 10px;" 
-									(click)="onConfirmButtonClicked(birthDate.value, FINNumber.value, email.value, singaporeVisa.value, noticePeriod.value,
-									status.value, mobile.value, children.value, validityEnd.value, negotiable.value, basePerMonth.value, 
-									bonus.value, allowance.value, incentive.value, bonusRecieved.select(), calculation.value, description.value, 
-									vestingPeriod.value)">Confirm</button>
+									(click)="onConfirmButtonClicked()">Confirm</button>
 				</div>
 			</div>
 		</div>
@@ -218,41 +220,37 @@ import * as profileAction from '../actions/profile.action';
 	`],
 })
 
-export class UserProfileInfoComponent {
+export class ProfileUserInfoComponent {
 	// TODO - Implement 2 way binding.
-
+	@Input() job: Job;
 	@Input() profile: Profile;
-	constructor(private store: Store<fromRoot.State>) {
+	@Output() saveProfileUserInfoEventEmiter = new EventEmitter<Profile>();
+	constructor(private store: Store<fromRoot.State>) {	}
 
-	}
+	onConfirmButtonClicked() {
 
-	onConfirmButtonClicked(birthDate: string, NRIC: number, email: string, singaporeVisa: string, noticePeriod: string, maritalStatus: string,
-												mobile: string, children: string, validityEnd: string, negotiable: any, basePerMonth: number, bonus: number,
-												allowance: number, incentives: any, bonusRecieved: any, calculation: string, description: string,
-												vestingPeriod: string) {
 		let profileSave = new Profile();
 
-		profileSave.birthDate = birthDate;
-		profileSave.NRIC = NRIC;
-		profileSave.email = email;
-		profileSave.singaporeVisa = singaporeVisa;
-		profileSave.noticePeriod = noticePeriod;
-		profileSave.maritalStatus = maritalStatus;
-		profileSave.mobile = mobile;
-		profileSave.children = children;
-		profileSave.validityEnd = validityEnd;
-		profileSave.negotiable = negotiable;
-		profileSave.basePerMonth = basePerMonth;
-		profileSave.bonus = bonus;
-		profileSave.allowance = allowance;
-		profileSave.incentives = incentives;
-		profileSave.bonusRecieved = bonusRecieved;
-		profileSave.calculation = calculation;
-		profileSave.description = description;
-		profileSave.vestingPeriod = vestingPeriod;
+		profileSave.birthDate = this.profile.birthDate;
+		profileSave.NRIC = this.profile.NRIC;
+		profileSave.email = this.profile.email;
+		profileSave.singaporeVisa = this.profile.singaporeVisa;
+		profileSave.noticePeriod = this.profile.noticePeriod;
+		profileSave.maritalStatus = this.profile.maritalStatus;
+		profileSave.mobile = this.profile.mobile;
+		profileSave.children = this.profile.children;
+		profileSave.validityEnd = this.profile.validityEnd;
+		// profileSave.negotiable = this.profile.negotiable;
+		profileSave.basePerMonth = this.profile.basePerMonth;
+		profileSave.bonus = this.profile.bonus;
+		profileSave.allowance = this.profile.allowance;
+		profileSave.incentives = this.profile.incentives;
+		// profileSave.bonusRecieved = this.profile.bonusRecieved;
+		profileSave.calculation = this.profile.calculation;
+		profileSave.description = this.profile.description;
+		profileSave.vestingPeriod = this.profile.vestingPeriod;
 
-		// console.log(profileInfo);
-
+		this.saveProfileUserInfoEventEmiter.emit(profileSave);
 		this.store.dispatch(new profileAction.ProfileSaveInfoAction(profileSave));
 	}
 }

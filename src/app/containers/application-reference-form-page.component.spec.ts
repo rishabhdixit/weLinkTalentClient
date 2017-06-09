@@ -2,21 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ApplicationPageView2Component } from './application-page-view2.component';
+import { ApplicationReferenceFormPageComponent } from './application-reference-form-page.component';
 
-xdescribe('ApplicationPageViewComponent', () => {
-	let component: ApplicationPageView2Component;
-	let fixture: ComponentFixture<ApplicationPageView2Component>;
+xdescribe('ApplicationFormPageComponent', () => {
+	let component: ApplicationReferenceFormPageComponent;
+	let fixture: ComponentFixture<ApplicationReferenceFormPageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ApplicationPageView2Component]
+			declarations: [ApplicationReferenceFormPageComponent]
 		})
 			.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ApplicationPageView2Component);
+		fixture = TestBed.createComponent(ApplicationReferenceFormPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

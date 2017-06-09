@@ -11,16 +11,19 @@ import {Application} from '../models/job-application.model';
 import * as applicationAction from '../actions/job-application.action';
 
 @Component({
-	selector: 'app-application-page-view',
+	selector: 'app-application-form-page',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="container">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<app-job-application-form-page [job]="job$ | async" 
+						<app-job-application-form-page [job]="job$ | async"
 								(applicationEventEmitter)="applyClickHandler($event)"></app-job-application-form-page>
-					</div>					
+					</div>
+					<div class="col-md-3">
+						<p>something is here.</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -29,7 +32,7 @@ import * as applicationAction from '../actions/job-application.action';
 	styles: [``],
 })
 
-export class ApplicationPageViewComponent {
+export class ApplicationFormPageComponent {
 	job$: Observable<Job>;
 	jobId: string;
 	user: User;
@@ -46,10 +49,12 @@ export class ApplicationPageViewComponent {
 		_.forIn(application, function (value, key) {
 			formData.append(key, value);
 		});
+
 		if (fileList.length > 0) {
 			let file: File = fileList[0];
 			formData.append('file', file, file.name);
 		}
+
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);
 		this.store.dispatch(new applicationAction.ApplicationFormSubmitAction(formData));

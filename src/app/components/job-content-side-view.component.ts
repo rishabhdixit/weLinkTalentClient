@@ -3,7 +3,7 @@ import {ShareButtonsModule} from 'ng2-sharebuttons';
 import { Job } from '../models/job.model';
 
 @Component({
-	selector: 'app-job-full-side',
+	selector: 'app-job-content-side-view',
 	template: `
 	<div>
 		<div>
@@ -161,9 +161,8 @@ import { Job } from '../models/job.model';
    `],
 })
 
-export class JobFullSideComponent {
+export class JobContentSideViewComponent {
 	@Input() job: Job;
 	constructor() {
-
 	}
 }

@@ -17,12 +17,12 @@ import {User} from '../models/user.model';
 	<div class="container">
 		<div class="row container-fluid">
 			<div class="col-md-8">
-				<app-job-full-header [job]="job$ | async" [user]="user"></app-job-full-header>
-				<app-job-full-body [job]="job$ | async"></app-job-full-body>
+				<app-job-content-header-view [job]="job$ | async" [user]="user"></app-job-content-header-view>
+				<app-job-content-view [job]="job$ | async"></app-job-content-view>
 				<app-job-buttons [job]="job$ | async" (applyButtonClickEvent)="applyButtonClickHandler($event)"></app-job-buttons>
 			</div>
 			<div class="col-md-4 sideStyle">
-				<app-job-full-side [job]="job$ | async"></app-job-full-side>
+				<app-job-content-side-view [job]="job$ | async"></app-job-content-side-view>
 			</div>
 		</div>
 	</div>
