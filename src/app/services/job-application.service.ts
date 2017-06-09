@@ -23,8 +23,9 @@ export class JobApplicationService {
 	}
 
 	saveReference(data: any): Observable<Application> {
-		console.log(data);
-		return this.http.put(`${this.api}/api/applications/${data.applicationId}`, data.references_info)
+		const applicationId = data.applicationId;
+		const body = {references_info: data.references_info};
+		return this.http.put(`${this.api}/api/applications/${applicationId}`, body)
 			.map((res: Response) => {
 				console.log(res.json()); return res.json();
 			})
