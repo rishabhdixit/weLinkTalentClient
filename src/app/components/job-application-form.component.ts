@@ -92,7 +92,7 @@ import {Application} from '../models/job-application.model';
 		.bonusLabel {
 			float: right;
 			margin-top: -48px;
-			margin-right: 187px;
+			margin-right: 265px;
 			font-weight: bolder;
 		}
 		.input-bonus {

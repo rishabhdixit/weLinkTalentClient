@@ -47,6 +47,7 @@ import { ApplicationConceptPageComponent } from 'app/containers/application-conc
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
 import { ApplicationReferenceFormPageComponent } from './containers/application-reference-form-page.component';
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
+import { HomePageComponent } from './containers/home-page.component';
 
 // Library for Star Rating
 import { StarRatingModule } from 'angular-star-rating';
@@ -67,6 +68,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 		ApplicationFormPageComponent,
 		ApplicationReferenceFormPageComponent,
 		ThankYouPageComponent,
+		HomePageComponent,
 	],
 	imports: [
 		BrowserModule,

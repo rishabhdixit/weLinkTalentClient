@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Store, State } from '@ngrx/store';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Profile } from '../models/profile.model';
@@ -27,7 +27,7 @@ import * as ui from '../actions/ui.action';
 						(createSkillEvent)="onCreateSkill($event)"
 						(removePositionEvent)="onRemovePosition($event)">
 					</app-profile-view>
-					<app-profile-user-info (saveProfileUserInfoEventEmiter)="onSaveProfileUserInfoHandler($event)" 
+					<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)" 
 																 [profile]="profile$ | async"></app-profile-user-info>
 				</div>
 			</div>

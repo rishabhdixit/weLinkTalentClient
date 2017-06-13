@@ -35,7 +35,7 @@ import { LoginService } from 'app/services/login.service';
 				</div>
 				<nav class="col-md-12" style="font-size:large;">
 					<ul class="nav-list">
-						<li><a routerLink="/profile"> Home </a>
+						<li><a routerLink="/home"> Home </a>
 						</li>
 						<li><a routerLink="/about-us"> About Us </a>
 						</li>

@@ -30,8 +30,8 @@ export class Profile {
 	id?:          	string;
 	positions?:   	Position[];
 	skills?:      	Skill[];
-	// Note : new added fields.
 
+	// Note : new added fields.
 	birthDate: string;
 	NRIC: number;
 	email: string;

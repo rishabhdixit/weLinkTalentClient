@@ -20,6 +20,7 @@ import { ProfilePageComponent } from './containers/profile-page.component';
 import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
+import { HomePageComponent } from './containers/home-page.component';
 
 export const routes: Routes = [
 	{
@@ -75,5 +76,9 @@ export const routes: Routes = [
 		component: ThankYouPageComponent,
 		canActivate: [JobApplicationFormSuccessGuard],
 		// Step 4 - Last stage
+	},
+	{
+		path: 'home',
+		component: HomePageComponent,
 	}
 ];

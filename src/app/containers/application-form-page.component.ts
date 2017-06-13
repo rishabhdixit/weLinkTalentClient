@@ -21,9 +21,6 @@ import * as applicationAction from '../actions/job-application.action';
 						<app-job-application-form-page [job]="job$ | async"
 								(applicationEventEmitter)="applyClickHandler($event)"></app-job-application-form-page>
 					</div>
-					<div class="col-md-3">
-						<p>something is here.</p>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -54,6 +51,13 @@ export class ApplicationFormPageComponent {
 			let file: File = fileList[0];
 			formData.append('file', file, file.name);
 		}
+		// if (fileList.length > 0 && fileList.length <= 5) {
+		// 	for (let i = 0; i <= fileList.length; i++) {
+		// 		let file: File = fileList[i];
+		// 		formData.append('file', file, file.name);
+		// 		console.log('success');
+		// 	}
+		// }
 
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);
