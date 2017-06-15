@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, State } from '@ngrx/store';
 import { Job } from '../models/job.model';
 import { Reference } from '../models/reference.model';
 import { Application } from '../models/job-application.model';
@@ -20,6 +20,7 @@ import * as application from '../actions/job-application.action';
 							1regarding this form.</p>
 						<p style="color: #4D308E; font-size: larger;">Please provide atleast two references:</p>
 					</div>
+				</div>
 					<div>
 						<p class="refereeStyle">Reference</p>
 						<app-reference-form (addReferenceEmitter)="addReferenceClickHandler($event)"></app-reference-form>
@@ -96,10 +97,9 @@ import * as application from '../actions/job-application.action';
 							consultants to arrange any candidate interviews.</p>
 						</div>
 					</div>
-					<div class="col-md-12" *ngIf="referenceList.length > 1" style="text-align: center;">
+					<div class="col-md-12" style="text-align: center;">
 						<button class="btn btn-primary btn-lg" (click)="onSubmitReferenceButton()">Submit</button>
 					</div>
-				</div>
 			</div>
 		</div>
 	`,
@@ -166,6 +166,7 @@ export class ApplicationReferenceFormPageComponent {
 	}
 
 	onSubmitReferenceButton() {
+		console.log(this.referenceList);
 		this.store.dispatch(new application.ApplicationReferenceFormSubmitAction({references_info : this.referenceList,
 			applicationId: this.application.id}));
 	}

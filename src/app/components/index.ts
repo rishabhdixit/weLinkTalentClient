@@ -12,20 +12,19 @@ import { JobViewComponent } from './job-view.component';
 import { LinkedinLoginComponent } from './linkedin-login.component';
 import { LoginComponent } from './login.component';
 import { OrSeperatorComponent } from './or-seperator.component';
-import { ProfileUserInfoComponent } from './profile-user-info.component'; // For demo purposes
+import { ProfileUserInfoComponent } from './profile-user-info.component';
 import { ProfileViewComponent } from './profile-view.component';
 import { ThankYouViewComponent } from './thank-you-view.component';
 import { JobButtonsComponent } from './job-buttons.component';
 import { JobContentSideViewComponent } from './job-content-side-view.component';
-// import { ProfileBasicInfoComponent } from './profile-basic-info.component';
-// import { ProfileCurrentSalaryInfoComponent } from './profile-current-salary-info.component';
 import { ApplicationConceptComponent } from './application-concept.component';
 import { StarsComponent } from './stars.component';
 import { SelectedJobSkillsComponent } from './selected-job-skills.component';
 import { JobApplicationFormComponent } from './job-application-form.component';
 import { ReferenceFormComponent } from './reference-form.component';
 import { ShareButtonsModule } from 'ng2-sharebuttons';
-import { RatingModule } from 'ng2-rating';
+import { CandidateRefereeApplicationFormComponent } from './candidate-referee-application-form.component';
+import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -37,18 +36,18 @@ export const COMPONENTS = [
 	LinkedinLoginComponent,
 	LoginComponent,
 	OrSeperatorComponent,
-	ProfileUserInfoComponent, // For demo purposes
+	ProfileUserInfoComponent,
 	ProfileViewComponent,
 	JobButtonsComponent,
 	JobContentSideViewComponent,
-	// ProfileBasicInfoComponent,
-	// ProfileCurrentSalaryInfoComponent,
 	ApplicationConceptComponent,
 	StarsComponent,
 	SelectedJobSkillsComponent,
 	JobApplicationFormComponent,
 	ReferenceFormComponent,
 	ThankYouViewComponent,
+	CandidateRefereeApplicationFormComponent,
+	CandidateJobApplicationFormComponent
 ];
 
 @NgModule({

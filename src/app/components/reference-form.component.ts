@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import * as fromRoot from '../reducers';
 import { Reference } from '../models/reference.model';
-import {Store} from '@ngrx/store';
 
 
 @Component({

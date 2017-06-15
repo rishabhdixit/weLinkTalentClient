@@ -46,7 +46,7 @@ export class Profile {
 	bonus: number;
 	allowance: number;
 	incentives: any;
-	bonusRecieved: any;
+	bonusReceived: any;
 	calculation: string;
 	description: string;
 	vestingPeriod: string;
