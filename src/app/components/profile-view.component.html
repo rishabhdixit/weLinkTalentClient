@@ -6,12 +6,12 @@
 			<h2>Welcome!</h2>
 			<fieldset>
 				<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
-				<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">-->
+				<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
 					<a href="#" (click)="editMode($event, 'basic')" class="edit">Edit</a>
 					<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
-					<!--<p *ngIf="i === 0">{{ position.value.title }}</p>-->
-					<!--<p *ngIf="i === 0">{{ position.value.company?.name }}</p>-->
-				<!--</div>-->
+					<p *ngIf="i === 0">{{ position.value.title }}</p>
+					<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
+				</div>
 			</fieldset>
 		</div>
 
@@ -38,26 +38,21 @@
 			</div>
 		</div>
 	</div>
-	<!--<div class="row" style="margin-top: -35px;">-->
-		<!--<div class="col-md-12">-->
-			<!--<app-profile-basic-info></app-profile-basic-info>-->
-		<!--</div>-->
-	<!--</div>-->
-	<!--<br>-->
-	<!--<div class="row">-->
-		<!--<div class="col-md-12">-->
-			<!--<h3>Current Salary</h3><br>-->
-			<!--<app-profile-current-salary-info></app-profile-current-salary-info>-->
-		<!--</div>-->
-	<!--</div>-->
-	<!--<br>-->
+	<div class="row">
+		<div class="col-md-12">
+			<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"
+														 [profile]="profile$ | async"></app-profile-user-info>
+		</div>
+	</div>
 	<!--<div class="row" style="padding-top: 60px;">-->
 		<!--<div class="col-md-12">-->
-			<!--<div class="col-md-12">-->
-				<!--<label class="btn btn-primary btn-file inputPosition">-->
-					<!--Upload Resume<input type="file" style="display: none;">-->
-				<!--</label>-->
-			<!--</div>-->
+			<!--&lt;!&ndash;<div class="col-md-12">&ndash;&gt;-->
+				<!--&lt;!&ndash;<label class="btn btn-primary btn-file inputPosition">&ndash;&gt;-->
+					<!--&lt;!&ndash;Upload Resume<input type="file" style="display: none;">&ndash;&gt;-->
+				<!--&lt;!&ndash;</label>&ndash;&gt;-->
+			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+			<!--<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>-->
+			<!--<br>-->
 			<!--<h3>Work Experience</h3>-->
 			<!--<div class="add-btn-container">-->
 				<!--<a href="#" (click)="addPosition($event)" class="add-btn-work">+</a>-->
@@ -67,9 +62,9 @@
 				<!--<div [formGroupName]="i">-->
 					<!--<div *ngIf="edit != 'position'+i" class="view">-->
 						<!--<input type="text" value="{{ position.value.title }}" style="margin-bottom:8px;" placeholder="Position"/>-->
-						<!--<input type="text" class="inputPlace" value="{{ position.value.startDate?.name }}" placeholder="Time Period"/><br>-->
+						<!--<input type="text" class="inputPlace" value="{{ position.value.startDate }} - {{ position.value.endDate }}" placeholder="Time Period"/><br>-->
 						<!--<input type="text" value="{{position.value.company?.name}}" style="margin-bottom:8px;" placeholder="Company"/><br>-->
-						<!--<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements"></textarea>-->
+						<!--<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements">{{ position.value.responsibilities }}</textarea>-->
 						<!--<a href="#" (click)="editMode($event, 'position'+i)" class="edit" style="float: right">edit</a>-->
 						<!--<button class="btn btn-button btn-danger" (click)="removePosition(i)">Remove</button>-->
 					<!--</div>-->
@@ -94,18 +89,19 @@
 
 						<!--<label class="col-md-12 control-label">Time Period</label>-->
 						<!--<div formGroupName="timePeriod" class="col-md-12">-->
-								<!--<input type="date" id="{{ 'startDate' + i }}" class="form-control sDate"-->
+								<!--<input type="month" id="{{ 'startDate' + i }}" class="form-control sDate"-->
 								<!--formControlName="name">-->
 								<!--<p class="to"	>TO</p>-->
-								<!--<input type="date" id="{{ 'endDate' + i }}" class="form-control eDate"-->
+								<!--<input type="month" id="{{ 'endDate' + i }}" class="form-control eDate"-->
 								<!--formControlName="name">-->
 						<!--</div>-->
 
 						<!--<label class="col-md-12 control-label"-->
 							<!--attr.for="{{ 'responsibilities' + i }}">Responsibilities</label>-->
 						<!--<div class="col-md-12">-->
-							<!--<textarea id="{{ 'responsibility' + i }}" rows="3" class="form-control"-->
-								<!--placeholder="Responsibilities and Achievements" formControlName="responsibility"></textarea>-->
+							<!--<textarea id="{{ 'responsibilities' + i }}" rows="3" class="form-control"-->
+								<!--placeholder="Responsibilities and Achievements" formControlName="responsibility"-->
+												<!--value="{{ position.value?.responsibilities }}"></textarea>-->
 						<!--</div>-->
 
 						<!--<div class="col-md-12">-->
@@ -153,3 +149,7 @@
 	<!--</div>-->
 	<!--<div style="text-align: center;"><button class="btn btn-primary btn-lg" style="margin-top: 10px;">Confirm</button></div>-->
 </form>
+
+<script>
+
+</script>

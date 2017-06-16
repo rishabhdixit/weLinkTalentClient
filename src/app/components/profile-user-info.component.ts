@@ -44,7 +44,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="NRIC" class="labelWeight">NRIC / FIN Number </label>
-						<input type="number" class="form-control" id="NRIC" name="NRIC" [(ngModel)]="profile.NRIC"/>
+						<input type="text" class="form-control" id="NRIC" name="NRIC" [(ngModel)]="profile.NRIC"/>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -100,9 +100,8 @@ import { Job } from '../models/job.model';
 						<label for="basePerMonth" class="labelWeight">Base per month: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-										 class="form-control currency" id="basePerMonth" [(ngModel)]="profile.basePerMonth" [ngModelOptions]="{standalone: true}"
-										 required="required"/>
+							<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="profile.basePerMonth" 
+										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
 					</div>
 				</div>
@@ -125,8 +124,7 @@ import { Job } from '../models/job.model';
 						<label for="bonus" class="labelWeight">Bonus: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-										 class="form-control currency" id="bonus" [(ngModel)]="profile.bonus" [ngModelOptions]="{standalone: true}"
+							<input type="number" class="form-control currency" id="bonus" [(ngModel)]="profile.bonus" [ngModelOptions]="{standalone: true}"
 										 required="required"/>
 						</div>
 					</div>
@@ -144,9 +142,8 @@ import { Job } from '../models/job.model';
 						<label for="allowance" class="labelWeight">Allowances: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-										 class="form-control currency" id="allowance" [(ngModel)]="profile.allowance" [ngModelOptions]="{standalone: true}"
-										 required="required"/>
+							<input type="number" class="form-control currency" id="allowance" [(ngModel)]="profile.allowance" 
+										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
 					</div>
 				</div>
@@ -197,7 +194,10 @@ import { Job } from '../models/job.model';
 		.listStyle li {
 			display: inline;
 		}
-		
+		input.currency {
+			text-align: right;
+			padding-right: 15px;
+		}
 	`],
 })
 
@@ -210,31 +210,4 @@ export class ProfileUserInfoComponent {
 
 	constructor() {	}
 
-	onConfirmButtonClicked() {
-
-		let profileSave = new Profile();
-
-		profileSave.birthDate = this.profile.birthDate;
-		profileSave.NRIC = this.profile.NRIC;
-		profileSave.email = this.profile.email;
-		profileSave.singaporeVisa = this.profile.singaporeVisa;
-		profileSave.noticePeriod = this.profile.noticePeriod;
-		profileSave.maritalStatus = this.profile.maritalStatus;
-		profileSave.mobile = this.profile.mobile;
-		profileSave.children = this.profile.children;
-		profileSave.validityEnd = this.profile.validityEnd;
-		profileSave.negotiable = this.profile.negotiable;
-		profileSave.basePerMonth = this.profile.basePerMonth;
-		profileSave.bonus = this.profile.bonus;
-		profileSave.allowance = this.profile.allowance;
-		profileSave.incentives = this.profile.incentives;
-		profileSave.bonusReceived = this.profile.bonusReceived;
-		profileSave.calculation = this.profile.calculation;
-		profileSave.description = this.profile.description;
-		profileSave.vestingPeriod = this.profile.vestingPeriod;
-
-		console.log(profileSave);
-
-		this.saveProfileUserInfoEventEmitter.emit(profileSave);
-	}
 }

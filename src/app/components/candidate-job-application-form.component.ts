@@ -13,7 +13,7 @@ import { Application } from '../models/job-application.model';
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
 					This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">
-					<!--<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>-->
+						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>
 					</div>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
@@ -24,25 +24,18 @@ import { Application } from '../models/job-application.model';
 						<p class="labelStyle">Expected Salary:</p>
 						<div class="form-group">
 							<label for="basePerMonth" class="label-margin">Base per month: SGD&emsp;</label>
-							<!--<input type="number" class="form-control input-base" id="basePerMonth" name="basePerMonth"-->
-										 <!--[(ngModel)]="application.basePerMonth" required/>-->
 							<div class="input-group inputBase">
 								<span class="input-group-addon">$</span>
-								<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-											 class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
-											 [ngModelOptions]="{standalone: true}"
-											 required="required"/>
+								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
+											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="bonus" class="bonusLabel">Bonus: SGD&emsp;</label>
-							<!--<input type="number" class="form-control input-bonus" id="bonus" name="bonus"-->
-										 <!--[(ngModel)]="application.bonus" required/>-->
 							<div class="input-group inputBonus">
 								<span class="input-group-addon">$</span>
-								<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-											 class="form-control currency" id="bonus" [(ngModel)]="application.bonus" [ngModelOptions]="{standalone: true}"
-											 required="required"/>
+								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus" 
+											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
 					</div>
@@ -97,21 +90,11 @@ import { Application } from '../models/job-application.model';
 			margin-top: 6px;
 			font-weight: bolder;
 		}
-		.input-base {
-			width: 28%;
-			float: right;
-			margin-right: 465px;
-		}
 		.bonusLabel {
 			float: right;
 			margin-top: -48px;
 			margin-right: 265px;
 			font-weight: bolder;
-		}
-		.input-bonus {
-			width: 28%;
-			float: right;
-			margin-top: -54px;
 		}
 		.button-class {
 			text-align: center;
@@ -159,6 +142,10 @@ import { Application } from '../models/job-application.model';
 			width: 260px;
 			float: right;
 			margin-right: 460px
+		}
+		input.currency {
+			text-align: right;
+			padding-right: 15px;
 		}
 	`],
 })

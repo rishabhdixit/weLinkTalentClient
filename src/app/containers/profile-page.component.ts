@@ -15,6 +15,8 @@ import * as ui from '../actions/ui.action';
 	<div class='container'>
 		<div class='container-fluid'>
 			<div class='row'>
+				<!--<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"-->
+															 <!--[profile]="profile$ | async"></app-profile-user-info>-->
 				<div class='col-md-12'>
 					<app-profile-view
 						[profile]="profile$ | async"
@@ -25,10 +27,9 @@ import * as ui from '../actions/ui.action';
 						(savePositionEvent)="onSavePosition($event)"
 						(createPositionEvent)="onCreatePosition($event)"
 						(createSkillEvent)="onCreateSkill($event)"
-						(removePositionEvent)="onRemovePosition($event)">
+						(removePositionEvent)="onRemovePosition($event)"
+						(saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)">
 					</app-profile-view>
-					<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)" 
-																 [profile]="profile$ | async"></app-profile-user-info>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {Job} from '../models/job.model';
+import { Job } from '../models/job.model';
+import { RefereeFeedback } from '../models/referee-feedback.model';
 
 @Component({
 	selector: `app-candidate-referee-application-form`,
@@ -9,11 +10,11 @@ import {Job} from '../models/job.model';
 				<h2>Referee Comments:</h2>
 				<p class="pStyle">This section contains what your referee has filled.</p>
 				<div class="form-group" style="margin-top: 45px;">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" [(ngModel)]="feedback.reasonForLeavingFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div class="form-group div-margin">
-					<textarea class="form-control" rows="2"></textarea>
+					<textarea class="form-control" rows="2" [(ngModel)]="feedback.salaryFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div class="col-md-12 div-padding">
@@ -27,19 +28,19 @@ import {Job} from '../models/job.model';
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" [(ngModel)]="feedback.strengthFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" [(ngModel)]="feedback.improvementFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" [(ngModel)]="feedback.achievementFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" [(ngModel)]="feedback.managementStyleFeedback"></textarea>
 					<input type="checkbox"/><label>APPROVE</label>
 				</div>
 				<div>
@@ -93,6 +94,7 @@ import {Job} from '../models/job.model';
 
 export class CandidateRefereeApplicationFormComponent {
 	@Input() job: Job;
+	@Input() feedback: RefereeFeedback = new RefereeFeedback();
 
 	constructor() {}
 

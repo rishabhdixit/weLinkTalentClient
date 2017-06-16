@@ -6,68 +6,96 @@ import { Reference } from '../models/reference.model';
 	selector: `app-reference-form`,
 	template: `
 		<form #Reference="ngForm">
-			<div class="col-md-6" style="margin-left: -15px;">
-				<div class="form-group">
-					<label for="fname" class="labelWeight">First Name:* </label>
-					<input type="text" class="form-control" id="fname" name="fname" [(ngModel)]="reference.fname" required/>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="fname" class="labelWeight">First Name:* </label>
+						<input type="text" class="form-control" id="fname" name="fname" [(ngModel)]="reference.fname" required/>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="currentCompany" class="labelWeight">Current Company:* </label>
-					<input type="text" class="form-control" id="currentCompany" name="currentCompany" [(ngModel)]="reference.company" required/>
-				</div>
-				<div class="form-group">
-					<label for="phone" class="labelWeight">Mobile Phone:* </label>
-					<input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="reference.phone" required/>
-				</div>
-			</div>
-			<div class="col-md-6 div-style">
-				<div class="form-group">
-					<label for="lname" class="label-style">Last Name:* </label>
-					<input type="text" class="form-control" id="lname" name="lname" [(ngModel)]="reference.lname" required/>
-				</div>
-				<div class="form-group">
-					<label for="currentTitle" class="label-style">Current Title:* </label>
-					<input type="text" class="form-control" id="currentTitle" name="currentTitle" [(ngModel)]="reference.title" required/>
-				</div>
-				<div class="form-group">
-					<label for="email" class="label-style">Email:* </label>
-					<input type="email" class="form-control" id="email" name="email" [(ngModel)]="reference.email" required/>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="lname" class="label-style">Last Name:* </label>
+						<input type="text" class="form-control" id="lname" name="lname" [(ngModel)]="reference.lname" required/>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6" style="margin-left: -15px;">
-				<div class="form-group">
-					<label for="relation" class="labelWeight">Professional relationship with the referee:* </label>
-					<input type="text" class="form-control" id="relation" name="relation" [(ngModel)]="reference.relationship" required/>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="currentCompany" class="labelWeight">Current Company:* </label>
+						<input type="text" class="form-control" id="currentCompany" name="currentCompany" [(ngModel)]="reference.company" required/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="currentTitle" class="label-style">Current Title:* </label>
+						<input type="text" class="form-control" id="currentTitle" name="currentTitle" [(ngModel)]="reference.title" required/>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6 company-div">
-				<div class="form-group">
-					<label for="oldCompany" class="labelWeight">In which company, did you work together:* </label>
-					<input type="text" class="form-control" id="oldCompany" name="oldCompany"
-								 [(ngModel)]="reference.companyTogether" required/>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="phone" class="labelWeight">Mobile Phone:* </label>
+						<input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="reference.phone" required/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email" class="label-style">Email:* </label>
+						<input type="email" class="form-control" id="email" name="email" [(ngModel)]="reference.email" required/>
+					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-12">
-				<label class="labelWeight">When did you work together?*</label><br>
-				<label for="dateWorked" class="fromLabel">From</label>
-				<input type="month" class="form-control input-date-style" id="dateWorked" name="dateWorked"
-							 [(ngModel)]="reference.startYearOfWorking" required/>
-				<label for="dateWorked1" class="toLabel">To:</label>
-				<input type="month" class="form-control input-2date-style" id="daseWorked1" name="dateWorked1"
-							 [(ngModel)]="reference.endYearOfWorking" required/>
-			</div>
-			<div class="form-group col-md12 divRadioStyle">
-				<label for="canContact" class="canContactLabel">Can we contact this reference?* </label>
-				<div *ngFor="let choice of choices">
-					<p>
-						<label class="labelWeight">{{ choice.value }}</label>
-						<input type="radio" class="input-radio" value="{{choice.value}}" [(ngModel)]="reference.canContact" 
-									 [ngModelOptions]="{standalone: true}"/>
-					</p>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="relation" class="labelWeight">Professional relationship with the referee:* </label>
+						<input type="text" class="form-control" id="relation" name="relation" [(ngModel)]="reference.relationship" required/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="oldCompany" class="labelWeight">In which company, did you work together:* </label>
+						<input type="text" class="form-control" id="oldCompany" name="oldCompany"
+									 [(ngModel)]="reference.companyTogether" required/>
+					</div>
 				</div>
 			</div>
-			<div style="float: right;">
-				<button class="btn btn-primary add-btn" (click)="addReferenceButtonClick()">Add</button>
+			<div class="row">
+				<div class="col-md-12">
+					<label class="labelWeight">When did you work together?*</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="dateWorked" class="fromLabel">From</label>
+					<input type="month" class="form-control input-date-style" id="dateWorked" name="dateWorked"
+								 [(ngModel)]="reference.startYearOfWorking" required/>					
+				</div>
+				<div class="col-md-6">
+					<label for="dateWorked1" class="toLabel">To:</label>
+					<input type="month" class="form-control input-2date-style" id="daseWorked1" name="dateWorked1"
+								 [(ngModel)]="reference.endYearOfWorking" required/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group listStyle">
+					<label for="canContact" class="canContactLabel">Can we contact this reference?* </label>
+					<ul class="list-unstyled">
+						<li *ngFor="let choice of choices">
+							<label class="labelWeight">&emsp;{{ choice.value }}</label>
+							<input type="radio" class="input-radio" value="{{choice.value}}" [(ngModel)]="reference.canContact"
+										 [ngModelOptions]="{standalone: true}"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: right">
+					<button class="btn btn-primary" (click)="addReferenceButtonClick()">Add</button>
+				</div>
 			</div>
 		</form>
 	`,
@@ -75,10 +103,6 @@ import { Reference } from '../models/reference.model';
 		.labelWeight {
 			font-weight: bolder;
 			margin-top: 5px;
-		}
-		.div-style {
-			float: right;
-			margin-top: -273px;
 		}
 		.label-style {
 			font-weight: bolder;
@@ -100,10 +124,6 @@ import { Reference } from '../models/reference.model';
 			border-radius: 0.25em;
 			width: 1.7em;
 			height: 1.7em;
-		}  
-		.company-div {
-			margin-top: -91px;
-			float: right;
 		}
 		.fromLabel {
 			margin-top: 7px;
@@ -114,18 +134,14 @@ import { Reference } from '../models/reference.model';
 			float: left;
 			margin-top: 7px;
 			font-weight: bolder;
-			margin-left: 44px;
 		}
 		.canContactLabel {
 			float: left;
 			margin-top: 1rem;
 			font-weight: bolder;
 		}
-		.divRadioStyle {
-			float: left;
-		}
-		.add-btn {
-			margin-bottom: -280px;
+		.listStyle li {
+			display: inline;
 		}
 	`],
 })

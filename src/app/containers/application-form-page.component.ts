@@ -17,7 +17,7 @@ import * as applicationAction from '../actions/job-application.action';
 			<div class="row container-fluid">
 				<div class="col-md-12">
 					<app-candidate-job-application-form-page [job]="job$ | async"
-									(applicationEventEmitter)="applyClickHandler($Event)"></app-candidate-job-application-form-page>
+									(applicationEventEmitter)="applyClickHandler($event)"></app-candidate-job-application-form-page>
 				</div>
 				<!--<div  class="col-md-12">-->
 					<!--<h2>Application for:</h2>-->
@@ -61,16 +61,16 @@ export class ApplicationFormPageComponent {
 
 	applyClickHandler(application: Application) {
 		let formData: FormData = new FormData();
-		// let fileList: FileList = application.file;
+		let fileList: FileList = application.file;
 
 		_.forIn(application, function (value, key) {
 			formData.append(key, value);
 		});
 
-		// if (fileList.length > 0) {
-		// 	let file: File = fileList[0];
-		// 	formData.append('file', file, file.name);
-		// }
+		if (fileList.length > 0) {
+			let file: File = fileList[0];
+			formData.append('file', file, file.name);
+		}
 
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);

@@ -19,23 +19,17 @@ import {Application} from '../models/job-application.model';
 						<p class="labelStyle">Expected Salary:</p>
 						<div class="form-group">
 							<label for="basePerMonth" class="label-margin">Base per month: SGD&emsp;</label>
-								<!--<input type="number" class="form-control input-base" id="basePerMonth" name="basePerMonth" -->
-										 <!--[(ngModel)]="application.basePerMonth" required/>-->
 							<div class="input-group">
 								<span class="input-group-addon">$</span>
-								<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" 
-											 class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" [ngModelOptions]="{standalone: true}"
-											 required="required"/>
+								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
+											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="bonus" class="bonusLabel">Bonus: SGD&emsp;</label>
-							<!--<input type="number" class="form-control input-bonus" id="bonus" name="bonus"-->
-										 <!--[(ngModel)]="application.bonus" required/>-->
 							<div class="input-group" style="margin-top: -40px;">
 								<span class="input-group-addon">$</span>
-								<input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
-											 class="form-control currency" id="bonus" [(ngModel)]="application.bonus" [ngModelOptions]="{standalone: true}"
+								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus" [ngModelOptions]="{standalone: true}"
 											 required="required"/>
 							</div>
 						</div>

@@ -26,13 +26,7 @@ export class JobApplicationService {
 		const applicationId = data.applicationId;
 		const body = {references_info: data.references_info};
 		return this.http.put(`${this.api}/api/applications/${applicationId}`, body)
-			.map((res: Response) => {
-				console.log(res.json()); return res.json();
-			})
-			.catch((err) => {
-				console.log(err);
-				return Observable.of({});
-			});
+			.map((res: Response) => { return res.json(); });
 	}
 }
 

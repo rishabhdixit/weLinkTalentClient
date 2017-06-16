@@ -26,17 +26,19 @@ export class ProfileViewComponent implements OnInit {
 	@Output() createPositionEvent = new EventEmitter<any>();
 	@Output() createSkillEvent = new EventEmitter<any>();
 	@Output() removePositionEvent = new EventEmitter<any>();
+	// newly added
+	@Output() saveProfileUserInfoEventEmitter = new EventEmitter<Profile>();
 
 	profileForm: FormGroup;
 
-	/*get positions(): FormArray{
+	get positions(): FormArray{
 		return <FormArray>this.profileForm.get('positions');
 	}
 
 	get skills(): FormArray{
 		return <FormArray>this.profileForm.get('skills');
 	}
-*/
+
 	constructor(private fb: FormBuilder) {}
 
 	ngOnInit() {
@@ -47,8 +49,8 @@ export class ProfileViewComponent implements OnInit {
 			pictureUrl: ['', Validators.required],
 			emailAddress: ['', Validators.required],
 			summary:      ['', Validators.required],
-			// positions:    this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
-			// skills:       this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
+			positions:    this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
+			skills:       this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
 		});
 
 		this.profileForm.patchValue({
@@ -58,8 +60,8 @@ export class ProfileViewComponent implements OnInit {
 			emailAddress: this.profile.emailAddress,
 			pictureUrl: this.profile.pictureUrl,
 			summary:      this.profile.summary,
-			// positions:    this.profile.positions,
-			// skills:       this.profile.skills,
+			positions:    this.profile.positions,
+			skills:       this.profile.skills,
 		});
 
 
@@ -88,8 +90,8 @@ export class ProfileViewComponent implements OnInit {
 	saveProfile() {
 		const profile = this.profileForm.value;
 
-		// delete profile.positions;
-		// delete profile.skills;
+		delete profile.positions;
+		delete profile.skills;
 
 		this.saveProfileEvent.emit(profile);
 	}
@@ -97,20 +99,20 @@ export class ProfileViewComponent implements OnInit {
 	cancelProfile(event) {
 		this.editMode(event, '');
 	}
-/*
+
 	savePosition(index) {
 		const position = this.positions.value[index];
 		const id = this.profile.positions[index] ?
 			this.profile.positions[index].id : null;
 
 		if (id) {
-			this.savePositionEvent.emit({ id, position });
+			this.savePositionEvent.emit({id, position});
 		} else {
-			this.createPositionEvent.emit({ position });
+			this.createPositionEvent.emit({position});
 		}
-	}*/
+	}
 
-	/*addPosition(event) {
+	addPosition(event) {
 		this.positions.push(this.positionFormGroup());
 		this.editMode(event, 'position' + (this.positions.length - 1));
 	}
@@ -151,6 +153,36 @@ export class ProfileViewComponent implements OnInit {
 	removePosition(index) {
 		const position = this.positions.value[index];
 		this.removePositionEvent.emit({ position });
-	}*/
+	}
+
+	// added
+
+	// onConfirmButtonClicked() {
+    //
+	// 	let profileSave = new Profile();
+    //
+	// 	profileSave.birthDate = this.profile.birthDate;
+	// 	profileSave.NRIC = this.profile.NRIC;
+	// 	profileSave.email = this.profile.email;
+	// 	profileSave.singaporeVisa = this.profile.singaporeVisa;
+	// 	profileSave.noticePeriod = this.profile.noticePeriod;
+	// 	profileSave.maritalStatus = this.profile.maritalStatus;
+	// 	profileSave.mobile = this.profile.mobile;
+	// 	profileSave.children = this.profile.children;
+	// 	profileSave.validityEnd = this.profile.validityEnd;
+	// 	profileSave.negotiable = this.profile.negotiable;
+	// 	profileSave.basePerMonth = this.profile.basePerMonth;
+	// 	profileSave.bonus = this.profile.bonus;
+	// 	profileSave.allowance = this.profile.allowance;
+	// 	profileSave.incentives = this.profile.incentives;
+	// 	profileSave.bonusReceived = this.profile.bonusReceived;
+	// 	profileSave.calculation = this.profile.calculation;
+	// 	profileSave.description = this.profile.description;
+	// 	profileSave.vestingPeriod = this.profile.vestingPeriod;
+    //
+	// 	console.log(profileSave);
+    //
+	// 	this.saveProfileUserInfoEventEmitter.emit(profileSave);
+	// }
 
 }
