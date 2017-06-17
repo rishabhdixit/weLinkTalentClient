@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import * as _ from 'lodash';
 
 import * as fromRoot from '../reducers';
-import { Job } from '../models/job.model';
-import { User } from '../models/user.model';
-import { Application } from '../models/job-application.model';
+import {Job} from '../models/job.model';
+import {User} from '../models/user.model';
+import {Application} from '../models/job-application.model';
 import * as applicationAction from '../actions/job-application.action';
 
 @Component({
@@ -51,7 +51,6 @@ export class ApplicationFormPageComponent {
 	job$: Observable<Job>;
 	jobId: string;
 	user: User;
-	fileArray: Array<any>;
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getApplicationJob);
@@ -61,15 +60,16 @@ export class ApplicationFormPageComponent {
 
 	applyClickHandler(application: Application) {
 		let formData: FormData = new FormData();
-		let fileList: FileList = application.file;
+		let fileList: FileList = application.files;
 
 		_.forIn(application, function (value, key) {
 			formData.append(key, value);
 		});
 
-		if (fileList.length > 0) {
-			let file: File = fileList[0];
-			formData.append('file', file, file.name);
+
+		for (let i = 0; i < fileList.length; i++) {
+			let file: File = fileList[i];
+			formData.append('files', file, file.name);
 		}
 
 		formData.append('job_id', this.jobId);

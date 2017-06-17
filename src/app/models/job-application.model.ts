@@ -2,7 +2,7 @@ import { Reference } from './reference.model';
 
 export class Application {
 		id: string;
-		file: any;
+		files: any;
 		reasonForLeaving: string;
 		basePerMonth: string;
 		bonus: string;

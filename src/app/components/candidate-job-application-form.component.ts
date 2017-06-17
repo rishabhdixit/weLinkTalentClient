@@ -13,7 +13,7 @@ import { Application } from '../models/job-application.model';
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
 					This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">
-						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>
+						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required>
 					</div>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
@@ -165,6 +165,6 @@ export class CandidateJobApplicationFormComponent {
 
 	onFileUpload(event) {
 		const files = event.target.files;
-		this.application.file = files;
+		this.application.files = files;
 	}
 }
