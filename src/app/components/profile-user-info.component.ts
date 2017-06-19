@@ -31,7 +31,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email" class="labelWeight">Email Address </label>
-						<input type="text" class="form-control" id="email" name="email" [(ngModel)]="profileUserInfo.emailAddress"/>
+						<input type="email" class="form-control" id="email" name="email" [(ngModel)]="profileUserInfo.emailAddress"/>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -98,12 +98,23 @@ import { Job } from '../models/job.model';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="basePerMonth" class="labelWeight">Base per month: SGD</label>
+						<label for="basePerMonth" class="labelWeight">Base per month:</label>
 						<div class="input-group">
-							<span class="input-group-addon">$</span>
-							<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="profileUserInfo.basePerMonth" 
+							<select #basePerMonthCurrency (change)="onChange($event)">
+								<option>SGD</option>
+								<option>PHP</option>
+								<option>USD</option>
+								<option>EUR</option>
+								<option>EGP</option>
+								<option>HKD</option>
+								<option>AUD</option>
+								<option>BRL</option>
+								<option>JPY</option>
+							</select>
+							<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="profileUserInfo.basePerMonth"
 										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
+						<p>Currency: {{ profileUserInfo.basePerMonth | currency : basePerMonthCurrency.value : 2}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 listStyle">
@@ -122,13 +133,23 @@ import { Job } from '../models/job.model';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="bonus" class="labelWeight">Bonus: SGD</label>
+						<label for="bonus" class="labelWeight">Bonus:</label>
 						<div class="input-group">
-							<span class="input-group-addon">$</span>
+							<select #bonusCurrency (change)="onChange($event)">
+								<option>SGD</option>
+								<option>PHP</option>
+								<option>USD</option>
+								<option>EUR</option>
+								<option>EGP</option>
+								<option>HKD</option>
+								<option>AUD</option>
+								<option>BRL</option>
+								<option>JPY</option>
+							</select>
 							<input type="number" class="form-control currency" id="bonus" [(ngModel)]="profileUserInfo.bonus" 
-								[ngModelOptions]="{standalone: true}"
-										 required="required"/>
+										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
+						<p>Selected Currency: {{ bonusCurrency.value }}</p>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -141,12 +162,24 @@ import { Job } from '../models/job.model';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="allowance" class="labelWeight">Allowances: SGD</label>
+						<label for="allowance" class="labelWeight">Allowances:</label>
 						<div class="input-group">
-							<span class="input-group-addon">$</span>
-							<input type="number" class="form-control currency" id="allowance" [(ngModel)]="profileUserInfo.allowance" 
+							<!--<span class="input-group-addon">$</span>-->
+							<select #allowanceCurrency (change)="onChange($event)">
+								<option>SGD</option>
+								<option>PHP</option>
+								<option>USD</option>
+								<option>EUR</option>
+								<option>EGP</option>
+								<option>HKD</option>
+								<option>AUD</option>
+								<option>BRL</option>
+								<option>JPY</option>
+							</select>
+							<input type="number" class="form-control currency" id="allowance" currencyMask [(ngModel)]="profileUserInfo.allowance"
 										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
+						<p>Selected Currency: {{ allowanceCurrency.value }}</p>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -172,7 +205,7 @@ import { Job } from '../models/job.model';
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<button  type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px;">Save Changes</button>
+					<button  type="submit" class="btn btn-primary btn-lg btnSubmit">Save Changes</button>
 				</div>
 			</div>
 		</form>
@@ -200,6 +233,11 @@ import { Job } from '../models/job.model';
 			text-align: right;
 			padding-right: 15px;
 		}
+		.btnSubmit {
+			border-radius: 0;
+			margin-top: 10px;
+			background: #57148D;
+		}
 	`],
 })
 
@@ -219,4 +257,9 @@ export class ProfileUserInfoComponent implements OnInit {
 	onSaveChangesButtonClicked() {
 		this.saveProfileUserInfoEventEmitter.emit(this.profileUserInfo);
 	}
+
+	onChange(currency) {
+		return currency;
+	}
+
 }

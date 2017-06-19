@@ -23,17 +23,37 @@ import { Application } from '../models/job-application.model';
 					<div class="col-md-12 div-padding">
 						<p class="labelStyle">Expected Salary:</p>
 						<div class="form-group">
-							<label for="basePerMonth" class="label-margin">Base per month: SGD&emsp;</label>
+							<label for="basePerMonth" class="label-margin">Base per month:&emsp;</label>
 							<div class="input-group inputBase">
-								<span class="input-group-addon">$</span>
+								<select #basePerMonthCurrency (change)="onChange($event)">
+									<option>SGD</option>
+									<option>PHP</option>
+									<option>USD</option>
+									<option>EUR</option>
+									<option>EGP</option>
+									<option>HKD</option>
+									<option>AUD</option>
+									<option>BRL</option>
+									<option>JPY</option>
+								</select>
 								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="bonus" class="bonusLabel">Bonus: SGD&emsp;</label>
+							<label for="bonus" class="bonusLabel">Bonus:&emsp;</label>
 							<div class="input-group inputBonus">
-								<span class="input-group-addon">$</span>
+								<select #bonusCurrency (change)="onChange($event)">
+									<option>SGD</option>
+									<option>PHP</option>
+									<option>USD</option>
+									<option>EUR</option>
+									<option>EGP</option>
+									<option>HKD</option>
+									<option>AUD</option>
+									<option>BRL</option>
+									<option>JPY</option>
+								</select>
 								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus" 
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
@@ -70,8 +90,8 @@ import { Application } from '../models/job-application.model';
 											[(ngModel)]="application.management" required></textarea>
 					</div>
 					<div *ngIf="!forReference" class="button-class">
-						<button type="submit" class="btn btn-primary btn-lg" (click)="onApplyClick()">Apply?</button>
-						<p class="bottom-style">Your information will be saved automatically</p>
+						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply?</button>
+						<!--<p class="bottom-style">Your information will be saved automatically</p>-->
 					</div>
 				</div>
 			</div>
@@ -80,7 +100,7 @@ import { Application } from '../models/job-application.model';
 	styles: [`
 		h2 {
 			text-align: center;
-			color: #4D308E;
+			color: #57148D;
 		}
 		.div-padding {
 			padding-left: 0;
@@ -100,18 +120,13 @@ import { Application } from '../models/job-application.model';
 			text-align: center;
 		}
 		.labelStyle {
-			color: #4D308E;
+			color: #57148D;
 			font-weight: 700;
 		}
 		.skillStyle {
-			color: #4D308E;
+			color: #57148D;
 			font-weight: 700;
 			margin-bottom: 0;
-		}
-		.bottom-style {
-			margin-bottom: 0;
-			font-size: x-small;
-			color: gray;
 		}
 		.ulStyle {
 			float: right;
@@ -147,6 +162,10 @@ import { Application } from '../models/job-application.model';
 			text-align: right;
 			padding-right: 15px;
 		}
+		.btnApply {
+			border-radius: 0;
+			background: #57148D;
+		}
 	`],
 })
 
@@ -165,6 +184,15 @@ export class CandidateJobApplicationFormComponent {
 
 	onFileUpload(event) {
 		const files = event.target.files;
-		this.application.files = files;
+		if (files.length > 5) {
+			alert('Maximum of 5 files can only be uploaded');
+			this.application.files = null;
+		} else {
+			this.application.files = files;
+		}
+	}
+
+	onChange(currency) {
+		return currency;
 	}
 }

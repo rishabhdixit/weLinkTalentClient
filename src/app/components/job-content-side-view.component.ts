@@ -39,7 +39,8 @@ import { Job } from '../models/job.model';
 						href="https://plus.google.com/share?url=localhost%253A4200/jobs/{{job._id}}">
 							<span class="fa fa-google-plus generalColor"></span>
 						</a>
-						<a class="btn btn-social-icon btn-twitter btn-lg">
+						<a class="btn btn-social-icon btn-twitter btn-lg" 
+							 href="mailto:?Subject=Apply for this Job&amp;Body=This job suites to you.&url=https:localhost%253A4200/jobs/{{job._id}">
 							<img src="./assets/images/emailSquareIcon.png" />
 						</a>
 					</div>
@@ -105,7 +106,7 @@ import { Job } from '../models/job.model';
 	`,
 	styles: [`
    h4{
-	   color: #4D308E
+	   color: #57148D;
 	}
 	.tableBorder td{
 		padding-top: 2px;
@@ -120,16 +121,16 @@ import { Job } from '../models/job.model';
 		font-size: 115px;
 		font-weight: bolder;
 		text-align: center;
-		color: #4D308E;
+		color: #57148D;
 		margin:  auto;
 	}
 	.slots{
 		text-align: center;
-		color: #4D308E;
+		color: #57148D;
 	}
 	h3{
 		font-size: x-large;
-		color: #4D308E;
+		color: #57148D;
 	}
 	h5{
 		text-align: center;

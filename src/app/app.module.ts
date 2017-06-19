@@ -56,6 +56,9 @@ import { RatingModule } from 'ng2-rating';
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
 
+// Currency Mask
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -87,7 +90,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 		ReactiveFormsModule,
 		StarRatingModule,
 		RatingModule,
-		NgxPaginationModule
+		NgxPaginationModule,
+		CurrencyMaskModule
 	],
 	providers: [
 		{

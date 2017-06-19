@@ -97,7 +97,7 @@ import * as application from '../actions/job-application.action';
 						</div>
 					</div>
 					<div class="col-md-12" style="text-align: center;">
-						<button class="btn btn-primary btn-lg" (click)="onSubmitReferenceButton()">Submit</button>
+						<button class="btn btn-primary btn-lg btnSubmit" (click)="onSubmitReferenceButton()">Submit</button>
 					</div>
 				</div>
 			</div>
@@ -148,6 +148,10 @@ import * as application from '../actions/job-application.action';
 			background: white;
 			color: blue;
 			font-weight: bolder;
+		}
+		.btnSubmit {
+			border-radius: 0;
+			background: #57148D;
 		}
 	`],
 })

@@ -66,7 +66,7 @@ export class ApplicationFormPageComponent {
 			formData.append(key, value);
 		});
 
-		for (let i = 0; i < fileList.length; i++) {
+		for (let i = 0; i < fileList.length && fileList.length <= 5; i++) {
 			let file: File = fileList[i];
 			formData.append('files', file, file.name);
 		}

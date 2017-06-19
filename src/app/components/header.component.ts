@@ -22,11 +22,11 @@ import { LoginService } from 'app/services/login.service';
 								<div class="btn-group btn-group-vertical pull-right groupButton">
 									<div *ngIf="isNotProfileUrl">
 										<a routerLink="/profile">
-											<button type="button" class="btn btn-primary btn-lg" style="width:111px;">Profile</button>
+											<button type="button" class="btn btn-primary btn-lg profileButton">Profile</button>
 										</a>
 									</div>
 									<a routerLink="/login">
-										<button type="button" class="btn btn-basic btn-lg" (click)="logout($event)">Logout</button>
+										<button type="button" class="btn btn-basic btn-lg" style="border-radius: 0;" (click)="logout($event)">Logout</button>
 									</a>
 								</div>
 							</li>
@@ -52,29 +52,29 @@ import { LoginService } from 'app/services/login.service';
 		</header>
 	`,
 	styles: [`
-		.label{
-			color: #337ab7;
-			font-weight: 500;
-			text-decoration: underline;
-		}
 		.image-banner{
 			width: 50%;
 		}
-
 		.nav-list{
 			list-style: none;
 			padding: 0;
 			width: 100%;
 		}
-
 		.nav-list li {
 			display: inline-block;
 			width: 19%;
 			text-align: center;
 		}
-
 		.groupButton{
 			margin-top: -140px;
+		}
+		.profileButton {
+			background: #57148D;
+			width:111px;
+			border-radius: 0;
+		}
+		a {
+			color: #57148D;
 		}
 	`]
 })

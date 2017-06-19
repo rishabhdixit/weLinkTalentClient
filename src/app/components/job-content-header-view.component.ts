@@ -22,38 +22,35 @@ import * as jobsAction from '../actions/jobs.action';
 	`,
 
 	styles: [`
-	img {
-		width: 300px;
-		height: 100px;
-	}
-	.job-title {
-		font-weight: 700;
-	}
-	.div-padding {
-		padding-bottom: 10px;
-	}
-	.mb-0 {
-		margin-bottom: 0;
-		line-height: 1;
-	}
-	.addBookmark{
-		font-size: smaller;
-	}
-	.bookmark:hover {
-		color: yellow;
-		cursor: pointer;
-    	-webkit-text-stroke-width: 1px;
-    	-webkit-text-stroke-color: orange;
-	}
-	.bookmark-selected {
-		color: yellow;
-		cursor: pointer;
-    	-webkit-text-stroke-width: 1px;
-    	-webkit-text-stroke-color: orange;
-	}
-	.set-font {
-		font-size: 25px;
-	}
+		img {
+			width: 300px;
+			height: 100px;
+		}
+		.job-title {
+			font-weight: 700;
+		}
+		.div-padding {
+			padding-bottom: 10px;
+		}
+		.mb-0 {
+			margin-bottom: 0;
+			line-height: 1;
+		}
+		.addBookmark{
+			font-size: smaller;
+		}
+		.bookmark:hover {
+			color: yellow;
+			cursor: pointer;
+				-webkit-text-stroke-width: 1px;
+				-webkit-text-stroke-color: orange;
+		}
+		.set-font {
+			font-size: 25px;
+		}
+		h3 {
+			color: #57148D;
+		}
 	`]
 })
 

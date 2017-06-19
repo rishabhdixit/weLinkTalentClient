@@ -93,7 +93,7 @@ import { Reference } from '../models/reference.model';
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12" style="text-align: right">
+				<div class="col-md-12" style="text-align: right; margin-bottom: 1rem;">
 					<button class="btn btn-primary" (click)="addReferenceButtonClick()">Add</button>
 				</div>
 			</div>
@@ -136,7 +136,6 @@ import { Reference } from '../models/reference.model';
 			font-weight: bolder;
 		}
 		.canContactLabel {
-			float: left;
 			margin-top: 1rem;
 			font-weight: bolder;
 		}
