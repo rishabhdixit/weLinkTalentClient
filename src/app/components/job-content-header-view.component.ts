@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Job } from '../models/job.model';
-import {User} from '../models/user.model';
+import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
 import * as jobsAction from '../actions/jobs.action';
 
@@ -57,25 +57,22 @@ import * as jobsAction from '../actions/jobs.action';
 	`]
 })
 
-export class JobContentHeaderViewComponent implements OnInit {
+export class JobContentHeaderViewComponent {
 	@Input() job: Job;
 	@Input() user: User;
 	isBookmarked: boolean = false;
 
 	constructor(private store: Store<fromRoot.State>) {
-	}
-
-	ngOnInit() {
 		if (this.user && this.job) {
 			this.isBookmarked = this.user.bookmark_ids.indexOf(this.job._id) > -1 ? true : false;
 		}
 	}
 
 	updateBookmark() {
-		let payload = {userId: this.user.id};
+		let payload = { userId: this.user.id };
 		this.isBookmarked = this.isBookmarked ? false : true;
 		if (this.isBookmarked) {
-			payload['body'] = {postId: this.job._id};
+			payload['body'] = { postId: this.job._id };
 			this.store.dispatch(new jobsAction.AddBookmarkAction(payload));
 		} else {
 			payload['postId'] = this.job._id;

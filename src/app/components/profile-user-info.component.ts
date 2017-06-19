@@ -1,22 +1,23 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { Profile } from '../models/profile.model';
 import { Job } from '../models/job.model';
 
 @Component({
 	selector: `app-profile-user-info`,
 	template: `
-		<form #profileForm="ngForm">
+		<form #profileUserInfoForm="ngForm" (ngSubmit)="onSaveChangesButtonClicked()">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="birthDate" class="labelWeight">Date of Birth </label>
-						<input type="Date" class="form-control" id="birthDate" name="birthDate" [(ngModel)]="profile.birthDate"/>
+						<input type="Date" class="form-control" id="birthDate" name="birthDate" [(ngModel)]="profileUserInfo.birthDate"/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="maritalStatus" class="labelWeight">Marital Status </label>
-						<select type="text" class="form-control status-height" id="maritalStatus" name="maritalStatus" [(ngModel)]="profile.maritalStatus">
+						<select type="text" class="form-control status-height" id="maritalStatus" name="maritalStatus" 
+								[(ngModel)]="profileUserInfo.maritalStatus">
 							<option>Single</option>
 							<option>Married</option>
 							<option>Divorce</option>
@@ -30,13 +31,13 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email" class="labelWeight">Email Address </label>
-						<input type="text" class="form-control" id="email" name="email" [(ngModel)]="profile.emailAddress"/>
+						<input type="text" class="form-control" id="email" name="email" [(ngModel)]="profileUserInfo.emailAddress"/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="mobile" class="labelWeight">Mobile </label>
-						<input type="tel" class="form-control" id="mobile" name="mobilePhone" [(ngModel)]="profile.mobile"/>
+						<input type="tel" class="form-control" id="mobile" name="mobilePhone" [(ngModel)]="profileUserInfo.mobile"/>
 					</div>
 				</div>
 			</div>
@@ -44,13 +45,13 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="NRIC" class="labelWeight">NRIC / FIN Number </label>
-						<input type="text" class="form-control" id="NRIC" name="NRIC" [(ngModel)]="profile.NRIC"/>
+						<input type="text" class="form-control" id="NRIC" name="NRIC" [(ngModel)]="profileUserInfo.NRIC"/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="numberOfChildren" class="labelWeight">Number of Children </label>
-						<input type="number" class="form-control" id="numberOfChildren" name="numberOfChildren" [(ngModel)]="profile.children"/>
+						<input type="number" class="form-control" id="numberOfChildren" name="numberOfChildren" [(ngModel)]="profileUserInfo.children"/>
 					</div>
 				</div>
 			</div>
@@ -58,7 +59,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="singaporeVisa" class="labelWeight">Visa for Singapore </label>
-						<select type="text" class="form-control" id="singaporeVisa" name="singaporeVisa" [(ngModel)]="profile.singaporeVisa">
+						<select type="text" class="form-control" id="singaporeVisa" name="singaporeVisa" [(ngModel)]="profileUserInfo.singaporeVisa">
 							<option>Yes, I have one.</option>
 							<option>No, I don't have one.</option>
 						</select>
@@ -67,7 +68,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="validity" class="labelWeight">End of validity </label>
-						<input type="Date" class="form-control" id="validity" name="validity" [(ngModel)]="profile.validityEnd"/>
+						<input type="Date" class="form-control" id="validity" name="validity" [(ngModel)]="profileUserInfo.validityEnd"/>
 					</div>
 				</div>
 			</div>
@@ -75,7 +76,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="noticePeriod" class="labelWeight">Notice Period </label>
-						<input type="Date" class="form-control" id="noticePeriod" name="noticePeriod" [(ngModel)]="profile.noticePeriod"/>
+						<input type="Date" class="form-control" id="noticePeriod" name="noticePeriod" [(ngModel)]="profileUserInfo.noticePeriod"/>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -84,7 +85,7 @@ import { Job } from '../models/job.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let negotiate of negotiable">
 								<label class="labelWeight">&emsp;{{ negotiate.value }}</label>
-								<input type="radio" class="input-radio" value="{{ negotiate.value }}" [(ngModel)]="profile.negotiable"
+								<input type="radio" class="input-radio" value="{{ negotiate.value }}" [(ngModel)]="profileUserInfo.negotiable"
 											 name="negotiable" [ngModelOptions]="{standalone: true}"/>
 							</li>
 						</ul>
@@ -100,7 +101,7 @@ import { Job } from '../models/job.model';
 						<label for="basePerMonth" class="labelWeight">Base per month: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="profile.basePerMonth" 
+							<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="profileUserInfo.basePerMonth" 
 										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
 					</div>
@@ -111,7 +112,7 @@ import { Job } from '../models/job.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let bonusReceive of bonusReceivable">
 								<label class="labelWeight">&emsp;{{ bonusReceive.value }}</label>
-								<input type="radio" class="input-radio" value="{{ bonusReceive.value }}" [(ngModel)]="profile.bonusReceived"
+								<input type="radio" class="input-radio" value="{{ bonusReceive.value }}" [(ngModel)]="profileUserInfo.bonusReceived"
 											 name="bonusReceivable" [ngModelOptions]="{standalone: true}"/>
 							</li>
 						</ul>
@@ -124,7 +125,8 @@ import { Job } from '../models/job.model';
 						<label for="bonus" class="labelWeight">Bonus: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" class="form-control currency" id="bonus" [(ngModel)]="profile.bonus" [ngModelOptions]="{standalone: true}"
+							<input type="number" class="form-control currency" id="bonus" [(ngModel)]="profileUserInfo.bonus" 
+								[ngModelOptions]="{standalone: true}"
 										 required="required"/>
 						</div>
 					</div>
@@ -132,7 +134,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="calculation" class="labelWeight">How is it calculated?</label>
-						<input type="text" class="form-control" id="calculation" name="calculation" [(ngModel)]="profile.calculation"/>
+						<input type="text" class="form-control" id="calculation" name="calculation" [(ngModel)]="profileUserInfo.calculation"/>
 					</div>
 				</div>
 			</div>
@@ -142,7 +144,7 @@ import { Job } from '../models/job.model';
 						<label for="allowance" class="labelWeight">Allowances: SGD</label>
 						<div class="input-group">
 							<span class="input-group-addon">$</span>
-							<input type="number" class="form-control currency" id="allowance" [(ngModel)]="profile.allowance" 
+							<input type="number" class="form-control currency" id="allowance" [(ngModel)]="profileUserInfo.allowance" 
 										 [ngModelOptions]="{standalone: true}" required="required"/>
 						</div>
 					</div>
@@ -150,7 +152,7 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="description" class="labelWeight">Please describe</label>
-						<input type="text" class="form-control" id="description" name="description" [(ngModel)]="profile.description"/>
+						<input type="text" class="form-control" id="description" name="description" [(ngModel)]="profileUserInfo.description"/>
 					</div>
 				</div>
 			</div>
@@ -158,19 +160,19 @@ import { Job } from '../models/job.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="incentives" class="labelWeight">Any long term incentives</label>
-						<input type="text" class="form-control" id="incentives" name="incentives" [(ngModel)]="profile.incentives"/>
+						<input type="text" class="form-control" id="incentives" name="incentives" [(ngModel)]="profileUserInfo.incentives"/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="vestingPeriod" class="labelWeight">Vesting Period</label>
-						<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" [(ngModel)]="profile.vestingPeriod"/>
+						<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" [(ngModel)]="profileUserInfo.vestingPeriod"/>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<button class="btn btn-primary btn-lg" style="margin-top: 10px;" (click)="onConfirmButtonClicked()">Confirm</button>
+					<button  type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px;">Save Changes</button>
 				</div>
 			</div>
 		</form>
@@ -201,13 +203,20 @@ import { Job } from '../models/job.model';
 	`],
 })
 
-export class ProfileUserInfoComponent {
+export class ProfileUserInfoComponent implements OnInit {
 	@Input() job: Job;
-	@Input() profile: Profile = new Profile();
+	@Input() profileInfo: Profile;
 	@Output() saveProfileUserInfoEventEmitter = new EventEmitter<Profile>();
-	negotiable: Array<any> = [{id:0, value: 'Yes'}, {id:1, value: 'No'}];
-	bonusReceivable: Array<any> = [{id: 0, value: '12 month'}, {id:1, value: '13 month'}];
+	negotiable: Array<any> = [{ id: 0, value: 'Yes' }, { id: 1, value: 'No' }];
+	bonusReceivable: Array<any> = [{ id: 0, value: '12 month' }, { id: 1, value: '13 month' }];
+	// Save information.
+	profileUserInfo: Profile = new Profile();
 
-	constructor() {	}
+	ngOnInit() {
+		Object.assign(this.profileUserInfo, this.profileInfo);
+	}
 
+	onSaveChangesButtonClicked() {
+		this.saveProfileUserInfoEventEmitter.emit(this.profileUserInfo);
+	}
 }

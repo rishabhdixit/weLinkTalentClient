@@ -14,7 +14,6 @@
 				</div>
 			</fieldset>
 		</div>
-
 		<div *ngIf="edit == 'basic'" class="col-md-10 form-group clearfix">
 			<div class="row">
 				<div class="col-md-6">
@@ -38,12 +37,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"
-														 [profile]="profile$ | async"></app-profile-user-info>
-		</div>
-	</div>
+	
+
+	<!--TODO - to be transfered in new component-->
 	<!--<div class="row" style="padding-top: 60px;">-->
 		<!--<div class="col-md-12">-->
 			<!--&lt;!&ndash;<div class="col-md-12">&ndash;&gt;-->
@@ -149,7 +145,3 @@
 	<!--</div>-->
 	<!--<div style="text-align: center;"><button class="btn btn-primary btn-lg" style="margin-top: 10px;">Confirm</button></div>-->
 </form>
-
-<script>
-
-</script>

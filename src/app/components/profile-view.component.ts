@@ -155,34 +155,4 @@ export class ProfileViewComponent implements OnInit {
 		this.removePositionEvent.emit({ position });
 	}
 
-	// added
-
-	// onConfirmButtonClicked() {
-    //
-	// 	let profileSave = new Profile();
-    //
-	// 	profileSave.birthDate = this.profile.birthDate;
-	// 	profileSave.NRIC = this.profile.NRIC;
-	// 	profileSave.email = this.profile.email;
-	// 	profileSave.singaporeVisa = this.profile.singaporeVisa;
-	// 	profileSave.noticePeriod = this.profile.noticePeriod;
-	// 	profileSave.maritalStatus = this.profile.maritalStatus;
-	// 	profileSave.mobile = this.profile.mobile;
-	// 	profileSave.children = this.profile.children;
-	// 	profileSave.validityEnd = this.profile.validityEnd;
-	// 	profileSave.negotiable = this.profile.negotiable;
-	// 	profileSave.basePerMonth = this.profile.basePerMonth;
-	// 	profileSave.bonus = this.profile.bonus;
-	// 	profileSave.allowance = this.profile.allowance;
-	// 	profileSave.incentives = this.profile.incentives;
-	// 	profileSave.bonusReceived = this.profile.bonusReceived;
-	// 	profileSave.calculation = this.profile.calculation;
-	// 	profileSave.description = this.profile.description;
-	// 	profileSave.vestingPeriod = this.profile.vestingPeriod;
-    //
-	// 	console.log(profileSave);
-    //
-	// 	this.saveProfileUserInfoEventEmitter.emit(profileSave);
-	// }
-
 }

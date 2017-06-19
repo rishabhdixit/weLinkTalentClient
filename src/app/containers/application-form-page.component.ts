@@ -66,12 +66,10 @@ export class ApplicationFormPageComponent {
 			formData.append(key, value);
 		});
 
-
 		for (let i = 0; i < fileList.length; i++) {
 			let file: File = fileList[i];
 			formData.append('files', file, file.name);
 		}
-
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);
 		this.store.dispatch(new applicationAction.ApplicationFormSubmitAction(formData));

@@ -15,8 +15,6 @@ import * as ui from '../actions/ui.action';
 	<div class='container'>
 		<div class='container-fluid'>
 			<div class='row'>
-				<!--<app-profile-user-info (saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"-->
-															 <!--[profile]="profile$ | async"></app-profile-user-info>-->
 				<div class='col-md-12'>
 					<app-profile-view
 						[profile]="profile$ | async"
@@ -27,9 +25,16 @@ import * as ui from '../actions/ui.action';
 						(savePositionEvent)="onSavePosition($event)"
 						(createPositionEvent)="onCreatePosition($event)"
 						(createSkillEvent)="onCreateSkill($event)"
-						(removePositionEvent)="onRemovePosition($event)"
-						(saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)">
+						(removePositionEvent)="onRemovePosition($event)">
 					</app-profile-view>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<app-profile-user-info 
+						(saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"
+						[profileInfo]="profile$ | async"></app-profile-user-info>
 				</div>
 			</div>
 		</div>
@@ -79,6 +84,6 @@ export class ProfilePageComponent {
 	}
 
 	onSaveProfileUserInfoHandler(saveProfile: Profile) {
-		this.store.dispatch( new profile.ProfileSaveInfoAction(saveProfile));
+		this.store.dispatch(new profile.ProfileSaveInfoAction(saveProfile));
 	}
 }
