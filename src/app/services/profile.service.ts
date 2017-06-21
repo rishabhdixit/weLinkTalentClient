@@ -2,7 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
-import { Profile, Position, Skill } from '../models/profile.model';
+import { Profile } from '../models/profile.model';
+import { Position } from '../models/position.model';
+import { Skill } from '../models/skill.model';
 
 @Injectable()
 export class ProfileService {

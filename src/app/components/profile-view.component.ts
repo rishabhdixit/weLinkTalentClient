@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, ViewContainerRef } from '@angular/core';
 import {
 	FormGroup,
 	FormBuilder,
@@ -7,10 +7,12 @@ import {
 	ValidatorFn,
 	FormArray
 } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Profile } from '../models/profile.model';
 
 @Component({
+	moduleId: module.id,
 	selector: 'app-profile-view',
 	templateUrl: 'profile-view.component.html',
 	styleUrls: ['profile-view.component.css'],
@@ -22,57 +24,96 @@ export class ProfileViewComponent implements OnInit {
 
 	@Output() editEvent = new EventEmitter<string>();
 	@Output() saveProfileEvent = new EventEmitter<any>();
-	@Output() savePositionEvent = new EventEmitter<any>();
-	@Output() createPositionEvent = new EventEmitter<any>();
-	@Output() createSkillEvent = new EventEmitter<any>();
 	@Output() removePositionEvent = new EventEmitter<any>();
-	// newly added
-	@Output() saveProfileUserInfoEventEmitter = new EventEmitter<Profile>();
+	@Output() removeSkillEvent = new EventEmitter<any>();
+
+
+	logicalValueList: Array<any> = ['Yes', 'No'];
+	bonusReceivable: Array<any> = ['12 month', '13 month'];
 
 	profileForm: FormGroup;
 
-	get positions(): FormArray{
+	get positions(): FormArray {
 		return <FormArray>this.profileForm.get('positions');
 	}
 
-	get skills(): FormArray{
+	get skills(): FormArray {
 		return <FormArray>this.profileForm.get('skills');
 	}
-
-	constructor(private fb: FormBuilder) {}
+	// TODO - Enable ToastManager.
+	constructor(private fb: FormBuilder, private toastr: ToastsManager, vcr: ViewContainerRef) {
+		this.toastr.setRootViewContainerRef(vcr);
+	}
 
 	ngOnInit() {
 		this.profileForm = this.fb.group({
-			firstName:    ['', Validators.required],
-			lastName:     ['', Validators.required],
-			headline:     ['', Validators.required],
+			firstName: ['', Validators.required],
+			lastName: ['', Validators.required],
+			headline: ['', Validators.required],
 			pictureUrl: ['', Validators.required],
 			emailAddress: ['', Validators.required],
-			summary:      ['', Validators.required],
-			positions:    this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
-			skills:       this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
+			summary: ['', Validators.required],
+			positions: this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
+			skills: this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
+
+			birthDate: ['', Validators.required],
+			maritalStatus: ['', Validators.required],
+			mobileNumber: ['', Validators.required],
+			NRIC: ['', Validators.required],
+			noOfchildren: ['', Validators.required],
+			singaporeVisa: ['', Validators.required],
+			visaValidity: ['', Validators.required],
+			noticePeriod: ['', Validators.required],
+			noticePeriodNegotioble: ['', Validators.required],
+			salaryPerMonth: ['', Validators.required],
+			salaryBasis: ['', Validators.required],
+			bonusAmount: ['', Validators.required],
+			bonusCalc: ['', Validators.required],
+			allowance: ['', Validators.required],
+			allowanceDesc: ['', Validators.required],
+			incentives: ['', Validators.required],
+			vestingPeriod: ['', Validators.required],
 		});
 
 		this.profileForm.patchValue({
-			firstName:    this.profile.firstName,
-			lastName:     this.profile.lastName,
-			headline:     this.profile.headline,
+			firstName: this.profile.firstName,
+			lastName: this.profile.lastName,
+			headline: this.profile.headline,
 			emailAddress: this.profile.emailAddress,
 			pictureUrl: this.profile.pictureUrl,
-			summary:      this.profile.summary,
-			positions:    this.profile.positions,
-			skills:       this.profile.skills,
+			summary: this.profile.summary,
+			positions: this.profile.positions,
+			skills: this.profile.skills,
+
+			birthDate: this.profile.birthDate,
+			maritalStatus: this.profile.maritalStatus,
+			mobileNumber: this.profile.mobileNumber,
+			NRIC: this.profile.NRIC,
+			noOfchildren: this.profile.noOfchildren,
+			singaporeVisa: this.profile.singaporeVisa,
+			visaValidity: this.profile.visaValidity,
+			noticePeriod: this.profile.noticePeriod,
+			noticePeriodNegotioble: this.profile.noticePeriodNegotioble,
+			salaryPerMonth: this.profile.salaryPerMonth,
+			salaryBasis: this.profile.salaryBasis,
+			bonusAmount: this.profile.bonusAmount,
+			bonusCalc: this.profile.bonusCalc,
+			allowance: this.profile.allowance,
+			allowanceDesc: this.profile.allowanceDesc,
+			incentives: this.profile.incentives,
+			vestingPeriod: this.profile.vestingPeriod,
 		});
-
-
+		this.profileFormDisable();
 	}
 
 	positionFormGroup(): FormGroup {
 		return this.fb.group({
-			title:    ['', Validators.required],
-			company:  this.fb.group({ name: ['', Validators.required] }),
+			title: ['', Validators.required],
+			company: this.fb.group({ name: ['', Validators.required] }),
 			location: this.fb.group({ name: '' }),
-			responsibilities:  ['', Validators.required]
+			responsibilities: ['', Validators.required],
+			startDate: ['', Validators.required],
+			endDate: ['', Validators.required],
 		});
 	}
 
@@ -85,6 +126,12 @@ export class ProfileViewComponent implements OnInit {
 	editMode(event, editId) {
 		this.editEvent.emit(editId);
 		event.preventDefault();
+
+		if (editId && editId === 'basic') {
+			this.profileFormEnable();
+		} else {
+			this.profileFormDisable();
+		}
 	}
 
 	saveProfile() {
@@ -94,6 +141,7 @@ export class ProfileViewComponent implements OnInit {
 		delete profile.skills;
 
 		this.saveProfileEvent.emit(profile);
+		this.profileFormDisable();
 	}
 
 	cancelProfile(event) {
@@ -101,15 +149,8 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	savePosition(index) {
-		const position = this.positions.value[index];
-		const id = this.profile.positions[index] ?
-			this.profile.positions[index].id : null;
-
-		if (id) {
-			this.savePositionEvent.emit({id, position});
-		} else {
-			this.createPositionEvent.emit({position});
-		}
+		const profile = this.profileForm.value;
+		this.saveProfileEvent.emit(profile);
 	}
 
 	addPosition(event) {
@@ -130,9 +171,8 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	saveSkill(index) {
-		const skill = this.skills.value[index];
-
-		this.createSkillEvent.emit({ skill });
+		const profile = this.profileForm.value;
+		this.saveProfileEvent.emit(profile);
 	}
 
 	addSkill(event) {
@@ -150,9 +190,56 @@ export class ProfileViewComponent implements OnInit {
 		this.editMode(event, '');
 	}
 
+	removeSkill(index) {
+		const position = this.skills.value[index];
+	}
 	removePosition(index) {
-		const position = this.positions.value[index];
-		this.removePositionEvent.emit({ position });
+		this.removePositionEvent.emit({ index });
 	}
 
+	profileFormDisable() {
+		this.profileForm.get('firstName').disable();
+		this.profileForm.get('lastName').disable();
+		this.profileForm.get('emailAddress').disable();
+		this.profileForm.get('birthDate').disable();
+		this.profileForm.get('maritalStatus').disable();
+		this.profileForm.get('mobileNumber').disable();
+		this.profileForm.get('NRIC').disable();
+		this.profileForm.get('noOfchildren').disable();
+		this.profileForm.get('singaporeVisa').disable();
+		this.profileForm.get('visaValidity').disable();
+		this.profileForm.get('noticePeriod').disable();
+		this.profileForm.get('noticePeriodNegotioble').disable();
+		this.profileForm.get('salaryPerMonth').disable();
+		this.profileForm.get('salaryBasis').disable();
+		this.profileForm.get('bonusAmount').disable();
+		this.profileForm.get('bonusCalc').disable();
+		this.profileForm.get('allowance').disable();
+		this.profileForm.get('allowanceDesc').disable();
+		this.profileForm.get('incentives').disable();
+		this.profileForm.get('vestingPeriod').disable();
+	}
+
+	profileFormEnable() {
+		this.profileForm.get('firstName').enable();
+		this.profileForm.get('lastName').enable();
+		this.profileForm.get('emailAddress').enable();
+		this.profileForm.get('birthDate').enable();
+		this.profileForm.get('maritalStatus').enable();
+		this.profileForm.get('mobileNumber').enable();
+		this.profileForm.get('NRIC').enable();
+		this.profileForm.get('noOfchildren').enable();
+		this.profileForm.get('singaporeVisa').enable();
+		this.profileForm.get('visaValidity').enable();
+		this.profileForm.get('noticePeriod').enable();
+		this.profileForm.get('noticePeriodNegotioble').enable();
+		this.profileForm.get('salaryPerMonth').enable();
+		this.profileForm.get('salaryBasis').enable();
+		this.profileForm.get('bonusAmount').enable();
+		this.profileForm.get('bonusCalc').enable();
+		this.profileForm.get('allowance').enable();
+		this.profileForm.get('allowanceDesc').enable();
+		this.profileForm.get('incentives').enable();
+		this.profileForm.get('vestingPeriod').enable();
+	}
 }

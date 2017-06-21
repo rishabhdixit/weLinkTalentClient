@@ -19,10 +19,8 @@ import { JobButtonsComponent } from './job-buttons.component';
 import { JobContentSideViewComponent } from './job-content-side-view.component';
 import { ApplicationConceptComponent } from './application-concept.component';
 import { StarsComponent } from './stars.component';
-import { SelectedJobSkillsComponent } from './selected-job-skills.component';
 import { JobApplicationFormComponent } from './job-application-form.component';
 import { ReferenceFormComponent } from './reference-form.component';
-import { ShareButtonsModule } from 'ng2-sharebuttons';
 import { CandidateRefereeApplicationFormComponent } from './candidate-referee-application-form.component';
 import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
 
@@ -42,7 +40,6 @@ export const COMPONENTS = [
 	JobContentSideViewComponent,
 	ApplicationConceptComponent,
 	StarsComponent,
-	SelectedJobSkillsComponent,
 	JobApplicationFormComponent,
 	ReferenceFormComponent,
 	ThankYouViewComponent,
@@ -56,7 +53,6 @@ export const COMPONENTS = [
 		FormsModule,
 		RouterModule,
 		ReactiveFormsModule,
-		ShareButtonsModule.forRoot(),
 	],
 	declarations: COMPONENTS,
 	exports: COMPONENTS

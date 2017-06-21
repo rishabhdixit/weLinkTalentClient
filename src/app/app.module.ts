@@ -49,15 +49,10 @@ import { ApplicationReferenceFormPageComponent } from './containers/application-
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { HomePageComponent } from './containers/home-page.component';
 
-// Library for Star Rating
-import { StarRatingModule } from 'angular-star-rating';
-import { RatingModule } from 'ng2-rating';
-
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
-// Currency Mask
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
 	declarations: [
@@ -88,10 +83,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 			maxAge: 5
 		}),
 		ReactiveFormsModule,
-		StarRatingModule,
-		RatingModule,
 		NgxPaginationModule,
-		CurrencyMaskModule
+		ToastModule.forRoot()
 	],
 	providers: [
 		{

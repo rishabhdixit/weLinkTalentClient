@@ -27,6 +27,8 @@ import { Job } from '../models/job.model';
 					</div>
 				</div>
 			</div>
+
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -41,6 +43,7 @@ import { Job } from '../models/job.model';
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -55,6 +58,7 @@ import { Job } from '../models/job.model';
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -72,6 +76,7 @@ import { Job } from '../models/job.model';
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -91,7 +96,8 @@ import { Job } from '../models/job.model';
 						</ul>
 					</div>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div class="row">
 					<h3>Current Salary</h3>
 			</div>

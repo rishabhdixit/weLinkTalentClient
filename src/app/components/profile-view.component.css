@@ -19,9 +19,10 @@ label {
 	font-weight: 500;
 }
 .form-group {
-	background: #eee;
-	padding-bottom: 10px;
+	/*background: #eee;*/
+	/*padding-bottom: 10px;*/
 	border-radius: 2px;
+	margin-bottom: 0px;
 }
 .position {
 	margin-bottom: 20px;
@@ -111,4 +112,13 @@ h3{
 .to {
 	margin-left: 48.5%;
     margin-top: -33px;
+}
+.labelWeight {
+	font-weight: bolder;
+	text-align: left;
+	float: left;
+}
+.position-display {
+	margin-bottom:8px;
+	width:45%;
 }

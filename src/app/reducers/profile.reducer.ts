@@ -47,9 +47,7 @@ export function reducer(state = initialState, action: profile.Actions): State {
 			return Object.assign({}, state, {loaded: false});
 		}
 
-		case profile.ActionTypes.UPDATE:
-		case profile.ActionTypes.POSITION_CREATE:
-		case profile.ActionTypes.POSITION_UPDATE: {
+		case profile.ActionTypes.UPDATE: {
 			return Object.assign({}, state, {loading: true});
 		}
 
@@ -57,40 +55,6 @@ export function reducer(state = initialState, action: profile.Actions): State {
 			const profile = action.payload;
 
 			return lodash.merge({}, state, {profile, loading: false});
-		}
-
-		// reducer for saving profile info
-		case profile.ActionTypes.PROFILE_SAVE_INFO_SUCCESS: {
-			return Object.assign({}, state, {profile: action.payload});
-		}
-
-		case profile.ActionTypes.POSITION_CREATE_SUCCESS: {
-			const positions = state.profile.positions.concat(action.payload);
-			const profile = Object.assign({}, state.profile, { positions });
-
-			return Object.assign({}, state, { profile, loading: false });
-		}
-
-		case profile.ActionTypes.POSITION_UPDATE_SUCCESS: {
-			const payload = action.payload;
-			const positions = state.profile.positions.map((position) => {
-				if (position.id === payload.id) {
-					return Object.assign({}, position, payload);
-				}
-				return position;
-			});
-
-			const profile = Object.assign({}, state.profile, { positions });
-
-			return Object.assign({}, state, { profile, loading: false });
-		}
-
-		case profile.ActionTypes.POSITION_REMOVE_SUCCESS: {
-			const payload = action.payload;
-
-			return Object.assign({}, state, {
-				positions: state.profile.positions.splice(payload, 1)
-			});
 		}
 
 		default: {

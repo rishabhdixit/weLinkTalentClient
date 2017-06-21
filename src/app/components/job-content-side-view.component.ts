@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ShareButtonsModule} from 'ng2-sharebuttons';
 import { Job } from '../models/job.model';
 
 @Component({

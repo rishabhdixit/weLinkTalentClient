@@ -30,13 +30,7 @@ import * as ui from '../actions/ui.action';
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-md-12">
-					<app-profile-user-info 
-						(saveProfileUserInfoEventEmitter)="onSaveProfileUserInfoHandler($event)"
-						[profileInfo]="profile$ | async"></app-profile-user-info>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	`,
@@ -53,6 +47,7 @@ export class ProfilePageComponent {
 		this.profile$ = this.store.select(fromRoot.getProfile);
 		this.profileLoading$ = this.store.select(fromRoot.getProfileLoading);
 		this.edit$ = this.store.select(fromRoot.getUiEditId);
+		this.store.dispatch(new ui.FormEditMode(''));
 	}
 
 	logout() {
@@ -81,9 +76,5 @@ export class ProfilePageComponent {
 
 	onRemovePosition(payload) {
 		this.store.dispatch(new profile.PositionRemoveAction(payload));
-	}
-
-	onSaveProfileUserInfoHandler(saveProfile: Profile) {
-		this.store.dispatch(new profile.ProfileSaveInfoAction(saveProfile));
 	}
 }

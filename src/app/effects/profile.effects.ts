@@ -1,4 +1,4 @@
-import {Injectable, state} from '@angular/core';
+import { Injectable, state } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -38,6 +38,7 @@ export class ProfileEffects {
 				.catch(() => Observable.of(new profile.ProfileLinkedinFailAction(false)));
 		});
 
+
 	@Effect({ dispatch: false })
 	logout$ = this.actions
 		.ofType(login.ActionTypes.LOGOUT)
@@ -49,9 +50,9 @@ export class ProfileEffects {
 		.ofType(profile.ActionTypes.UPDATE)
 		.withLatestFrom(this.store, (action, state) => {
 			return {
-				userId:    state.login.user.id,
+				userId: state.login.user.id,
 				profileId: state.profile.profile.id,
-				data:      action.payload
+				data: action.payload
 			};
 		})
 		.switchMap((payload) => {
@@ -66,91 +67,28 @@ export class ProfileEffects {
 				});
 		});
 
-	// effects for saving profile info
-	@Effect()
-	saveProfileInfo$: Observable<Action> = this.actions
-		.ofType(profile.ActionTypes.PROFILE_SAVE_INFO)
-		.withLatestFrom(this.store, (action, state) => {
-			return {
-				userId: state.login.user.id,
-				profileId: state.profile.profile.id,
-				data: action.payload
-			};
-		})
-		.switchMap((payload) => {
-			const { userId, profileId, data } = payload;
-
-			return this.profileService.saveProfileInfo(userId, profileId, data)
-				.mergeMap((response) => {
-					return Observable.from([
-						new profile.ProfileSaveInfoSuccessAction(response),
-					]);
-				});
-		});
-
-	@Effect()
-	updatePosition$: Observable<Action> = this.actions
-		.ofType(profile.ActionTypes.POSITION_UPDATE)
-		.withLatestFrom(this.store, (action, state) => {
-			return {
-				userId:     state.login.user.id,
-				profileId:  state.profile.profile.id,
-				positionId: action.payload.id,
-				data:       action.payload.position,
-			};
-		})
-		.switchMap((payload) => {
-			const { userId, profileId, positionId, data } = payload;
-
-			return this.profileService.updatePosition(userId, profileId, positionId, data)
-				.mergeMap((response) => {
-					return Observable.from([
-						new profile.PositionUpdateSuccessAction(response),
-						new ui.FormEditMode(''),
-					]);
-				});
-		});
-
-	@Effect()
-	createPosition$: Observable<Action> = this.actions
-		.ofType(profile.ActionTypes.POSITION_CREATE)
-		.withLatestFrom(this.store, (action, state) => {
-			return {
-				userId:    state.login.user.id,
-				profileId: state.profile.profile.id,
-				data:      action.payload.position
-			};
-		})
-		.switchMap((payload) => {
-			const { userId, profileId, data } = payload;
-
-			return this.profileService.createPosition(userId, profileId, data)
-				.mergeMap((response) => {
-					return Observable.from([
-						new profile.PositionCreateSuccessAction(response),
-						new ui.FormEditMode(''),
-					]);
-				});
-		});
-
 	@Effect()
 	removePosition$: Observable<Action> = this.actions
 		.ofType(profile.ActionTypes.POSITION_REMOVE)
 		.withLatestFrom(this.store, (action, state) => {
 			return {
-				userId:     state.login.user.id,
-				profileId:  state.profile.profile.id,
-				positionId: action.payload.id,
-				data:       action.payload.position,
+				userId: state.login.user.id,
+				profileData: state.profile.profile,
+				positionId: action.payload.index,
 			};
 		})
 		.switchMap((payload) => {
-			const { userId, profileId, positionId, data } = payload;
+			const { userId, profileData, positionId } = payload;
 
-			return this.profileService.removePosition(userId, profileId, positionId, data)
+			const positions = [...profileData.positions];
+			positions.splice(positionId, 1);
+			const updateProfile = Object.assign({}, profileData, { positions });
+
+			return this.profileService.updateProfile(userId, profileData.id, updateProfile)
 				.mergeMap((response) => {
 					return Observable.from([
-						new profile.PositionRemoveSuccessAction(response),
+						new profile.ProfileUpdateSuccessAction(response),
+						new ui.FormEditMode(''),
 					]);
 				});
 		});
@@ -160,9 +98,9 @@ export class ProfileEffects {
 		.ofType(profile.ActionTypes.SKILLS_CREATE)
 		.withLatestFrom(this.store, (action, state) => {
 			return {
-				userId:    state.login.user.id,
+				userId: state.login.user.id,
 				profileId: state.profile.profile.id,
-				data:      action.payload.skill
+				data: action.payload.skill
 			};
 		})
 		.switchMap((payload) => {
@@ -182,5 +120,5 @@ export class ProfileEffects {
 		private profileService: ProfileService,
 		private router: Router,
 		private store: Store<fromRoot.State>,
-	) {}
+	) { }
 }
