@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -43,7 +44,19 @@ export class LogInEffects {
 	@Effect({ dispatch: false })
 	signInSuccess$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN_SUCCESS)
-		.do(() => this.router.navigate(['/profile']));
+		.withLatestFrom(this.store, (action, state) => {
+			return { nextUrl: state.login.redirectUrl };
+		})
+		.do((payload: any) => {
+			if (payload.nextUrl) {
+				this.router.navigate([payload.nextUrl]);
+			} else {
+				this.router.navigate(['/profile']);
+			}
+		});
 
-	constructor(private actions: Actions, private logInService: LoginService, private router: Router) {}
+	constructor(private actions: Actions,
+		private logInService: LoginService,
+		private router: Router,
+		private store: Store<fromRoot.State>) { }
 }

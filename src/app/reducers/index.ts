@@ -30,13 +30,15 @@ import * as fromProfile from './profile.reducer';
 import * as fromJobs from './jobs.reducer';
 import * as fromUi from './ui.reducer';
 import * as fromApplication from './job-application.reducer';
+import * as fromRefereeFeedback from './referee-feedback.reducer';
 
 export interface State {
-	login:   		fromLogin.State;
-	profile: 		fromProfile.State;
-	jobs:    		fromJobs.State;
-	ui:      		fromUi.State;
-	application:	fromApplication.State;
+	login: fromLogin.State;
+	profile: fromProfile.State;
+	jobs: fromJobs.State;
+	ui: fromUi.State;
+	application: fromApplication.State;
+	refereeFeedback: fromRefereeFeedback.State;
 }
 
 /**
@@ -44,11 +46,12 @@ export interface State {
  * our top level state interface is just a map of keys to inner state types.
  */
 const reducers = {
-	login:   fromLogin.reducer,
+	login: fromLogin.reducer,
 	profile: fromProfile.reducer,
-	jobs:    fromJobs.reducer,
-	ui:      fromUi.reducer,
+	jobs: fromJobs.reducer,
+	ui: fromUi.reducer,
 	application: fromApplication.reducer,
+	refereeFeedback: fromRefereeFeedback.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -67,6 +70,7 @@ export const getProfileState = (state: State) => state.profile;
 export const getJobsState = (state: State) => state.jobs;
 export const getUiState = (state: State) => state.ui;
 export const getApplicationState = (state: State) => state.application;
+export const getRefereeFeedbackState = (state: State) => state.refereeFeedback;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -74,6 +78,7 @@ export const getUser = createSelector(getLoginState, fromLogin.getUser);
 export const getUserEmail = createSelector(getLoginState, fromLogin.getUserEmail);
 export const getUserId = createSelector(getLoginState, fromLogin.getUserId);
 export const getUserLoaded = createSelector(getLoginState, fromLogin.getLoaded);
+export const getLogInRedirectUrl = createSelector(getLoginState, fromLogin.getLogInRedirectUrl);
 
 export const getProfile = createSelector(getProfileState, fromProfile.getProfile);
 export const getProfileLoaded = createSelector(getProfileState, fromProfile.getLoaded);
@@ -93,4 +98,4 @@ export const IsValidApplicationForm = createSelector(getApplicationState, fromAp
 export const IsValidApplicationFormReference = createSelector(getApplicationState, fromApplication.IsValidApplicationFormReference);
 export const IsValidApplicationThankYouPage = createSelector(getApplicationState, fromApplication.IsValidApplicationThankYouPage);
 
-
+export const getJobApplicationReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJobApplication);

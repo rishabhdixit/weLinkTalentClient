@@ -26,6 +26,7 @@ import { JobApplicationGuard } from './guards/job-application.guard';
 import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
+import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
 
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
@@ -112,6 +113,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobApplicationFormGuard,
 		JobApplicationFormReferenceGuard,
 		JobApplicationFormSuccessGuard,
+		RefereeFeedbackGuard,
 	],
 	bootstrap: [
 		AppComponent

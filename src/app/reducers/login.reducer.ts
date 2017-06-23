@@ -5,14 +5,16 @@ import * as login from '../actions/login.action';
 
 export interface State {
 	loginFail: boolean;
-	loaded:    boolean;
-	user:      User;
+	loaded: boolean;
+	user: User;
+	redirectUrl: string;
 };
 
 const initialState: State = {
 	loginFail: false,
-	loaded:    false,
-	user:      null,
+	loaded: false,
+	user: null,
+	redirectUrl: null,
 };
 
 export function reducer(state = initialState, action: login.Actions): State {
@@ -35,7 +37,10 @@ export function reducer(state = initialState, action: login.Actions): State {
 				loginFail: true
 			});
 
-		default :
+		case login.ActionTypes.REGISTER_REDIRECT_URL:
+			return Object.assign({}, state, { redirectUrl: action.payload });
+
+		default:
 			return state;
 	}
 }
@@ -45,4 +50,5 @@ export const getUser = (state: State) => state.user;
 export const getUserEmail = (state: State) => state.user.email;
 export const getUserId = (state: State) => state.user.id;
 export const getLoaded = (state: State) => state.loaded;
+export const getLogInRedirectUrl = (state: State) => state.redirectUrl;
 

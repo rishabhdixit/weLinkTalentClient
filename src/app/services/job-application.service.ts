@@ -11,7 +11,7 @@ export class JobApplicationService {
 		private http: Http,
 		private authHttp: AuthHttp,
 		@Inject('api') private api: string
-	) {}
+	) { }
 
 	saveApplication(data: any): Observable<JobApplication> {
 		let headers = new Headers();
@@ -24,9 +24,14 @@ export class JobApplicationService {
 
 	saveReference(data: any): Observable<JobApplication> {
 		const applicationId = data.applicationId;
-		const body = {references_info: data.references_info};
+		const body = { references_info: data.references_info };
 		return this.http.put(`${this.api}/api/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
+	}
+
+	loadJobApplication(id: string): Observable<JobApplication> {
+		return this.http.get(`${this.api}/api/applications/${id}`)
+			.map((res: Response) => res.json());
 	}
 }
 

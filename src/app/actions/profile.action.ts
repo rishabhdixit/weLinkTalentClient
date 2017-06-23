@@ -8,8 +8,6 @@ export const ActionTypes = {
 	UPDATE:                 	 	type('[PROFILE] Profile Update'),
 	UPDATE_SUCCESS:          		type('[PROFILE] Profile Update Success'),
 	UPDATE_FAIL:             		type('[PROFILE] Profile Update Fail'),
-	PROFILE_SAVE_INFO:			 	type('[PROFILE] Profile Save Info'),
-	PROFILE_SAVE_INFO_SUCCESS:		type('[PROFILE] Profile Save Info Success'),
 	LINKEDIN:                		type('[PROFILE] Profile Linkedin Sign-in'),
 	LINKEDIN_SUCCESS:        		type('[PROFILE] Profile Linkedin Sign-in Success'),
 	LINKEDIN_FAIL:           		type('[PROFILE] Profile Linkedin Sign-in Fail'),
@@ -68,21 +66,6 @@ export class ProfileUpdateAction implements Action {
 
 	constructor(public payload: any) {}
 }
-
-// Action for saving profile Info
-export class ProfileSaveInfoAction implements Action {
-	type = ActionTypes.PROFILE_SAVE_INFO;
-
-	constructor(public payload: any) {}
-}
-
-export class ProfileSaveInfoSuccessAction implements Action {
-	type = ActionTypes.PROFILE_SAVE_INFO_SUCCESS;
-
-	constructor(public payload: any) {}
-}
-
-// End of saving profile info actions
 
 export class ProfileUpdateSuccessAction implements Action {
 	type = ActionTypes.UPDATE_SUCCESS;
@@ -170,8 +153,6 @@ export type Actions = ProfileLinkedinAction
 	| ProfileLoadSuccessAction
 	| ProfileUpdateAction
 	| ProfileUpdateSuccessAction
-	| ProfileSaveInfoAction // export actions for saving profile info
-	| ProfileSaveInfoSuccessAction // export actions for saving profile info
 	| PositionRemoveAction
 	| PositionRemoveSuccessAction
 	| PositionCreateAction

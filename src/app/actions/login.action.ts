@@ -4,10 +4,11 @@ import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
 
 export const ActionTypes = {
-	LOGIN:         type('[USER] Login'),
-	LOGOUT:        type('[USER] Logout'),
-	LOGIN_SUCCESS: type('[USER] Login Success'),
-	LOGIN_FAIL:    type('[USER] Login Fail')
+	LOGIN:         			type('[USER] Login'),
+	LOGOUT:        			type('[USER] Logout'),
+	LOGIN_SUCCESS: 			type('[USER] Login Success'),
+	LOGIN_FAIL:   			type('[USER] Login Fail'),
+	REGISTER_REDIRECT_URL:	type('[USER] Register redirect url')
 };
 
 export class LoginAction implements Action {
@@ -38,7 +39,15 @@ export class LoginFailAction implements Action {
 	}
 }
 
+export class RegisterRedirectUrlAction implements Action {
+	type = ActionTypes.REGISTER_REDIRECT_URL;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = LoginAction
 	| LogoutAction
 	| LoginSuccessAction
-	| LoginFailAction;
+	| LoginFailAction
+	| RegisterRedirectUrlAction;

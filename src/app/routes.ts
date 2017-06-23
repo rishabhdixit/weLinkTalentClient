@@ -10,6 +10,7 @@ import { JobApplicationConceptGuard } from './guards/job-application-concept.gua
 import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
+import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -85,5 +86,8 @@ export const routes: Routes = [
 	{
 		path: 'referee-feedback/:application-form',
 		component: RefereeFeedbackPageComponent,
-	}
+		canActivate: [RefereeFeedbackGuard],
+	},
+	// otherwise redirect to home
+	{ path: '**', redirectTo: '' }
 ];

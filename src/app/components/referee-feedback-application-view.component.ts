@@ -5,15 +5,15 @@ import { JobApplication } from '../models/job-application.model';
 @Component({
 	selector: 'app-referee-feedback-application-view',
 	template: `
-		<form #applicationForm="ngForm">
+		<form #jobApplicationForm="ngForm">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Your Application Details:</h2>
+					<h2>Your jobApplication Details:</h2>
 					<p class="pStyle">This section contains what you have filled previously</p>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
 						<textarea class="form-control" id="reasonForLeaving" name="reasonForLeaving" rows="5" 
-											[(ngModel)]="application.reasonForLeaving" required="required"></textarea>
+											[(ngModel)]="jobApplication.reasonForLeaving" required="required"></textarea>
 					</div>
 					<div class="col-md-12 div-padding">
 						<p class="labelStyle">Expected Salary:</p>
@@ -21,7 +21,7 @@ import { JobApplication } from '../models/job-application.model';
 							<label for="basePerMonth" class="label-margin">Base per month: SGD&emsp;</label>
 							<div class="input-group">
 								<span class="input-group-addon">$</span>
-								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
+								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="jobApplication.basePerMonth" 
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
@@ -29,8 +29,9 @@ import { JobApplication } from '../models/job-application.model';
 							<label for="bonus" class="bonusLabel">Bonus: SGD&emsp;</label>
 							<div class="input-group" style="margin-top: -40px;">
 								<span class="input-group-addon">$</span>
-								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus" [ngModelOptions]="{standalone: true}"
-											 required="required"/>
+								<input type="number" class="form-control currency" id="bonus"
+								 [(ngModel)]="jobApplication.bonus"
+								 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
 					</div>
@@ -47,22 +48,22 @@ import { JobApplication } from '../models/job-application.model';
 					<div class="form-group">
 						<label for="strengths" class="labelStyle">Your Strengths:</label>
 						<textarea class="form-control" rows="5" id="strengths" name="strengths" 
-											[(ngModel)]="application.strength" required="required"></textarea>
+											[(ngModel)]="jobApplication.strength" required="required"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="points" class="labelStyle">Your Points of Development/Improvement:</label>
 						<textarea class="form-control" rows="5" id="points" name="points" 
-											[(ngModel)]="application.improvements" required="required"></textarea>
+											[(ngModel)]="jobApplication.improvements" required="required"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="achievements" class="labelStyle">Your Main Achievements:</label>
 						<textarea class="form-control" rows="5" id="achievements" name="achievements" 
-											[(ngModel)]="application.achievements" required="required"></textarea>
+											[(ngModel)]="jobApplication.achievements" required="required"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="management" class="labelStyle">Your Management Style:</label>
 						<textarea class="form-control" rows="5" id="management" name="managements" 
-											[(ngModel)]="application.management" required="required"></textarea>
+											[(ngModel)]="jobApplication.management" required="required"></textarea>
 					</div>
 					<!--<div *ngIf="!forReference" class="button-class">-->
 						<!--<button type="submit" class="btn btn-primary btn-lg" (click)="onApplyClick()">Apply?</button>-->
@@ -143,7 +144,7 @@ import { JobApplication } from '../models/job-application.model';
 })
 
 export class RefereeFeedbackApplicationViewComponent {
-	@Input() application: JobApplication = new JobApplication();
+	@Input() jobApplication: JobApplication;
 	constructor() { }
 
 }

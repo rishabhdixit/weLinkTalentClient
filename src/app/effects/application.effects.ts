@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
-import {Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
-import {Router} from '@angular/router';
-import {Action} from '@ngrx/store';
-import {JobApplicationService} from '../services/job-application.service';
+import { Injectable } from '@angular/core';
+import { Actions, Effect } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
+import { JobApplicationService } from '../services/job-application.service';
+import { effects } from '@ngrx/effects/src/effects-subscription';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -14,18 +15,18 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
 import * as application from '../actions/job-application.action';
-import {effects} from '@ngrx/effects/src/effects-subscription';
+import * as refereeFeedback from '../actions/referee-feedback.action';
 
 @Injectable()
 export class ApplicationEffects {
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	applicationConceptLoad$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_CONCEPT_LOAD)
 		.do(() => this.router.navigate(['/application-concept']));
 
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	applicationFormLoad$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_FORM_LOAD)
 		.do(() => this.router.navigate(['/application-form']));
@@ -39,13 +40,13 @@ export class ApplicationEffects {
 				.map((data) => new application.ApplicationFormSubmitSuccessAction(data)));
 
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	saveApplicationSuccess$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_FORM_SUBMIT_SUCCESS)
 		.do(() => this.router.navigate(['/application-form2']));
 
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	referenceFormLoad$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_LOAD)
 		.do(() => this.router.navigate(['/application-form2']));
@@ -57,15 +58,23 @@ export class ApplicationEffects {
 		.switchMap((payload) =>
 			this.jobApplicationService.saveReference(payload)
 				.map((data) => new application.ApplicationReferenceFormSubmitSuccessAction(data)))
-				.catch(() => Observable.of(new application.ApplicationReferenceFormSubmitFailAction(null)));
+		.catch(() => Observable.of(new application.ApplicationReferenceFormSubmitFailAction(null)));
 
-	@Effect({dispatch: false})
+	@Effect({ dispatch: false })
 	saveReferenceSuccess$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS)
 		.do(() => this.router.navigate(['/thank-page']));
 
+	loadJobApplication$: Observable<Action> = this.actions
+		.ofType(refereeFeedback.ActionTypes.LOAD_JOB_APPLICATION)
+		.map((action: refereeFeedback.LoadJobApplicationAction) => action.payload)
+		.switchMap((query) => this.jobApplicationService.loadJobApplication(query)
+			.map((res) => new refereeFeedback.LoadJobApplicationSuccessAction(res))
+			.catch(() => Observable.of(new refereeFeedback.LoadJobApplicationSuccessAction('')))
+		);
+
 	constructor(private actions: Actions,
-							private jobApplicationService: JobApplicationService,
-							private router: Router) {
+		private jobApplicationService: JobApplicationService,
+		private router: Router) {
 	}
 }

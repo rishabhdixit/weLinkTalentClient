@@ -29,6 +29,6 @@ export class LoginService {
 	}
 
 	isLoggedIn() {
-		return tokenNotExpired();
+		return tokenNotExpired('id_token');
 	}
 }

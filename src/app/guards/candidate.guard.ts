@@ -6,13 +6,14 @@ import { LoginService } from '../services/login.service';
 export class CandidateGuard implements CanActivate {
 
 	constructor(private router: Router,
-							private loginService: LoginService) {
+		private loginService: LoginService) {
 	}
 
 	canActivate() {
 		if (this.loginService.isLoggedIn()) {
 			this.router.navigate(['profile']);
 		}
+
 		return true;
 	}
 }
