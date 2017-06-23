@@ -1,7 +1,7 @@
 import * as lodash from 'lodash';
 import { createSelector } from 'reselect';
 import * as application from '../actions/job-application.action';
-import { Application } from '../models/job-application.model';
+import { JobApplication } from '../models/job-application.model';
 import { Job } from 'app/models/job.model';
 import { Reference } from '../models/reference.model';
 import { User } from 'app/models/user.model';
@@ -9,7 +9,7 @@ import { User } from 'app/models/user.model';
 export interface State {
 	user: User;
 	job: Job;
-	application: Application;
+	application: JobApplication;
 	condition: boolean;
 	reference: Reference[];
 }
@@ -17,7 +17,7 @@ export interface State {
 const initialState: State = {
 	user: {} as User,
 	job: {} as Job,
-	application: {} as Application,
+	application: {} as JobApplication,
 	condition: false,
 	reference: null,
 

@@ -48,6 +48,7 @@ import { ApplicationFormPageComponent } from './containers/application-form-page
 import { ApplicationReferenceFormPageComponent } from './containers/application-reference-form-page.component';
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { HomePageComponent } from './containers/home-page.component';
+import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -67,6 +68,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		ApplicationReferenceFormPageComponent,
 		ThankYouPageComponent,
 		HomePageComponent,
+		RefereeFeedbackPageComponent,
 	],
 	imports: [
 		BrowserModule,

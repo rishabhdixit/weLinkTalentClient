@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
-import { Application } from '../models/job-application.model';
+import { JobApplication } from '../models/job-application.model';
 
 @Injectable()
 export class JobApplicationService {
@@ -13,7 +13,7 @@ export class JobApplicationService {
 		@Inject('api') private api: string
 	) {}
 
-	saveApplication(data: any): Observable<Application> {
+	saveApplication(data: any): Observable<JobApplication> {
 		let headers = new Headers();
 		// headers.append('Content-Type', 'multipart/form-data');
 		headers.append('Accept', 'application/json');
@@ -22,7 +22,7 @@ export class JobApplicationService {
 			.map((res: Response) => res.json());
 	}
 
-	saveReference(data: any): Observable<Application> {
+	saveReference(data: any): Observable<JobApplication> {
 		const applicationId = data.applicationId;
 		const body = {references_info: data.references_info};
 		return this.http.put(`${this.api}/api/applications/${applicationId}`, body)

@@ -1,7 +1,5 @@
-import {type} from '../util';
-import {Action} from '@ngrx/store';
-import {Application} from '../models/job-application.model';
-import {Job} from 'app/models/job.model';
+import { type } from '../util';
+import { Action } from '@ngrx/store';
 
 export const ActionType = {
 	APPLICATION_CONCEPT_LOAD: type('[APPLICATION] Application Concept Load'),

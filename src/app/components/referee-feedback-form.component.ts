@@ -3,7 +3,7 @@ import { Job } from '../models/job.model';
 import { RefereeFeedback } from '../models/referee-feedback.model';
 
 @Component({
-	selector: `app-candidate-referee-application-form`,
+	selector: `app-referee-feedback-form`,
 	template: `		
 		<form #refereeForm="ngForm">
 			<div class="col-md-12">
@@ -92,9 +92,7 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 	`],
 })
 
-export class CandidateRefereeApplicationFormComponent {
-	@Input() job: Job;
-	@Input() feedback: RefereeFeedback = new RefereeFeedback();
+export class RefereeFeedbackFormComponent {
 
 	constructor() {}
 

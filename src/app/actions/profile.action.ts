@@ -8,20 +8,23 @@ export const ActionTypes = {
 	UPDATE:                 	 	type('[PROFILE] Profile Update'),
 	UPDATE_SUCCESS:          		type('[PROFILE] Profile Update Success'),
 	UPDATE_FAIL:             		type('[PROFILE] Profile Update Fail'),
-	PROFILE_SAVE_INFO:			 		type('[PROFILE] Profile Save Info'),
-	PROFILE_SAVE_INFO_SUCCESS:	type('[PROFILE] Profile Save Info Success'),
+	PROFILE_SAVE_INFO:			 	type('[PROFILE] Profile Save Info'),
+	PROFILE_SAVE_INFO_SUCCESS:		type('[PROFILE] Profile Save Info Success'),
 	LINKEDIN:                		type('[PROFILE] Profile Linkedin Sign-in'),
 	LINKEDIN_SUCCESS:        		type('[PROFILE] Profile Linkedin Sign-in Success'),
 	LINKEDIN_FAIL:           		type('[PROFILE] Profile Linkedin Sign-in Fail'),
 	LOGOUT:                  		type('[PROFILE] Profile Clear'),
-	POSITION_REMOVE:		 		 		type('[PROFILE] Profile Position Remove'),
+	POSITION_REMOVE:		 		type('[PROFILE] Profile Position Remove'),
 	POSITION_REMOVE_SUCCESS: 		type('[PROFILE] Profile Position Remove Success'),
 	POSITION_CREATE:         		type('[PROFILE] Profile Position Create'),
 	POSITION_CREATE_SUCCESS: 		type('[PROFILE] Profile Position Create Success'),
 	POSITION_UPDATE:         		type('[PROFILE] Profile Position Update'),
 	POSITION_UPDATE_SUCCESS: 		type('[PROFILE] Profile Position Update Success'),
 	SKILLS_CREATE:           		type('[PROFILE] Profile Skills Create'),
-	SKILLS_CREATE_SUCCESS:   		type('[PROFILE] Profile Skills Create Success')
+	SKILLS_CREATE_SUCCESS:   		type('[PROFILE] Profile Skills Create Success'),
+	SKILLS_REMOVE:		 			type('[PROFILE] Profile Skills Remove'),
+	SKILLS_REMOVE_SUCCESS: 			type('[PROFILE] Profile Skills Remove Success'),
+
 };
 
 export class ProfileLoadAction implements Action {
@@ -144,6 +147,21 @@ export class SkillCreateSuccessAction implements Action {
 	}
 }
 
+
+export class SkillsRemoveAction implements Action {
+	type = ActionTypes.SKILLS_REMOVE;
+
+	constructor(public payload: any) {
+	}
+}
+
+export class SkillsRemoveSuccessAction implements Action {
+	type = ActionTypes.SKILLS_REMOVE_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = ProfileLinkedinAction
 	| ProfileLinkedinSuccessAction
 	| ProfileLinkedinFailAction
@@ -161,4 +179,6 @@ export type Actions = ProfileLinkedinAction
 	| PositionUpdateAction
 	| PositionUpdateSuccessAction
 	| SkillCreateAction
-	| SkillCreateSuccessAction;
+	| SkillCreateSuccessAction
+	| SkillsRemoveAction
+	| SkillsRemoveSuccessAction;

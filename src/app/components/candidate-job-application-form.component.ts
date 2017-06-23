@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Job } from 'app/models/job.model';
-import { Application } from '../models/job-application.model';
+import { JobApplication } from '../models/job-application.model';
 
 @Component({
 	selector: 'app-candidate-job-application-form-page',
@@ -171,10 +171,10 @@ import { Application } from '../models/job-application.model';
 
 export class CandidateJobApplicationFormComponent {
 	@Input() job: Job;
-	@Output() applicationEventEmitter = new EventEmitter<Application>();
+	@Output() applicationEventEmitter = new EventEmitter<JobApplication>();
 	@Input() forReference: Boolean;
 
-	application: Application= new Application();
+	application: JobApplication= new JobApplication();
 
 	constructor() {	}
 

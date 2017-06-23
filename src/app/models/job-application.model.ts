@@ -1,6 +1,6 @@
 import { Reference } from './reference.model';
 
-export class Application {
+export class JobApplication {
 		id: string;
 		files: any;
 		reasonForLeaving: string;

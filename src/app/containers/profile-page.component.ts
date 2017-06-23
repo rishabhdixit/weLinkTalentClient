@@ -22,10 +22,8 @@ import * as ui from '../actions/ui.action';
 						[loading]="profileLoading$ | async"
 						(editEvent)="onEdit($event)"
 						(saveProfileEvent)="onProfileEvent($event)"
-						(savePositionEvent)="onSavePosition($event)"
-						(createPositionEvent)="onCreatePosition($event)"
-						(createSkillEvent)="onCreateSkill($event)"
-						(removePositionEvent)="onRemovePosition($event)">
+						(removePositionEvent)="onRemovePosition($event)"
+						(removeSkillEvent)="onRemoveSkill($event)">
 					</app-profile-view>
 				</div>
 			</div>
@@ -62,19 +60,11 @@ export class ProfilePageComponent {
 		this.store.dispatch(new profile.ProfileUpdateAction(payload));
 	}
 
-	onSavePosition(payload) {
-		this.store.dispatch(new profile.PositionUpdateAction(payload));
-	}
-
-	onCreatePosition(payload) {
-		this.store.dispatch(new profile.PositionCreateAction(payload));
-	}
-
-	onCreateSkill(payload) {
-		this.store.dispatch(new profile.SkillCreateAction(payload));
-	}
-
 	onRemovePosition(payload) {
 		this.store.dispatch(new profile.PositionRemoveAction(payload));
+	}
+
+	onRemoveSkill(payload) {
+		this.store.dispatch(new profile.SkillsRemoveAction(payload));
 	}
 }

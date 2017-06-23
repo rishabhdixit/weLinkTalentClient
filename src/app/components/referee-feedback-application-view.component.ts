@@ -1,9 +1,9 @@
-import {Component, Input, EventEmitter, Output} from '@angular/core';
-import {Job} from 'app/models/job.model';
-import {Application} from '../models/job-application.model';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Job } from 'app/models/job.model';
+import { JobApplication } from '../models/job-application.model';
 
 @Component({
-	selector: 'app-job-application-form-page',
+	selector: 'app-referee-feedback-application-view',
 	template: `
 		<form #applicationForm="ngForm">
 			<div class="row">
@@ -142,21 +142,8 @@ import {Application} from '../models/job-application.model';
 	`],
 })
 
-export class JobApplicationFormComponent {
-	@Input() job: Job;
-	@Output() applicationEventEmitter = new EventEmitter<Application>();
-	@Input() forReference: Boolean;
+export class RefereeFeedbackApplicationViewComponent {
+	@Input() application: JobApplication = new JobApplication();
+	constructor() { }
 
-	application: Application= new Application();
-
-	constructor() {	}
-
-	onApplyClick() {
-		this.applicationEventEmitter.emit(this.application);
-	}
-
-	// onFileUpload(event) {
-	// 	const files = event.target.files;
-	// 	this.application.file = files;
-	// }
 }

@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Job } from '../models/job.model';
 import { Reference } from '../models/reference.model';
-import { Application } from '../models/job-application.model';
+import { JobApplication } from '../models/job-application.model';
 import * as fromRoot from '../reducers';
 import * as application from '../actions/job-application.action';
 
@@ -157,7 +157,7 @@ import * as application from '../actions/job-application.action';
 })
 
 export class ApplicationReferenceFormPageComponent {
-	application: Application;
+	application: JobApplication;
 	@Input() job: Job;
 	referenceList: Reference[] = [];
 

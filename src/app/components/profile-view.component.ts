@@ -191,7 +191,7 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	removeSkill(index) {
-		const position = this.skills.value[index];
+		this.removeSkillEvent.emit({ index });
 	}
 	removePosition(index) {
 		this.removePositionEvent.emit({ index });

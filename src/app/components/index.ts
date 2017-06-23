@@ -19,9 +19,9 @@ import { JobButtonsComponent } from './job-buttons.component';
 import { JobContentSideViewComponent } from './job-content-side-view.component';
 import { ApplicationConceptComponent } from './application-concept.component';
 import { StarsComponent } from './stars.component';
-import { JobApplicationFormComponent } from './job-application-form.component';
+import { RefereeFeedbackFormComponent } from './referee-feedback-form.component';
 import { ReferenceFormComponent } from './reference-form.component';
-import { CandidateRefereeApplicationFormComponent } from './candidate-referee-application-form.component';
+import { RefereeFeedbackApplicationViewComponent } from './referee-feedback-application-view.component';
 import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
 
 export const COMPONENTS = [
@@ -40,10 +40,10 @@ export const COMPONENTS = [
 	JobContentSideViewComponent,
 	ApplicationConceptComponent,
 	StarsComponent,
-	JobApplicationFormComponent,
+	RefereeFeedbackFormComponent,
 	ReferenceFormComponent,
 	ThankYouViewComponent,
-	CandidateRefereeApplicationFormComponent,
+	RefereeFeedbackApplicationViewComponent,
 	CandidateJobApplicationFormComponent
 ];
 

@@ -21,6 +21,7 @@ import { JobSearchPageComponent } from './containers/job-search-page.component';
 import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { HomePageComponent } from './containers/home-page.component';
+import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 
 export const routes: Routes = [
 	{
@@ -80,5 +81,9 @@ export const routes: Routes = [
 	{
 		path: 'home',
 		component: HomePageComponent,
+	},
+	{
+		path: 'referee-feedback/:application-form',
+		component: RefereeFeedbackPageComponent,
 	}
 ];

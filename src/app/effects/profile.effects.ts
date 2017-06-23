@@ -94,22 +94,26 @@ export class ProfileEffects {
 		});
 
 	@Effect()
-	createSkill$: Observable<Action> = this.actions
-		.ofType(profile.ActionTypes.SKILLS_CREATE)
+	removeSkills$: Observable<Action> = this.actions
+		.ofType(profile.ActionTypes.SKILLS_REMOVE)
 		.withLatestFrom(this.store, (action, state) => {
 			return {
 				userId: state.login.user.id,
-				profileId: state.profile.profile.id,
-				data: action.payload.skill
+				profileData: state.profile.profile,
+				skillIndex: action.payload.index,
 			};
 		})
 		.switchMap((payload) => {
-			const { userId, profileId, data } = payload;
+			const { userId, profileData, skillIndex } = payload;
 
-			return this.profileService.createSkill(userId, profileId, data)
+			const skills = [...profileData.skills];
+			skills.splice(skillIndex, 1);
+			const updateProfile = Object.assign({}, profileData, { skills });
+
+			return this.profileService.updateProfile(userId, profileData.id, updateProfile)
 				.mergeMap((response) => {
 					return Observable.from([
-						new profile.SkillCreateSuccessAction(response),
+						new profile.ProfileUpdateSuccessAction(response),
 						new ui.FormEditMode(''),
 					]);
 				});
