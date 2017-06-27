@@ -38,6 +38,7 @@ import { ProfileEffects } from './effects/profile.effects';
 import { LogInEffects } from './effects/login.effects';
 import { JobEffects } from './effects/job.effects';
 import { ApplicationEffects } from './effects/application.effects';
+import { RefereeFeedbackEffects } from './effects/referee-feedback.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -82,6 +83,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		EffectsModule.run(ProfileEffects),
 		EffectsModule.run(JobEffects),
 		EffectsModule.run(ApplicationEffects),
+		EffectsModule.run(RefereeFeedbackEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),

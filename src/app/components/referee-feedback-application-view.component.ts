@@ -145,6 +145,7 @@ import { JobApplication } from '../models/job-application.model';
 
 export class RefereeFeedbackApplicationViewComponent {
 	@Input() jobApplication: JobApplication;
+	@Input() job: Job;
 	constructor() { }
 
 }

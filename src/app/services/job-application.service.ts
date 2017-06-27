@@ -33,5 +33,14 @@ export class JobApplicationService {
 		return this.http.get(`${this.api}/api/applications/${id}`)
 			.map((res: Response) => res.json());
 	}
+
+	saveRefereeFeedback(id: string, data: any): Observable<any> {
+		let headers = new Headers();
+		headers.append('Accept', 'application/json');
+		const options = new RequestOptions({ headers: headers });
+
+		return this.http.post(`${this.api}/api/applications/${id}/feedback`, data, options)
+			.map((res: Response) => res.json());
+	}
 }
 

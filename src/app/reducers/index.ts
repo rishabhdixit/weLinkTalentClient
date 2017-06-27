@@ -99,3 +99,4 @@ export const IsValidApplicationFormReference = createSelector(getApplicationStat
 export const IsValidApplicationThankYouPage = createSelector(getApplicationState, fromApplication.IsValidApplicationThankYouPage);
 
 export const getJobApplicationReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJobApplication);
+export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJob);

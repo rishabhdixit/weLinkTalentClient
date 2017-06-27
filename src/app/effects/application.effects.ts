@@ -7,6 +7,9 @@ import { Action } from '@ngrx/store';
 import { JobApplicationService } from '../services/job-application.service';
 import { effects } from '@ngrx/effects/src/effects-subscription';
 
+import { JobApplication } from '../models/job-application.model';
+import { Job } from '../models/job.model';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -16,6 +19,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import * as application from '../actions/job-application.action';
 import * as refereeFeedback from '../actions/referee-feedback.action';
+import * as fromRoot from '../reducers';
 
 @Injectable()
 export class ApplicationEffects {
@@ -65,16 +69,9 @@ export class ApplicationEffects {
 		.ofType(application.ActionType.APPLICATION_REFERENCE_FORM_SUBMIT_SUCCESS)
 		.do(() => this.router.navigate(['/thank-page']));
 
-	loadJobApplication$: Observable<Action> = this.actions
-		.ofType(refereeFeedback.ActionTypes.LOAD_JOB_APPLICATION)
-		.map((action: refereeFeedback.LoadJobApplicationAction) => action.payload)
-		.switchMap((query) => this.jobApplicationService.loadJobApplication(query)
-			.map((res) => new refereeFeedback.LoadJobApplicationSuccessAction(res))
-			.catch(() => Observable.of(new refereeFeedback.LoadJobApplicationSuccessAction('')))
-		);
-
 	constructor(private actions: Actions,
 		private jobApplicationService: JobApplicationService,
-		private router: Router) {
+		private router: Router,
+		private store: Store<fromRoot.State>) {
 	}
 }

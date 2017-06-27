@@ -35,15 +35,6 @@ export class RefereeFeedbackGuard implements CanActivate {
 
 	hasApplicationForm(id: string): Observable<boolean> {
 		return this.hasApplicationFormInApi(id);
-
-		// this.hasUserInStore()
-		// 	.switchMap(inStore => {
-		// 		if (inStore) {
-		// 			return of(inStore);
-		// 		}
-
-		// 		return this.hasUserInApi();
-		// 	});
 	}
 
 	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {

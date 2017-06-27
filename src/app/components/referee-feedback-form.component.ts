@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Job } from '../models/job.model';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RefereeFeedback } from '../models/referee-feedback.model';
+import { JobApplication } from '../models/job-application.model';
+import { Job } from '../models/job.model';
 
 @Component({
 	selector: `app-referee-feedback-form`,
@@ -11,11 +12,7 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 				<p class="pStyle">This section contains what your referee has filled.</p>
 				<div class="form-group" style="margin-top: 45px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.reasonForLeavingFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
-				</div>
-				<div class="form-group div-margin">
-					<textarea class="form-control" rows="2" [(ngModel)]="feedback.salaryFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.reasonForLeavingApproved" /><label>APPROVE</label>
 				</div>
 				<div class="col-md-12 div-padding">
 					<p class="skillStyle">Rate the candidate's skills accordingly.</p>
@@ -29,26 +26,27 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.strengthFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.strengthApproved"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.improvementFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.improvementApproved"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.achievementFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.improvementApproved"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.managementStyleFeedback"></textarea>
-					<input type="checkbox"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.managementStyleApproved"/><label>APPROVE</label>
 				</div>
 				<div>
-					<div class="col-md-6" style="text-align: end;">
-						<button class="btn btn-default">Back</button>
+					<div class="col-md-2">
 					</div>
-					<div class="col-md-6 nextButton">
-						<button class="btn btn-primary">Next</button>
+					<div class="col-md-8 nextButton">
+						<button class="btn btn-primary" (click)="submitButtonClicked()">Submit Feedback</button>
+					</div>
+					<div class="col-md-2">
 					</div>
 				</div>
 				<div>
@@ -93,7 +91,15 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 })
 
 export class RefereeFeedbackFormComponent {
+	@Input() jobApplication: JobApplication;
+	@Input() job: Job;
 
-	constructor() {}
+	@Output() submitRefereeFeedbackEvent = new EventEmitter<RefereeFeedback>();
 
+	feedback: RefereeFeedback = new RefereeFeedback();
+	constructor() { }
+
+	submitButtonClicked() {
+		this.submitRefereeFeedbackEvent.emit(this.feedback);
+	}
 }
