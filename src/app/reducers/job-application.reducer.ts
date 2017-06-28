@@ -1,4 +1,3 @@
-import * as lodash from 'lodash';
 import { createSelector } from 'reselect';
 import * as application from '../actions/job-application.action';
 import { JobApplication } from '../models/job-application.model';

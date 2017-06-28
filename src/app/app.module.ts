@@ -51,7 +51,7 @@ import { ApplicationReferenceFormPageComponent } from './containers/application-
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { HomePageComponent } from './containers/home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
-import {RefereeFeedbackThankPageComponent} from './containers/referee-feedback-thank-page.component';
+import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';

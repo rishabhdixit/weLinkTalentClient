@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { JobService } from '../services/job.service';
 import { JobApplicationService } from '../services/job-application.service';
-import { effects } from '@ngrx/effects/src/effects-subscription';
 
 import { Job } from '../models/job.model';
 
@@ -44,15 +43,18 @@ export class RefereeFeedbackEffects {
 		})
 		.switchMap((payload: any) => {
 			const data = Object.assign({}, payload.data, { referee_id: payload.userId });
-
 			return this.jobApplicationService.saveRefereeFeedback(payload.applicationId, data)
 				.mergeMap((response) => {
 					return Observable.from([
 						new refereeFeedback.SubmitFeedbackSuccessAction(response),
-						this.router.navigate['/thank-page'],
 					]);
 				});
 		});
+
+	@Effect()
+	submitRefereeFeedbackSuccess$: Observable<Action> = this.actions
+		.ofType(refereeFeedback.ActionTypes.SUBMIT_FEEDBACK_SUCCESS)
+		.do(() => this.router.navigate(['/referee-thank-page']));
 
 	constructor(private actions: Actions,
 		private jobService: JobService,

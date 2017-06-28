@@ -6,7 +6,6 @@ import {Component} from '@angular/core';
 		<div class="container">
 			<div class="container-fluid">
 				<div class="col-md-12">
-					<!--<p>Something's here</p>-->
 					<app-referee-feedback-thank-view></app-referee-feedback-thank-view>
 				</div>
 			</div>

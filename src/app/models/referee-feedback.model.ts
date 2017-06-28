@@ -4,9 +4,9 @@ import { User } from './user.model';
 export class RefereeFeedback {
 	user: User;
 	jobApplication: JobApplication;
+	skillRating: any;
 	reasonForLeavingFeedback: string;
 	reasonForLeavingApproved: boolean;
-	skillRating: any;
 	strengthFeedback: string;
 	strengthApproved: boolean;
 	improvementFeedback: string;

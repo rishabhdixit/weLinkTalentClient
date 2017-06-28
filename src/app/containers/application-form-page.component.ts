@@ -30,12 +30,6 @@ import * as applicationAction from '../actions/job-application.action';
 			text-align: center;
 			color: #4D308E;
 		}
-		.job-detail {
-			margin-bottom: 5px;
-			text-align: center;
-			font-size: x-large;
-			color: dimgray;
-		}
 	`],
 })
 

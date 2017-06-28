@@ -5,10 +5,6 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { JobApplicationService } from '../services/job-application.service';
-import { effects } from '@ngrx/effects/src/effects-subscription';
-
-import { JobApplication } from '../models/job-application.model';
-import { Job } from '../models/job.model';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -18,7 +14,6 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
 import * as application from '../actions/job-application.action';
-import * as refereeFeedback from '../actions/referee-feedback.action';
 import * as fromRoot from '../reducers';
 
 @Injectable()
@@ -28,7 +23,6 @@ export class ApplicationEffects {
 	applicationConceptLoad$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_CONCEPT_LOAD)
 		.do(() => this.router.navigate(['/application-concept']));
-
 
 	@Effect({ dispatch: false })
 	applicationFormLoad$: Observable<Action> = this.actions
@@ -43,12 +37,10 @@ export class ApplicationEffects {
 			this.jobApplicationService.saveApplication(payload)
 				.map((data) => new application.ApplicationFormSubmitSuccessAction(data)));
 
-
 	@Effect({ dispatch: false })
 	saveApplicationSuccess$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_FORM_SUBMIT_SUCCESS)
 		.do(() => this.router.navigate(['/application-form2']));
-
 
 	@Effect({ dispatch: false })
 	referenceFormLoad$: Observable<Action> = this.actions
