@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -35,7 +35,11 @@ import { Job } from '../models/job.model';
 						</div>
 					</div>
 	`,
-	styles: []
+	styles: [`
+		h2 {
+			width: 100%;
+		}
+	`]
 })
 export class RefereeFeedbackPageComponent {
 	jobApplicationForm$: Observable<JobApplication>;

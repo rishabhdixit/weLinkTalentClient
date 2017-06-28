@@ -23,6 +23,7 @@ import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { HomePageComponent } from './containers/home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
+import { RefereeFeedbackThankPageComponent} from './containers/referee-feedback-thank-page.component';
 
 export const routes: Routes = [
 	{
@@ -78,6 +79,10 @@ export const routes: Routes = [
 		component: ThankYouPageComponent,
 		canActivate: [JobApplicationFormSuccessGuard],
 		// Step 4 - Last stage
+	},
+	{
+		path: 'referee-thank-page',
+		component: RefereeFeedbackThankPageComponent,
 	},
 	{
 		path: 'home',

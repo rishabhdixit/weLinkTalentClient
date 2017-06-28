@@ -99,17 +99,14 @@ h3{
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
-
 .sDate {
 	width: 45%;
 }
-
 .eDate {
 	width: 45%;
 	float: right;
     margin-top: -33px;
 }
-
 .to {
 	margin-left: 48.5%;
     margin-top: -33px;
@@ -122,4 +119,13 @@ h3{
 .position-display {
 	margin-bottom:8px;
 	width:45%;
+}
+.input-radio {
+	border-radius: 0.25em;
+	width: 1.7em;
+	height: 1.7em;
+}
+div li {
+	display: inline;
+	float: left;
 }

@@ -12,7 +12,7 @@
 						<p *ngIf="i === 0">{{ position.value.title }}</p>
 						<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
 					</div>
-				</div>	
+				</div>
 			</fieldset>
 		</div>
 		<div class="col-md-12">
@@ -179,7 +179,6 @@
 									</select>
 									<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
 								</div>
-								<p>Selected Currency: {{ bonusCurrency.value }}</p>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -209,7 +208,6 @@
 									</select>
 									<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
 								</div>
-								<p>Selected Currency: {{ allowanceCurrency.value }}</p>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -250,7 +248,7 @@
 
 	<!--Positions-->
 
-	<div class="row" style="padding-top: 60px;"> 
+	<div class="row" style="padding-top: 60px;">
 		<div class="col-md-12">
 
 			<!--TODO - Implement for file upload-->
@@ -282,7 +280,7 @@
 							<a href="#" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</a>
 								&nbsp; &nbsp;
 							<a href="#" *ngIf="!edit" (click)="removePosition(i)">Remove</a>
-						</span>	
+						</span>
 					</div>
 
 					<div *ngIf="edit == 'position'+i" class="form-group clearfix">
@@ -333,7 +331,7 @@
 							<div [formGroupName]="i">
 								<td>
 									<div *ngIf="edit != 'skill'+i">
-										<span>{{skill.value.name}} 
+										<span>{{skill.value.name}}
 											<a href="#" *ngIf="!edit"  class="" (click)="removeSkill(i)">Remove</a>
 										</span>
 									</div>

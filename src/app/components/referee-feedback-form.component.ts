@@ -10,7 +10,7 @@ import { Job } from '../models/job.model';
 			<div class="col-md-12">
 				<h2>Referee Comments:</h2>
 				<p class="pStyle">This section contains what your referee has filled.</p>
-				<div class="form-group" style="margin-top: 45px;">
+				<div class="form-group" style="margin-top: 45px; margin-bottom: .5rem;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.reasonForLeavingFeedback"></textarea>
 					<input type="checkbox" [(ngModel)]="feedback.reasonForLeavingApproved" /><label>APPROVE</label>
 				</div>
@@ -34,7 +34,7 @@ import { Job } from '../models/job.model';
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.achievementFeedback"></textarea>
-					<input type="checkbox" [(ngModel)]="feedback.improvementApproved"/><label>APPROVE</label>
+					<input type="checkbox" [(ngModel)]="feedback.achievementApproved"/><label>APPROVE</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
 					<textarea class="form-control" rows="4" [(ngModel)]="feedback.managementStyleFeedback"></textarea>
@@ -57,7 +57,6 @@ import { Job } from '../models/job.model';
 	`,
 	styles: [`
 		.div-padding {
-			margin-top: 15px;
 			padding-left: 0;
 			padding-right: 0;
 		}
@@ -73,10 +72,6 @@ import { Job } from '../models/job.model';
 		.skillStyle {
 			color: #4D308E;
 			font-weight: 700;
-			margin-bottom: 0;
-		}
-		.div-margin {
-			margin-top: 45px;
 			margin-bottom: 0;
 		}
 		.star-margin {

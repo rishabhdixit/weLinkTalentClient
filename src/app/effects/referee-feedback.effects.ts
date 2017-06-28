@@ -32,6 +32,7 @@ export class RefereeFeedbackEffects {
 			.catch(() => Observable.of(new refereeFeedback.LoadJobFailAction('')))
 		).do((action) => this.store.dispatch(action));
 
+	@Effect()
 	submitRefereeFeedback$: Observable<Action> = this.actions
 		.ofType(refereeFeedback.ActionTypes.SUBMIT_FEEDBACK)
 		.withLatestFrom(this.store, (action, state) => {

@@ -14,4 +14,16 @@ export class JobApplication {
 		achievements: string;
 		management: string;
 		reference: Reference[];
+		form_data: ApplicationDetails;
+}
+
+export class ApplicationDetails {
+	reasonForLeaving: string;
+	basePerMonth: string;
+	bonus: string;
+	starRate: any;
+	strength: string;
+	improvements: string;
+	achievements: string;
+	management: string;
 }
