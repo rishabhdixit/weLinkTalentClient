@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Job } from 'app/models/job.model';
 import { JobApplication } from '../models/job-application.model';
 
@@ -63,9 +63,10 @@ import { JobApplication } from '../models/job-application.model';
 						<p class="skillStyle">Please score yourself accordingly for the skills listed below.</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
 						<div class="form-group" *ngFor="let skill of job.skills">
-							<input type="text" class="input-style" value="{{skill}}" />
+							<input type="text" class="input-style" value="{{skill}}" readonly/>
 							<ul class="list-unstyled ulStyle">
-								<app-stars style="font-size: x-large;"></app-stars>
+								<app-stars [skill]="skill" [application]="application" [index]="i" [(ngModel)]="application.skills[skill]" 
+													 [ngModelOptions]="{standalone: true}" ngDefaultControl></app-stars>
 							</ul>
 						</div>
 					</div>
@@ -93,6 +94,9 @@ import { JobApplication } from '../models/job-application.model';
 						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply?</button>
 						<!--<p class="bottom-style">Your information will be saved automatically</p>-->
 					</div>
+				</div>
+				<div>
+					<button class="btn btn-primary" (click)="onClick()">see</button>
 				</div>
 			</div>
 		</form>
@@ -169,7 +173,7 @@ import { JobApplication } from '../models/job-application.model';
 	`],
 })
 
-export class CandidateJobApplicationFormComponent {
+export class CandidateJobApplicationFormComponent  implements OnInit {
 	@Input() job: Job;
 	@Output() applicationEventEmitter = new EventEmitter<JobApplication>();
 	@Input() forReference: Boolean;
@@ -192,7 +196,15 @@ export class CandidateJobApplicationFormComponent {
 		}
 	}
 
+	ngOnInit() {
+		this.application.skills = {};
+	}
+
 	onChange(currency) {
 		return currency;
+	}
+
+	onClick() {
+		console.log(this.application);
 	}
 }

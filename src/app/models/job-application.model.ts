@@ -1,5 +1,3 @@
-import { Reference } from './reference.model';
-
 export class JobApplication {
 		id: string;
 		user_id: string;
@@ -8,12 +6,11 @@ export class JobApplication {
 		reasonForLeaving: string;
 		basePerMonth: string;
 		bonus: string;
-		starRate: any;
 		strength: string;
 		improvements: string;
 		achievements: string;
 		management: string;
-		reference: Reference[];
+		skills: any;
 		form_data: ApplicationDetails;
 }
 
@@ -26,4 +23,5 @@ export class ApplicationDetails {
 	improvements: string;
 	achievements: string;
 	management: string;
+	skills: any;
 }

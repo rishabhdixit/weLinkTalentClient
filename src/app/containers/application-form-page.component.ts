@@ -49,7 +49,11 @@ export class ApplicationFormPageComponent {
 		let fileList: FileList = application.files;
 
 		_.forIn(application, function (value, key) {
-			formData.append(key, value);
+			if (typeof value === 'object') {
+				formData.append(key, JSON.stringify(value));
+			} else {
+				formData.append(key, value);
+			}
 		});
 
 		for (let i = 0; i < fileList.length && fileList.length <= 5; i++) {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { JobApplication } from '../models/job-application.model';
 
 const emptyRating: number = -10;
 @Component({
@@ -7,8 +8,12 @@ const emptyRating: number = -10;
 		<ng-container *ngFor="let a of iterableStarArray">
 			<i (mouseover)="onMouseOver(a)"
 				 (mouseleave)="onMouseLeave(a)"
-				 (click)="isClicked(a)"
-				 [class.highlight]="isHighlighted(a)" class="fa fa-star" aria-hidden="true"></i>
+				 (click)="isClicked(a, skill)"
+				 [class.highlight]="isHighlighted(a)" 
+				 class="fa fa-star fa-2x" 
+				 aria-hidden="true" 
+				 [(ngModel)]="application.skills[skill]" 
+				 ngDefaultControl></i>
 		</ng-container>
 	`,
 	styles:[
@@ -26,6 +31,9 @@ const emptyRating: number = -10;
 export class StarsComponent implements OnInit {
 
 	@Input() noOfStars: number = 5;
+	@Input() application: JobApplication;
+	@Input() skill: any;
+	@Input() index: number;
 	@Input() currRating: number = emptyRating;
 	@Output() newRating = new EventEmitter();
 
@@ -37,6 +45,7 @@ export class StarsComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit() {
+		this.application.skills = {};
 		if (this.noOfStars > 0) {
 			this.fillArray(this.noOfStars);
 			if (this.currRating !== emptyRating) {
@@ -60,7 +69,7 @@ export class StarsComponent implements OnInit {
 		}
 	}
 
-	isClicked(index: number) {
+	isClicked(index: number, skill: string) {
 		if (index === this.rating && this.clicked) {
 			this.rating = emptyRating;
 			this.clicked = false;
@@ -68,7 +77,9 @@ export class StarsComponent implements OnInit {
 		}
 		this.clicked = true;
 		this.rating = index;
+		this.application.skills[skill] = this.rating;
 		this.newRating.emit(this.rating);
+		console.log(this.currRating);
 	}
 
 	isHighlighted(index: number) {

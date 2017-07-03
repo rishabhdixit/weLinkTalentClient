@@ -12,7 +12,7 @@ import * as ui from '../actions/ui.action';
 	template: `
 		<div class="container">
 			<div class="container-fluid">
-				<app-home-view></app-home-view>
+				<p>Something's here....</p>
 			</div>
 		</div>
 	`,

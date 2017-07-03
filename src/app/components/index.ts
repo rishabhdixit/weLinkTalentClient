@@ -23,7 +23,6 @@ import { RefereeFeedbackFormComponent } from './referee-feedback-form.component'
 import { ReferenceFormComponent } from './reference-form.component';
 import { RefereeFeedbackApplicationViewComponent } from './referee-feedback-application-view.component';
 import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
-import { HomeViewComponent } from './home-view.component';
 import { RefereeFeedbackThankViewComponent } from './referee-feedback-thank-view.component';
 
 export const COMPONENTS = [
@@ -47,7 +46,6 @@ export const COMPONENTS = [
 	ThankYouViewComponent,
 	RefereeFeedbackApplicationViewComponent,
 	CandidateJobApplicationFormComponent,
-	HomeViewComponent,
 	RefereeFeedbackThankViewComponent,
 ];
 

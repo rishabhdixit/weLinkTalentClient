@@ -18,10 +18,10 @@ import { JobApplication } from '../models/job-application.model';
 					<div class="col-md-12 div-padding">
 						<p class="skillStyle">Your Personal Scoring:</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-						<div class="form-group" *ngFor="let skill of job.skills">
+						<div class="form-group" *ngFor="let skill of jobApplication.skills">
 							<input type="text" readonly class="input-style" value="{{skill}}" />
 							<ul class="list-unstyled ulStyle">
-								<app-stars style="font-size: x-large;" (click)="onClick()"></app-stars>
+								<app-stars [currRating]="jobApplication.skills"></app-stars>
 							</ul>
 						</div>
 					</div>
