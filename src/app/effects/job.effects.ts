@@ -35,6 +35,15 @@ export class JobEffects {
 			.catch(() => Observable.of(new jobsAction.RemoveBookmarkFailAction('')))
 		);
 
+	@Effect()
+	getStatus$ = this.actions
+		.ofType(jobsAction.ActionTypes.GET_STATUS)
+		.map((action: jobsAction.GetJobStatus) => action.payload)
+		.switchMap((queryObject) => this.jobService.getStatus(queryObject.user, queryObject.jobId)
+			.map((res) => new jobsAction.GetJobStatusSuccess(res))
+			.catch(() => Observable.of(new jobsAction.GetJobStatusFail('')))
+		);
+
 	constructor(private actions: Actions, private jobService: JobService, private bookmarkService: BookmarkService) {
 	}
 }

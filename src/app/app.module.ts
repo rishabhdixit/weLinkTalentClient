@@ -39,6 +39,7 @@ import { LogInEffects } from './effects/login.effects';
 import { JobEffects } from './effects/job.effects';
 import { ApplicationEffects } from './effects/application.effects';
 import { RefereeFeedbackEffects } from './effects/referee-feedback.effects';
+import { CandidateJobsAppliedEffects } from './effects/candidate-jobs-applied.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -49,7 +50,7 @@ import { ApplicationConceptPageComponent } from 'app/containers/application-conc
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
 import { ApplicationReferenceFormPageComponent } from './containers/application-reference-form-page.component';
 import { ThankYouPageComponent } from './containers/thank-you-page.component';
-import { HomePageComponent } from './containers/home-page.component';
+import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
 
@@ -70,7 +71,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		ApplicationFormPageComponent,
 		ApplicationReferenceFormPageComponent,
 		ThankYouPageComponent,
-		HomePageComponent,
+		CandidateHomePageComponent,
 		RefereeFeedbackPageComponent,
 		RefereeFeedbackThankPageComponent,
 	],
@@ -86,6 +87,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		EffectsModule.run(JobEffects),
 		EffectsModule.run(ApplicationEffects),
 		EffectsModule.run(RefereeFeedbackEffects),
+		EffectsModule.run(CandidateJobsAppliedEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),

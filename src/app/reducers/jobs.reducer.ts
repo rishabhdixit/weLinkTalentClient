@@ -2,6 +2,7 @@ import { Job } from '../models/job.model';
 import { PageMetaData } from '../models/page-metadata.model';
 import { createSelector } from 'reselect';
 import * as jobs from '../actions/jobs.action';
+import { JobStatus } from '../models/job-status.model';
 
 export interface State {
 	loaded: boolean;
@@ -11,6 +12,7 @@ export interface State {
 	selectedJobId: string;
 	pageMetaData: PageMetaData;
 	isBookmarked: boolean;
+	jobStatus: JobStatus;
 }
 
 const initialState: State = {
@@ -21,6 +23,7 @@ const initialState: State = {
 	selectedJobId: null,
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
 	isBookmarked: false,
+	jobStatus: { status: null },
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -49,6 +52,7 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
+				jobStatus: { status: null },
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
@@ -76,6 +80,7 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: state.pageMetaData,
 				isBookmarked: false,
+				jobStatus: { status: null },
 			};
 		}
 		case jobs.ActionTypes.ADD_BOOKMARK: {
@@ -104,6 +109,15 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				isBookmarked: true
 			});
 		}
+		case jobs.ActionTypes.GET_STATUS: {
+			return Object.assign({}, state, {loaded: false});
+		}
+		case jobs.ActionTypes.GET_STATUS_SUCCESS: {
+			return Object.assign({}, state, {
+				jobStatus: action.payload,
+				loaded: true
+			});
+		}
 		default: {
 			return state;
 		}
@@ -121,6 +135,8 @@ export const getLoaded = (state: State) => state.loaded;
 export const getLoading = (state: State) => state.loading;
 
 export const getTotalJobsSearch = (state: State) => state.pageMetaData.totalSize;
+
+export const getStatus = (state: State) => state.jobStatus;
 
 //noinspection TypeScriptValidateTypes
 export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (entities, selectedId) => {

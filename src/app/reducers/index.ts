@@ -31,6 +31,7 @@ import * as fromJobs from './jobs.reducer';
 import * as fromUi from './ui.reducer';
 import * as fromApplication from './job-application.reducer';
 import * as fromRefereeFeedback from './referee-feedback.reducer';
+import * as fromCandidateJobsApplied from './candidate-jobs-applied.reducer';
 
 export interface State {
 	login: fromLogin.State;
@@ -39,6 +40,7 @@ export interface State {
 	ui: fromUi.State;
 	application: fromApplication.State;
 	refereeFeedback: fromRefereeFeedback.State;
+	candidateJobsApplied: fromCandidateJobsApplied.State;
 }
 
 /**
@@ -51,7 +53,8 @@ const reducers = {
 	jobs: fromJobs.reducer,
 	ui: fromUi.reducer,
 	application: fromApplication.reducer,
-	refereeFeedback: fromRefereeFeedback.reducer
+	refereeFeedback: fromRefereeFeedback.reducer,
+	candidateJobsApplied: fromCandidateJobsApplied.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -71,6 +74,7 @@ export const getJobsState = (state: State) => state.jobs;
 export const getUiState = (state: State) => state.ui;
 export const getApplicationState = (state: State) => state.application;
 export const getRefereeFeedbackState = (state: State) => state.refereeFeedback;
+export const getCandidateJobsAppliedState = (state: State) => state.candidateJobsApplied;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -91,6 +95,7 @@ export const getLoaded = createSelector(getJobsState, fromJobs.getLoaded);
 export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
 export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);
 export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);
+export const getStatus = createSelector(getJobsState, fromJobs.getStatus);
 
 export const getApplicationJob = createSelector(getApplicationState, fromApplication.getApplicationJob);
 export const getApplicationForm = createSelector(getApplicationState, fromApplication.getApplicationForm);
@@ -100,3 +105,7 @@ export const IsValidApplicationThankYouPage = createSelector(getApplicationState
 
 export const getJobApplicationReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJobApplication);
 export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJob);
+
+export const getCandidateJobsApplied = createSelector(getCandidateJobsAppliedState, fromCandidateJobsApplied.getCandidateJobsApplied);
+export const getTotalCandidateJobsApplied = createSelector(getCandidateJobsAppliedState,
+	fromCandidateJobsApplied.getTotalCandidateJobsApplied);

@@ -90,4 +90,12 @@ export class ProfileService {
 			`${this.api}/api/users/${userId}/profiles/${profileId}`, data)
 			.map(res => res.json());
 	}
+
+	getCandidateJobsApplied(
+		user: string,
+		page: string
+	): Observable<any> {
+		return this.authHttp.get(`${this.api}/api/users/${user}/applications?${page}`)
+			.map(res => res.json());
+	}
 }

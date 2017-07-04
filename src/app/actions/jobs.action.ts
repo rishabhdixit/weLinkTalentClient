@@ -1,17 +1,21 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
+import {JobStatus} from '../models/job-status.model';
 
 export const ActionTypes = {
-	LOAD: 					type('[JOBS] Jobs load'),
-	LOAD_SUCCESS: 			type('[JOBS] Jobs load success'),
-	LOAD_FAIL: 				type('[JOBS] Jobs load fail'),
-	SEARCH:        			type('[JOBS] Search'),
-	SELECT:        			type('[JOBS] Select'),
-	LOAD_DETAIL: 					type('[JOBS] Jobs load detail'),
-	ADD_BOOKMARK: 	  				type('[USERS] Add bookmark'),
+	LOAD: 						type('[JOBS] Jobs load'),
+	LOAD_SUCCESS: 				type('[JOBS] Jobs load success'),
+	LOAD_FAIL: 					type('[JOBS] Jobs load fail'),
+	SEARCH:        				type('[JOBS] Search'),
+	SELECT:        				type('[JOBS] Select'),
+	LOAD_DETAIL: 				type('[JOBS] Jobs load detail'),
+	GET_STATUS: 				type('[JOBS] Get Job Status'),
+	GET_STATUS_SUCCESS: 		type('[JOBS] Get Job Status Success'),
+	GET_STATUS_FAIL: 			type('[JOBS] Get Job Status Fail'),
+	ADD_BOOKMARK: 	  			type('[USERS] Add bookmark'),
 	ADD_BOOKMARK_SUCCESS: 		type('[USERS] Add bookmark success'),
-	ADD_BOOKMARK_FAIL: 				type('[USERS] Add bookmark failure'),
-	REMOVE_BOOKMARK: 					type('[USERS] Remove bookmark '),
+	ADD_BOOKMARK_FAIL: 			type('[USERS] Add bookmark failure'),
+	REMOVE_BOOKMARK: 			type('[USERS] Remove bookmark '),
 	REMOVE_BOOKMARK_SUCCESS: 	type('[USERS] Remove bookmark success'),
 	REMOVE_BOOKMARK_FAIL: 		type('[USERS] Remove bookmark failure'),
 };
@@ -98,6 +102,25 @@ export class RemoveBookmarkFailAction implements Action {
 	}
 }
 
+export class GetJobStatus implements Action {
+	type = ActionTypes.GET_STATUS;
+
+	constructor(public payload: any) {
+	}
+}
+export class GetJobStatusSuccess implements Action {
+	type = ActionTypes.GET_STATUS_SUCCESS;
+
+	constructor(public payload: JobStatus) {
+	}
+}
+export class GetJobStatusFail implements Action {
+	type = ActionTypes.GET_STATUS_FAIL;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = JobsLoadAction
 	| JobsLoadSuccessAction
 	| JobsLoadFailAction
@@ -109,4 +132,7 @@ export type Actions = JobsLoadAction
 	| AddBookmarkFailAction
 	| RemoveBookmarkAction
 	| RemoveBookmarkSuccessAction
-	| RemoveBookmarkFailAction;
+	| RemoveBookmarkFailAction
+	| GetJobStatus
+	| GetJobStatusSuccess
+	| GetJobStatusFail;
