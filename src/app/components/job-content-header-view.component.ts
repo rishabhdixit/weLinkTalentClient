@@ -51,15 +51,26 @@ import * as jobsAction from '../actions/jobs.action';
 		h3 {
 			color: #57148D;
 		}
+		.bookmark-selected {
+			color: yellow;
+			cursor: pointer;
+    		-webkit-text-stroke-width: 1px;
+    		-webkit-text-stroke-color: orange;
+		}
+		.set-font {
+			font-size: 25px;
+		}
 	`]
 })
 
-export class JobContentHeaderViewComponent {
+export class JobContentHeaderViewComponent implements OnInit {
 	@Input() job: Job;
 	@Input() user: User;
 	isBookmarked: boolean = false;
 
-	constructor(private store: Store<fromRoot.State>) {
+	constructor(private store: Store<fromRoot.State>) {}
+
+	ngOnInit() {
 		if (this.user && this.job) {
 			this.isBookmarked = this.user.bookmark_ids.indexOf(this.job._id) > -1 ? true : false;
 		}

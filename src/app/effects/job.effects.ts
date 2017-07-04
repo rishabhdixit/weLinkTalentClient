@@ -22,7 +22,7 @@ export class JobEffects {
 		.ofType(jobsAction.ActionTypes.ADD_BOOKMARK)
 		.map((action: jobsAction.AddBookmarkAction) => action.payload)
 		.switchMap((data) => this.bookmarkService.addBookmark(data)
-			.map((res) => new jobsAction.AddBookmarkSuccessAction(res))
+			.map((res) => new jobsAction.AddBookmarkSuccessAction(data))
 			.catch(() => Observable.of(new jobsAction.AddBookmarkFailAction('')))
 		);
 
@@ -31,7 +31,7 @@ export class JobEffects {
 		.ofType(jobsAction.ActionTypes.REMOVE_BOOKMARK)
 		.map((action: jobsAction.RemoveBookmarkAction) => action.payload)
 		.switchMap((data) => this.bookmarkService.removeBookmark(data)
-			.map((res) => new jobsAction.RemoveBookmarkSuccessAction(res))
+			.map((res) => new jobsAction.RemoveBookmarkSuccessAction(data))
 			.catch(() => Observable.of(new jobsAction.RemoveBookmarkFailAction('')))
 		);
 
