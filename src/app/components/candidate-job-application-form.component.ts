@@ -47,11 +47,8 @@ import { JobApplication } from '../models/job-application.model';
 						<p class="skillStyle">Please score yourself accordingly for the skills listed below.</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
 						<div class="form-group" *ngFor="let skill of job.skills">
-							<!--<input type="text" class="input-style" value="{{skill}}" readonly/>-->
-							<!--<ul class="list-unstyled ulStyle">-->
-								<app-stars [skill]="skill" [application]="application" [index]="i" [(ngModel)]="application.skills[skill]"
-													 [ngModelOptions]="{standalone: true}" ngDefaultControl></app-stars>
-							<!--</ul>-->
+							<app-stars [skill]="skill" [application]="application" [index]="i" [(ngModel)]="application.skills[skill]"
+												 [ngModelOptions]="{standalone: true}" ngDefaultControl></app-stars>
 						</div>
 					</div>
 					<div class="form-group">

@@ -6,10 +6,10 @@ const emptyRating: number = -10;
 	selector: 'app-stars',
 	template:`
 		<div class="row">
-			<div class="col-md-6">
+			<div *ngIf="!disableName" class="col-md-6">
 				<h5>{{ skill }}</h5>
 			</div>
-			<div class="col-md-6">
+			<div [ngClass]="getClass(disableName)">
 				<ng-container *ngFor="let a of iterableStarArray">
 					<i (mouseover)="onMouseOver(a)"
 						 (mouseleave)="onMouseLeave(a)"
@@ -38,6 +38,7 @@ export class StarsComponent implements OnInit {
 	@Input() noOfStars: number = 5;
 	@Input() application: JobApplication;
 	@Input() skill: any;
+	@Input() disableName: boolean = false;
 	@Input() index: number;
 	@Input() currRating: number = emptyRating;
 	@Output() newRating = new EventEmitter();
@@ -97,5 +98,12 @@ export class StarsComponent implements OnInit {
 		for (let a = 0, len = numStars; a < len; a++) {
 			this.iterableStarArray.push(a);
 		}
+	}
+
+	getClass(disableName) {
+		if (disableName) {
+			return 'col-md-12';
+		}
+		return 'col-md-6';
 	}
 }
