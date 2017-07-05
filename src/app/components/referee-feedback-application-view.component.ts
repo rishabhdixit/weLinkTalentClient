@@ -18,12 +18,17 @@ import { JobApplication } from '../models/job-application.model';
 					<div class="col-md-12 div-padding">
 						<p class="skillStyle">Your Personal Scoring:</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-						<div class="form-group" *ngFor="let skill of jobApplication.skills; let i=index">
-							<!--<input type="text" readonly class="input-style" value="{{ skill.name }}" />-->
-							<!--<ul class="list-unstyled ulStyle">-->
-								<!--<app-stars [currRating]="skill.rate"></app-stars>-->
-							<!--</ul>-->
-							<app-stars [skill]="skill.name" [currRating]="skill.rate - 1"></app-stars>
+						<div class="form-group" *ngFor="let skill of jobApplication.form_data.skills">
+							<div class="row">
+								<div class="col-md-6">
+									<h5>{{ skill.name }}</h5>
+								</div>
+								<div class="col-md-6">
+									<ng-container *ngFor="let count of [0,1,2,3,4]">
+										<i [ngClass]="getClass(count, skill.rate)"></i>
+									</ng-container>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -46,10 +51,6 @@ import { JobApplication } from '../models/job-application.model';
 						<textarea class="form-control" rows="5" id="management" name="managements" 
 											[(ngModel)]="jobApplication.form_data.management" required readonly></textarea>
 					</div>
-					<!--<div *ngIf="!forReference" class="button-class">-->
-						<!--<button type="submit" class="btn btn-primary btn-lg" (click)="onApplyClick()">Apply?</button>-->
-						<!--<p class="bottom-style">Your information will be saved automatically</p>-->
-					<!--</div>-->
 				</div>
 			</div>
 		</form>
@@ -72,33 +73,16 @@ import { JobApplication } from '../models/job-application.model';
 			font-weight: 700;
 			margin-bottom: 0;
 		}
-		.ulStyle {
-			float: right;
-			margin-bottom: 0;
-		}
 		i:hover{
 			cursor:pointer;
-		}
-		.job-detail {
-			margin-bottom: 5px;
-			text-align: center;
-			font-size: x-large;
-			color: dimgray;
-		}
-		.input-style {
-			font-size: x-large;
-			font-weight: bolder;
-			width: 300px;
-			border: none;
 		}
 		.pStyle {
 			font-size: smaller;
 			text-align: center;
 			color: dimgray;
 		}
-		input.currency {
-			text-align: right;
-			padding-right: 15px;
+		.color-yellow {
+			color: yellow;
 		}
 	`],
 })
@@ -106,6 +90,14 @@ import { JobApplication } from '../models/job-application.model';
 export class RefereeFeedbackApplicationViewComponent {
 	@Input() jobApplication: JobApplication;
 	@Input() job: Job;
-	constructor() { }
 
+	constructor() {}
+
+	getClass(count, rate) {
+		if (count < rate) {
+			return 'fa fa-star fa-2x color-yellow';
+		} else {
+			return 'fa fa-star fa-2x';
+		}
+	}
 }
