@@ -10,7 +10,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { publishBehavior } from 'rxjs/operator/publishBehavior';
 import { State } from '../reducers/job-application.reducer';
 import { User } from '../models/user.model';
-import { JobStatus } from '../models/job-status.model';
 
 @Component({
 	selector: 'app-job-detail-page',
@@ -23,7 +22,6 @@ import { JobStatus } from '../models/job-status.model';
 				<app-job-content-view [job]="job$ | async"></app-job-content-view>
 				<app-job-buttons
 					[job]="job$ | async"
-					[jobStatus]="jobStatus$ | async"
 					(applyButtonClickEvent)="applyButtonClickHandler($event)"></app-job-buttons>
 			</div>
 			<div class="col-md-4 sideStyle">
@@ -39,24 +37,26 @@ import { JobStatus } from '../models/job-status.model';
 		}
 	`],
 })
-export class JobDetailPageComponent {
+export class JobDetailPageComponent implements OnInit {
 	job$: Observable<Job>;
 	jobId: string;
-	jobStatus$: Observable<JobStatus>;
 	user: User;
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
+	}
+
+	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
 		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.jobId = job._id);
-		let queryObject = {
-			user: `${this.user.id}`,
-			jobId: `jobId=${this.jobId}`
-		};
-		this.store.dispatch(new jobAction.GetJobStatus(queryObject));
-		this.jobStatus$ = this.store.select(fromRoot.getStatus);
+		if (this.user) {
+			this.store.dispatch(new jobAction.GetJobStatus({
+				user: this.user.id,
+				jobId: this.jobId
+			}));
+		}
 	}
 
 	applyButtonClickHandler(job: Job) {
-		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction({job: job , user: this.user}));
+		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction({ job: job, user: this.user }));
 	}
 }

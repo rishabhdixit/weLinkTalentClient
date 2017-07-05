@@ -3,7 +3,9 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { JobService } from '../services/job.service';
 import { BookmarkService } from '../services/bookmark.service';
+
 import * as jobsAction from '../actions/jobs.action';
+
 
 @Injectable()
 export class JobEffects {
@@ -36,14 +38,16 @@ export class JobEffects {
 		);
 
 	@Effect()
-	getStatus$ = this.actions
+	getJobStatus$ = this.actions
 		.ofType(jobsAction.ActionTypes.GET_STATUS)
 		.map((action: jobsAction.GetJobStatus) => action.payload)
-		.switchMap((queryObject) => this.jobService.getStatus(queryObject.user, queryObject.jobId)
-			.map((res) => new jobsAction.GetJobStatusSuccess(res))
+		.switchMap((payload) => this.jobService.getStatus(payload.user, payload.jobId)
+			.map((res) => new jobsAction.GetJobStatusSuccess({ 'data': res, 'selectedJobId': payload.jobId }))
 			.catch(() => Observable.of(new jobsAction.GetJobStatusFail('')))
 		);
 
-	constructor(private actions: Actions, private jobService: JobService, private bookmarkService: BookmarkService) {
+	constructor(private actions: Actions,
+		private jobService: JobService,
+		private bookmarkService: BookmarkService) {
 	}
 }

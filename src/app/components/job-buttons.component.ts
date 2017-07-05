@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../models/job.model';
-import {JobStatus} from '../models/job-status.model';
 
 @Component({
 	selector: 'app-job-buttons',
@@ -12,7 +11,7 @@ import {JobStatus} from '../models/job-status.model';
 				<button type="button" class="btn btn-basic btn-lg btnBack">Back</button>
 			</a>
 		</div>
-		<div  *ngIf="jobStatus.status == 'Application not found'" class="col-md-5">
+		<div  *ngIf="job.status != 'Application found'" class="col-md-5">
 			<button type="button" class="btn btn-primary btn-lg btnApply" (click)="applyButtonClick()">Apply</button>
 		</div>
 	</div>
@@ -29,7 +28,6 @@ import {JobStatus} from '../models/job-status.model';
 })
 export class JobButtonsComponent {
 	@Input() job: Job;
-	@Input() jobStatus: JobStatus;
 	@Output() applyButtonClickEvent = new EventEmitter<Job>();
 
 	constructor() {

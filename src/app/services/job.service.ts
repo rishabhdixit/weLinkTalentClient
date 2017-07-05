@@ -25,7 +25,7 @@ export class JobService {
 		user: string,
 		jobId: string
 	): Observable<any> {
-		return this.authHttp.get(`${this.api}/api/users/${user}/applications?${jobId}`)
-			.map(res => res.json());
+		return this.http.get(`${this.api}/api/users/${user}/applications/${jobId}`)
+			.map((res: Response) => res.json());
 	}
 }

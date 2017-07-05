@@ -1,6 +1,5 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-import {JobStatus} from '../models/job-status.model';
 
 export const ActionTypes = {
 	LOAD: 						type('[JOBS] Jobs load'),
@@ -111,7 +110,7 @@ export class GetJobStatus implements Action {
 export class GetJobStatusSuccess implements Action {
 	type = ActionTypes.GET_STATUS_SUCCESS;
 
-	constructor(public payload: JobStatus) {
+	constructor(public payload: any) {
 	}
 }
 export class GetJobStatusFail implements Action {
