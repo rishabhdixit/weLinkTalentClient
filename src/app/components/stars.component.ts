@@ -4,28 +4,33 @@ import { JobApplication } from '../models/job-application.model';
 const emptyRating: number = -10;
 @Component({
 	selector: 'app-stars',
-	template:`		
-		<ng-container *ngFor="let a of iterableStarArray">
-			<i (mouseover)="onMouseOver(a)"
-				 (mouseleave)="onMouseLeave(a)"
-				 (click)="isClicked(a, skill)"
-				 [class.highlight]="isHighlighted(a)" 
-				 class="fa fa-star fa-2x" 
-				 aria-hidden="true" 
-				 [(ngModel)]="application.skills[skill]" 
-				 ngDefaultControl></i>
-		</ng-container>
+	template:`
+		<div class="row">
+			<div class="col-md-6">
+				<h5>{{ skill }}</h5>
+			</div>
+			<div class="col-md-6">
+				<ng-container *ngFor="let a of iterableStarArray">
+					<i (mouseover)="onMouseOver(a)"
+						 (mouseleave)="onMouseLeave(a)"
+						 (click)="isClicked(a, skill)"
+						 [class.highlight]="isHighlighted(a)"
+						 class="fa fa-star fa-2x"
+						 aria-hidden="true"
+						 [(ngModel)]="application.skills[skill]"
+						 ngDefaultControl></i>
+				</ng-container>
+			</div>
+		</div>
 	`,
-	styles:[
-			`
-			.highlight{
-				color:yellow;
-			}
-			i:hover{
-				cursor:pointer;
-			}
-		`
-	]
+	styles:[`
+		.highlight{
+			color:yellow;
+		}
+		i:hover{
+			cursor:pointer;
+		}
+	`]
 })
 
 export class StarsComponent implements OnInit {
@@ -79,7 +84,6 @@ export class StarsComponent implements OnInit {
 		this.rating = index;
 		this.application.skills[skill] = this.rating;
 		this.newRating.emit(this.rating);
-		console.log(this.currRating);
 	}
 
 	isHighlighted(index: number) {

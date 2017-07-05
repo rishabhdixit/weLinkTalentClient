@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Job } from 'app/models/job.model';
 import { JobApplication } from '../models/job-application.model';
 
@@ -18,11 +18,12 @@ import { JobApplication } from '../models/job-application.model';
 					<div class="col-md-12 div-padding">
 						<p class="skillStyle">Your Personal Scoring:</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-						<div class="form-group" *ngFor="let skill of jobApplication.skills">
-							<input type="text" readonly class="input-style" value="{{skill}}" />
-							<ul class="list-unstyled ulStyle">
-								<app-stars [currRating]="jobApplication.skills"></app-stars>
-							</ul>
+						<div class="form-group" *ngFor="let skill of jobApplication.skills; let i=index">
+							<!--<input type="text" readonly class="input-style" value="{{ skill.name }}" />-->
+							<!--<ul class="list-unstyled ulStyle">-->
+								<!--<app-stars [currRating]="skill.rate"></app-stars>-->
+							<!--</ul>-->
+							<app-stars [skill]="skill.name" [currRating]="skill.rate - 1"></app-stars>
 						</div>
 					</div>
 					<div class="form-group">

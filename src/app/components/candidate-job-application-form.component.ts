@@ -11,7 +11,7 @@ import { JobApplication } from '../models/job-application.model';
 					<h2>Talent Application Form</h2>
 					<p class="job-detail">{{job.title}} - {{job.company.name}}</p>
 					<p style="text-align:center; font-size:small; color:darkgray; margin-bottom:5px;">
-					This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
+						This application is confidential. Please contact us at talent@welinktalent.com for any questions regarding this form.</p>
 					<div class="form-group">
 						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required>
 					</div>
@@ -26,17 +26,9 @@ import { JobApplication } from '../models/job-application.model';
 							<label for="basePerMonth" class="label-margin">Base per month:&emsp;</label>
 							<div class="input-group inputBase">
 								<select #basePerMonthCurrency (change)="onChange($event)">
-									<option>SGD</option>
-									<option>PHP</option>
-									<option>USD</option>
-									<option>EUR</option>
-									<option>EGP</option>
-									<option>HKD</option>
-									<option>AUD</option>
-									<option>BRL</option>
-									<option>JPY</option>
+									<option *ngFor="let curr of currencies">{{ curr }}</option>
 								</select>
-								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth" 
+								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth"
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
@@ -44,17 +36,9 @@ import { JobApplication } from '../models/job-application.model';
 							<label for="bonus" class="bonusLabel">Bonus:&emsp;</label>
 							<div class="input-group inputBonus">
 								<select #bonusCurrency (change)="onChange($event)">
-									<option>SGD</option>
-									<option>PHP</option>
-									<option>USD</option>
-									<option>EUR</option>
-									<option>EGP</option>
-									<option>HKD</option>
-									<option>AUD</option>
-									<option>BRL</option>
-									<option>JPY</option>
+									<option *ngFor="let curr of currencies">{{ curr }}</option>
 								</select>
-								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus" 
+								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus"
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
@@ -63,11 +47,11 @@ import { JobApplication } from '../models/job-application.model';
 						<p class="skillStyle">Please score yourself accordingly for the skills listed below.</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
 						<div class="form-group" *ngFor="let skill of job.skills">
-							<input type="text" class="input-style" value="{{skill}}" readonly/>
-							<ul class="list-unstyled ulStyle">
-								<app-stars [skill]="skill" [application]="application" [index]="i" [(ngModel)]="application.skills[skill]" 
+							<!--<input type="text" class="input-style" value="{{skill}}" readonly/>-->
+							<!--<ul class="list-unstyled ulStyle">-->
+								<app-stars [skill]="skill" [application]="application" [index]="i" [(ngModel)]="application.skills[skill]"
 													 [ngModelOptions]="{standalone: true}" ngDefaultControl></app-stars>
-							</ul>
+							<!--</ul>-->
 						</div>
 					</div>
 					<div class="form-group">
@@ -94,9 +78,6 @@ import { JobApplication } from '../models/job-application.model';
 						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply?</button>
 						<!--<p class="bottom-style">Your information will be saved automatically</p>-->
 					</div>
-				</div>
-				<div>
-					<button class="btn btn-primary" (click)="onClick()">see</button>
 				</div>
 			</div>
 		</form>
@@ -146,12 +127,6 @@ import { JobApplication } from '../models/job-application.model';
 			font-size: x-large;
 			color: dimgray;
 		}
-		.input-style {
-			font-size: x-large;
-			font-weight: bolder;
-			width: 260px;
-			border: none;
-		}
 		.inputBonus {
 			width: 260px;
 			float: right;
@@ -177,12 +152,20 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 	@Input() job: Job;
 	@Output() applicationEventEmitter = new EventEmitter<JobApplication>();
 	@Input() forReference: Boolean;
+	currencies = [`SGD`, `PHP`, `USD`, `EUR`, `EGP`, `HKD`, `AUD`, `BRL`, `JPY`];
 
 	application: JobApplication= new JobApplication();
 
 	constructor() {	}
 
 	onApplyClick() {
+		// this.application.skills = JSON.stringify(this.application.skills);
+		let skills:any = [];
+
+		for (let skill of Object.keys(this.application.skills)) {
+			skills.push({name: skill, rate: (this.application.skills[skill] + 1)});
+		}
+		this.application.skills = skills;
 		this.applicationEventEmitter.emit(this.application);
 	}
 
@@ -202,9 +185,5 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 
 	onChange(currency) {
 		return currency;
-	}
-
-	onClick() {
-		console.log(this.application);
 	}
 }

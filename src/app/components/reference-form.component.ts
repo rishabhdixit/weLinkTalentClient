@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Reference } from '../models/reference.model';
 
 
@@ -80,7 +80,7 @@ import { Reference } from '../models/reference.model';
 								 [(ngModel)]="reference.endYearOfWorking" required/>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row"style="padding-left: 15px;">
 				<div class="form-group listStyle">
 					<label for="canContact" class="canContactLabel">Can we contact this reference?* </label>
 					<ul class="list-unstyled">

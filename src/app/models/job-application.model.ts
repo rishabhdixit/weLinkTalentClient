@@ -3,25 +3,21 @@ export class JobApplication {
 		user_id: string;
 		job_id: string;
 		files: any;
-		reasonForLeaving: string;
-		basePerMonth: string;
-		bonus: string;
-		strength: string;
-		improvements: string;
-		achievements: string;
-		management: string;
-		skills: any;
 		form_data: ApplicationDetails;
+		// skillRate: SkillRating[];
+		skills: any;
 }
 
 export class ApplicationDetails {
 	reasonForLeaving: string;
-	basePerMonth: string;
-	bonus: string;
-	starRate: any;
 	strength: string;
 	improvements: string;
 	achievements: string;
 	management: string;
 	skills: any;
 }
+
+// export class SkillRating {
+// 	skillName: string;
+// 	rate: number;
+// }
