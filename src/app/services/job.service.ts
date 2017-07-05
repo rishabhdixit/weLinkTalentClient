@@ -25,7 +25,7 @@ export class JobService {
 		user: string,
 		jobId: string
 	): Observable<any> {
-		return this.http.get(`${this.api}/api/users/${user}/applications/${jobId}`)
+		return this.http.get(`${this.api}/api/users/${user}/applications?jobId=${jobId}`)
 			.map((res: Response) => res.json());
 	}
 }
