@@ -8,7 +8,8 @@ export const ActionTypes = {
 	LOGOUT:        			type('[USER] Logout'),
 	LOGIN_SUCCESS: 			type('[USER] Login Success'),
 	LOGIN_FAIL:   			type('[USER] Login Fail'),
-	REGISTER_REDIRECT_URL:	type('[USER] Register redirect url')
+	REGISTER_REDIRECT_URL:	type('[USER] Register redirect url'),
+	LOGIN_FILL_USER: 		type('[USER] Login Fill User')
 };
 
 export class LoginAction implements Action {
@@ -46,8 +47,16 @@ export class RegisterRedirectUrlAction implements Action {
 	}
 }
 
+export class LoginFillUserAction implements Action {
+	type = ActionTypes.LOGIN_FILL_USER;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = LoginAction
 	| LogoutAction
 	| LoginSuccessAction
 	| LoginFailAction
-	| RegisterRedirectUrlAction;
+	| RegisterRedirectUrlAction
+	| LoginFillUserAction;

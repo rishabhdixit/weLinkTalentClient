@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { ProfileResolve } from './resolves/profile.resolve';
-// import { UserResolve } from './resolves/user.resolve';
+import { UserResolve } from './resolves/user.resolve';
 
 import { JobExistsGuard } from './guards/job-exist.guard';
 import { LoggedInGuard } from './guards/logged-in.guard';
@@ -50,7 +50,7 @@ export const routes: Routes = [
 		path: 'jobs/:id',
 		canActivate: [JobExistsGuard],
 		component: JobDetailPageComponent,
-		// resolve: { loaded: UserResolve }
+		resolve: { loaded: UserResolve }
 	},
 	{
 		path: 'about-us',

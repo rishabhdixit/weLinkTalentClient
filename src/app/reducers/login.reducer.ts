@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: login.Actions): State {
 		case login.ActionTypes.LOGIN:
 		case login.ActionTypes.LOGOUT:
 			return initialState;
-
+		case login.ActionTypes.LOGIN_FILL_USER:
 		case login.ActionTypes.LOGIN_SUCCESS: {
 			return Object.assign({}, state, {
 				user: action.payload,

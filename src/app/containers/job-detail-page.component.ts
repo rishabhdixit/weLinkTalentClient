@@ -1,15 +1,21 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Job } from '../models/job.model';
-import * as fromRoot from '../reducers';
-
-import * as jobsApplicationAction from '../actions/job-application.action';
-import * as jobAction from '../actions/jobs.action';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { publishBehavior } from 'rxjs/operator/publishBehavior';
-import { State } from '../reducers/job-application.reducer';
+import { Router } from '@angular/router';
+
+import { Job } from '../models/job.model';
 import { User } from '../models/user.model';
+
+import * as fromRoot from '../reducers';
+import * as jobsApplicationAction from '../actions/job-application.action';
+import * as jobAction from '../actions/jobs.action';
+import * as loginAction from '../actions/login.action';
+
+import { State } from '../reducers/job-application.reducer';
+import { LoginService } from '../services/login.service';
+
 
 @Component({
 	selector: 'app-job-detail-page',
@@ -41,7 +47,9 @@ export class JobDetailPageComponent implements OnInit {
 	job$: Observable<Job>;
 	selectedJob: Job;
 	user: User;
-	constructor(private store: Store<fromRoot.State>) {
+	constructor(private store: Store<fromRoot.State>,
+		private router: Router,
+		private loginService: LoginService) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}
 
@@ -57,6 +65,12 @@ export class JobDetailPageComponent implements OnInit {
 	}
 
 	applyButtonClickHandler(job: Job) {
-		this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction({ job: job, user: this.user }));
+		if (this.user) {
+			this.store.dispatch(new jobsApplicationAction.ApplicationConceptLoadAction({ job: job, user: this.user }));
+		} else {
+			// Note : if not log in user, force user to log-in first before applying
+			this.store.dispatch(new loginAction.RegisterRedirectUrlAction(`/jobs/${job._id}`));
+			this.router.navigate(['login']);
+		}
 	}
 }

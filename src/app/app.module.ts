@@ -17,6 +17,7 @@ import { reducer } from './reducers';
 import { ComponentsModule } from './components';
 
 import { ProfileResolve } from './resolves/profile.resolve';
+import { UserResolve } from './resolves/user.resolve';
 
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { CandidateGuard } from './guards/candidate.guard';
@@ -111,6 +112,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		BookmarkService,
 		JobApplicationService,
 		ProfileResolve,
+		UserResolve,
 		LoggedInGuard,
 		CandidateGuard,
 		JobApplicationGuard,
