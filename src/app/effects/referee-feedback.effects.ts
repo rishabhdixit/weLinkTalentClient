@@ -48,13 +48,8 @@ export class RefereeFeedbackEffects {
 					return Observable.from([
 						new refereeFeedback.SubmitFeedbackSuccessAction(response),
 					]);
-				});
+				}).do(() => this.router.navigate(['/referee-thank-page']));
 		});
-
-	@Effect()
-	submitRefereeFeedbackSuccess$: Observable<Action> = this.actions
-		.ofType(refereeFeedback.ActionTypes.SUBMIT_FEEDBACK_SUCCESS)
-		.do(() => this.router.navigate(['/referee-thank-page']));
 
 	constructor(private actions: Actions,
 		private jobService: JobService,

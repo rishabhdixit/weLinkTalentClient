@@ -269,7 +269,7 @@
 			<!--Work experience loop-->
 			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
 				<div [formGroupName]="i">
-					<div *ngIf="edit != 'position'+i" class="view">
+					<div *ngIf="edit != 'position'+i" class="view" style="padding-top: 10px;">
 						<input type="text" value="{{ position.value.title }}" class="position-display" placeholder="Position" readonly />
 						<input type="text" class="inputPlace" value="{{ position.value.startDate }} - {{ position.value.endDate }}" style="width:40%" placeholder="Time Period" readonly/>
 						<br>

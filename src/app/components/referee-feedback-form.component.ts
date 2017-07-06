@@ -20,14 +20,7 @@ import { Job } from '../models/job.model';
 					<p class="skillStyle">Rate the candidate's skills accordingly.</p>
 					<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
 					<div class="form-group star-margin" *ngFor="let skill of jobApplication.form_data.skills">
-						<app-stars
-							[skill]="skill"
-							[application]="refereeFeedbackForm"
-							[(ngModel)]="skill.name"
-							[ngModelOptions]="{standalone: true}"
-							[disableName]="true"
-							ngDefaultControl></app-stars>
-					</div>
+						
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
@@ -103,7 +96,6 @@ export class RefereeFeedbackFormComponent {
 		this.refereeFeedbackForm = this.fb.group({
 			reasonForLeavingFeedback: '',
 			reasonForLeavingApproved: false,
-			skillRate: [],
 			strengthFeedback: '',
 			strengthApproved: false,
 			improvementFeedback: '',
