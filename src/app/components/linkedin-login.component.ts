@@ -16,7 +16,7 @@ export class LinkedinLoginComponent implements OnInit {
 	ngOnInit() {
 		$.getScript('https://platform.linkedin.com/in.js?async=true', () => {
 			IN.init({
-				api_key: '81xkask6b0vp2j',
+				api_key: '81zeopu62nl2eb',
 				authorize: true
 			});
 		});

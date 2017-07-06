@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	api: 'http://209.177.88.199'
+	api: 'https://welinktalent-server-new.herokuapp.com'
 };
