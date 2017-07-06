@@ -4,7 +4,7 @@ import { User } from './user.model';
 export class RefereeFeedback {
 	user: User;
 	jobApplication: JobApplication;
-	skillRate: SkillRate[];
+	skillRate: any;
 	reasonForLeavingFeedback: string;
 	reasonForLeavingApproved: boolean;
 	strengthFeedback: string;
@@ -15,9 +15,4 @@ export class RefereeFeedback {
 	achievementApproved: boolean;
 	managementStyleFeedback: string;
 	managementStyleApproved: boolean;
-}
-
-export class SkillRate {
-	skillName: string;
-	rate: number;
 }

@@ -48,7 +48,7 @@ export const COMPONENTS = [
 	RefereeFeedbackApplicationViewComponent,
 	CandidateJobApplicationFormComponent,
 	RefereeFeedbackThankViewComponent,
-	CandidateJobsAppliedViewComponent
+	CandidateJobsAppliedViewComponent,
 ];
 
 @NgModule({
