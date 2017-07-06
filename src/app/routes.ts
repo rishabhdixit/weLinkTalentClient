@@ -90,9 +90,10 @@ export const routes: Routes = [
 		canActivate: [LoggedInGuard],
 	},
 	{
-		path: 'referee-feedback/:application-form',
+		path: 'referee-feedback',
 		component: RefereeFeedbackPageComponent,
 		canActivate: [RefereeFeedbackGuard],
+		resolve: { loaded: UserResolve }
 	},
 	// otherwise redirect to home
 	{ path: '**', redirectTo: '' }

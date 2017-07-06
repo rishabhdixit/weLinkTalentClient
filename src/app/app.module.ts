@@ -34,6 +34,7 @@ import { ProfileService } from './services/profile.service';
 import { JobService } from './services/job.service';
 import { BookmarkService } from './services/bookmark.service';
 import { JobApplicationService } from './services/job-application.service';
+import { DecryptService } from './services/decrypt.service';
 
 import { ProfileEffects } from './effects/profile.effects';
 import { LogInEffects } from './effects/login.effects';
@@ -111,6 +112,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobService,
 		BookmarkService,
 		JobApplicationService,
+		DecryptService,
 		ProfileResolve,
 		UserResolve,
 		LoggedInGuard,
