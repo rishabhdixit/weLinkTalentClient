@@ -39,7 +39,7 @@ import { User } from '../models/user.model';
 })
 export class JobDetailPageComponent implements OnInit {
 	job$: Observable<Job>;
-	jobId: string;
+	selectedJob: Job;
 	user: User;
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
@@ -47,11 +47,11 @@ export class JobDetailPageComponent implements OnInit {
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
-		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.jobId = job._id);
-		if (this.user) {
+		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
+		if (this.user && this.selectedJob) {
 			this.store.dispatch(new jobAction.GetJobStatus({
 				user: this.user.id,
-				jobId: this.jobId
+				jobId: this.selectedJob._id
 			}));
 		}
 	}
