@@ -28,4 +28,9 @@ export class JobService {
 		return this.http.get(`${this.api}/api/users/${user}/applications?jobId=${jobId}`)
 			.map((res: Response) => res.json());
 	}
+
+	getBookmarkJobs(user: string): Observable<any> {
+		return this.http.get(`${this.api}/api/users/${user}/bookmarks`)
+			.map((res: Response) => res.json());
+	}
 }

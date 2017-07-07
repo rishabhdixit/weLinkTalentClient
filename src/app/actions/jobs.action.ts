@@ -2,21 +2,21 @@ import { type } from '../util';
 import { Action } from '@ngrx/store';
 
 export const ActionTypes = {
-	LOAD: 						type('[JOBS] Jobs load'),
-	LOAD_SUCCESS: 				type('[JOBS] Jobs load success'),
-	LOAD_FAIL: 					type('[JOBS] Jobs load fail'),
-	SEARCH:        				type('[JOBS] Search'),
-	SELECT:        				type('[JOBS] Select'),
-	LOAD_DETAIL: 				type('[JOBS] Jobs load detail'),
-	GET_STATUS: 				type('[JOBS] Get Job Status'),
-	GET_STATUS_SUCCESS: 		type('[JOBS] Get Job Status Success'),
-	GET_STATUS_FAIL: 			type('[JOBS] Get Job Status Fail'),
-	ADD_BOOKMARK: 	  			type('[USERS] Add bookmark'),
-	ADD_BOOKMARK_SUCCESS: 		type('[USERS] Add bookmark success'),
-	ADD_BOOKMARK_FAIL: 			type('[USERS] Add bookmark failure'),
-	REMOVE_BOOKMARK: 			type('[USERS] Remove bookmark '),
-	REMOVE_BOOKMARK_SUCCESS: 	type('[USERS] Remove bookmark success'),
-	REMOVE_BOOKMARK_FAIL: 		type('[USERS] Remove bookmark failure'),
+	LOAD:                       type('[JOBS] Jobs load'),
+	LOAD_SUCCESS:               type('[JOBS] Jobs load success'),
+	LOAD_FAIL:                  type('[JOBS] Jobs load fail'),
+	SEARCH:                     type('[JOBS] Search'),
+	SELECT:                     type('[JOBS] Select'),
+	LOAD_DETAIL:                type('[JOBS] Jobs load detail'),
+	GET_STATUS:                 type('[JOBS] Get Job Status'),
+	GET_STATUS_SUCCESS:         type('[JOBS] Get Job Status Success'),
+	GET_STATUS_FAIL:            type('[JOBS] Get Job Status Fail'),
+	ADD_BOOKMARK:               type('[USERS] Add bookmark'),
+	ADD_BOOKMARK_SUCCESS:       type('[USERS] Add bookmark success'),
+	ADD_BOOKMARK_FAIL:          type('[USERS] Add bookmark failure'),
+	REMOVE_BOOKMARK:            type('[USERS] Remove bookmark '),
+	REMOVE_BOOKMARK_SUCCESS:    type('[USERS] Remove bookmark success'),
+	REMOVE_BOOKMARK_FAIL:       type('[USERS] Remove bookmark failure'),
 };
 
 export class JobsLoadAction implements Action {

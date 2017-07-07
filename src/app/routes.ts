@@ -24,6 +24,7 @@ import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent} from './containers/referee-feedback-thank-page.component';
+import { CandidateBookmarkPageComponent} from './containers/candidate-bookmark-page.component';
 
 export const routes: Routes = [
 	{
@@ -94,6 +95,11 @@ export const routes: Routes = [
 		component: RefereeFeedbackPageComponent,
 		canActivate: [RefereeFeedbackGuard],
 		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'bookmarks',
+		component: CandidateBookmarkPageComponent,
+		canActivate: [LoggedInGuard]
 	},
 	// otherwise redirect to home
 	{ path: '**', redirectTo: '' }

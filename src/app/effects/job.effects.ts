@@ -6,7 +6,6 @@ import { BookmarkService } from '../services/bookmark.service';
 
 import * as jobsAction from '../actions/jobs.action';
 
-
 @Injectable()
 export class JobEffects {
 

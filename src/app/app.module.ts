@@ -42,6 +42,7 @@ import { JobEffects } from './effects/job.effects';
 import { ApplicationEffects } from './effects/application.effects';
 import { RefereeFeedbackEffects } from './effects/referee-feedback.effects';
 import { CandidateJobsAppliedEffects } from './effects/candidate-jobs-applied.effects';
+import { CandidateBookmarkedJobEffects } from './effects/candidate-bookmarked-jobs.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -55,6 +56,7 @@ import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
+import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -76,6 +78,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		CandidateHomePageComponent,
 		RefereeFeedbackPageComponent,
 		RefereeFeedbackThankPageComponent,
+		CandidateBookmarkPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -90,6 +93,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		EffectsModule.run(ApplicationEffects),
 		EffectsModule.run(RefereeFeedbackEffects),
 		EffectsModule.run(CandidateJobsAppliedEffects),
+		EffectsModule.run(CandidateBookmarkedJobEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),
