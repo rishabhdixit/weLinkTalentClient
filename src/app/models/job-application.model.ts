@@ -4,7 +4,6 @@ export class JobApplication {
 		job_id: string;
 		files: any;
 		form_data: ApplicationDetails;
-		// skillRate: SkillRating[];
 		skills: any;
 }
 
@@ -16,8 +15,3 @@ export class ApplicationDetails {
 	management: string;
 	skills: any;
 }
-
-// export class SkillRating {
-// 	skillName: string;
-// 	rate: number;
-// }

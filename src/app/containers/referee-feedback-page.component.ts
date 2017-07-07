@@ -19,14 +19,12 @@ import { Job } from '../models/job.model';
 							<div class="row">
 								<div class="col-md-7" style="background: lightgray;">
 									<app-referee-feedback-application-view
-                   						[jobApplication]="jobApplicationForm$ | async "
-										[job]="job$ | async"   >
+                   						[jobApplication]="jobApplicationForm$ | async "  >
 										</app-referee-feedback-application-view>
 								</div>
 								<div class="col-md-5" style="float: right; background: #e6c5ff;">
 									<app-referee-feedback-form
 										[jobApplication]="jobApplicationForm$ | async "
-										[job]="job$ | async" 
 										(submitRefereeFeedbackEvent)="submitRefereeFeedbackHandler($event)"
 										>
 									</app-referee-feedback-form>
@@ -43,11 +41,9 @@ import { Job } from '../models/job.model';
 })
 export class RefereeFeedbackPageComponent {
 	jobApplicationForm$: Observable<JobApplication>;
-	job$: Observable<Job>;
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.jobApplicationForm$ = this.store.select(fromRoot.getJobApplicationReferenceFeedback);
-		this.job$ = this.store.select(fromRoot.getJobReferenceFeedback);
 	}
 
 	submitRefereeFeedbackHandler(feedback: RefereeFeedback) {

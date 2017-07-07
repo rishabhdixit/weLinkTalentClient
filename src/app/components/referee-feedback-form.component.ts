@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
 import { RefereeFeedback } from '../models/referee-feedback.model';
 import { JobApplication } from '../models/job-application.model';
 import { Job } from '../models/job.model';
@@ -12,36 +12,55 @@ import { Job } from '../models/job.model';
 				<h2>Referee Comments:</h2>
 				<p class="pStyle">This section contains what your referee has filled.</p>
 				<div class="form-group" style="margin-top: 45px; margin-bottom: .5rem;">
-					<textarea class="form-control" rows="4" formControlName="reasonForLeavingFeedback" required></textarea>
-					<input type="checkbox" formControlName="reasonForLeavingApproved" (click)="reasonForLeavingApproved=onClick()"/>
-					<label> I APPROVE</label>
+					<textarea class="form-control" rows="4" formControlName="reasonForLeavingFeedback" required> </textarea>
+					<label>
+						<input type="checkbox" formControlName="reasonForLeavingApproved"/>
+						I APPROVE
+					</label>
 				</div>
 				<div class="col-md-12 div-padding">
 					<p class="skillStyle">Rate the candidate's skills accordingly.</p>
 					<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-					<div class="form-group star-margin" *ngFor="let skill of jobApplication.form_data.skills">
-						
+					
+					<div class="form-group star-margin" formArrayName="skillRatings" *ngFor="let skill of skillRatings.controls; let i=index;">
+						<div [formGroupName]="i">
+							<app-reactive-star
+								[skill]="skill.controls.name.value"
+								[listIndex]="i"
+								(newRating)="onClickNewRating($event)"
+								>
+							</app-reactive-star>
+						</div>
 					</div>
+					
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
-					<textarea class="form-control" rows="4" formControlName="strengthFeedback" required></textarea>
-					<input type="checkbox" formControlName="strengthApproved" (click)="strengthApproved=onClick()"/>
-					<label> I APPROVE</label>
+					<textarea class="form-control" rows="4" formControlName="strengthFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="strengthApproved"/>
+					 	I APPROVE
+					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="improvementFeedback" required></textarea>
-					<input type="checkbox" formControlName="improvementApproved" (click)="improvementApproved=onClick()"/>
-					<label> I APPROVE</label>
+					<textarea class="form-control" rows="4" formControlName="improvementFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="improvementApproved"/>
+						I APPROVE
+					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="achievementFeedback" required></textarea>
-					<input type="checkbox" formControlName="achievementApproved" (click)="achievementApproved=onClick()"/>
-					<label> I APPROVE</label>
+					<textarea class="form-control" rows="4" formControlName="achievementFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="achievementApproved"/>					
+						I APPROVE
+					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="managementStyleFeedback" required></textarea>
-					<input type="checkbox" formControlName="managementStyleApproved" (click)="managementStyleApproved=onClick()"/>
-					<label> I APPROVE</label>
+					<textarea class="form-control" rows="4" formControlName="managementStyleFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="managementStyleApproved"/>						
+						I APPROVE
+					</label>
 				</div>
 				<div>
 					<div class="col-md-2">
@@ -85,14 +104,16 @@ import { Job } from '../models/job.model';
 	`],
 })
 
-export class RefereeFeedbackFormComponent {
+export class RefereeFeedbackFormComponent implements OnInit {
 	@Input() jobApplication: JobApplication;
-	@Input() job: Job;
 	@Output() submitRefereeFeedbackEvent = new EventEmitter<RefereeFeedback>();
 
 	refereeFeedbackForm: FormGroup;
 
 	constructor(public fb: FormBuilder) {
+	}
+
+	ngOnInit() {
 		this.refereeFeedbackForm = this.fb.group({
 			reasonForLeavingFeedback: '',
 			reasonForLeavingApproved: false,
@@ -104,7 +125,21 @@ export class RefereeFeedbackFormComponent {
 			achievementApproved: false,
 			managementStyleFeedback: '',
 			managementStyleApproved: false,
+			skillRatings: this.fb.array(this.jobApplication.form_data.skills.map((skill) => this.skillRatingFormGroup(skill))),
 		});
+	}
+
+	get skillRatings(): FormArray {
+		return <FormArray>this.refereeFeedbackForm.get('skillRatings');
+	}
+
+	skillRatingFormGroup(skill: any) {
+		let skillRatingGP = this.fb.group({
+			name: skill.name,
+			rate: -10,
+		});
+
+		return skillRatingGP;
 	}
 
 	submitButtonClicked() {
@@ -112,8 +147,7 @@ export class RefereeFeedbackFormComponent {
 		this.submitRefereeFeedbackEvent.emit(refereeFeedback);
 	}
 
-	onClick() {
-		return true;
+	onClickNewRating(rate: any) {
+		this.refereeFeedbackForm.controls.skillRatings.get(rate.index + '.rate').setValue(rate.value);
 	}
-
 }
