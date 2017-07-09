@@ -7,7 +7,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --public-host https://serene-crag-26286.herokuapp.com",
+    "start": "ng serve --host 0.0.0.0 --public-host https://serene-crag-26286.herokuapp.com",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
