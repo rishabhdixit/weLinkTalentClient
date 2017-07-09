@@ -51,7 +51,7 @@
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.39",
-    "@types/lodash": "4.14.51",
+    "@types/lodash": "4.14.58",
     "@types/node": "^6.0.42",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
@@ -66,6 +66,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.1",
-    "typescript": "2.2.1"
+    "typescript": "2.2.2"
   }
 }
