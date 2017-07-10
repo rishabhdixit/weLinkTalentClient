@@ -99,7 +99,7 @@ export const routes: Routes = [
 	{
 		path: 'bookmarks',
 		component: CandidateBookmarkPageComponent,
-		canActivate: [LoggedInGuard]
+		canActivate: [LoggedInGuard],
 	},
 	// otherwise redirect to home
 	{ path: '**', redirectTo: '' }

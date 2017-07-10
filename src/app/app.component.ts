@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from './models/user.model';
 
 import * as fromRoot from './reducers';
-import * as login from './actions/login.action';
 
 @Component({
 	selector: 'app-root',
@@ -26,5 +25,4 @@ export class AppComponent {
 		this.user$ = this.store.select(fromRoot.getUser);
 		this.route$ = this.router.events.filter((event) => event instanceof NavigationEnd);
 	}
-
 }

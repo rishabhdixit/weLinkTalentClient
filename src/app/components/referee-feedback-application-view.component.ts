@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Job } from 'app/models/job.model';
 import { JobApplication } from '../models/job-application.model';
 
 @Component({

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import { RefereeFeedback } from '../models/referee-feedback.model';
 
 @Component({
 	selector: `app-referee-feedback-thank-view`,
 	template: `
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<p>Thank you for validating <strong class="text-primary">Candidates Name</strong>'s application for</p>
+					<p>Thank you for validating <strong class="text-primary">Candidate's name</strong>'s application for</p>
 				</div>
 			</div>
 			<div class="row">
@@ -36,7 +37,7 @@ import { Component } from '@angular/core';
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<button class="btn btn-primary btn-lg">Edit</button>
+					<button class="btn btn-primary btn-lg">Done</button>
 				</div>
 			</div>
 	`,
@@ -49,6 +50,7 @@ import { Component } from '@angular/core';
 })
 
 export class RefereeFeedbackThankViewComponent {
+	feedback: RefereeFeedback;
 
 	constructor() {}
 
