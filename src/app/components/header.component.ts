@@ -43,7 +43,7 @@ import { LoginService } from 'app/services/login.service';
 						</li>
 						<li><a routerLink="#"> Contact Us </a>
 						</li>
-						<li><a routerLink="#"> Bookmarks </a>
+						<li><a routerLink="/bookmarks"> Bookmarks </a>
 						</li>
 					</ul>
 				</nav>

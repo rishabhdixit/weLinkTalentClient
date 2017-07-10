@@ -51,10 +51,19 @@ export class RefereeFeedbackEffects {
 				}).do(() => this.router.navigate(['/referee-thank-page']));
 		});
 
+	@Effect()
+	decryptTokenSuccess$: Observable<Action> = this.actions
+		.ofType(refereeFeedback.ActionTypes.DECRYPT_TOKEN_SUCCESS)
+		.map((action: refereeFeedback.DecryptTokenSuccessAction) => action.payload)
+		.switchMap((payload) => this.jobApplicationService.loadJobApplication(payload.data)
+			.map((res) => new refereeFeedback.LoadJobApplicationSuccessAction(res))
+		);
+
 	constructor(private actions: Actions,
 		private jobService: JobService,
 		private jobApplicationService: JobApplicationService,
 		private router: Router,
 		private store: Store<fromRoot.State>) {
 	}
+
 }

@@ -7,7 +7,8 @@ export class Job {
 	employment_type: 	string;
 	location: 			string;
 	industry: 			string;
-	company:			Company[];
+	company:			Company;
+	description: string;
 	expertise: 			string;
 	salary_from: 		string;
 	salary_to: 			string;
@@ -22,6 +23,6 @@ export class Job {
 	criteria: 			string;
 	years_experience:	string;
 	visa_passport_constraints:	string;
-	slots_left: number;
+	remaining_slots: number;
 	status: string;
 }

@@ -25,6 +25,8 @@ import { RefereeFeedbackApplicationViewComponent } from './referee-feedback-appl
 import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
 import { RefereeFeedbackThankViewComponent } from './referee-feedback-thank-view.component';
 import { CandidateJobsAppliedViewComponent } from './candidate-jobs-applied-view.component';
+import { ReactiveStarsComponent } from './reactive-star.component';
+import { CandidateBookmarkJobViewComponent } from './candidate-bookmark-job-view.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -49,6 +51,8 @@ export const COMPONENTS = [
 	CandidateJobApplicationFormComponent,
 	RefereeFeedbackThankViewComponent,
 	CandidateJobsAppliedViewComponent,
+	ReactiveStarsComponent,
+	CandidateBookmarkJobViewComponent,
 ];
 
 @NgModule({
