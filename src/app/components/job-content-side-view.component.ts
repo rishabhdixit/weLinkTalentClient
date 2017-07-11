@@ -39,7 +39,7 @@ import { Job } from '../models/job.model';
 							<span class="fa fa-google-plus generalColor"></span>
 						</a>
 						<a class="btn btn-social-icon btn-twitter btn-lg" 
-							 href="mailto:?Subject=Apply for this Job&amp;body=This job suites to you. https%253A%2F%2Fwelinktalent-client.herokuapp.com%2Fjobs%2F{{job._id}}">
+							 href="mailto:?Subject=Apply for this Job&amp;body=This job suites to you. https%3A//welinktalent-client.herokuapp.com%2Fjobs%2F{{job._id}}">
 							<img src="./assets/images/emailSquareIcon.png" />
 						</a>
 					</div>
