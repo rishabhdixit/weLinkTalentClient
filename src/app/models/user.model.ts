@@ -4,5 +4,6 @@ export interface User {
 	id:      string;
 	email:   string;
 	profile: Profile;
+	role: string;
 	bookmark_ids: any[];
 }
