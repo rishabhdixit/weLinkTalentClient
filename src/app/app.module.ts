@@ -57,6 +57,7 @@ import { CandidateHomePageComponent } from './containers/candidate-home-page.com
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
 import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
+import { ErrorPageComponent } from './containers/error-page.component.';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -79,6 +80,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		RefereeFeedbackPageComponent,
 		RefereeFeedbackThankPageComponent,
 		CandidateBookmarkPageComponent,
+		ErrorPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -105,6 +107,10 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		{
 			provide: 'api',
 			useValue: environment.api
+		},
+		{
+			provide: 'encodedUrl',
+			useValue: environment.encodedUrl
 		},
 		{
 			provide: AuthHttp,
