@@ -27,6 +27,7 @@ import { RefereeFeedbackThankViewComponent } from './referee-feedback-thank-view
 import { CandidateJobsAppliedViewComponent } from './candidate-jobs-applied-view.component';
 import { ReactiveStarsComponent } from './reactive-star.component';
 import { CandidateBookmarkJobViewComponent } from './candidate-bookmark-job-view.component';
+import { PageNotFoundErrorViewComponent } from './page-not-found-error-view.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -53,6 +54,7 @@ export const COMPONENTS = [
 	CandidateJobsAppliedViewComponent,
 	ReactiveStarsComponent,
 	CandidateBookmarkJobViewComponent,
+	PageNotFoundErrorViewComponent,
 ];
 
 @NgModule({
