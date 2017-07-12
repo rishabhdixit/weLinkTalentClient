@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Job } from '../models/job.model';
+import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-job-content-side-view',
@@ -21,27 +22,27 @@ import { Job } from '../models/job.model';
 					<hr style="background: darkgray;">
 					<div>
 						<a class="btn btn-social-icon btn-twitter btn-lg"
-						href="https://twitter.com/home?status=https%3A//welinktalent-client.herokuapp.com/jobs/{{job._id}}">
+						href="https://twitter.com/home?status={{encodedUrl}}%2Fjobs%2F{{job._id}}">
 							<span class="fa fa-twitter generalColor"></span>
 						</a>
 						<a class="btn btn-social-icon btn-twitter btn-lg"
-						href="https://www.facebook.com/sharer.php?u=https%3A//welinktalent-client.herokuapp.com/jobs/{{job._id}}"
+						href="https://www.facebook.com/sharer.php?u={{encodedUrl}}%2Fjobs%2F{{job._id}}"
 						target="_blank">
 							<span class="fa fa-facebook generalColor"></span>
 						</a>                
 						<a class="btn btn-social-icon btn-twitter btn-lg" 
-						href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//welinktalent-client.herokuapp.com/jobs/{{job._id}}
+						href="https://www.linkedin.com/shareArticle?mini=true&url={{encodedUrl}}%2Fjobs%2F{{job._id}}
 						&title=&summary=&source="
 						target="_blank">
 							<span class="fa fa-linkedin generalColor"></span>
 						</a>  
 						<a class="btn btn-social-icon btn-twitter btn-lg"
-						href="https://plus.google.com/share?url=https%3A//welinktalent-client.herokuapp.com/jobs/{{job._id}}">
+						href="https://plus.google.com/share?url={{encodedUrl}}%2Fjobs%2F{{job._id}}">
 							<span class="fa fa-google-plus generalColor"></span>
 						</a>
 						<a class="btn btn-social-icon btn-twitter btn-lg" 
 						href="mailto:?Subject=Apply for this Job&amp;body=This job suites to you. 
-						https%3A//welinktalent-client.herokuapp.com%2Fjobs%2F{{job._id}}">
+						{{encodedUrl}}%2Fjobs%2F{{job._id}}">
 							<img src="./assets/images/emailSquareIcon.png" />
 						</a>
 					</div>
@@ -165,6 +166,7 @@ import { Job } from '../models/job.model';
 
 export class JobContentSideViewComponent {
 	@Input() job: Job;
+	encodedUrl = environment.encodedUrl;
 	constructor() {
 	}
 }
