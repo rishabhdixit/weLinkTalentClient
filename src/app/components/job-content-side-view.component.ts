@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Job } from '../models/job.model';
-import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-job-content-side-view',
@@ -166,7 +165,6 @@ import { environment } from '../../environments/environment';
 
 export class JobContentSideViewComponent {
 	@Input() job: Job;
-	encodedUrl = environment.encodedUrl;
-	constructor() {
+	constructor(@Inject('encodedUrl') private encodedUrl: string) {
 	}
 }

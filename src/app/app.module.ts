@@ -109,6 +109,10 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 			useValue: environment.api
 		},
 		{
+			provide: 'encodedUrl',
+			useValue: environment.encodedUrl
+		},
+		{
 			provide: AuthHttp,
 			useFactory: AuthHttpServiceFactory,
 			deps: [Http, RequestOptions]
