@@ -6,12 +6,14 @@ import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
 import * as login from '../actions/login.action';
 import { LoginService } from 'app/services/login.service';
+import { routes } from '../routes';
+
 
 @Component({
 	selector: 'app-header',
 	template: `
 		<header>
-			<div class="container">
+			<div *ngIf="isNotRegisteredUrl" class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div>
@@ -106,5 +108,16 @@ export class HeaderComponent {
 
 	get isLoggedIn() {
 		return this.loginService.isLoggedIn();
+	}
+
+	get isNotRegisteredUrl() {
+		let validRoutes = routes.filter((url) => this.route
+			&& this.route.url.startsWith('/' + url.path)
+			&& url.path !== '**');
+
+		if (validRoutes.length === 0) {
+			return false;
+		}
+		return true;
 	}
 }

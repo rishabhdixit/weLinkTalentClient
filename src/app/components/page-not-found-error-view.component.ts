@@ -17,7 +17,7 @@ import { Component } from '@angular/core';
 		</div>
 		<div class="row">
 			<div class="col-md-12 divStyle">
-				<button class="btn btn-lg">Bring Me Home</button>
+				<a href="/profile"><button class="btn btn-lg">Bring Me Home</button></a>
 			</div>
 		</div>
 	`,

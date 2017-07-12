@@ -5,11 +5,15 @@ import { Reference } from '../models/reference.model';
 import { JobApplication } from '../models/job-application.model';
 import * as fromRoot from '../reducers';
 import * as application from '../actions/job-application.action';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../models/user.model';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'app-application-reference-form-page',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
+		<app-header [user]="user$ | async" [route]="route$ | async"></app-header>
 		<div class="container">
 			<div class="container-fluid">
 				<div class="row">
@@ -102,6 +106,7 @@ import * as application from '../actions/job-application.action';
 				</div>
 			</div>
 		</div>
+		<app-footer></app-footer>
 	`,
 	styles: [`
 		.top {
@@ -160,9 +165,13 @@ export class ApplicationReferenceFormPageComponent {
 	application: JobApplication;
 	@Input() job: Job;
 	referenceList: Reference[] = [];
+	user$: Observable<User>;
+	route$: Observable<NavigationEnd>;
 
-	constructor(private store: Store<fromRoot.State>) {
+	constructor(private store: Store<fromRoot.State>, private userStore: Store<fromRoot.State>, private router: Router) {
 		this.store.select(fromRoot.getApplicationForm).subscribe((data) => this.application = data);
+		this.user$ = this.userStore.select(fromRoot.getUser);
+		this.route$ = this.router.events.filter((event) => event instanceof NavigationEnd);
 	}
 
 	addReferenceClickHandler(reference: Reference) {

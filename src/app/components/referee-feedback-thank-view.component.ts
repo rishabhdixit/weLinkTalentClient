@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RefereeFeedback } from '../models/referee-feedback.model';
 
 @Component({
@@ -6,7 +6,8 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 	template: `
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<p>Thank you for validating <strong class="text-primary">Candidate's name</strong>'s application for</p>
+					<p>Thank you for validating <strong class="text-primary">
+						{{ feedback.user.profile.firstName }} {{ feedback.user.profile.lastName }}</strong>'s application for</p>
 				</div>
 			</div>
 			<div class="row">
@@ -50,7 +51,7 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 })
 
 export class RefereeFeedbackThankViewComponent {
-	feedback: RefereeFeedback;
+	@Input() feedback: RefereeFeedback;
 
 	constructor() {}
 

@@ -43,7 +43,7 @@ export class JobExistsGuard implements CanActivate {
 			.do((action: jobAction.JobsLoadDetailAction) => this.store.dispatch(action))
 			.map((job) => !!job)
 			.catch(() => {
-				this.router.navigate(['jobs']);
+				this.router.navigate(['notfound']);
 				return of(false);
 			});
 	}
