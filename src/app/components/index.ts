@@ -29,6 +29,10 @@ import { ReactiveStarsComponent } from './reactive-star.component';
 import { CandidateBookmarkJobViewComponent } from './candidate-bookmark-job-view.component';
 import { PageNotFoundErrorViewComponent } from './page-not-found-error-view.component';
 
+import { AdminHomeComponent } from './Admin/admin-home.component';
+import { AdminHeaderComponent } from './Admin/admin-header.component';
+import { AdminCreateJobComponent } from './Admin/admin-create-job.component';
+
 export const COMPONENTS = [
 	HeaderComponent,
 	ComponentNameComponent,
@@ -55,6 +59,9 @@ export const COMPONENTS = [
 	ReactiveStarsComponent,
 	CandidateBookmarkJobViewComponent,
 	PageNotFoundErrorViewComponent,
+	AdminHeaderComponent,
+	AdminHomeComponent,
+	AdminCreateJobComponent,
 ];
 
 @NgModule({
