@@ -30,6 +30,7 @@ import { CandidateJobAppliedPageComponent } from './containers/candidate-job-app
 import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
 
 export const routes: Routes = [
+	{ path: '', redirectTo: '/index', pathMatch: 'full' },
 	{
 		path: 'index',
 		component: JobSearchPageComponent
