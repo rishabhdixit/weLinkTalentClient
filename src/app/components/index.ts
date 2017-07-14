@@ -28,6 +28,8 @@ import { CandidateJobsAppliedViewComponent } from './candidate-jobs-applied-view
 import { ReactiveStarsComponent } from './reactive-star.component';
 import { CandidateBookmarkJobViewComponent } from './candidate-bookmark-job-view.component';
 import { PageNotFoundErrorViewComponent } from './page-not-found-error-view.component';
+import { CandidateJobAppliedDetailViewComponent } from './candidate-job-applied-detail-view.component';
+import { CandidateJobAppliedFeedbackViewComponent } from './candidate-job-applied-feedback-view.component';
 
 import { AdminHomeComponent } from './Admin/admin-home.component';
 import { AdminHeaderComponent } from './Admin/admin-header.component';
@@ -62,6 +64,8 @@ export const COMPONENTS = [
 	AdminHeaderComponent,
 	AdminHomeComponent,
 	AdminCreateJobComponent,
+	CandidateJobAppliedDetailViewComponent,
+	CandidateJobAppliedFeedbackViewComponent
 ];
 
 @NgModule({

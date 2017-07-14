@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -82,43 +82,37 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 				[counter]="counter"
 				[currentPage]="currentPage">{{ candidateJobApplication }} {{counter}} {{ currentPage }}
 			</app-candidate-jobs-applied-view>
-			<!--// TODO: Fully implement paging-->
 			<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
 		</div>
 	`,
-	styles: [`
-		.text-center {
-			text-align: center;
-		}
-	`],
+	styles: [``],
 })
 
-export class CandidateHomePageComponent {
+export class CandidateHomePageComponent implements OnInit {
 	candidateJobApplicationsList$: Observable<CandidateJobsApplied[]>;
 	candidateJobApplicationsTotalSize$: Observable<number>;
 	currentUserId: string;
 	currentPage: number = 1;
 
-	constructor(private store: Store<fromRoot.State>) {
+	constructor(private store: Store<fromRoot.State>) {}
+
+	ngOnInit() {
 		this.store.select(fromRoot.getUserId).subscribe(res => {
 			this.currentUserId = res;
 		});
-		let queryObject = {
+		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction({
 			user: `${this.currentUserId}`,
 			page: `page=${this.currentPage}`
-		};
-		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction(queryObject));
+		}));
 		this.candidateJobApplicationsList$ = this.store.select(fromRoot.getCandidateJobsApplied);
 		this.candidateJobApplicationsTotalSize$ = this.store.select(fromRoot.getTotalCandidateJobsApplied);
 	}
 
 	onChangePage(event) {
 		this.currentPage = event;
-		let queryObject = {
+		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction({
 			user: `${this.currentUserId}`,
 			page: `page=${this.currentPage}`
-		};
-
-		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction(queryObject));
+		}));
 	}
 }

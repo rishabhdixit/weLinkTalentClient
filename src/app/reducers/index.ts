@@ -112,6 +112,8 @@ export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, f
 export const getCandidateJobsApplied = createSelector(getCandidateJobsAppliedState, fromCandidateJobsApplied.getCandidateJobsApplied);
 export const getTotalCandidateJobsApplied = createSelector(getCandidateJobsAppliedState,
 	fromCandidateJobsApplied.getTotalCandidateJobsApplied);
+export const getSelectedCandidateJobApplied = createSelector(getCandidateJobsAppliedState,
+	fromCandidateJobsApplied.getSelectedCandidateJobsApplied);
 
 export const getAllCandidateBookmarkedJobs = createSelector(getCandidateBookmarkedJobsState,
 	fromCandidateBookmarkedJobs.getAllCandidateBookmarkedJobs);

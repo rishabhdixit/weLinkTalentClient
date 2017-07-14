@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 import * as fromRoot from '../reducers';
 import * as login from '../actions/login.action';
 import { LoginService } from 'app/services/login.service';
-import { routes } from '../routes';
+import { routePath } from '../routes';
 
 
 @Component({
@@ -111,9 +111,8 @@ export class HeaderComponent {
 	}
 
 	get isNotRegisteredUrl() {
-		let validRoutes = routes.filter((url) => this.route
-			&& this.route.url.startsWith('/' + url.path)
-			&& url.path !== '**');
+		let validRoutes = routePath.filter((url) => this.route
+			&& this.route.url.startsWith('/' + url));
 
 		if (validRoutes.length === 0) {
 			return false;

@@ -154,19 +154,7 @@ export class ReferenceFormComponent {
 
 	addReferenceButtonClick() {
 		let referee = new Reference();
-
-		referee.fname = this.reference.fname;
-		referee.lname = this.reference.lname;
-		referee.company = this.reference.company;
-		referee.title = this.reference.title;
-		referee.phone = this.reference.phone;
-		referee.email = this.reference.email;
-		referee.relationship = this.reference.relationship;
-		referee.startYearOfWorking = this.reference.startYearOfWorking;
-		referee.endYearOfWorking = this.reference.endYearOfWorking;
-		referee.companyTogether = this.reference.companyTogether;
-		referee.canContact = this.reference.canContact;
-
+		Object.assign(referee, this.reference);
 		this.addReferenceEmitter.emit(referee);
 	}
 

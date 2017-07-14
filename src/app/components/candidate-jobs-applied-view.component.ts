@@ -10,7 +10,7 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 				{{((currentPage - 1) * 10) + counter + 1}}
 			</div>
 			<div class="col-md-4">
-				<h5 *ngIf="jobsApplied.title">{{jobsApplied.title}}</h5>
+				<h5 *ngIf="jobsApplied.title"><a routerLink="/job-application/{{jobsApplied.id}}">{{jobsApplied.title}}</a></h5>
 				<h6 *ngIf="jobsApplied.company" style="color: #6F7071;">{{jobsApplied.company.name}}</h6>
 			</div>
 			<div class="col-md-3 text-center">
@@ -48,9 +48,6 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 		</div>
 	`,
 	styles: [`
-		.text-center {
-			text-align: center;
-		}
 		.background-grey {
 			padding: 10px;
 			background-color: #58595b;

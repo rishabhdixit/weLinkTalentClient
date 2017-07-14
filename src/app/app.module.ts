@@ -28,6 +28,7 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
+import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
 
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
@@ -58,6 +59,7 @@ import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
 import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
+import { CandidateJobAppliedPageComponent } from './containers/candidate-job-applied-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -81,6 +83,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		RefereeFeedbackThankPageComponent,
 		CandidateBookmarkPageComponent,
 		ErrorPageComponent,
+		CandidateJobAppliedPageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -134,6 +137,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobApplicationFormReferenceGuard,
 		JobApplicationFormSuccessGuard,
 		RefereeFeedbackGuard,
+		CandidateJobAppliedExistsGuard,
 	],
 	bootstrap: [
 		AppComponent

@@ -85,9 +85,6 @@ import * as jobsAction from '../actions/jobs.action';
 		</div>
 	`,
 	styles: [`
-		.text-right {
-			 text-align: right;
-		}
 		.read-more-link {
 			width: 100%;
 			padding-top: 10px;

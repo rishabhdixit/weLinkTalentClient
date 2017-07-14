@@ -26,6 +26,8 @@ import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
 import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
+import { CandidateJobAppliedPageComponent } from './containers/candidate-job-applied-page.component';
+import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
 
 export const routes: Routes = [
 	{
@@ -103,9 +105,23 @@ export const routes: Routes = [
 		canActivate: [LoggedInGuard],
 	},
 	{
+		path: 'job-application/:id',
+		component: CandidateJobAppliedPageComponent,
+		canActivate: [CandidateJobAppliedExistsGuard],
+		resolve: { loaded: UserResolve }
+	},
+	{
 		path: '**',
 		component: ErrorPageComponent,
-	},
+	}
 	// otherwise redirect to home
 	// { path: '**', redirectTo: '' }
 ];
+
+
+// Note : for header handling purposes
+export const routePath = routes.map((route) => {
+	if (route.path !== '**') {
+		return route.path.replace(':id', '');
+	}
+});
