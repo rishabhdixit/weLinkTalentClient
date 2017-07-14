@@ -23,12 +23,13 @@ import { JobDetailPageComponent } from './containers/job-detail-page.component';
 import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
-import { RefereeFeedbackThankPageComponent} from './containers/referee-feedback-thank-page.component';
-import { CandidateBookmarkPageComponent} from './containers/candidate-bookmark-page.component';
+import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
+import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
+import { ErrorPageComponent } from './containers/error-page.component.';
 
 export const routes: Routes = [
 	{
-		path: '',
+		path: 'index',
 		component: JobSearchPageComponent
 	},
 	{
@@ -101,6 +102,10 @@ export const routes: Routes = [
 		component: CandidateBookmarkPageComponent,
 		canActivate: [LoggedInGuard],
 	},
+	{
+		path: '**',
+		component: ErrorPageComponent,
+	},
 	// otherwise redirect to home
-	{ path: '**', redirectTo: '' }
+	// { path: '**', redirectTo: '' }
 ];

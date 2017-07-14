@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { RefereeFeedback } from '../models/referee-feedback.model';
 import { JobApplication } from '../models/job-application.model';
-import { Job } from '../models/job.model';
 
 @Component({
 	selector: `app-referee-feedback-form`,

@@ -9,7 +9,11 @@ import { Component } from '@angular/core';
 			</div>
 		</div>
 	`,
-	styles: [``],
+	styles: [`
+		.container {
+			padding-top: 100px;
+		}
+	`],
 })
 export class ErrorPageComponent {
 

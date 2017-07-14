@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
 				skills, potential and personal ambition of our talent as well as the mutual benefits to joining your organisation.</p>
 				<p>We link the right talent to the right organisation.</p>
 			</div>
+			<app-admin-header></app-admin-header>
 	</div>
   `,
 	styles: [`
