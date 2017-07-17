@@ -11,6 +11,7 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
+import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -27,7 +28,7 @@ import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback
 import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
 import { CandidateJobAppliedPageComponent } from './containers/candidate-job-applied-page.component';
-import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
+import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -110,6 +111,11 @@ export const routes: Routes = [
 		component: CandidateJobAppliedPageComponent,
 		canActivate: [CandidateJobAppliedExistsGuard],
 		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'admin-home',
+		component: AdminHomePageComponent,
+		canActivate: [LoggedInGuard]
 	},
 	{
 		path: '**',

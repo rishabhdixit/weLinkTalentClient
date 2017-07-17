@@ -35,20 +35,18 @@ import { routePath } from '../routes';
 						</ul>
 					</div>
 				</div>
-				<nav class="col-md-12" style="font-size:large;">
-					<ul class="nav-list">
-						<li><a routerLink="/home"> Home </a>
-						</li>
-						<li><a routerLink="/about-us"> About Us </a>
-						</li>
-						<li><a routerLink="/jobs"> All Job Offers </a>
-						</li>
-						<li><a routerLink="#"> Contact Us </a>
-						</li>
-						<li><a routerLink="/bookmarks"> Bookmarks </a>
-						</li>
-					</ul>
-				</nav>
+				<div class="row">
+					<nav class="col-md-12" style="font-size:large;">
+						<ul class="nav-list">
+							<li><a routerLink="/home"><h5>Home</h5></a></li>
+							<li><a routerLink="/about-us"><h5>About Us</h5></a></li>
+							<li><a routerLink="/jobs"><h5>All Job Offers</h5></a></li>
+							<li><a routerLink="#"><h5>Contact Us</h5></a></li>
+							<li><a routerLink="/bookmarks"><h5>Bookmarks</h5></a></li>
+							<li><a routerLink="/admin-home"><h5>Admin Home</h5></a></li>
+						</ul>
+					</nav>
+				</div>
 				<hr>
 			</div>
 		</header>

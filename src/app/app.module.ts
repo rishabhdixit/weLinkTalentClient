@@ -60,6 +60,7 @@ import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback
 import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
 import { CandidateJobAppliedPageComponent } from './containers/candidate-job-applied-page.component';
+import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -83,7 +84,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		RefereeFeedbackThankPageComponent,
 		CandidateBookmarkPageComponent,
 		ErrorPageComponent,
-		CandidateJobAppliedPageComponent
+		CandidateJobAppliedPageComponent,
+		AdminHomePageComponent
 	],
 	imports: [
 		BrowserModule,
