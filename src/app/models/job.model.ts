@@ -1,4 +1,5 @@
-import {Company} from './company.model';
+import { Company } from './company.model';
+import { Skill } from './skill.model';
 
 export class Job {
 	_id:              	string;
@@ -19,10 +20,11 @@ export class Job {
 	responsibilities: 	any;
 	ideal_talent: 		string;
 	about_company: 		string;
-	skills: 			string[];
+	skills: 			Skill[];
 	criteria: 			string;
 	years_experience:	string;
 	visa_passport_constraints:	string;
 	remaining_slots: number;
+	company_logo: any;
 	status: string;
 }
