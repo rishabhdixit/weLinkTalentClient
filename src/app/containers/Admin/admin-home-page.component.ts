@@ -1,10 +1,10 @@
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-admin-home-page',
 	template: `
 		<div class="container">
-			<div class="row container-fluid">
+			<div class="container-fluid">
 				<app-admin-create-job></app-admin-create-job>
 			</div>
 		</div>
