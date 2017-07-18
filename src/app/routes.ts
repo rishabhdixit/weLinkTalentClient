@@ -11,7 +11,6 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
-import { CandidateJobAppliedExistsGuard } from './guards/candidate-job-applied-exist-guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -25,10 +24,11 @@ import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
-import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
+import { BookmarkPageComponent } from './containers/bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
-import { CandidateJobAppliedPageComponent } from './containers/candidate-job-applied-page.component';
 import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
+import { JobAppliedPageComponent } from './containers/job-applied-page.component';
+import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -103,13 +103,13 @@ export const routes: Routes = [
 	},
 	{
 		path: 'bookmarks',
-		component: CandidateBookmarkPageComponent,
+		component: BookmarkPageComponent,
 		canActivate: [LoggedInGuard],
 	},
 	{
 		path: 'job-application/:id',
-		component: CandidateJobAppliedPageComponent,
-		canActivate: [CandidateJobAppliedExistsGuard],
+		component: JobAppliedPageComponent,
+		canActivate: [JobAppliedExistsGuard],
 		resolve: { loaded: UserResolve }
 	},
 	{

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<div class="container">
 			<div class="container-fluid">
-				<app-admin-create-job></app-admin-create-job>
+				<app-admin-home-view></app-admin-home-view>
 			</div>
 		</div>
 	`,
@@ -13,10 +13,5 @@ import { Component } from '@angular/core';
 })
 
 export class AdminHomePageComponent {
-	clicked: boolean = false;
 	constructor() {}
-
-	onClick() {
-		return this.clicked = true;
-	}
 }

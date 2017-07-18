@@ -11,6 +11,7 @@ export interface State {
 	selectedJobId: string;
 	pageMetaData: PageMetaData;
 	isBookmarked: boolean;
+	jobCreated: Job;
 }
 
 const initialState: State = {
@@ -21,6 +22,7 @@ const initialState: State = {
 	selectedJobId: null,
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
 	isBookmarked: false,
+	jobCreated: null
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -49,6 +51,7 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
+				jobCreated: null
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
@@ -72,6 +75,7 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: state.pageMetaData,
 				isBookmarked: false,
+				jobCreated: null
 			};
 		}
 		case jobs.ActionTypes.ADD_BOOKMARK: {
@@ -115,6 +119,17 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				loaded: true
 			});
 		}
+		case jobs.ActionTypes.JOB_CREATION: {
+			return Object.assign({}, state, {
+				loading: true,
+				loaded: true
+			});
+		}
+		case jobs.ActionTypes.JOB_CREATION_SUCCESS: {
+			return Object.assign({}, state, {
+				jobCreated: action.payload,
+			});
+		}
 		default: {
 			return state;
 		}
@@ -132,6 +147,8 @@ export const getLoaded = (state: State) => state.loaded;
 export const getLoading = (state: State) => state.loading;
 
 export const getTotalJobsSearch = (state: State) => state.pageMetaData.totalSize;
+
+export const getJobCreated = (state: State) => state.jobCreated;
 
 //noinspection TypeScriptValidateTypes
 export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (entities, selectedId) => {

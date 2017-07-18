@@ -45,6 +45,15 @@ export class JobEffects {
 			.catch(() => Observable.of(new jobsAction.GetJobStatusFail('')))
 		);
 
+	@Effect()
+	jobCreation = this.actions
+		.ofType(jobsAction.ActionTypes.JOB_CREATION)
+		.map((action: jobsAction.JobCreationAction) => action.payload)
+		.switchMap((data) => this.jobService.createJob(data)
+			.map((res) => new jobsAction.JobCreationSuccessAction(data))
+			.catch(() => Observable.of(new jobsAction.JobCreationFailAction('')))
+		);
+
 	constructor(private actions: Actions,
 		private jobService: JobService,
 		private bookmarkService: BookmarkService) {
