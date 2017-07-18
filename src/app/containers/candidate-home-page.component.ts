@@ -1,11 +1,11 @@
-import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromRoot from '../reducers';
-import * as candidateJobsApplied from '../actions/candidate-jobs-applied.action';
+import * as jobsAppliedAction from '../actions/jobs-applied.action';
 
-import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
+import { JobsApplied } from '../models/jobs-applied.model';
 
 @Component({
 	selector: `app-candidate-home-page`,
@@ -73,7 +73,7 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 				</div>
 			</div>
 			<br/>
-			<app-candidate-jobs-applied-view
+			<app-jobs-applied-view
 				*ngFor="let candidateJobApplication of candidateJobApplicationsList$ | async | paginate: { itemsPerPage: 10, 
 				currentPage: currentPage, 
 				totalItems: candidateJobApplicationsTotalSize$ | async }
@@ -81,7 +81,7 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 				[jobsApplied]="candidateJobApplication"
 				[counter]="counter"
 				[currentPage]="currentPage">{{ candidateJobApplication }} {{counter}} {{ currentPage }}
-			</app-candidate-jobs-applied-view>
+			</app-jobs-applied-view>
 			<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
 		</div>
 	`,
@@ -89,28 +89,28 @@ import { CandidateJobsApplied } from '../models/candidate-jobs-applied.model';
 })
 
 export class CandidateHomePageComponent implements OnInit {
-	candidateJobApplicationsList$: Observable<CandidateJobsApplied[]>;
+	candidateJobApplicationsList$: Observable<JobsApplied[]>;
 	candidateJobApplicationsTotalSize$: Observable<number>;
 	currentUserId: string;
 	currentPage: number = 1;
 
-	constructor(private store: Store<fromRoot.State>) {}
+	constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUserId).subscribe(res => {
 			this.currentUserId = res;
 		});
-		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction({
+		this.store.dispatch(new jobsAppliedAction.JobsAppliedLoadAction({
 			user: `${this.currentUserId}`,
 			page: `page=${this.currentPage}`
 		}));
-		this.candidateJobApplicationsList$ = this.store.select(fromRoot.getCandidateJobsApplied);
-		this.candidateJobApplicationsTotalSize$ = this.store.select(fromRoot.getTotalCandidateJobsApplied);
+		this.candidateJobApplicationsList$ = this.store.select(fromRoot.getJobsApplied);
+		this.candidateJobApplicationsTotalSize$ = this.store.select(fromRoot.getTotalJobsApplied);
 	}
 
 	onChangePage(event) {
 		this.currentPage = event;
-		this.store.dispatch(new candidateJobsApplied.CandidateJobsAppliedLoadAction({
+		this.store.dispatch(new jobsAppliedAction.JobsAppliedLoadAction({
 			user: `${this.currentUserId}`,
 			page: `page=${this.currentPage}`
 		}));
