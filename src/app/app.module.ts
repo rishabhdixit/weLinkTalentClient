@@ -44,6 +44,7 @@ import { ApplicationEffects } from './effects/application.effects';
 import { RefereeFeedbackEffects } from './effects/referee-feedback.effects';
 import { CandidateJobsAppliedEffects } from './effects/candidate-jobs-applied.effects';
 import { CandidateBookmarkedJobEffects } from './effects/candidate-bookmarked-jobs.effects';
+import { AdminJobCreateEffects } from './effects/Admin/admin-job-create.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -101,6 +102,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		EffectsModule.run(RefereeFeedbackEffects),
 		EffectsModule.run(CandidateJobsAppliedEffects),
 		EffectsModule.run(CandidateBookmarkedJobEffects),
+		EffectsModule.run(AdminJobCreateEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),

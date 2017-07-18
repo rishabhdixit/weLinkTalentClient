@@ -33,6 +33,7 @@ import * as fromApplication from './job-application.reducer';
 import * as fromRefereeFeedback from './referee-feedback.reducer';
 import * as fromCandidateJobsApplied from './candidate-jobs-applied.reducer';
 import * as fromCandidateBookmarkedJobs from './candidate-bookmarked-jobs.reducer';
+import * as fromAdminJobCreate from './Admin/admin-job-create.reducer';
 
 export interface State {
 	login: fromLogin.State;
@@ -43,6 +44,7 @@ export interface State {
 	refereeFeedback: fromRefereeFeedback.State;
 	candidateJobsApplied: fromCandidateJobsApplied.State;
 	candidateBookmarkedJobs: fromCandidateBookmarkedJobs.State;
+	adminJobCreate: fromAdminJobCreate.State;
 }
 
 /**
@@ -57,7 +59,8 @@ const reducers = {
 	application: fromApplication.reducer,
 	refereeFeedback: fromRefereeFeedback.reducer,
 	candidateJobsApplied: fromCandidateJobsApplied.reducer,
-	candidateBookmarkedJobs: fromCandidateBookmarkedJobs.reducer
+	candidateBookmarkedJobs: fromCandidateBookmarkedJobs.reducer,
+	adminJobCreate: fromAdminJobCreate.reducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -79,6 +82,7 @@ export const getApplicationState = (state: State) => state.application;
 export const getRefereeFeedbackState = (state: State) => state.refereeFeedback;
 export const getCandidateJobsAppliedState = (state: State) => state.candidateJobsApplied;
 export const getCandidateBookmarkedJobsState = (state: State) => state.candidateBookmarkedJobs;
+export const getAdminJobCreateState = (state: State) => state.adminJobCreate;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -123,3 +127,5 @@ export const getCandidateBookmarkedJobEntities = createSelector(getCandidateBook
 	fromCandidateBookmarkedJobs.getCandidateBookmarkedJobEntities);
 export const getTotalCandidateBookmarkedJobs = createSelector(getCandidateBookmarkedJobsState,
 	fromCandidateBookmarkedJobs.getTotalCandidateBookmarkedJobs);
+
+export const getJobCreated = createSelector(getAdminJobCreateState, fromAdminJobCreate.getJobCreated);

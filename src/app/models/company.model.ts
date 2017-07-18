@@ -6,4 +6,5 @@ export class Company {
 	email: string;
 	twitter_profile: string;
 	linkedin_profile: string;
+	logo: string;
 }

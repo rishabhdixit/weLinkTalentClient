@@ -33,4 +33,9 @@ export class JobService {
 		return this.http.get(`${this.api}/api/users/${user}/bookmarks`)
 			.map((res: Response) => res.json());
 	}
+
+	createJob(data: any): Observable<any> {
+		return this.http.post(`${this.api}/api/jobs/`, data)
+			.map((res: Response) => res.json());
+	}
 }
