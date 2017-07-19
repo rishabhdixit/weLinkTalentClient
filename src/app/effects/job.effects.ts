@@ -39,10 +39,10 @@ export class JobEffects {
 	@Effect()
 	getJobStatus$ = this.actions
 		.ofType(jobsAction.ActionTypes.GET_STATUS)
-		.map((action: jobsAction.GetJobStatus) => action.payload)
+		.map((action: jobsAction.GetJobStatusAction) => action.payload)
 		.switchMap((payload) => this.jobService.getStatus(payload.user, payload.jobId)
-			.map((res) => new jobsAction.GetJobStatusSuccess({ 'data': res, 'selectedJobId': payload.jobId }))
-			.catch(() => Observable.of(new jobsAction.GetJobStatusFail('')))
+			.map((res) => new jobsAction.GetJobStatusSuccessAction({ 'data': res, 'selectedJobId': payload.jobId }))
+			.catch(() => Observable.of(new jobsAction.GetJobStatusFailAction('')))
 		);
 
 	@Effect()
@@ -53,6 +53,15 @@ export class JobEffects {
 			.map((res) => new jobsAction.JobCreationSuccessAction(data))
 			.catch(() => Observable.of(new jobsAction.JobCreationFailAction('')))
 		);
+
+	@Effect()
+	getCreatedJobs$ = this.actions
+	.ofType(jobsAction.ActionTypes.LOAD_CREATED_JOBS)
+	.map((action: jobsAction.CreateJobsLoadAction) => action.payload)
+	.switchMap((user) => this.jobService.getCreatedJobs(user)
+		.map((res) => new jobsAction.CreateJobsLoadSuccessAction(res))
+		.catch(() => Observable.of(new jobsAction.CreateJobsLoadFailAction('')))
+	);
 
 	constructor(private actions: Actions,
 		private jobService: JobService,

@@ -130,6 +130,33 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				jobCreated: action.payload,
 			});
 		}
+		case jobs.ActionTypes.LOAD_CREATED_JOBS: {
+			return Object.assign({}, state, {
+				loading: true,
+				selectedJobId: null,
+			});
+		}
+		case jobs.ActionTypes.LOAD_CREATED_JOBS_SUCCESS: {
+			const jobs = action.payload;
+			const newJobIds = jobs.jobsList.map(job => job._id);
+
+			const newJobEntities = jobs.jobsList.reduce((entities: { [id: string]: Job }, job: Job) => {
+				return Object.assign(entities, {
+					[job._id]: job
+				});
+			}, {});
+
+			return {
+				loaded: true,
+				loading: false,
+				ids: [...newJobIds],
+				entities: Object.assign({}, {}, newJobEntities),
+				selectedJobId: state.selectedJobId,
+				pageMetaData: jobs.pageMetaData,
+				isBookmarked: false,
+				jobCreated: null
+			};
+		}
 		default: {
 			return state;
 		}

@@ -14,6 +14,13 @@ import * as fromRoot from '../reducers';
 				<app-create-job-form (OnCreateJobEvent)="onCreateJobHandler($event)"></app-create-job-form>
 			</div>
 		</div>
+		<br/>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<app-job-list></app-job-list>
+			</div>
+		</div>
 	`,
 	styles: [``]
 })

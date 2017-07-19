@@ -3,8 +3,6 @@ import { Http, Response } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login.model';
-import { User } from '../models/user.model';
-import { Profile } from '../models/profile.model';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()

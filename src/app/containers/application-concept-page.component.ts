@@ -1,12 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import * as fromRoot from '../reducers';
-import * as login from '../actions/login.action';
 import { User } from 'app/models/user.model';
 import { Store } from '@ngrx/store';
-import { getLoaded } from 'app/reducers/login.reducer';
 import { Job } from 'app/models/job.model';
-import { JobService } from 'app/services/job.service';
 import { Observable } from 'rxjs';
 import * as JobApplicationAction from '../actions/job-application.action';
 

@@ -43,4 +43,3 @@ export class JobApplicationService {
 			.map((res: Response) => res.json());
 	}
 }
-
