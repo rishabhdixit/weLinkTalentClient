@@ -66,8 +66,8 @@ import { Job } from '../../models/job.model';
 									<td>Permanent</td>
 								</tr>
 								<tr>
-									<td class="labelType">Emp Type:<td>
-									<td>{{job.employmentType}}</td>
+									<td class="labelType">Employment Type:<td>
+									<td>{{job.employment_type}}</td>
 								</tr>
 								<tr>
 									<td class="labelType">Salary:<td>
@@ -91,7 +91,7 @@ import { Job } from '../../models/job.model';
 								</tr>
 								<tr>
 									<td class="labelType">Emp Type:<td>
-									<td>{{job.employmentType}}</td>
+									<td>{{job.employment_type}}</td>
 								</tr>
 								<tr>
 									<td class="labelType">Salary:<td>
@@ -165,6 +165,8 @@ import { Job } from '../../models/job.model';
 
 export class JobContentSideViewComponent {
 	@Input() job: Job;
-	constructor( @Inject('encodedUrl') private encodedUrl: string) {
+	encodedUrl: string;
+	constructor( @Inject('encodedUrl') private shareUrl: string) {
+		this.encodedUrl = shareUrl;
 	}
 }

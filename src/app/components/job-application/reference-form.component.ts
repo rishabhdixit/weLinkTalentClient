@@ -9,14 +9,14 @@ import { Reference } from '../../models/reference.model';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="fname" class="labelWeight">First Name:* </label>
-						<input type="text" class="form-control" id="fname" name="fname" [(ngModel)]="reference.fname" required/>
+						<label for="firstName" class="labelWeight">First Name:* </label>
+						<input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="reference.firstName" required/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="lname" class="label-style">Last Name:* </label>
-						<input type="text" class="form-control" id="lname" name="lname" [(ngModel)]="reference.lname" required/>
+						<label for="lastName" class="label-style">Last Name:* </label>
+						<input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="reference.lastName" required/>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@ import { Reference } from '../../models/reference.model';
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email" class="label-style">Email:* </label>
-						<input type="email" class="form-control" id="email" name="email" [(ngModel)]="reference.email" required/>
+						<input type="email" class="form-control" id="email" name="email" [(ngModel)]="reference.emailAddress" required/>
 					</div>
 				</div>
 			</div>

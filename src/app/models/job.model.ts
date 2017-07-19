@@ -27,6 +27,7 @@ export class Job {
 	years_experience:	string;
 	visa_passport_constraints: string;
 	remaining_slots: number;
+	application_slots: number;
 	company_logo: any;
 	status: string;
 }

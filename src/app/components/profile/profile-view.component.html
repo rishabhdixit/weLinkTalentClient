@@ -5,10 +5,10 @@
 			<fieldset>
 				<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
 				<div class="position">
-					<a href="#"  *ngIf="!edit" (click)="editMode($event, 'basic')" class="edit">Edit</a>
+					<a href="#" *ngIf="!edit" (click)="editMode($event, 'basic')" class="edit">Edit</a>
 					<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
 
-					<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" >
+					<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
 						<p *ngIf="i === 0">{{ position.value.title }}</p>
 						<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
 					</div>
@@ -133,17 +133,7 @@
 							<div class="form-group">
 								<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
 								<div class="input-group">
-									<select #basePerMonthCurrency (change)="onChange($event)">
-										<option>SGD</option>
-										<option>PHP</option>
-										<option>USD</option>
-										<option>EUR</option>
-										<option>EGP</option>
-										<option>HKD</option>
-										<option>AUD</option>
-										<option>BRL</option>
-										<option>JPY</option>
-									</select>
+									<label for="salaryPerMonth">SGD</label>
 									<input type="number" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
 								</div>
 							</div>
@@ -154,7 +144,7 @@
 								<ul class="list-unstyled">
 									<li *ngFor="let basis of bonusReceivable">
 										<label class="labelWeight">&emsp;{{ basis }}</label>
-										<input type="radio" class="input-radio" value="{{ basis }}" formControlName="salaryBasis"/>
+										<input type="radio" class="input-radio" value="{{ basis }}" formControlName="salaryBasis" />
 									</li>
 								</ul>
 							</div>
@@ -166,17 +156,7 @@
 							<div class="form-group">
 								<label for="bonusAmount" class="labelWeight">Bonus:</label>
 								<div class="input-group">
-									<select #bonusCurrency (change)="onChange($event)">
-										<option>SGD</option>
-										<option>PHP</option>
-										<option>USD</option>
-										<option>EUR</option>
-										<option>EGP</option>
-										<option>HKD</option>
-										<option>AUD</option>
-										<option>BRL</option>
-										<option>JPY</option>
-									</select>
+									<label for="bonusAmount">SGD</label>
 									<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
 								</div>
 							</div>
@@ -194,18 +174,7 @@
 							<div class="form-group">
 								<label for="allowance" class="labelWeight">Allowances:</label>
 								<div class="input-group">
-									<!--<span class="input-group-addon">$</span>-->
-									<select #allowanceCurrency (change)="onChange($event)">
-										<option>SGD</option>
-										<option>PHP</option>
-										<option>USD</option>
-										<option>EUR</option>
-										<option>EGP</option>
-										<option>HKD</option>
-										<option>AUD</option>
-										<option>BRL</option>
-										<option>JPY</option>
-									</select>
+									<label for="allowance">SGD</label>
 									<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
 								</div>
 							</div>
@@ -263,7 +232,7 @@
 
 			<h3>Work Experience</h3>
 			<div class="add-btn-container">
-				<a href="#"  *ngIf="!edit" (click)="addPosition($event)" class="add-btn-work">+</a>
+				<a href="#" *ngIf="!edit" (click)="addPosition($event)" class="add-btn-work">+</a>
 			</div>
 			<br>
 			<!--Work experience loop-->
@@ -271,7 +240,8 @@
 				<div [formGroupName]="i">
 					<div *ngIf="edit != 'position'+i" class="view" style="padding-top: 10px;">
 						<input type="text" value="{{ position.value.title }}" class="position-display" placeholder="Position" readonly />
-						<input type="text" class="inputPlace" value="{{ position.value.startDate }} - {{ position.value.endDate }}" style="width:40%" placeholder="Time Period" readonly/>
+						<input type="text" class="inputPlace" value="{{ position.value.startDate }} - {{ position.value.endDate }}" style="width:40%"
+						 placeholder="Time Period" readonly/>
 						<br>
 						<input type="text" value="{{position.value.company?.name}}" class="position-display" placeholder="Company" readonly />
 						<br>
@@ -303,8 +273,8 @@
 
 						<label class="col-md-12 control-label">Responsibilities</label>
 						<div class="col-md-12">
-							<textarea rows="3" class="form-control" placeholder="Responsibilities and Achievements"
-							 formControlName="responsibilities" value="{{ position.value?.responsibilities }}"></textarea>
+							<textarea rows="3" class="form-control" placeholder="Responsibilities and Achievements" formControlName="responsibilities"
+							 value="{{ position.value?.responsibilities }}"></textarea>
 						</div>
 
 						<div class="col-md-12">
@@ -321,7 +291,7 @@
 		<div class="col-md-12">
 			<h3>Skills</h3>
 			<div class="add-btn-container">
-				<a href="#"  *ngIf="!edit" (click)="addSkill($event)" class="add-btn">+</a>
+				<a href="#" *ngIf="!edit" (click)="addSkill($event)" class="add-btn">+</a>
 			</div>
 			<br>
 			<table class="table tableBorder" border="1" style="border-color: lightgrey;">

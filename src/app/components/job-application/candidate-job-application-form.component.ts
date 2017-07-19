@@ -18,7 +18,7 @@ import { JobApplication } from '../../models/job-application.model';
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
 						<textarea class="form-control" id="reasonForLeaving" name="reasonForLeaving" rows="5"
-											[(ngModel)]="application.reasonForLeaving" required></textarea>
+											[(ngModel)]="application.form_data.reasonForLeaving" required></textarea>
 					</div>
 					<div class="col-md-12 div-padding">
 						<p class="labelStyle">Expected Salary:</p>
@@ -28,7 +28,7 @@ import { JobApplication } from '../../models/job-application.model';
 								<select #basePerMonthCurrency (change)="onChange($event)">
 									<option *ngFor="let curr of currencies">{{ curr }}</option>
 								</select>
-								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.basePerMonth"
+								<input type="number" class="form-control currency" id="basePerMonth" [(ngModel)]="application.form_data.basePerMonth"
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
@@ -38,7 +38,7 @@ import { JobApplication } from '../../models/job-application.model';
 								<select #bonusCurrency (change)="onChange($event)">
 									<option *ngFor="let curr of currencies">{{ curr }}</option>
 								</select>
-								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.bonus"
+								<input type="number" class="form-control currency" id="bonus" [(ngModel)]="application.form_data.bonus"
 											 [ngModelOptions]="{standalone: true}" required="required"/>
 							</div>
 						</div>
@@ -54,22 +54,22 @@ import { JobApplication } from '../../models/job-application.model';
 					<div class="form-group">
 						<label for="strengths" class="labelStyle">What are your strengths?</label>
 						<textarea class="form-control" rows="5" id="strengths" name="strengths"
-											[(ngModel)]="application.strength" required></textarea>
+											[(ngModel)]="application.form_data.strength" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="points" class="labelStyle">What are your points for development/improvement?</label>
 						<textarea class="form-control" rows="5" id="points" name="points"
-											[(ngModel)]="application.improvements" required></textarea>
+											[(ngModel)]="application.form_data.improvements" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="achievements" class="labelStyle">What are your main achievements?</label>
 						<textarea class="form-control" rows="5" id="achievements" name="achievements"
-											[(ngModel)]="application.achievements" required></textarea>
+											[(ngModel)]="application.form_data.achievements" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="management" class="labelStyle">What is your management style?</label>
 						<textarea class="form-control" rows="5" id="management" name="managements"
-											[(ngModel)]="application.management" required></textarea>
+											[(ngModel)]="application.form_data.management" required></textarea>
 					</div>
 					<div *ngIf="!forReference" class="button-class">
 						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply?</button>
