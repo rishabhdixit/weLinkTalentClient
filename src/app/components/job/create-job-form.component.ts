@@ -46,6 +46,10 @@ export class CreateJobFormComponent implements OnInit {
 		return <FormArray>this.createJobForm.controls['ideal_talent'];
 	}
 
+	get company () {
+		return <FormGroup>this.createJobForm.controls['company'];
+	}
+
 	constructor(public fb: FormBuilder) {}
 
 	ngOnInit() {
@@ -162,6 +166,16 @@ export class CreateJobFormComponent implements OnInit {
 	removeIdealTalent(i: number) {
 		const idealTalents = <FormArray>this.createJobForm.controls['ideal_talent'];
 		idealTalents.removeAt(i);
+	}
+
+	onFileUpload(event) {
+		const files = event.target.files;
+		if (files.length > 5) {
+			alert('Maximum of 5 files can only be uploaded');
+			this.company.controls['logo'] = null;
+		} else {
+			this.company.controls['logo'] = files;
+		}
 	}
 
 	onSave() {
