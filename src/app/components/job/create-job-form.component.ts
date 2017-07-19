@@ -172,9 +172,9 @@ export class CreateJobFormComponent implements OnInit {
 		const files = event.target.files;
 		if (files.length > 5) {
 			alert('Maximum of 5 files can only be uploaded');
-			this.company.controls['logo'] = null;
+			this.company.controls['logo'].setValue(null);
 		} else {
-			this.company.controls['logo'] = files;
+			this.company.controls['logo'].setValue(files);
 		}
 	}
 

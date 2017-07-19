@@ -243,7 +243,8 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="labelWeight">Company Logo<i class="color-red"> * </i></label>
-								<input type="file" class="form-control" formControlName="logo" (change)="onFileUpload($event)" required/>
+								<input type="file" class="form-control" (change)="onFileUpload($event)" required/>
+								<input type="hidden" name="fileHidden" formControlName="logo"/> <!-- Validation Field -->
 							</div>
 						</div>
 					</div>
