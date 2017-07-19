@@ -37,5 +37,6 @@ export class LoginComponent {
 
 	signInButtonClick() {
 		this.signInButtonClicked.emit(this.loginInfo);
+		this.loginInfo = new Login();
 	}
 }

@@ -35,7 +35,7 @@ import { routePath } from '../../routes';
 						</ul>
 					</div>
 				</div>
-				<div class="row">
+				<div *ngIf="!isLoggedInAsAdmin" class="row">
 					<nav class="col-md-12" style="font-size:large;">
 						<ul class="nav-list">
 							<li><a routerLink="/home"><h5>Home</h5></a></li>
@@ -43,10 +43,21 @@ import { routePath } from '../../routes';
 							<li><a routerLink="/jobs"><h5>All Job Offers</h5></a></li>
 							<li><a routerLink="#"><h5>Contact Us</h5></a></li>
 							<li><a routerLink="/bookmarks"><h5>Bookmarks</h5></a></li>
-							<li><a routerLink="/admin-home"><h5>Admin Home</h5></a></li>
 						</ul>
 					</nav>
 				</div>
+
+				<div *ngIf="isLoggedInAsAdmin" class="row">
+					<nav class="col-md-12" style="font-size:large;">
+						<ul class="nav-list">
+							<li><a routerLink="/admin-home"><h5>Home</h5></a></li>
+							<li><a routerLink="#"><h5>Account Setting</h5></a></li>
+							<li><a routerLink="#"><h5>Billing</h5></a></li>
+							<li><a routerLink="#"><h5>Applicants</h5></a></li>							
+						</ul>
+					</nav>
+				</div>
+
 				<hr>
 			</div>
 		</header>
@@ -87,7 +98,6 @@ export class HeaderComponent {
 	logout(event) {
 		event.preventDefault();
 		this.store.dispatch(new login.LogoutAction(''));
-		this.route.url = '/login/';
 	}
 
 	get isNotLoginUrl() {
@@ -115,6 +125,16 @@ export class HeaderComponent {
 		if (validRoutes.length === 0) {
 			return false;
 		}
+		return true;
+	}
+
+	get isLoggedInAsAdmin() {
+		if (!this.user
+			|| !this.user.role
+			|| this.user.role !== 'admin') {
+			return false;
+		}
+
 		return true;
 	}
 }
