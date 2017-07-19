@@ -103,9 +103,7 @@ export class CreateJobFormComponent implements OnInit {
 	}
 
 	initPhoneNumber() {
-		return this.fb.group({
-			number: ['', Validators.required]
-		});
+		return this.fb.control('', Validators.required);
 	}
 
 	addPhoneNumber() {
@@ -121,9 +119,7 @@ export class CreateJobFormComponent implements OnInit {
 	}
 
 	initSkill() {
-		return this.fb.group({
-			name: ['', Validators.required]
-		});
+		return this.fb.control('', Validators.required);
 	}
 
 	addSkill() {
@@ -137,9 +133,7 @@ export class CreateJobFormComponent implements OnInit {
 	}
 
 	initResponsibility() {
-		return this.fb.group({
-			responsibility: ['', Validators.required]
-		});
+		return this.fb.control('', Validators.required);
 	}
 
 	addResponsibility() {
@@ -153,9 +147,7 @@ export class CreateJobFormComponent implements OnInit {
 	}
 
 	initIdealTalent() {
-		return this.fb.group({
-			ideal_talent: ['', Validators.required]
-		});
+		return this.fb.control('', Validators.required);
 	}
 
 	addIdealTalent() {

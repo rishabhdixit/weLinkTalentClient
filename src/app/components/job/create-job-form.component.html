@@ -103,11 +103,11 @@
 								<div *ngFor="let skill of skills.controls; let i=index">
 									<div class="row">
 										<div class="col-md-10">
-											<div [formGroupName]="i" style="padding-bottom: 5px;">
+											<div style="padding-bottom: 5px;">
 												<input type="text"
 															 class="form-control"
 															 placeholder="Skill"
-															 formControlName="name"
+															 [formControlName]="i"
 															 required/>
 											</div>
 										</div>
@@ -133,11 +133,11 @@
 								<div *ngFor="let responsibility of responsibilities.controls; let i=index">
 									<div class="row">
 										<div class="col-md-10">
-											<div [formGroupName]="i" style="padding-bottom: 5px;">
+											<div style="padding-bottom: 5px;">
 												<input type="text"
 															 class="form-control"
 															 placeholder="Responsibility"
-															 formControlName="responsibility"
+															 [formControlName]="i"
 															 required/>
 											</div>
 										</div>
@@ -163,11 +163,11 @@
 								<div *ngFor="let idealTalent of ideal_talent.controls; let i=index">
 									<div class="row">
 										<div class="col-md-10">
-											<div [formGroupName]="i" style="padding-bottom: 5px;">
+											<div style="padding-bottom: 5px;">
 												<input type="text"
 															 class="form-control"
 															 placeholder="Ideal Talent"
-															 formControlName="ideal_talent"
+															 [formControlName]="i"
 															 required/>
 											</div>
 										</div>
@@ -217,11 +217,11 @@
 								<div *ngFor="let phoneNumber of phone_numbers.controls; let i=index">
 									<div class="row">
 										<div class="col-md-10">
-											<div [formGroupName]="i" style="padding-bottom: 5px;">
+											<div style="padding-bottom: 5px;">
 												<input type="text"
 															 class="form-control"
 															 placeholder="Phone Numbers"
-															 formControlName="number"
+															 [formControlName]="i"
 															 required/>
 											</div>
 										</div>
@@ -278,7 +278,7 @@
 							<button type="button" class="btn btn-default pull-right form-control" (click)="onCancel()">CANCEL</button>
 						</div>
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-primary pull-left form-control" (click)="onSave()" [disabled]="!createJobForm.valid">SAVE</button>
+							<button type="submit" class="btn btn-primary pull-left form-control" (click)="onSave()">SAVE</button>
 						</div>
 						<div class="col-md-4"></div>
 					</div>
