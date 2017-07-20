@@ -193,6 +193,7 @@
 			<hr/>
 			<br/>
 			<div class="row">
+				<input type="hidden" name="fileHidden" formControlName="company_logo"/> <!-- Validation Field -->
 				<div class="col-md-12" formGroupName="company">
 					<h4>Company Details:</h4>
 					<div class="row">
@@ -252,7 +253,6 @@
 							<div class="form-group">
 								<label class="labelWeight">Company Logo<i class="color-red"> * </i></label>
 								<input type="file" class="form-control" (change)="onFileUpload($event)" required/>
-								<input type="hidden" name="fileHidden" formControlName="logo"/> <!-- Validation Field -->
 							</div>
 						</div>
 					</div>
@@ -286,7 +286,7 @@
 							<button type="button" class="btn btn-default pull-right form-control" (click)="onCancel()">CANCEL</button>
 						</div>
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-primary pull-left form-control" [disabled]="!createJobForm.valid" (click)="onSave()">SAVE</button>
+							<button type="submit" class="btn btn-primary pull-left form-control" (click)="onSave()">SAVE</button>
 						</div>
 						<div class="col-md-4"></div>
 					</div>

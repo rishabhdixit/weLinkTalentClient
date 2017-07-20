@@ -73,11 +73,11 @@ export class CreateJobFormComponent implements OnInit {
 				email: new FormControl('', [Validators.required]),
 				twitter_profile: new FormControl('', [Validators.required]),
 				linkedin_profile: new FormControl('', [Validators.required]),
-				logo: new FormControl('', [Validators.required]),
 				phone_numbers: this.fb.array([
 					this.initPhoneNumber(),
 				])
 			}),
+			company_logo: new FormControl('', [Validators.required]),
 			description: new FormControl('',  [Validators.required]),
 			expertise: new FormControl('', [Validators.required]),
 			years_experience: new FormControl('', [Validators.required]),
@@ -172,9 +172,9 @@ export class CreateJobFormComponent implements OnInit {
 		const files = event.target.files;
 		if (files.length > 5) {
 			alert('Maximum of 5 files can only be uploaded');
-			this.company.controls['logo'].setValue(null);
+			this.createJobForm.controls['company_logo'].setValue(null);
 		} else {
-			this.company.controls['logo'].setValue(files);
+			this.createJobForm.controls['company_logo'].setValue(files);
 		}
 	}
 

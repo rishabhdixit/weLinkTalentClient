@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Job } from '../models/job.model';
 import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
 
 import * as jobAction from '../actions/jobs.action';
 import * as fromRoot from '../reducers';
@@ -27,9 +28,26 @@ import * as fromRoot from '../reducers';
 
 export class AdminHomeViewComponent {
 
-	constructor(private store: Store<fromRoot.State>) {}
+	constructor(private store: Store<fromRoot.State>) {
+	}
 
 	onCreateJobHandler(job: Job) {
-		this.store.dispatch(new jobAction.JobCreationAction(job));
+		let formData: FormData = new FormData();
+		let fileList: FileList = job.company_logo;
+
+		_.forIn(job, function (value, key) {
+			if (typeof value === 'object') {
+				formData.append(key, JSON.stringify(value));
+			} else {
+				formData.append(key, value);
+			}
+		});
+
+		if (fileList.length > 0) {
+			let file: File = fileList[0];
+			formData.set('company_logo', file, file.name);
+		}
+
+		this.store.dispatch(new jobAction.JobCreationAction(formData));
 	}
 }
