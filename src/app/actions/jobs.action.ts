@@ -11,6 +11,12 @@ export const ActionTypes = {
 	GET_STATUS:                 type('[JOBS] Get Job Status'),
 	GET_STATUS_SUCCESS:         type('[JOBS] Get Job Status Success'),
 	GET_STATUS_FAIL:            type('[JOBS] Get Job Status Fail'),
+	JOB_CREATION:               type('[JOBS] Job Creation'),
+	JOB_CREATION_SUCCESS:       type('[JOBS] Job Creation Success'),
+	JOB_CREATION_FAIL:          type('[JOBS] Job Creation Fail'),
+	LOAD_CREATED_JOBS:          type('[JOBS] Created Jobs load'),
+	LOAD_CREATED_JOBS_SUCCESS:  type('[JOBS] Created Jobs load success'),
+	LOAD_CREATED_JOBS_FAIL:     type('[JOBS] Created Jobs load fail'),
 	ADD_BOOKMARK:               type('[USERS] Add bookmark'),
 	ADD_BOOKMARK_SUCCESS:       type('[USERS] Add bookmark success'),
 	ADD_BOOKMARK_FAIL:          type('[USERS] Add bookmark failure'),
@@ -101,23 +107,55 @@ export class RemoveBookmarkFailAction implements Action {
 	}
 }
 
-export class GetJobStatus implements Action {
+export class GetJobStatusAction implements Action {
 	type = ActionTypes.GET_STATUS;
 
 	constructor(public payload: any) {
 	}
 }
-export class GetJobStatusSuccess implements Action {
+export class GetJobStatusSuccessAction implements Action {
 	type = ActionTypes.GET_STATUS_SUCCESS;
 
 	constructor(public payload: any) {
 	}
 }
-export class GetJobStatusFail implements Action {
+export class GetJobStatusFailAction implements Action {
 	type = ActionTypes.GET_STATUS_FAIL;
 
 	constructor(public payload: any) {
 	}
+}
+
+export class JobCreationAction implements Action {
+	type = ActionTypes.JOB_CREATION;
+
+	constructor(public payload: any) {}
+}
+export class JobCreationSuccessAction implements Action {
+	type = ActionTypes.JOB_CREATION_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class JobCreationFailAction implements Action {
+	type = ActionTypes.JOB_CREATION_FAIL;
+
+	constructor(public payload: any) {}
+}
+
+export class CreateJobsLoadAction implements Action {
+	type = ActionTypes.LOAD_CREATED_JOBS;
+
+	constructor(public payload: any) {}
+}
+export class CreateJobsLoadSuccessAction implements Action {
+	type = ActionTypes.LOAD_CREATED_JOBS_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class CreateJobsLoadFailAction implements Action {
+	type = ActionTypes.LOAD_CREATED_JOBS_FAIL;
+
+	constructor(public payload: any) {}
 }
 
 export type Actions = JobsLoadAction
@@ -132,6 +170,12 @@ export type Actions = JobsLoadAction
 	| RemoveBookmarkAction
 	| RemoveBookmarkSuccessAction
 	| RemoveBookmarkFailAction
-	| GetJobStatus
-	| GetJobStatusSuccess
-	| GetJobStatusFail;
+	| GetJobStatusAction
+	| GetJobStatusSuccessAction
+	| GetJobStatusFailAction
+	| JobCreationAction
+	| JobCreationSuccessAction
+	| JobCreationFailAction
+	| CreateJobsLoadAction
+	| CreateJobsLoadSuccessAction
+	| CreateJobsLoadFailAction;

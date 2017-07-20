@@ -3,39 +3,38 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './header.component';
-import { ComponentNameComponent } from './footer.component';
-import { JobContentViewComponent } from './job-content-view.component';
-import { JobContentHeaderViewComponent } from './job-content-header-view.component';
-import { JobSearchComponent } from './job-search.component';
-import { JobViewComponent } from './job-view.component';
-import { LinkedinLoginComponent } from './linkedin-login.component';
-import { LoginComponent } from './login.component';
-import { OrSeperatorComponent } from './or-seperator.component';
-import { ProfileUserInfoComponent } from './profile-user-info.component';
-import { ProfileViewComponent } from './profile-view.component';
-import { ThankYouViewComponent } from './thank-you-view.component';
-import { JobButtonsComponent } from './job-buttons.component';
-import { JobContentSideViewComponent } from './job-content-side-view.component';
-import { ApplicationConceptComponent } from './application-concept.component';
-import { StarsComponent } from './stars.component';
-import { RefereeFeedbackFormComponent } from './referee-feedback-form.component';
-import { ReferenceFormComponent } from './reference-form.component';
-import { RefereeFeedbackApplicationViewComponent } from './referee-feedback-application-view.component';
-import { CandidateJobApplicationFormComponent } from './candidate-job-application-form.component';
-import { RefereeFeedbackThankViewComponent } from './referee-feedback-thank-view.component';
-import { CandidateJobsAppliedViewComponent } from './candidate-jobs-applied-view.component';
-import { ReactiveStarsComponent } from './reactive-star.component';
-import { CandidateBookmarkJobViewComponent } from './candidate-bookmark-job-view.component';
-import { PageNotFoundErrorViewComponent } from './page-not-found-error-view.component';
-
-import { AdminHomeComponent } from './Admin/admin-home.component';
-import { AdminHeaderComponent } from './Admin/admin-header.component';
-import { AdminCreateJobComponent } from './Admin/admin-create-job.component';
+import { HeaderComponent } from './common/header.component';
+import { FooterComponent } from './common/footer.component';
+import { JobContentViewComponent } from './job/job-content-view.component';
+import { JobContentHeaderViewComponent } from './job/job-content-header-view.component';
+import { JobSearchComponent } from './job/job-search.component';
+import { JobViewComponent } from './job/job-view.component';
+import { LinkedinLoginComponent } from './common/linkedin-login.component';
+import { LoginComponent } from './common/login.component';
+import { OrSeperatorComponent } from './common/or-seperator.component';
+import { ProfileViewComponent } from './profile/profile-view.component';
+import { ThankYouViewComponent } from './job-application/thank-you-view.component';
+import { JobButtonsComponent } from './job/job-buttons.component';
+import { JobContentSideViewComponent } from './job/job-content-side-view.component';
+import { ApplicationConceptComponent } from './job-application/application-concept.component';
+import { StarsComponent } from './common/stars.component';
+import { RefereeFeedbackFormComponent } from './referee/referee-feedback-form.component';
+import { ReferenceFormComponent } from './job-application/reference-form.component';
+import { RefereeFeedbackApplicationViewComponent } from './referee/referee-feedback-application-view.component';
+import { CandidateJobApplicationFormComponent } from './job-application/candidate-job-application-form.component';
+import { RefereeFeedbackThankViewComponent } from './referee/referee-feedback-thank-view.component';
+import { JobsAppliedViewComponent } from './job-applied/jobs-applied-view.component';
+import { ReactiveStarsComponent } from './common/reactive-star.component';
+import { BookmarkJobViewComponent } from './bookmark-job-view.component';
+import { JobAppliedDetailViewComponent } from './job-applied/job-applied-detail-view.component';
+import { JobAppliedFeedbackViewComponent } from './job-applied/job-applied-feedback-view.component';
+import { PageNotFoundErrorViewComponent } from './common/page-not-found-error-view.component';
+import { CreateJobFormComponent } from './job/create-job-form.component';
+import { JobCreatedViewComponent } from './job/job-created-view.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
-	ComponentNameComponent,
+	FooterComponent,
 	JobContentViewComponent,
 	JobContentHeaderViewComponent,
 	JobSearchComponent,
@@ -43,7 +42,6 @@ export const COMPONENTS = [
 	LinkedinLoginComponent,
 	LoginComponent,
 	OrSeperatorComponent,
-	ProfileUserInfoComponent,
 	ProfileViewComponent,
 	JobButtonsComponent,
 	JobContentSideViewComponent,
@@ -55,13 +53,14 @@ export const COMPONENTS = [
 	RefereeFeedbackApplicationViewComponent,
 	CandidateJobApplicationFormComponent,
 	RefereeFeedbackThankViewComponent,
-	CandidateJobsAppliedViewComponent,
+	JobsAppliedViewComponent,
 	ReactiveStarsComponent,
-	CandidateBookmarkJobViewComponent,
+	BookmarkJobViewComponent,
 	PageNotFoundErrorViewComponent,
-	AdminHeaderComponent,
-	AdminHomeComponent,
-	AdminCreateJobComponent,
+	JobAppliedDetailViewComponent,
+	JobAppliedFeedbackViewComponent,
+	CreateJobFormComponent,
+	JobCreatedViewComponent,
 ];
 
 @NgModule({

@@ -28,6 +28,7 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
+import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
 
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
@@ -41,8 +42,8 @@ import { LogInEffects } from './effects/login.effects';
 import { JobEffects } from './effects/job.effects';
 import { ApplicationEffects } from './effects/application.effects';
 import { RefereeFeedbackEffects } from './effects/referee-feedback.effects';
-import { CandidateJobsAppliedEffects } from './effects/candidate-jobs-applied.effects';
-import { CandidateBookmarkedJobEffects } from './effects/candidate-bookmarked-jobs.effects';
+import { JobsAppliedEffects } from './effects/jobs-applied.effects';
+import { BookmarkedJobEffects } from './effects/bookmarked-jobs.effects';
 
 import { LoginPageComponent } from './containers/login-page.component';
 import { ProfilePageComponent } from './containers/profile-page.component';
@@ -56,8 +57,12 @@ import { ThankYouPageComponent } from './containers/thank-you-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
-import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
+import { BookmarkPageComponent } from './containers/bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
+import { JobAppliedPageComponent } from './containers/job-applied-page.component';
+import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
+import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
+
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -79,8 +84,11 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		CandidateHomePageComponent,
 		RefereeFeedbackPageComponent,
 		RefereeFeedbackThankPageComponent,
-		CandidateBookmarkPageComponent,
+		BookmarkPageComponent,
 		ErrorPageComponent,
+		JobAppliedPageComponent,
+		AdminHomePageComponent,
+		AdminCreateJobPageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -94,8 +102,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		EffectsModule.run(JobEffects),
 		EffectsModule.run(ApplicationEffects),
 		EffectsModule.run(RefereeFeedbackEffects),
-		EffectsModule.run(CandidateJobsAppliedEffects),
-		EffectsModule.run(CandidateBookmarkedJobEffects),
+		EffectsModule.run(JobsAppliedEffects),
+		EffectsModule.run(BookmarkedJobEffects),
 		StoreDevtoolsModule.instrumentOnlyWithExtension({
 			maxAge: 5
 		}),
@@ -134,6 +142,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobApplicationFormReferenceGuard,
 		JobApplicationFormSuccessGuard,
 		RefereeFeedbackGuard,
+		JobAppliedExistsGuard,
 	],
 	bootstrap: [
 		AppComponent

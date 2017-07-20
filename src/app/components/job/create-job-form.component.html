@@ -1,0 +1,298 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-md-10">
+				<h2>Create Job Form</h2>
+			</div>
+			<div class="col-md-2">
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<br/>
+		<form [formGroup]="createJobForm">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Job Details:</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Job Title<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="title" placeholder="Job Title" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Industry<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="industry" placeholder="Industry" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label class="labelWeight">Job Type<i class="color-red"> * </i></label>
+								<select class="form-control" formControlName="job_type" required>
+									<option value="Permanent">Permanent</option>
+									<option value="Contractualization">Contractualization</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label class="labelWeight">Employment Type<i class="color-red"> * </i></label>
+								<select class="form-control" formControlName="employment_type">
+									<option value="Full Time">Full Time</option>
+									<option value="Part Time">Part Time</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label class="labelWeight">Years of Experience<i class="color-red"> * </i></label>
+								<input type="number" class="form-control" formControlName="years_experience" placeholder="Years of Experience" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-9">
+							<div class="form-group">
+								<label class="labelWeight">Expertise<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="expertise" placeholder="Expertise" required/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Vacant Slots<i class="color-red"> * </i></label>
+								<input type="number" class="form-control" formControlName="remaining_slots" placeholder="Vacant Slots" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Salary Negotiable<i class="color-red"> * </i></label>
+								<input type="checkbox" class="form-control" formControlName="salary_negotiable" required/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Currency<i class="color-red"> * </i></label>
+								<select class="form-control" formControlName="salary_currency">
+									<option value="SGD">SGD</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Salary From<i class="color-red"> * </i></label>
+								<input type="number" class="form-control" formControlName="salary_from" placeholder="Salary From" required/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Salary To<i class="color-red"> * </i></label>
+								<input type="number" class="form-control" formControlName="salary_to" placeholder="Salary To" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group" formArrayName="skills">
+								<div class="row">
+									<div class="col-md-9">
+										<label class="labelWeight">Required Skills<i class="color-red"> * </i></label>
+									</div>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addSkill()">add skills...</button>
+									</div>
+								</div>
+								<div *ngFor="let skill of skills.controls; let i=index">
+									<div class="row">
+										<div class="col-md-10">
+											<div style="padding-bottom: 5px;">
+												<input type="text"
+															 class="form-control"
+															 placeholder="Skill"
+															 [formControlName]="i"
+															 required/>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-danger btn-sm form-control" (click)="removeSkill(i)">remove</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group" formArrayName="responsibilities">
+								<div class="row">
+									<div class="col-md-9">
+										<label class="labelWeight">Responsibilities<i class="color-red"> * </i></label>
+									</div>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addResponsibility()">add responsibilities...</button>
+									</div>
+								</div>
+								<div *ngFor="let responsibility of responsibilities.controls; let i=index">
+									<div class="row">
+										<div class="col-md-10">
+											<div style="padding-bottom: 5px;">
+												<input type="text"
+															 class="form-control"
+															 placeholder="Responsibility"
+															 [formControlName]="i"
+															 required/>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-danger btn-sm form-control" (click)="removeResponsibility(i)">remove</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group" formArrayName="ideal_talent">
+								<div class="row">
+									<div class="col-md-9">
+										<label class="labelWeight">Ideal Talent<i class="color-red"> * </i></label>
+									</div>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addIdealTalent()">add ideal talent...</button>
+									</div>
+								</div>
+								<div *ngFor="let idealTalent of ideal_talent.controls; let i=index">
+									<div class="row">
+										<div class="col-md-10">
+											<div style="padding-bottom: 5px;">
+												<input type="text"
+															 class="form-control"
+															 placeholder="Ideal Talent"
+															 [formControlName]="i"
+															 required/>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-danger btn-sm form-control" (click)="removeIdealTalent(i)">remove</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+			<div class="row">
+				<input type="hidden" name="fileHidden" formControlName="company_logo"/> <!-- Validation Field -->
+				<div class="col-md-12" formGroupName="company">
+					<h4>Company Details:</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Company Name<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="name" placeholder="Company Name" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Address<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="address" placeholder="Complete Address" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group" formArrayName="phone_numbers">
+								<div class="row">
+									<div class="col-md-9">
+										<label class="labelWeight">Phone Numbers<i class="color-red"> * </i></label>
+									</div>
+									<div class="col-md-3">
+										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addPhoneNumber()">add phone numbers...</button>
+									</div>
+								</div>
+								<div *ngFor="let phoneNumber of phone_numbers.controls; let i=index">
+									<div class="row">
+										<div class="col-md-10">
+											<div style="padding-bottom: 5px;">
+												<input type="text"
+															 class="form-control"
+															 placeholder="Phone Numbers"
+															 [formControlName]="i"
+															 required/>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-danger btn-sm form-control" (click)="removePhoneNumber(i)">remove</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="labelWeight">Email Address<i class="color-red"> * </i></label>
+								<input type="text" class="form-control" formControlName="email" placeholder="Email Address" required/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="labelWeight">Company Logo<i class="color-red"> * </i></label>
+								<input type="file" class="form-control" (change)="onFileUpload($event)" required/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Twitter Profile</label>
+								<input type="url" class="form-control" formControlName="twitter_profile" placeholder="Twitter profile url"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">LinkedIn Profile</label>
+								<input type="url" class="form-control" formControlName="linkedin_profile" placeholder="LinkedIn profile url"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">About the Company<i class="color-red"> * </i></label>
+								<textarea class="form-control" rows="10" formControlName="about" placeholder="About Company"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-default pull-right form-control" (click)="onCancel()">CANCEL</button>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary pull-left form-control" (click)="onSave()">SAVE</button>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

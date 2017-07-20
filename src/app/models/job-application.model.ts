@@ -14,4 +14,6 @@ export class ApplicationDetails {
 	achievements: string;
 	management: string;
 	skills: any;
+	basePerMonth: number;
+	bonus: number;
 }

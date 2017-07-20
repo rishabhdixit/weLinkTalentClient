@@ -11,6 +11,7 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
+import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -24,10 +25,15 @@ import { AboutUsPageComponent } from './containers/about-us-page.component';
 import { CandidateHomePageComponent } from './containers/candidate-home-page.component';
 import { RefereeFeedbackPageComponent } from './containers/referee-feedback-page.component';
 import { RefereeFeedbackThankPageComponent } from './containers/referee-feedback-thank-page.component';
-import { CandidateBookmarkPageComponent } from './containers/candidate-bookmark-page.component';
+import { BookmarkPageComponent } from './containers/bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
+import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
+import { JobAppliedPageComponent } from './containers/job-applied-page.component';
+import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
+
 
 export const routes: Routes = [
+	{ path: '', redirectTo: '/index', pathMatch: 'full' },
 	{
 		path: 'index',
 		component: JobSearchPageComponent
@@ -99,13 +105,39 @@ export const routes: Routes = [
 	},
 	{
 		path: 'bookmarks',
-		component: CandidateBookmarkPageComponent,
+		component: BookmarkPageComponent,
 		canActivate: [LoggedInGuard],
+	},
+	{
+		path: 'job-application/:id',
+		component: JobAppliedPageComponent,
+		canActivate: [JobAppliedExistsGuard],
+		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'admin/home',
+		component: AdminHomePageComponent,
+		canActivate: [LoggedInGuard], // TODO - need to fix (if directly typed in address bar)
+		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'admin/create-job',
+		component: AdminCreateJobPageComponent,
+		canActivate: [LoggedInGuard], // TODO - need to fix (if directly typed in address bar)
+		resolve: { loaded: UserResolve }
 	},
 	{
 		path: '**',
 		component: ErrorPageComponent,
-	},
+	}
 	// otherwise redirect to home
 	// { path: '**', redirectTo: '' }
 ];
+
+
+// Note : for header handling purposes
+export const routePath = routes.map((route) => {
+	if (route.path !== '**') {
+		return route.path.replace(':id', '');
+	}
+});

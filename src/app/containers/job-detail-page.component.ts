@@ -1,8 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { publishBehavior } from 'rxjs/operator/publishBehavior';
 import { Router } from '@angular/router';
 
 import { Job } from '../models/job.model';
@@ -13,7 +11,6 @@ import * as jobsApplicationAction from '../actions/job-application.action';
 import * as jobAction from '../actions/jobs.action';
 import * as loginAction from '../actions/login.action';
 
-import { State } from '../reducers/job-application.reducer';
 import { LoginService } from '../services/login.service';
 
 
@@ -28,6 +25,7 @@ import { LoginService } from '../services/login.service';
 				<app-job-content-view [job]="job$ | async"></app-job-content-view>
 				<app-job-buttons
 					[job]="job$ | async"
+					[user]="user"
 					(applyButtonClickEvent)="applyButtonClickHandler($event)"></app-job-buttons>
 			</div>
 			<div class="col-md-4 sideStyle">
@@ -57,7 +55,7 @@ export class JobDetailPageComponent implements OnInit {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
 		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
 		if (this.user && this.selectedJob) {
-			this.store.dispatch(new jobAction.GetJobStatus({
+			this.store.dispatch(new jobAction.GetJobStatusAction({
 				user: this.user.id,
 				jobId: this.selectedJob._id
 			}));

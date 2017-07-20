@@ -98,4 +98,9 @@ export class ProfileService {
 		return this.authHttp.get(`${this.api}/api/users/${user}/applications?${page}`)
 			.map(res => res.json());
 	}
+
+	getCandidateJobAppliedId(id: string): Observable<any> {
+		return this.http.get(`${this.api}/api/applications/${id}`)
+		.map((res: Response) => res.json());
+	}
 }

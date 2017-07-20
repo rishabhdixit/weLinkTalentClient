@@ -1,11 +1,12 @@
 export class Reference {
+	id: string;
 	referenceID: number;
-	fname: string;
-	lname: string;
+	firstName: string;
+	lastName: string;
 	company: string;
 	title: string;
 	phone: string;
-	email: string;
+	emailAddress: string;
 	relationship: string;
 	startYearOfWorking:	Date;
 	endYearOfWorking: Date;
