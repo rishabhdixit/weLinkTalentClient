@@ -85,7 +85,7 @@ import { Job } from '../../models/job.model';
 					<table class="table tableBorder">
 						<tbody>
 							<tr>
-								<td><img alt="We Link Talent" src="./assets/images/PN.jpg"/></td>
+								<td><img src="{{'http://' + job.company_logo }}" class="img-responsive logo"/></td>
 								<td>{{job.company.about}}</td>
 							</tr>
 						</tbody>
@@ -106,6 +106,10 @@ import { Job } from '../../models/job.model';
 		}
 		.div-margin{
 			margin-left: 10px;
+		}
+		.logo {
+			width: 3cm;
+			height: 3cm;
 		}
 	`]
 })
