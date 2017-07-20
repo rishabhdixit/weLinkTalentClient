@@ -175,6 +175,8 @@ export const getLoading = (state: State) => state.loading;
 
 export const getTotalJobsSearch = (state: State) => state.pageMetaData.totalSize;
 
+export const getTotalJobsCreated = (state: State) => state.pageMetaData.totalSize;
+
 export const getJobCreated = (state: State) => state.jobCreated;
 
 //noinspection TypeScriptValidateTypes
@@ -184,5 +186,9 @@ export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (ent
 
 //noinspection TypeScriptValidateTypes
 export const getAllJobs = createSelector(getEntities, getIds, (entities, ids) => {
+	return ids.map(id => entities[id]);
+});
+
+export const getAllJobsCreated = createSelector(getEntities, getIds, (entities, ids) => {
 	return ids.map(id => entities[id]);
 });

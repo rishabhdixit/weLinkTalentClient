@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Job } from '../models/job.model';
-import {User} from '../models/user.model';
-import {Store} from '@ngrx/store';
+import { User } from '../models/user.model';
+import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../reducers';
 import * as jobsAction from '../actions/jobs.action';

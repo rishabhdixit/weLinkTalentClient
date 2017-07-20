@@ -32,6 +32,7 @@ import { PageNotFoundErrorViewComponent } from './common/page-not-found-error-vi
 import { AdminHomeViewComponent } from './admin-home-view.component';
 import { CreateJobFormComponent } from './job/create-job-form.component';
 import { JobListComponent } from './job/job-list.component';
+import { AdminJobCreatedViewComponent } from './admin-job-created-view.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -63,6 +64,7 @@ export const COMPONENTS = [
 	JobAppliedFeedbackViewComponent,
 	CreateJobFormComponent,
 	JobListComponent,
+	AdminJobCreatedViewComponent
 ];
 
 @NgModule({
