@@ -33,6 +33,7 @@ export class AdminCreateJobPageComponent {
 	onCreateJobHandler(job: Job) {
 		let formData: FormData = new FormData();
 		let fileList: FileList = job.company_logo;
+		delete job.company_logo;
 
 		_.forIn(job, function (value, key) {
 			if (typeof value === 'object') {
@@ -44,7 +45,7 @@ export class AdminCreateJobPageComponent {
 
 		if (fileList.length > 0) {
 			let file: File = fileList[0];
-			formData.set('company_logo', file, file.name);
+			formData.append('company_logo', file, file.name);
 		}
 
 		this.store.dispatch(new jobAction.JobCreationAction(formData));
