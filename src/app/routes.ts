@@ -11,6 +11,7 @@ import { JobApplicationFormGuard } from './guards/job-application-form.guard';
 import { JobApplicationFormReferenceGuard } from './guards/job-application-form-reference.guard';
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
+import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -28,7 +29,8 @@ import { BookmarkPageComponent } from './containers/bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
 import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
 import { JobAppliedPageComponent } from './containers/job-applied-page.component';
-import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
+import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
+
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -113,9 +115,16 @@ export const routes: Routes = [
 		resolve: { loaded: UserResolve }
 	},
 	{
-		path: 'admin-home',
+		path: 'admin/home',
 		component: AdminHomePageComponent,
-		canActivate: [LoggedInGuard]
+		canActivate: [LoggedInGuard], // TODO - need to fix (if directly typed in address bar)
+		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'admin/create-job',
+		component: AdminCreateJobPageComponent,
+		canActivate: [LoggedInGuard], // TODO - need to fix (if directly typed in address bar)
+		resolve: { loaded: UserResolve }
 	},
 	{
 		path: '**',

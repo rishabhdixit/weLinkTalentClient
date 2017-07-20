@@ -25,6 +25,7 @@ import { LoginService } from '../services/login.service';
 				<app-job-content-view [job]="job$ | async"></app-job-content-view>
 				<app-job-buttons
 					[job]="job$ | async"
+					[user]="user"
 					(applyButtonClickEvent)="applyButtonClickHandler($event)"></app-job-buttons>
 			</div>
 			<div class="col-md-4 sideStyle">

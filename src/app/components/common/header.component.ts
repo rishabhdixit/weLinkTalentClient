@@ -50,7 +50,7 @@ import { routePath } from '../../routes';
 				<div *ngIf="isLoggedInAsAdmin" class="row">
 					<nav class="col-md-12" style="font-size:large;">
 						<ul class="nav-list">
-							<li><a routerLink="/admin-home"><h5>Home</h5></a></li>
+							<li><a routerLink="/admin/home"><h5>Home</h5></a></li>
 							<li><a routerLink="#"><h5>Account Setting</h5></a></li>
 							<li><a routerLink="#"><h5>Billing</h5></a></li>
 							<li><a routerLink="#"><h5>Applicants</h5></a></li>							

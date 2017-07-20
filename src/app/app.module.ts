@@ -61,6 +61,8 @@ import { BookmarkPageComponent } from './containers/bookmark-page.component';
 import { ErrorPageComponent } from './containers/error-page.component.';
 import { JobAppliedPageComponent } from './containers/job-applied-page.component';
 import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
+import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
+
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -85,7 +87,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		BookmarkPageComponent,
 		ErrorPageComponent,
 		JobAppliedPageComponent,
-		AdminHomePageComponent
+		AdminHomePageComponent,
+		AdminCreateJobPageComponent
 	],
 	imports: [
 		BrowserModule,

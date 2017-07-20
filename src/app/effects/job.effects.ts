@@ -3,6 +3,7 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { JobService } from '../services/job.service';
 import { BookmarkService } from '../services/bookmark.service';
+import { Router } from '@angular/router';
 
 import * as jobsAction from '../actions/jobs.action';
 
@@ -46,7 +47,7 @@ export class JobEffects {
 		);
 
 	@Effect()
-	jobCreation = this.actions
+	jobCreation$ = this.actions
 		.ofType(jobsAction.ActionTypes.JOB_CREATION)
 		.map((action: jobsAction.JobCreationAction) => action.payload)
 		.switchMap((data) => this.jobService.createJob(data)
@@ -56,15 +57,21 @@ export class JobEffects {
 
 	@Effect()
 	getCreatedJobs$ = this.actions
-	.ofType(jobsAction.ActionTypes.LOAD_CREATED_JOBS)
-	.map((action: jobsAction.CreateJobsLoadAction) => action.payload)
-	.switchMap((user) => this.jobService.getCreatedJobs(user)
-		.map((res) => new jobsAction.CreateJobsLoadSuccessAction(res))
-		.catch(() => Observable.of(new jobsAction.CreateJobsLoadFailAction('')))
-	);
+		.ofType(jobsAction.ActionTypes.LOAD_CREATED_JOBS)
+		.map((action: jobsAction.CreateJobsLoadAction) => action.payload)
+		.switchMap((user) => this.jobService.getCreatedJobs(user)
+			.map((res) => new jobsAction.CreateJobsLoadSuccessAction(res))
+			.catch(() => Observable.of(new jobsAction.CreateJobsLoadFailAction('')))
+		);
+
+	@Effect({ dispatch: false })
+	jobCreationSuccess$ = this.actions
+		.ofType(jobsAction.ActionTypes.JOB_CREATION_SUCCESS)
+		.do(() => this.router.navigate(['admin/home']));
 
 	constructor(private actions: Actions,
 		private jobService: JobService,
-		private bookmarkService: BookmarkService) {
+		private bookmarkService: BookmarkService,
+		private router: Router) {
 	}
 }

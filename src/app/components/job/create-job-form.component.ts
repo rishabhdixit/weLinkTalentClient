@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Job } from '../../models/job.model';
@@ -29,9 +29,10 @@ import * as fromRoot from '../../reducers';
 export class CreateJobFormComponent implements OnInit {
 
 	@Output() OnCreateJobEvent = new EventEmitter<Job>();
+	@Output() OnCancelCreateJobEvent = new EventEmitter();
+	@Input() user: User;
+
 	createJobForm: FormGroup;
-	clicked: boolean = false;
-	user: User;
 
 	get phone_numbers() {
 		const companyFormGroup = <FormGroup>this.createJobForm.controls['company'];
@@ -102,14 +103,6 @@ export class CreateJobFormComponent implements OnInit {
 		});
 	}
 
-	onCancel() {
-		this.clicked = false;
-	}
-
-	onClickCreateJob() {
-		this.clicked = true;
-	}
-
 	initPhoneNumber() {
 		return this.fb.control('', Validators.required);
 	}
@@ -178,6 +171,9 @@ export class CreateJobFormComponent implements OnInit {
 		}
 	}
 
+	onCancel() {
+		this.OnCancelCreateJobEvent.emit();
+	}
 	onSave() {
 		this.setEmployerId();
 		this.setCompanyName();

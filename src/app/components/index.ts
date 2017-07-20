@@ -29,9 +29,7 @@ import { BookmarkJobViewComponent } from './bookmark-job-view.component';
 import { JobAppliedDetailViewComponent } from './job-applied/job-applied-detail-view.component';
 import { JobAppliedFeedbackViewComponent } from './job-applied/job-applied-feedback-view.component';
 import { PageNotFoundErrorViewComponent } from './common/page-not-found-error-view.component';
-import { AdminHomeViewComponent } from './admin-home-view.component';
 import { CreateJobFormComponent } from './job/create-job-form.component';
-import { JobListComponent } from './job/job-list.component';
 import { JobCreatedViewComponent } from './job/job-created-view.component';
 
 export const COMPONENTS = [
@@ -59,11 +57,9 @@ export const COMPONENTS = [
 	ReactiveStarsComponent,
 	BookmarkJobViewComponent,
 	PageNotFoundErrorViewComponent,
-	AdminHomeViewComponent,
 	JobAppliedDetailViewComponent,
 	JobAppliedFeedbackViewComponent,
 	CreateJobFormComponent,
-	JobListComponent,
 	JobCreatedViewComponent,
 ];
 

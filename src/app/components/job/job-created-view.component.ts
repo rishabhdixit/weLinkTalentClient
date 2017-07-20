@@ -4,7 +4,7 @@ import * as fromRoot from '../../reducers';
 import { Job } from '../../models/job.model';
 
 @Component({
-	selector: `app-admin-job-created-view`,
+	selector: `app-job-created-view`,
 	template: `
 		<div class="row">
 			<div class="col-md-7">

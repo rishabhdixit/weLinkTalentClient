@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../../models/job.model';
+import { User } from '../../models/user.model';
 
 @Component({
 	selector: 'app-job-buttons',
 	template: `
-	<div class="row col-md-12">
+	<div class="row col-md-12" *ngIf="!isLoggedInAsAdmin">
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
 			<a routerLink="/jobs">
@@ -28,6 +29,7 @@ import { Job } from '../../models/job.model';
 })
 export class JobButtonsComponent {
 	@Input() job: Job;
+	@Input() user: User;
 	@Output() applyButtonClickEvent = new EventEmitter<Job>();
 
 	constructor() {
@@ -35,5 +37,15 @@ export class JobButtonsComponent {
 
 	applyButtonClick() {
 		this.applyButtonClickEvent.emit(this.job);
+	}
+
+	get isLoggedInAsAdmin() {
+		if (!this.user
+			|| !this.user.role
+			|| this.user.role !== 'admin') {
+			return false;
+		}
+
+		return true;
 	}
 }
