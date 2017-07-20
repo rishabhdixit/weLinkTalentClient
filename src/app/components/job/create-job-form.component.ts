@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Job } from '../../models/job.model';
+import { User } from '../../models/user.model';
+
+import * as fromRoot from '../../reducers';
 
 @Component({
 	selector: `app-create-job-form`,
@@ -27,6 +31,7 @@ export class CreateJobFormComponent implements OnInit {
 	@Output() OnCreateJobEvent = new EventEmitter<Job>();
 	createJobForm: FormGroup;
 	clicked: boolean = false;
+	user: User;
 
 	get phone_numbers() {
 		const companyFormGroup = <FormGroup>this.createJobForm.controls['company'];
@@ -50,10 +55,13 @@ export class CreateJobFormComponent implements OnInit {
 		return <FormGroup>this.createJobForm.controls['company'];
 	}
 
-	constructor(public fb: FormBuilder) {}
+	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>) {}
 
 	ngOnInit() {
+		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
 		this.createJobForm = this.fb.group({
+			employer_id: new FormControl('', [Validators.required]),
+			company_name: new FormControl('', [Validators.required]),
 			title: new FormControl('', [Validators.required]),
 			industry: new FormControl('', [Validators.required]),
 			job_type: new FormControl('', [Validators.required]),
@@ -171,6 +179,17 @@ export class CreateJobFormComponent implements OnInit {
 	}
 
 	onSave() {
+		this.setEmployerId();
+		this.setCompanyName();
 		this.OnCreateJobEvent.emit(this.createJobForm.value);
+	}
+
+	private setEmployerId(): void {
+		this.createJobForm.controls['employer_id'].setValue(this.user.id);
+	}
+
+	private setCompanyName(): void {
+		let company_name = this.company.controls['name'].value;
+		this.createJobForm.controls['company_name'].setValue(company_name);
 	}
 }

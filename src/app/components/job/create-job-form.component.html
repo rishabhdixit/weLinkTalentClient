@@ -56,10 +56,16 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-9">
 							<div class="form-group">
 								<label class="labelWeight">Expertise<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="expertise" placeholder="Expertise" required/>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label class="labelWeight">Vacant Slots<i class="color-red"> * </i></label>
+								<input type="number" class="form-control" formControlName="remaining_slots" placeholder="Vacant Slots" required/>
 							</div>
 						</div>
 					</div>
@@ -72,6 +78,14 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
+								<label class="labelWeight">Currency<i class="color-red"> * </i></label>
+								<select class="form-control" formControlName="salary_currency">
+									<option value="SGD">SGD</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
 								<label class="labelWeight">Salary From<i class="color-red"> * </i></label>
 								<input type="number" class="form-control" formControlName="salary_from" placeholder="Salary From" required/>
 							</div>
@@ -80,12 +94,6 @@
 							<div class="form-group">
 								<label class="labelWeight">Salary To<i class="color-red"> * </i></label>
 								<input type="number" class="form-control" formControlName="salary_to" placeholder="Salary To" required/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label class="labelWeight">Vacant Slots<i class="color-red"> * </i></label>
-								<input type="number" class="form-control" formControlName="remaining_slots" placeholder="Vacant Slots" required/>
 							</div>
 						</div>
 					</div>
@@ -278,7 +286,7 @@
 							<button type="button" class="btn btn-default pull-right form-control" (click)="onCancel()">CANCEL</button>
 						</div>
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-primary pull-left form-control" (click)="onSave()">SAVE</button>
+							<button type="submit" class="btn btn-primary pull-left form-control" [disabled]="!createJobForm.valid" (click)="onSave()">SAVE</button>
 						</div>
 						<div class="col-md-4"></div>
 					</div>
