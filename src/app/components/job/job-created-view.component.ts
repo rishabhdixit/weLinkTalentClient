@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../reducers';
-import { Job } from '../models/job.model';
+import * as fromRoot from '../../reducers';
+import { Job } from '../../models/job.model';
 
 @Component({
 	selector: `app-admin-job-created-view`,
@@ -90,7 +90,7 @@ import { Job } from '../models/job.model';
 	`],
 })
 
-export class AdminJobCreatedViewComponent {
+export class JobCreatedViewComponent {
 	@Input() job: Job;
 
 	constructor(private store: Store<fromRoot.State>) {}
