@@ -6,8 +6,12 @@ import { RefereeFeedback } from '../../models/referee-feedback.model';
 	template: `
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<p>Thank you for validating <strong class="text-primary">
-						{{ feedback.user.profile.firstName }} {{ feedback.user.profile.lastName }}</strong>'s application for</p>
+					<p>Thank you for validating
+						<strong class="text-primary" *ngIf="feedback && feedback.user && feedback.user.profile">
+							{{ feedback.user.profile.firstName }} {{ feedback.user.profile.lastName }}
+						</strong>
+						's application for
+					</p>
 				</div>
 			</div>
 			<div class="row">

@@ -35,7 +35,7 @@ import { Router, NavigationEnd } from '@angular/router';
 								<div class="col-md-6" style="margin-left: -15px;">
 									<div class="form-group">
 										<label class="labelWeight">First Name:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.fname }}"/>
+										<input type="text" disabled class="form-control" value="{{ i.firstName }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Current Company:* </label>
@@ -49,7 +49,7 @@ import { Router, NavigationEnd } from '@angular/router';
 								<div class="col-md-6 div-style">
 									<div class="form-group">
 										<label class="labelWeight">Last Name:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.lname }}"/>
+										<input type="text" disabled class="form-control" value="{{ i.lastName }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Current Title:* </label>
@@ -57,7 +57,7 @@ import { Router, NavigationEnd } from '@angular/router';
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Email:* </label>
-										<input type="email" disabled class="form-control" value="{{ i.email }}"/>
+										<input type="email" disabled class="form-control" value="{{ i.emailAddress }}"/>
 									</div>
 								</div>
 								<div class="col-md-6" style="margin-left: -15px;">
@@ -87,16 +87,16 @@ import { Router, NavigationEnd } from '@angular/router';
 					<div class="col-md-12 div-margin">
 						<div>
 							<p class="top">Privacy Statement</p>
-							<p class="below">Filling this form, you agree to share all your personal details with WeLinkTalent Pte Ltd. 
-							WeLinkTalent is committed to ensuring that we, when collect and use information about visitors to 
+							<p class="below">Filling this form, you agree to share all your personal details with WeLinkTalent Pte Ltd.
+							WeLinkTalent is committed to ensuring that we, when collect and use information about visitors to
 							our websites, we do so in accordance with the Personal Data Protection Act 2012</p>
 						</div>
 						<div>
 							<p class="top">Terms and Conditions</p>
-							<p class="below">This Curriculum Vitae is provided in the strictest confidence, is subjected to the Terms 
-							and Conditions of WeLinkTalent Pte Ltd and contains personal data that must only be processed for the purpose 
-							for which it is submitted (in accordance with the PDPA). If you have not recently received a copy of our 
-							relevant Terms and Conditions, please ensure that you request a further copy before instructing our 
+							<p class="below">This Curriculum Vitae is provided in the strictest confidence, is subjected to the Terms
+							and Conditions of WeLinkTalent Pte Ltd and contains personal data that must only be processed for the purpose
+							for which it is submitted (in accordance with the PDPA). If you have not recently received a copy of our
+							relevant Terms and Conditions, please ensure that you request a further copy before instructing our
 							consultants to arrange any candidate interviews.</p>
 						</div>
 					</div>
@@ -182,5 +182,4 @@ export class ApplicationReferenceFormPageComponent {
 		this.store.dispatch(new application.ApplicationReferenceFormSubmitAction({references_info : this.referenceList,
 			applicationId: this.application.id}));
 	}
-
 }
