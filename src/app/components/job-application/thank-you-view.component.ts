@@ -1,7 +1,7 @@
 /**
  * Created by rishabhdixit on 05/06/2017.
  */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Job } from '../../models/job.model';
 
 @Component({
@@ -16,7 +16,7 @@ import { Job } from '../../models/job.model';
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2" *ngIf="job.remaining_slots > 0">
+		<!--<div class="col-md-2" *ngIf="job.remaining_slots > 0">
 			<img alt="We Link Talent" src="./assets/images/right_arrow.png"
 			class="img-responsive arrow"/>
 		</div>
@@ -27,7 +27,7 @@ import { Job } from '../../models/job.model';
 					<p class="card-text fontStyle">Application Slots Left</p>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 `,
 	styles: [`
@@ -86,6 +86,3 @@ export class ThankYouViewComponent {
 	constructor() {
 	}
 }
-
-
-
