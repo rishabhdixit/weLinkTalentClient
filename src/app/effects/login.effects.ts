@@ -45,13 +45,20 @@ export class LogInEffects {
 	signInSuccess$: Observable<Action> = this.actions
 		.ofType(login.ActionTypes.LOGIN_SUCCESS)
 		.withLatestFrom(this.store, (action, state) => {
-			return { nextUrl: state.login.redirectUrl };
+			return {
+				nextUrl: state.login.redirectUrl,
+				currentUser: state.login.user
+			};
 		})
 		.do((payload: any) => {
 			if (payload.nextUrl) {
 				this.router.navigate([payload.nextUrl]);
 			} else {
-				this.router.navigate(['/profile']);
+				if (this.logInService.isLoggedInAsAdmin(payload.currentUser)) {
+					this.router.navigate(['/admin/home']);
+				} else {
+					this.router.navigate(['/profile']);
+				}
 			}
 		});
 

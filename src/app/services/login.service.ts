@@ -11,14 +11,14 @@ export class LoginService {
 		private http: Http,
 		private authHttp: AuthHttp,
 		@Inject('api') private api: string,
-	) {}
+	) { }
 
 	signIn(login: Login): Observable<any> {
 		return this.http.post(`${this.api}/authenticate`, {
-			email:    login.username,
+			email: login.username,
 			password: login.password
 		})
-		.map((res: Response) => res.json());
+			.map((res: Response) => res.json());
 	}
 
 	retrieveUser(): Observable<any> {
@@ -28,5 +28,14 @@ export class LoginService {
 
 	isLoggedIn() {
 		return tokenNotExpired('id_token');
+	}
+
+	isLoggedInAsAdmin(user) {
+		if (!user
+			|| !user.role
+			|| user.role !== 'admin') {
+			return false;
+		}
+		return true;
 	}
 }
