@@ -20,6 +20,11 @@ import * as fromRoot from '../../reducers';
 		.btn {
 			border-radius: 0%;
 		}
+		.add-button {
+			color: blue;
+			pointer-events: visible;
+			cursor: pointer;
+		}
 		textarea {
 			resize: none;
 		}

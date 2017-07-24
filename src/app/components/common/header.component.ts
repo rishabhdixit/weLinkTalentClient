@@ -22,12 +22,12 @@ import { routePath } from '../../routes';
 						<ul class="nav nav-pills justify-content-end">
 							<li *ngIf="isLoggedIn" class="nav-item">
 								<div class="btn-group btn-group-vertical pull-right groupButton">
-									<div *ngIf="isNotProfileUrl">
+									<div *ngIf="isNotProfileUrl && !isLoggedInAsAdmin">
 										<a routerLink="/profile">
 											<button type="button" class="btn btn-primary btn-lg profileButton">Profile</button>
 										</a>
 									</div>
-									<a routerLink="/login">
+									<a routerLink="#">
 										<button type="button" class="btn btn-basic btn-lg" style="border-radius: 0;" (click)="logout($event)">Logout</button>
 									</a>
 								</div>
@@ -129,12 +129,6 @@ export class HeaderComponent {
 	}
 
 	get isLoggedInAsAdmin() {
-		if (!this.user
-			|| !this.user.role
-			|| this.user.role !== 'admin') {
-			return false;
-		}
-
-		return true;
+		return this.loginService.isLoggedInAsAdmin(this.user);
 	}
 }

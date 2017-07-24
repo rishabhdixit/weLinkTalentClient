@@ -7,15 +7,15 @@ import { Job } from '../../models/job.model';
 @Component({
 	selector: 'app-thank-you-view',
 	template: `
-	<div class="col-md-12" style="margin-top: 50px;">
-		<div class="col-md-5" style="margin-left: 35px;">
+	<div class="col-md-12">
+		<!--<div class="col-md-5" style="margin-left: 35px;">-->
 			<div class="card cardStyle">
 				<div class="card-block">
 					<h1 class="card-title">{{ job.remaining_slots || job.application_slots}}</h1>
 					<p class="card-text fontStyle">Application Slots Left</p>
 				</div>
 			</div>
-		</div>
+		<!--</div>-->
 		<!--<div class="col-md-2" *ngIf="job.remaining_slots > 0">
 			<img alt="We Link Talent" src="./assets/images/right_arrow.png"
 			class="img-responsive arrow"/>
@@ -31,11 +31,12 @@ import { Job } from '../../models/job.model';
 	</div>
 `,
 	styles: [`
-	.cardStyle{
+		.cardStyle{
 			text-align: center;
-			width: 80%;
-			height: 40%;
+			width: 212px;
+			height: 150px;
 			background: #4D308E;
+			margin-left: 350px;
 		}
 		h1{
 			color: white;
