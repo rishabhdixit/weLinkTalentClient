@@ -101,12 +101,12 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group" formArrayName="skills">
-								<div class="row">
-									<div class="col-md-9">
-										<label class="labelWeight">Required Skills<i class="color-red"> * </i></label>
-									</div>
-									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addSkill()">add skills...</button>
+								<div class="row" style="padding-bottom: 10px;">
+									<div class="col-md-12">
+										<div class="form-inline">
+											<label class="labelWeight">Required Skills<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<i class="add-button fa fa-plus" (click)="addSkill()"></i>
+										</div>
 									</div>
 								</div>
 								<div *ngFor="let skill of skills.controls; let i=index">
@@ -131,12 +131,12 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group" formArrayName="responsibilities">
-								<div class="row">
-									<div class="col-md-9">
-										<label class="labelWeight">Responsibilities<i class="color-red"> * </i></label>
-									</div>
-									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addResponsibility()">add responsibilities...</button>
+								<div class="row" style="padding-bottom: 10px;">
+									<div class="col-md-12">
+										<div class="form-inline">
+											<label class="labelWeight">Responsibilities<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<i class="add-button fa fa-plus" (click)="addResponsibility()"></i>
+										</div>
 									</div>
 								</div>
 								<div *ngFor="let responsibility of responsibilities.controls; let i=index">
@@ -161,12 +161,12 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group" formArrayName="ideal_talent">
-								<div class="row">
-									<div class="col-md-9">
-										<label class="labelWeight">Ideal Talent<i class="color-red"> * </i></label>
-									</div>
-									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addIdealTalent()">add ideal talent...</button>
+								<div class="row" style="padding-bottom: 10px;">
+									<div class="col-md-12">
+										<div class="form-inline">
+											<label class="labelWeight">Ideal Talent<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<i class="add-button fa fa-plus" (click)="addIdealTalent()"></i>
+										</div>
 									</div>
 								</div>
 								<div *ngFor="let idealTalent of ideal_talent.controls; let i=index">
@@ -216,12 +216,12 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group" formArrayName="phone_numbers">
-								<div class="row">
-									<div class="col-md-9">
-										<label class="labelWeight">Phone Numbers<i class="color-red"> * </i></label>
-									</div>
-									<div class="col-md-3">
-										<button type="button" class="btn btn-primary btn-sm form-control" (click)="addPhoneNumber()">add phone numbers...</button>
+								<div class="row" style="padding-bottom: 10px;">
+									<div class="col-md-12">
+										<div class="form-inline">
+											<label class="labelWeight">Phone Numbers<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<i class="add-button fa fa-plus" (click)="addPhoneNumber()"></i>
+										</div>
 									</div>
 								</div>
 								<div *ngFor="let phoneNumber of phone_numbers.controls; let i=index">
