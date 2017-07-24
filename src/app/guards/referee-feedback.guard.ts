@@ -40,7 +40,7 @@ export class RefereeFeedbackGuard implements CanActivate {
 
 	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
 		if (!this.loginService.isLoggedIn()) {
-			this.store.dispatch(new login.RegisterRedirectUrlAction(`/referee-feedback/${route.queryParams['token']}`));
+			this.store.dispatch(new login.RegisterRedirectUrlAction(`/referee-feedback?token=${route.queryParams['token']}`));
 			this.router.navigate(['login']);
 			return of(false);
 		}
