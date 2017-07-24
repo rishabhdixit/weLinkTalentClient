@@ -51,7 +51,14 @@ export class LogInEffects {
 			};
 		})
 		.do((payload: any) => {
-			if (payload.nextUrl) {
+			if (payload.nextUrl && payload.nextUrl.indexOf('referee-feedback')) {
+				let url = payload.nextUrl.split('?token=');
+				if (url && url.length > 1) {
+					this.router.navigate([url[0]], {queryParams: {token: url[1]}});
+				} else {
+					this.router.navigate([payload.nextUrl]);
+				}
+			} else if (payload.nextUrl) {
 				this.router.navigate([payload.nextUrl]);
 			} else {
 				if (this.logInService.isLoggedInAsAdmin(payload.currentUser)) {

@@ -29,7 +29,7 @@ export class RefereeFeedbackGuard implements CanActivate {
 			.map(jobApplicationId => !!jobApplicationId)
 			.catch(() => {
 				// TODO - need to redirected to Error Page.
-				// this.router.navigate(['']);
+				this.router.navigate(['/404'], {skipLocationChange: true});
 				return of(false);
 			});
 	}
