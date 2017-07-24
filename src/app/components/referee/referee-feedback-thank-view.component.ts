@@ -7,8 +7,11 @@ import { RefereeFeedback } from '../../models/referee-feedback.model';
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
 					<p>Thank you for validating
-						<strong class="text-primary" *ngIf="feedback && feedback.user && feedback.user.profile">
+						<!--<strong class="text-primary" *ngIf="feedback && feedback.user && feedback.user.profile">
 							{{ feedback.user.profile.firstName }} {{ feedback.user.profile.lastName }}
+						</strong>-->
+						<strong>
+							[CandidateName]
 						</strong>
 						's application for
 					</p>
@@ -16,7 +19,7 @@ import { RefereeFeedback } from '../../models/referee-feedback.model';
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 3rem;">
-					<p><strong class="text-primary">Job Title</strong> - <strong class="text-primary">Company</strong></p>
+					<p><strong class="text-primary">[Job Title]</strong> - <strong class="text-primary">[Company]</strong></p>
 				</div>
 			</div>
 			<div class="row">

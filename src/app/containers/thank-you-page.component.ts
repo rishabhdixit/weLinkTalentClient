@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Job } from 'app/models/job.model';
@@ -11,8 +11,8 @@ import * as fromRoot from '../reducers';
 		<div class="container">
 			<div class="row container-fluid">
 				<div class="col-md-12" style="margin-top: 30px;">
-					 <h2>Thank you for applying to:</h2>
-					 <p class="pHeader"></p>
+					 <h2>Thank you for applying</h2>
+					 <p class="pHeader">{{selectedJob.title}} - {{selectedJob.company_name}}</p>
 				</div>
 				<app-thank-you-view [job]="job$ | async"></app-thank-you-view>
 				<div class="col-md-12"  style="margin-top:60px; font-size: large;">
@@ -94,10 +94,14 @@ import * as fromRoot from '../reducers';
 	`],
 })
 
-export class ThankYouPageComponent {
+export class ThankYouPageComponent implements OnInit {
 	job$: Observable<Job>;
 	@Input() job: Job;
+	selectedJob: Job;
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
+	}
+	ngOnInit() {
+		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
 	}
 }
