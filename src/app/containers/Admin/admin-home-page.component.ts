@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 					</div>
 				</div>
 				<!--// TODO : handle search -->
-				<app-job-search (searchButtonClick)="onSearchButtonClick($event)"></app-job-search>
+				<app-job-search></app-job-search>
 				<app-job-created-view *ngFor="let job of jobList$ | async 
 								| paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: jobsTotalSize$ | async }" [job]="job">
 				</app-job-created-view>
