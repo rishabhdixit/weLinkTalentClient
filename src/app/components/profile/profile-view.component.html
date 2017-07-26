@@ -4,7 +4,6 @@
 			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
 			<div style="padding-top: 10px; padding-bottom: 20px;">
 				<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
-
 				<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
 					<p *ngIf="i === 0">{{ position.value.title }}</p>
 					<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
@@ -112,15 +111,25 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="form-group listStyle">
-						<label class="labelWeight">Negotiable?</label>
-						<ul class="list-unstyled">
-							<li *ngFor="let logicalValue of logicalValueList">
-								<label class="labelWeight">&emsp;{{ logicalValue }}</label>
-								<input type="radio" class="input-radio" value="{{ logicalValue }}" formControlName="noticePeriodNegotioble" />
-							</li>
-						</ul>
-					</div>
+						<div class="form-inline">
+							<label class="labelWeight">Negotiable?</label>
+						</div>
+						<div class="form-inline">
+							<div class="radio">
+								<ul>
+									<li *ngFor="let logicalValue of logicalValueList" class="form-inline">
+										<label class="labelWeight">
+											{{ logicalValue }} &nbsp;&nbsp;
+											<input
+												type="radio"
+												class="input-radio"
+												value="{{ logicalValue }}"
+												formControlName="noticePeriodNegotioble"/>
+										</label>
+									</li>
+								</ul>
+							</div>
+						</div>
 				</div>
 			</div>
 
@@ -154,20 +163,30 @@
 					<div class="form-group">
 						<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
 						<div class="input-group">
-							<label for="salaryPerMonth">SGD</label>
+							<span class="input-group-addon" for="salaryPerMonth">SGD</span>
 							<input type="number" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 listStyle">
-					<div class="form-group">
+				<div class="col-md-6">
+					<div class="form-inline">
 						<label class="labelWeight">On</label>
-						<ul class="list-unstyled">
-							<li *ngFor="let basis of bonusReceivable">
-								<label class="labelWeight">&emsp;{{ basis }}</label>
-								<input type="radio" class="input-radio" value="{{ basis }}" formControlName="salaryBasis" />
-							</li>
-						</ul>
+					</div>
+					<div class="form-inline">
+						<div class="radio">
+							<ul>
+								<li *ngFor="let basis of bonusReceivable">
+									<label class="labelWeight">
+										{{ basis }}&nbsp;&nbsp;
+										<input
+											type="radio"
+											class="input-radio"
+											value="{{ basis }}"
+											formControlName="salaryBasis"/>
+									</label>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -177,7 +196,7 @@
 					<div class="form-group">
 						<label for="bonusAmount" class="labelWeight">Bonus:</label>
 						<div class="input-group">
-							<label for="bonusAmount">SGD</label>
+							<span class="input-group-addon" for="bonusAmount">SGD</span>
 							<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
 						</div>
 					</div>
@@ -195,7 +214,7 @@
 					<div class="form-group">
 						<label for="allowance" class="labelWeight">Allowances:</label>
 						<div class="input-group">
-							<label for="allowance">SGD</label>
+							<span class="input-group-addon" for="allowance">SGD</span>
 							<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
 						</div>
 					</div>

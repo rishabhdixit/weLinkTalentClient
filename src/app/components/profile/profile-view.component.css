@@ -129,3 +129,18 @@ div li {
 	display: inline;
 	float: left;
 }
+input[type=date] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
+input[type=number] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
+input[type=email] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
