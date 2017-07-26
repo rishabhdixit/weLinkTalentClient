@@ -34,7 +34,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 			<div class="col-md-4">
 				<div class="row">
 					<div class="col-md-6">
-						<h4>{{jobsApplied.acceptance_status}}</h4>
+						<h4>{{jobsApplied.form_status}}</h4>
 					</div>
 					<div class="col-md-6 text-center background-grey">
 						<a href="" style="color: #FFFFFF;">
