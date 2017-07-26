@@ -27,8 +27,6 @@ import * as ui from '../actions/ui.action';
 					</app-profile-view>
 				</div>
 			</div>
-			
-			
 		</div>
 	</div>
 	`,
