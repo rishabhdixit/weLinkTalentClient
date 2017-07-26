@@ -3,8 +3,6 @@ import {
 	FormGroup,
 	FormBuilder,
 	Validators,
-	AbstractControl,
-	ValidatorFn,
 	FormArray
 } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -27,7 +25,6 @@ export class ProfileViewComponent implements OnInit {
 	@Output() removePositionEvent = new EventEmitter<any>();
 	@Output() removeSkillEvent = new EventEmitter<any>();
 
-
 	logicalValueList: Array<any> = ['Yes', 'No'];
 	bonusReceivable: Array<any> = ['12 month', '13 month'];
 
@@ -40,6 +37,7 @@ export class ProfileViewComponent implements OnInit {
 	get skills(): FormArray {
 		return <FormArray>this.profileForm.get('skills');
 	}
+
 	// TODO - Enable ToastManager.
 	constructor(private fb: FormBuilder, private toastr: ToastsManager, vcr: ViewContainerRef) {
 		this.toastr.setRootViewContainerRef(vcr);
@@ -103,7 +101,9 @@ export class ProfileViewComponent implements OnInit {
 			incentives: this.profile.incentives,
 			vestingPeriod: this.profile.vestingPeriod,
 		});
+
 		this.profileFormDisable();
+		this.profileFormSalaryDisable();
 	}
 
 	positionFormGroup(): FormGroup {
@@ -129,8 +129,11 @@ export class ProfileViewComponent implements OnInit {
 
 		if (editId && editId === 'basic') {
 			this.profileFormEnable();
+		} else if (editId && editId === 'salary') {
+			this.profileFormSalaryEnable();
 		} else {
 			this.profileFormDisable();
+			this.profileFormSalaryDisable();
 		}
 	}
 
@@ -144,7 +147,21 @@ export class ProfileViewComponent implements OnInit {
 		this.profileFormDisable();
 	}
 
+	saveCurrentSalary() {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+		this.profileFormSalaryDisable();
+	}
+
 	cancelProfile(event) {
+		this.editMode(event, '');
+	}
+
+	cancelCurrentSalary() {
 		this.editMode(event, '');
 	}
 
@@ -210,14 +227,6 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('visaValidity').disable();
 		this.profileForm.get('noticePeriod').disable();
 		this.profileForm.get('noticePeriodNegotioble').disable();
-		this.profileForm.get('salaryPerMonth').disable();
-		this.profileForm.get('salaryBasis').disable();
-		this.profileForm.get('bonusAmount').disable();
-		this.profileForm.get('bonusCalc').disable();
-		this.profileForm.get('allowance').disable();
-		this.profileForm.get('allowanceDesc').disable();
-		this.profileForm.get('incentives').disable();
-		this.profileForm.get('vestingPeriod').disable();
 	}
 
 	profileFormEnable() {
@@ -233,6 +242,20 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('visaValidity').enable();
 		this.profileForm.get('noticePeriod').enable();
 		this.profileForm.get('noticePeriodNegotioble').enable();
+	}
+
+	profileFormSalaryDisable(): void {
+		this.profileForm.get('salaryPerMonth').disable();
+		this.profileForm.get('salaryBasis').disable();
+		this.profileForm.get('bonusAmount').disable();
+		this.profileForm.get('bonusCalc').disable();
+		this.profileForm.get('allowance').disable();
+		this.profileForm.get('allowanceDesc').disable();
+		this.profileForm.get('incentives').disable();
+		this.profileForm.get('vestingPeriod').disable();
+	}
+
+	profileFormSalaryEnable(): void {
 		this.profileForm.get('salaryPerMonth').enable();
 		this.profileForm.get('salaryBasis').enable();
 		this.profileForm.get('bonusAmount').enable();

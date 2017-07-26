@@ -1,219 +1,244 @@
 <form class="form-horizontal" novalidate [formGroup]="profileForm">
 	<div class="row" id="basic_profile">
 		<div id="avatar" class="col-md-12">
-			<h2>Welcome!</h2>
-			<fieldset>
-				<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
-				<div class="position">
-					<a href="#" *ngIf="!edit" (click)="editMode($event, 'basic')" class="edit">Edit</a>
-					<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
+			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
+			<div style="padding-top: 10px; padding-bottom: 20px;">
+				<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
 
-					<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
-						<p *ngIf="i === 0">{{ position.value.title }}</p>
-						<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
-					</div>
-				</div>
-			</fieldset>
+				<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
+					<p *ngIf="i === 0">{{ position.value.title }}</p>
+					<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
+				</div>-->
+			</div>
 		</div>
 		<div class="col-md-12">
+			<br/>
+			<br/>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 text-left">
+					<h3>Personal Info</h3>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="labelWeight" for="firstName">First Name</label>
-								<input type="text" id="firstName" class="form-control" formControlName="firstName">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="labelWeight" for="lastName">Last Name</label>
-								<input type="text" id="lastName" class="form-control" formControlName="lastName" />
-							</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="labelWeight" for="firstName">First Name</label>
+						<input type="text" id="firstName" class="form-control" formControlName="firstName">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="labelWeight" for="lastName">Last Name</label>
+						<input type="text" id="lastName" class="form-control" formControlName="lastName" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="birthDate" class="labelWeight">Date of Birth </label>
+						<input type="Date" class="form-control" id="birthDate" formControlName="birthDate" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="maritalStatus" class="labelWeight">Marital Status </label>
+						<select type="text" class="form-control status-height" id="maritalStatus" formControlName="maritalStatus">
+							<option>Single</option>
+							<option>Married</option>
+							<option>Divorce</option>
+							<option>Separated</option>
+							<option>Widowed</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email" class="labelWeight">Email Address </label>
+						<input type="email" class="form-control" id="email" formControlName="emailAddress" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="mobile" class="labelWeight">Mobile </label>
+						<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="NRIC" class="labelWeight">NRIC / FIN Number </label>
+						<input type="text" class="form-control" id="NRIC" formControlName="NRIC" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="noOfchildren" class="labelWeight">Number of Children </label>
+						<input type="number" class="form-control" id="noOfchildren" formControlName="noOfchildren" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="singaporeVisa" class="labelWeight">Visa for Singapore </label>
+						<select type="text" class="form-control" id="singaporeVisa" formControlName="singaporeVisa">
+							<option>Yes, I have one.</option>
+							<option>No, I don't have one.</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="visaValidity" class="labelWeight">End of validity </label>
+						<input type="Date" class="form-control" id="visaValidity" formControlName="visaValidity" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="noticePeriod" class="labelWeight">Notice Period </label>
+						<input type="Date" class="form-control" id="noticePeriod" formControlName="noticePeriod" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group listStyle">
+						<label class="labelWeight">Negotiable?</label>
+						<ul class="list-unstyled">
+							<li *ngFor="let logicalValue of logicalValueList">
+								<label class="labelWeight">&emsp;{{ logicalValue }}</label>
+								<input type="radio" class="input-radio" value="{{ logicalValue }}" formControlName="noticePeriodNegotioble" />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div *ngIf="!edit" class="row" style="padding-top: 20px;">
+				<div class="col-md-12 text-right">
+					<button (click)="editMode($event, 'basic')" class="btn btn-primary">Edit</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div *ngIf="edit == 'basic'" class="col-md-12">
+					<div class="position-action">
+						<button class="btn btn-primary" (click)="saveProfile()" [disabled]="loading">Save</button>
+						<button class="btn btn-primary" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3>Current Salary</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
+						<div class="input-group">
+							<label for="salaryPerMonth">SGD</label>
+							<input type="number" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
 						</div>
 					</div>
+				</div>
+				<div class="col-md-6 listStyle">
+					<div class="form-group">
+						<label class="labelWeight">On</label>
+						<ul class="list-unstyled">
+							<li *ngFor="let basis of bonusReceivable">
+								<label class="labelWeight">&emsp;{{ basis }}</label>
+								<input type="radio" class="input-radio" value="{{ basis }}" formControlName="salaryBasis" />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="birthDate" class="labelWeight">Date of Birth </label>
-								<input type="Date" class="form-control" id="birthDate" formControlName="birthDate" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="maritalStatus" class="labelWeight">Marital Status </label>
-								<select type="text" class="form-control status-height" id="maritalStatus" formControlName="maritalStatus">
-									<option>Single</option>
-									<option>Married</option>
-									<option>Divorce</option>
-									<option>Separated</option>
-									<option>Widowed</option>
-								</select>
-							</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="bonusAmount" class="labelWeight">Bonus:</label>
+						<div class="input-group">
+							<label for="bonusAmount">SGD</label>
+							<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
 						</div>
 					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="bonusCalc" class="labelWeight">How is it calculated?</label>
+						<input type="text" class="form-control" id="bonusCalc" formControlName="bonusCalc" />
+					</div>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="email" class="labelWeight">Email Address </label>
-								<input type="email" class="form-control" id="email" formControlName="emailAddress" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="mobile" class="labelWeight">Mobile </label>
-								<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber" />
-							</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="allowance" class="labelWeight">Allowances:</label>
+						<div class="input-group">
+							<label for="allowance">SGD</label>
+							<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="NRIC" class="labelWeight">NRIC / FIN Number </label>
-								<input type="text" class="form-control" id="NRIC" formControlName="NRIC" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="noOfchildren" class="labelWeight">Number of Children </label>
-								<input type="number" class="form-control" id="noOfchildren" formControlName="noOfchildren" />
-							</div>
-						</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="allowanceDesc" class="labelWeight">Please describe</label>
+						<input type="text" class="form-control" id="allowanceDesc" formControlName="allowanceDesc" />
 					</div>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="singaporeVisa" class="labelWeight">Visa for Singapore </label>
-								<select type="text" class="form-control" id="singaporeVisa" formControlName="singaporeVisa">
-									<option>Yes, I have one.</option>
-									<option>No, I don't have one.</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="visaValidity" class="labelWeight">End of validity </label>
-								<input type="Date" class="form-control" id="visaValidity" formControlName="visaValidity" />
-							</div>
-						</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="incentives" class="labelWeight">Any long term incentives</label>
+						<input type="text" class="form-control" id="incentives" name="incentives" formControlName="incentives" />
 					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="noticePeriod" class="labelWeight">Notice Period </label>
-								<input type="Date" class="form-control" id="noticePeriod" formControlName="noticePeriod" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group listStyle">
-								<label class="labelWeight">Negotiable?</label>
-								<ul class="list-unstyled">
-									<li *ngFor="let logicalValue of logicalValueList">
-										<label class="labelWeight">&emsp;{{ logicalValue }}</label>
-										<input type="radio" class="input-radio" value="{{ logicalValue }}" formControlName="noticePeriodNegotioble" />
-									</li>
-								</ul>
-							</div>
-						</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="vestingPeriod" class="labelWeight">Vesting Period</label>
+						<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" formControlName="vestingPeriod" />
 					</div>
-					<br>
+				</div>
+			</div>
 
-					<div class="row">
-						<h3>Current Salary</h3>
+			<div *ngIf="!edit" class="row" style="padding-top: 20px;">
+				<div class="col-md-12 text-right">
+					<button (click)="editMode($event, 'salary')" class="btn btn-primary">Edit</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div *ngIf="edit == 'salary'" class="col-md-12">
+					<div class="position-action">
+						<button class="btn btn-primary" (click)="saveCurrentSalary()" [disabled]="loading">Save</button>
+						<button class="btn btn-primary" (click)="cancelCurrentSalary($event)" [disabled]="loading">Cancel</button>
 					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
-								<div class="input-group">
-									<label for="salaryPerMonth">SGD</label>
-									<input type="number" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 listStyle">
-							<div class="form-group">
-								<label class="labelWeight">On</label>
-								<ul class="list-unstyled">
-									<li *ngFor="let basis of bonusReceivable">
-										<label class="labelWeight">&emsp;{{ basis }}</label>
-										<input type="radio" class="input-radio" value="{{ basis }}" formControlName="salaryBasis" />
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="bonusAmount" class="labelWeight">Bonus:</label>
-								<div class="input-group">
-									<label for="bonusAmount">SGD</label>
-									<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="bonusCalc" class="labelWeight">How is it calculated?</label>
-								<input type="text" class="form-control" id="bonusCalc" formControlName="bonusCalc" />
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="allowance" class="labelWeight">Allowances:</label>
-								<div class="input-group">
-									<label for="allowance">SGD</label>
-									<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="allowanceDesc" class="labelWeight">Please describe</label>
-								<input type="text" class="form-control" id="allowanceDesc" formControlName="allowanceDesc" />
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="incentives" class="labelWeight">Any long term incentives</label>
-								<input type="text" class="form-control" id="incentives" name="incentives" formControlName="incentives" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="vestingPeriod" class="labelWeight">Vesting Period</label>
-								<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" formControlName="vestingPeriod" />
-							</div>
-						</div>
-					</div>
-
-					<div *ngIf="edit == 'basic'" class="col-md-12">
-						<div class="position-action">
-							<button class="btn btn-primary" (click)="saveProfile()" [disabled]="loading">Save</button>
-							<button class="btn btn-primary" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!--Positions-->
 
@@ -228,7 +253,6 @@
 			</div>
 			<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>-->
 			<!--<br>-->
-
 
 			<h3>Work Experience</h3>
 			<div class="add-btn-container">
