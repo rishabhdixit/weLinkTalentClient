@@ -31,6 +31,8 @@ import { JobAppliedFeedbackViewComponent } from './job-applied/job-applied-feedb
 import { PageNotFoundErrorViewComponent } from './common/page-not-found-error-view.component';
 import { CreateJobFormComponent } from './job/create-job-form.component';
 import { JobCreatedViewComponent } from './job/job-created-view.component';
+import { RecordNotFoundViewComponent } from './common/record-not-found-view.component';
+
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -61,6 +63,7 @@ export const COMPONENTS = [
 	JobAppliedFeedbackViewComponent,
 	CreateJobFormComponent,
 	JobCreatedViewComponent,
+	RecordNotFoundViewComponent
 ];
 
 @NgModule({

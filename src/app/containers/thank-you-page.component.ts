@@ -12,7 +12,7 @@ import * as fromRoot from '../reducers';
 			<div class="row container-fluid">
 				<div class="col-md-12" style="margin-top: 30px;">
 					 <h2>Thank you for applying</h2>
-					 <p class="pHeader">{{selectedJob.title}} - {{selectedJob.company_name}}</p>
+					 <p class="pHeader">{{selectedJob.title}} - {{selectedJob.company.name}}</p>
 				</div>
 				<app-thank-you-view [job]="job$ | async"></app-thank-you-view>
 				<div class="col-md-12"  style="margin-top:60px; font-size: large;">
