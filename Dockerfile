@@ -10,4 +10,5 @@ RUN npm run build
 
 COPY default.conf /etc/nginx/conf.d/
 
+EXPOSE 4200
 CMD ["nginx", "-g", "daemon off;"]
