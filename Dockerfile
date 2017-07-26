@@ -10,5 +10,5 @@ RUN npm run build
 
 COPY default.conf /etc/nginx/conf.d/
 
-EXPOSE 80 4200
+EXPOSE 8080 4200 80
 CMD ["nginx", "-g", "daemon off;"]
