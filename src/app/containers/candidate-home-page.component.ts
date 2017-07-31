@@ -12,70 +12,22 @@ import { JobsApplied } from '../models/jobs-applied.model';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h5 style="color: #57148D;">Legend:</h5>
-					<br/>
-					<h6>1st Circle - Self Application Form Status</h6>
-					<br/>
-					<h6>2nd Circle - Referee Validation Form Status</h6>
-					<br/>
-					<h6>3rd Circle - Application Submission Status</h6>
-					<h6 style="text-align: center;">(with Referee Validation)</h6>
-				</div>
-				<div class="col-md-6">
-					<h5 style="color: #57148D;">Colour Codes:</h5>
-					<br/>
-					<div class="row">
-						<div class="col-md-9">
-							<h6>Incomplete</h6>
-						</div>
-						<div class="col-md-3">
-							<i class="fa fa-circle fa-lg" style="color: red;" aria-hidden="true"></i>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col-md-9">
-							<h6>Completed (yet to submit)</h6>
-						</div>
-						<div class="col-md-3">
-							<i class="fa fa-circle fa-lg" style="color: yellow;" aria-hidden="true"></i>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col-md-9">
-							<h6>Submitted</h6>
-						</div>
-						<div class="col-md-3">
-							<i class="fa fa-circle fa-lg" style="color: green;" aria-hidden="true"></i>
-						</div>
-					</div>
-				</div>
-			</div>
 			<br/>
 			<div class="row">
-				<div class="col-md-12">
-					<h4 style="color: #58595b;">Your Applications</h4>
+				<div class="col-md-4 text-center"></div>
+				<div class="col-md-2 text-center">
+					<h5 class="purple-color">References</h5>
 				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col-md-5 text-center">
-					<h5 style="color: #57148D;">Job Title</h5>
+				<div class="col-md-1"></div>
+				<div class="col-md-2 text-center">
+					<h5 class="purple-color">Applications</h5>
 				</div>
-				<div class="col-md-3 text-center">
-					<h5 style="color: #57148D;">Status</h5>
-				</div>
-				<div class="col-md-4 text-center">
-					<h5 style="color: #57148D;">Application Status</h5>
-				</div>
+				<div class="col-md-3"></div>
 			</div>
 			<br/>
 			<app-jobs-applied-view
-				*ngFor="let candidateJobApplication of candidateJobApplicationsList$ | async | paginate: { itemsPerPage: 10, 
-				currentPage: currentPage, 
+				*ngFor="let candidateJobApplication of candidateJobApplicationsList$ | async | paginate: { itemsPerPage: 10,
+				currentPage: currentPage,
 				totalItems: candidateJobApplicationsTotalSize$ | async }
 				let counter = index"
 				[jobsApplied]="candidateJobApplication"
@@ -97,8 +49,8 @@ export class CandidateHomePageComponent implements OnInit {
 	constructor(private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
-		this.store.select(fromRoot.getUserId).subscribe(res => {
-			this.currentUserId = res;
+		this.store.select(fromRoot.getUserId).subscribe(userId => {
+			this.currentUserId = userId;
 		});
 		this.store.dispatch(new jobsAppliedAction.JobsAppliedLoadAction({
 			user: `${this.currentUserId}`,

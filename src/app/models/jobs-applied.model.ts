@@ -23,6 +23,8 @@ export class JobsApplied {
 	updatedAt: Date;
 	references_info: Reference[];
 	feedback: any;
+	reference_status: string;
+	application_status: string;
 }
 
 export class CandidateJobAppliedFormData {
