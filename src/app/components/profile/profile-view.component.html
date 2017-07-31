@@ -289,10 +289,12 @@
 						<input type="text" value="{{position.value.company?.name}}" class="position-display" placeholder="Company" readonly />
 						<br>
 						<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements" readonly>{{ position.value.responsibilities }}</textarea>
-						<span style="float: right">
-							<a href="#" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</a>
+						<span style="float: right; margin-top: 10px">
+							<!--<a href="#" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</a>-->
+							<button class="btn btn-primary" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</button>
 								&nbsp; &nbsp;
-							<a href="#" *ngIf="!edit" (click)="removePosition(i)">Remove</a>
+							<!--<a href="#" *ngIf="!edit" (click)="removePosition(i)">Remove</a>-->
+							<button class="btn btn-danger" *ngIf="!edit" (click)="removePosition(i)">Remove</button>
 						</span>
 					</div>
 
@@ -316,7 +318,7 @@
 
 						<label class="col-md-12 control-label">Responsibilities</label>
 						<div class="col-md-12">
-							<textarea rows="3" class="form-control" placeholder="Responsibilities and Achievements" formControlName="responsibilities"
+							<textarea rows="10" class="form-control" placeholder="Responsibilities and Achievements" formControlName="responsibilities"
 							 value="{{ position.value?.responsibilities }}"></textarea>
 						</div>
 

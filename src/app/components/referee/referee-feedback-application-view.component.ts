@@ -89,7 +89,7 @@ import { JobApplication } from '../../models/job-application.model';
 export class RefereeFeedbackApplicationViewComponent {
 	@Input() jobApplication: JobApplication;
 
-	constructor() {}
+	constructor() {	}
 
 	getClass(count, rate) {
 		if (count < rate) {

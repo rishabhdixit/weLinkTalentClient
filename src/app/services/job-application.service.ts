@@ -42,4 +42,10 @@ export class JobApplicationService {
 		return this.http.post(`${this.api}/api/applications/${id}/feedback`, data, options)
 			.map((res: Response) => res.json());
 	}
+
+	loadAllJobsApplications(): Observable<any> {
+		console.log('Anime');
+		return this.http.get(`${this.api}/api/applications`)
+			.map((res: Response) => res.json());
+	}
 }

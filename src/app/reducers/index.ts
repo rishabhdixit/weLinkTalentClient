@@ -96,7 +96,7 @@ export const getUiEditId = createSelector(getUiState, fromUi.getEditId);
 
 export const getAllJobs = createSelector(getJobsState, fromJobs.getAllJobs);
 export const getLoaded = createSelector(getJobsState, fromJobs.getLoaded);
-export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
+export const getJobEntities = createSelector(getJobsState, fromJobs.getEntities); // changed to entities
 export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);
 export const getSelectedJobId = createSelector(getJobsState, fromJobs.getSelectedJobId);
 export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);

@@ -5,6 +5,11 @@ export class JobApplication {
 	files: any;
 	form_data: any;
 	skills: any;
+	availability: string;
+	status: string;
+	contacted: boolean;
+	review: boolean;
+	comment: string;
 
 	// TODO - to be removed
 	reasonForLeaving: string;

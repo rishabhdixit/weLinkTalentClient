@@ -31,6 +31,7 @@ import { AdminHomePageComponent } from './containers/Admin/admin-home-page.compo
 import { JobAppliedPageComponent } from './containers/job-applied-page.component';
 import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
 import { AdminEditJobPageComponent } from './containers/Admin/admin-edit-job-page.component';
+import { AdminAllJobsApplicationsPageComponent } from './containers/Admin/admin-all-jobs-applications-page.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -133,7 +134,11 @@ export const routes: Routes = [
 			LoggedInGuard,
 			JobExistsGuard
 		], // TODO - need to fix (if directly typed in address bar)
-		resolve: { loaded: UserResolve }
+		resolve: {loaded: UserResolve}
+	},
+	{
+		path: 'applicants',
+		component: AdminAllJobsApplicationsPageComponent,
 	},
 	{
 		path: '**',

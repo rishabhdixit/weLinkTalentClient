@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { RefereeFeedback } from '../../models/referee-feedback.model';
+import { Component } from '@angular/core';
 
 @Component({
 	selector: `app-referee-feedback-thank-view`,
@@ -58,8 +57,8 @@ import { RefereeFeedback } from '../../models/referee-feedback.model';
 })
 
 export class RefereeFeedbackThankViewComponent {
-	@Input() feedback: RefereeFeedback;
+	// @Input() refereeFeedback: RefereeFeedback;
 
-	constructor() {}
+	constructor() {	}
 
 }

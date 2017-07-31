@@ -33,6 +33,7 @@ import { CreateJobFormComponent } from './job/create-job-form.component';
 import { EditJobFormComponent } from './job/edit-job-form.component';
 import { JobCreatedViewComponent } from './job/job-created-view.component';
 import { RecordNotFoundViewComponent } from './common/record-not-found-view.component';
+import { AdminAllJobsApplicationsComponent } from './admin-all-jobs-applications.component';
 
 
 export const COMPONENTS = [
@@ -65,7 +66,8 @@ export const COMPONENTS = [
 	CreateJobFormComponent,
 	EditJobFormComponent,
 	JobCreatedViewComponent,
-	RecordNotFoundViewComponent
+	RecordNotFoundViewComponent,
+	AdminAllJobsApplicationsComponent,
 ];
 
 @NgModule({

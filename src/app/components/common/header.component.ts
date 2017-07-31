@@ -53,7 +53,7 @@ import { routePath } from '../../routes';
 							<li><a routerLink="/admin/home"><h5>Home</h5></a></li>
 							<li><a routerLink="#"><h5>Account Setting</h5></a></li>
 							<li><a routerLink="#"><h5>Billing</h5></a></li>
-							<li><a routerLink="#"><h5>Applicants</h5></a></li>							
+							<li><a routerLink="/applicants"><h5>Applicants</h5></a></li>							
 						</ul>
 					</nav>
 				</div>
