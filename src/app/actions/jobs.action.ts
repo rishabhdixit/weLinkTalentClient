@@ -14,6 +14,12 @@ export const ActionTypes = {
 	JOB_CREATION:               type('[JOBS] Job Creation'),
 	JOB_CREATION_SUCCESS:       type('[JOBS] Job Creation Success'),
 	JOB_CREATION_FAIL:          type('[JOBS] Job Creation Fail'),
+	JOB_EDITING:                type('[JOBS] Job Editing'),
+	JOB_EDITING_SUCCESS:        type('[JOBS] Job Editing Success'),
+	JOB_EDITING_FAIL:           type('[JOBS] Job Editing Fail'),
+	JOB_ARCHIVE:                type('[JOBS] Job Archive'),
+	JOB_ARCHIVE_SUCCESS:        type('[JOBS] Job Archive Success'),
+	JOB_ARCHIVE_FAIL:           type('[JOBS] Job Archive Fail'),
 	LOAD_CREATED_JOBS:          type('[JOBS] Created Jobs load'),
 	LOAD_CREATED_JOBS_SUCCESS:  type('[JOBS] Created Jobs load success'),
 	LOAD_CREATED_JOBS_FAIL:     type('[JOBS] Created Jobs load fail'),
@@ -158,6 +164,38 @@ export class CreateJobsLoadFailAction implements Action {
 	constructor(public payload: any) {}
 }
 
+export class JobEditingAction implements Action {
+	type = ActionTypes.JOB_EDITING;
+
+	constructor(public payload: any) {}
+}
+export class JobEditingSuccessAction implements Action {
+	type = ActionTypes.JOB_EDITING_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class JobEditingFailAction implements Action {
+	type = ActionTypes.JOB_EDITING_FAIL;
+
+	constructor(public payload: any) {}
+}
+
+export class JobArchiveAction implements Action {
+	type = ActionTypes.JOB_ARCHIVE;
+
+	constructor(public payload: any) {}
+}
+export class JobArchiveSuccessAction implements Action {
+	type = ActionTypes.JOB_ARCHIVE_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class JobArchiveFailAction implements Action {
+	type = ActionTypes.JOB_ARCHIVE_FAIL;
+
+	constructor(public payload: any) {}
+}
+
 export type Actions = JobsLoadAction
 	| JobsLoadSuccessAction
 	| JobsLoadFailAction
@@ -178,4 +216,10 @@ export type Actions = JobsLoadAction
 	| JobCreationFailAction
 	| CreateJobsLoadAction
 	| CreateJobsLoadSuccessAction
-	| CreateJobsLoadFailAction;
+	| CreateJobsLoadFailAction
+	| JobEditingAction
+	| JobEditingSuccessAction
+	| JobEditingFailAction
+	| JobArchiveAction
+	| JobArchiveSuccessAction
+	| JobArchiveFailAction;

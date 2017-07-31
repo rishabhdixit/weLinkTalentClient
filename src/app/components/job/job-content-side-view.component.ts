@@ -106,67 +106,68 @@ import { Job } from '../../models/job.model';
 	</div>
 	`,
 	styles: [`
-   h4{
-	   color: #57148D;
-	}
-	.tableBorder td{
-		padding-top: 2px;
-		padding-bottom: 0px;
-		border: none;
-	}
-	.labelType{
-		font-weight: 700;
-		line-height: 2;
-	}
-	h1{
-		font-size: 115px;
-		font-weight: bolder;
-		text-align: center;
-		color: #57148D;
-		margin:  auto;
-	}
-	.slots{
-		text-align: center;
-		color: #57148D;
-	}
-	h3{
-		font-size: x-large;
-		color: #57148D;
-	}
-	h5{
-		text-align: center;
-		font-weight: 700;
-	}
-	.slotsLeft{
-		float: right;
-		font-size: xx-large;
-		font-weight: 700;
-		margin: 0 auto;
-		margin-right: 110px;
-	}
-	.generalColor{
-		color: #FFFFFF;
-		font-size: 1.1em;
-	}
-	.fa-google-plus{
-		background-color: #DD4B39;
-	}
-	.fa-facebook{
-		background-color: #3B5998;
-	}
-	.fa-linkedin{
-		background-color: #007BB6;
-	}
-	.fa-twitter{
-		background-color: #55ACEE;
-	}
-   `],
+		h4 {
+			color: #57148D;
+		}
+		.tableBorder td {
+			padding-top: 2px;
+			padding-bottom: 0px;
+			border: none;
+		}
+		.labelType {
+			font-weight: 700;
+			line-height: 2;
+		}
+		h1 {
+			font-size: 115px;
+			font-weight: bolder;
+			text-align: center;
+			color: #57148D;
+			margin:  auto;
+		}
+		.slots {
+			text-align: center;
+			color: #57148D;
+		}
+		h3 {
+			font-size: x-large;
+			color: #57148D;
+		}
+		h5 {
+			text-align: center;
+			font-weight: 700;
+		}
+		.slotsLeft {
+			float: right;
+			font-size: xx-large;
+			font-weight: 700;
+			margin: 0 auto;
+			margin-right: 110px;
+		}
+		.generalColor {
+			color: #FFFFFF;
+			font-size: 1.1em;
+		}
+		.fa-google-plus {
+			background-color: #DD4B39;
+		}
+		.fa-facebook {
+			background-color: #3B5998;
+		}
+		.fa-linkedin {
+			background-color: #007BB6;
+		}
+		.fa-twitter {
+			background-color: #55ACEE;
+		}
+  `],
 })
 
 export class JobContentSideViewComponent {
 	@Input() job: Job;
 	encodedUrl: string;
-	constructor( @Inject('encodedUrl') private shareUrl: string) {
+
+	constructor(@Inject('encodedUrl') private shareUrl: string) {
 		this.encodedUrl = shareUrl;
 	}
 }

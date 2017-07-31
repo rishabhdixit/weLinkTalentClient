@@ -6,6 +6,7 @@ import * as JobAction from '../../actions/jobs.action';
 import { User } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+
 @Component({
 	selector: 'app-admin-home-page',
 	template: `

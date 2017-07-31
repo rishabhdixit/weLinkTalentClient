@@ -32,10 +32,22 @@ footer {
 	}
 }
 
+textarea {
+	resize: none;
+}
+
 .purple-color {
 	color: #57148D;
 }
 
 .red-color {
 	color: red;
+}
+
+.gray-color {
+	color: #58595b;
+}
+
+.white-color {
+	color: #FFF;
 }

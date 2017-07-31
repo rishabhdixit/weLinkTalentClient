@@ -98,6 +98,7 @@ export const getAllJobs = createSelector(getJobsState, fromJobs.getAllJobs);
 export const getLoaded = createSelector(getJobsState, fromJobs.getLoaded);
 export const getJobEntites = createSelector(getJobsState, fromJobs.getEntities);
 export const getSelectedJob = createSelector(getJobsState, fromJobs.getSelectedJob);
+export const getSelectedJobId = createSelector(getJobsState, fromJobs.getSelectedJobId);
 export const getTotalJobsSearch = createSelector(getJobsState, fromJobs.getTotalJobsSearch);
 export const getJobCreated = createSelector(getJobsState, fromJobs.getJobCreated);
 export const getAllJobsCreated = createSelector(getJobsState, fromJobs.getAllJobsCreated);

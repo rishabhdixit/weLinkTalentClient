@@ -30,6 +30,7 @@ import { JobAppliedDetailViewComponent } from './job-applied/job-applied-detail-
 import { JobAppliedFeedbackViewComponent } from './job-applied/job-applied-feedback-view.component';
 import { PageNotFoundErrorViewComponent } from './common/page-not-found-error-view.component';
 import { CreateJobFormComponent } from './job/create-job-form.component';
+import { EditJobFormComponent } from './job/edit-job-form.component';
 import { JobCreatedViewComponent } from './job/job-created-view.component';
 import { RecordNotFoundViewComponent } from './common/record-not-found-view.component';
 
@@ -62,6 +63,7 @@ export const COMPONENTS = [
 	JobAppliedDetailViewComponent,
 	JobAppliedFeedbackViewComponent,
 	CreateJobFormComponent,
+	EditJobFormComponent,
 	JobCreatedViewComponent,
 	RecordNotFoundViewComponent
 ];
