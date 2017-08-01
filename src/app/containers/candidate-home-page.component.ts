@@ -19,10 +19,11 @@ import { JobsApplied } from '../models/jobs-applied.model';
 					<h5 class="purple-color">References</h5>
 				</div>
 				<div class="col-md-1"></div>
+				<div class="col-md-1"></div>
 				<div class="col-md-2 text-center">
 					<h5 class="purple-color">Applications</h5>
 				</div>
-				<div class="col-md-3"></div>
+				<div class="col-md-2"></div>
 			</div>
 			<br/>
 			<app-jobs-applied-view
@@ -30,6 +31,9 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				currentPage: currentPage,
 				totalItems: candidateJobApplicationsTotalSize$ | async }
 				let counter = index"
+				(OnSendRequestFeedbackFromRecruiterEvent)="onSendRequestFeedbackFromRecruiterHandler($event)"
+				(OnApplyToJobEvent)="onApplyToJobHandler($event)"
+				(OnApproveRefereeFeedback)="onApproveRefereeFeedback($event)"
 				[jobsApplied]="candidateJobApplication"
 				[counter]="counter"
 				[currentPage]="currentPage">{{ candidateJobApplication }} {{counter}} {{ currentPage }}
@@ -48,7 +52,7 @@ export class CandidateHomePageComponent implements OnInit {
 
 	constructor(private store: Store<fromRoot.State>) { }
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.store.select(fromRoot.getUserId).subscribe(userId => {
 			this.currentUserId = userId;
 		});
@@ -60,11 +64,26 @@ export class CandidateHomePageComponent implements OnInit {
 		this.candidateJobApplicationsTotalSize$ = this.store.select(fromRoot.getTotalJobsApplied);
 	}
 
-	onChangePage(event) {
+	onChangePage(event): void {
 		this.currentPage = event;
 		this.store.dispatch(new jobsAppliedAction.JobsAppliedLoadAction({
 			user: `${this.currentUserId}`,
 			page: `page=${this.currentPage}`
 		}));
+	}
+
+	// TODO: implement send request feedback
+	onSendRequestFeedbackFromRecruiterHandler(jobApplied: JobsApplied): void {
+
+	}
+
+	// TODO: implement apply to job
+	onApplyToJobHandler(jobApplied: JobsApplied): void {
+
+	}
+
+	// TODO: implement approving of referee feedback
+	onApproveRefereeFeedback(jobApplied: JobsApplied): void {
+
 	}
 }

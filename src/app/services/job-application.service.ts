@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AuthHttp } from 'angular2-jwt';
 import { JobApplication } from '../models/job-application.model';
+import { JobsApplied } from '../models/jobs-applied.model';
 
 @Injectable()
 export class JobApplicationService {
@@ -11,7 +12,7 @@ export class JobApplicationService {
 		private http: Http,
 		private authHttp: AuthHttp,
 		@Inject('api') private api: string
-	) { }
+	) {}
 
 	saveApplication(data: any): Observable<JobApplication> {
 		let headers = new Headers();
@@ -44,8 +45,25 @@ export class JobApplicationService {
 	}
 
 	loadAllJobsApplications(): Observable<any> {
-		console.log('Anime');
 		return this.http.get(`${this.api}/api/applications`)
 			.map((res: Response) => res.json());
+	}
+
+	applyJob(
+		userId: string,
+		applicationId: string,
+		body: any
+	): Observable<JobsApplied> {
+		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+			.map((res: Response) => { return res.json(); });
+	}
+
+	sendRequestFeedbackToRecruiter(
+		userId: string,
+		applicationId: string,
+		body: any
+	): Observable<JobsApplied> {
+		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+			.map((res: Response) => { return res.json(); });
 	}
 }
