@@ -45,4 +45,14 @@ export class JobService {
 		return this.authHttp.get(`${this.api}/api/users/${user}/jobs`)
 		.map((res: Response) => res.json());
 	}
+
+	editJob(jobId: string, data: any): Observable<any> {
+		return this.authHttp.put(`${this.api}/api/jobs/${jobId}/edit`, data)
+			.map((res: Response) => res.json());
+	}
+
+	archiveJob(job: any): Observable<any> {
+		return this.authHttp.delete(`${this.api}/api/jobs/${job.id}/archive`, {})
+			.map((res: Response) => res.json());
+	}
 }

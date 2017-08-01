@@ -51,7 +51,7 @@ export class JobEffects {
 		.ofType(jobsAction.ActionTypes.JOB_CREATION)
 		.map((action: jobsAction.JobCreationAction) => action.payload)
 		.switchMap((data) => this.jobService.createJob(data)
-			.map((res) => new jobsAction.JobCreationSuccessAction(data))
+			.map((res) => new jobsAction.JobCreationSuccessAction(res))
 			.catch(() => Observable.of(new jobsAction.JobCreationFailAction('')))
 		);
 
@@ -68,6 +68,24 @@ export class JobEffects {
 	jobCreationSuccess$ = this.actions
 		.ofType(jobsAction.ActionTypes.JOB_CREATION_SUCCESS)
 		.do(() => this.router.navigate(['admin/home']));
+
+	@Effect()
+	jobEditing$ = this.actions
+		.ofType(jobsAction.ActionTypes.JOB_EDITING)
+		.map((action: jobsAction.JobEditingAction) => action.payload)
+		.switchMap((query) => this.jobService.editJob(query.jobId, query.data)
+			.map((res) => new jobsAction.JobEditingSuccessAction(res))
+			.catch(() => Observable.of(new jobsAction.JobEditingFailAction('')))
+		);
+
+	@Effect()
+	archiveJob = this.actions
+		.ofType(jobsAction.ActionTypes.JOB_ARCHIVE)
+		.map((action: jobsAction.JobArchiveAction) => action.payload)
+		.switchMap((job) => this.jobService.archiveJob(job)
+			.map((res) => new jobsAction.JobArchiveSuccessAction(res))
+			.catch(() => Observable.of(new jobsAction.JobArchiveFailAction('')))
+		);
 
 	constructor(private actions: Actions,
 		private jobService: JobService,

@@ -91,7 +91,7 @@ export class CreateJobFormComponent implements OnInit {
 			salary_to: new FormControl('', [Validators.required]),
 			salary_currency: new FormControl('', [Validators.required]),
 			salary_negotiable: new FormControl(false, [Validators.required]),
-			remaining_slots: new FormControl('', [Validators.required]),
+			application_slots: new FormControl('', [Validators.required]),
 			skills: this.fb.array([
 				this.initSkill(),
 			]),

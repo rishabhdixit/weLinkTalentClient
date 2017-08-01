@@ -30,7 +30,7 @@ import { ErrorPageComponent } from './containers/error-page.component.';
 import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
 import { JobAppliedPageComponent } from './containers/job-applied-page.component';
 import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
-
+import { AdminEditJobPageComponent } from './containers/Admin/admin-edit-job-page.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -124,6 +124,15 @@ export const routes: Routes = [
 		path: 'admin/create-job',
 		component: AdminCreateJobPageComponent,
 		canActivate: [LoggedInGuard], // TODO - need to fix (if directly typed in address bar)
+		resolve: { loaded: UserResolve }
+	},
+	{
+		path: 'admin/edit-job/:id',
+		component: AdminEditJobPageComponent,
+		canActivate: [
+			LoggedInGuard,
+			JobExistsGuard
+		], // TODO - need to fix (if directly typed in address bar)
 		resolve: { loaded: UserResolve }
 	},
 	{

@@ -45,6 +45,7 @@ export class JobDetailPageComponent implements OnInit {
 	job$: Observable<Job>;
 	selectedJob: Job;
 	user: User;
+
 	constructor(private store: Store<fromRoot.State>,
 		private router: Router,
 		private loginService: LoginService) {
