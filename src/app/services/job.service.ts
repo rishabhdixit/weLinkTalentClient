@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Job } from '../models/job.model';
 
 @Injectable()
 export class JobService {
@@ -51,8 +52,8 @@ export class JobService {
 			.map((res: Response) => res.json());
 	}
 
-	archiveJob(job: any): Observable<any> {
-		return this.authHttp.delete(`${this.api}/api/jobs/${job.id}`, {})
+	archiveJob(job: Job): Observable<any> {
+		return this.authHttp.delete(`${this.api}/api/jobs/${job._id}`, {})
 			.map((res: Response) => res.json());
 	}
 }
