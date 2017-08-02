@@ -177,12 +177,12 @@ export class ProfileViewComponent implements OnInit {
 
 	// Cancel editing position.
 	// If position is empty or has not been save yet to server remove form from formarray.
-	cancelPosition(event, index) {
-		const position = this.profile.positions[index];
+	cancelPosition(event) {
+		// const position = this.profile.positions[index];
 
-		if (!position || !position.id) {
-			this.positions.removeAt(index);
-		}
+		// if (!position || !position.id) {
+		// 	this.positions.removeAt(index);
+		// }
 
 		this.editMode(event, '');
 	}

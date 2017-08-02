@@ -22,7 +22,7 @@ export class JobExistsGuard implements CanActivate {
 	}
 
 	hasJobInStore(id: string): Observable<boolean> {
-		return this.store.select(fromRoot.getJobEntites)
+		return this.store.select(fromRoot.getJobEntities)
 			.map(entities => !!entities[id])
 			.take(1);
 	}

@@ -29,6 +29,14 @@ export class ApplicationEffects {
 		.ofType(application.ActionType.APPLICATION_FORM_LOAD)
 		.do(() => this.router.navigate(['/application-form']));
 
+	@Effect({ dispatch: false })
+	allJobsApplications$: Observable<Action> = this.actions
+		.ofType(application.ActionType.ADMIN_ALL_JOBS_APPLICATIONS_LOAD)
+		.map((action: application.AdminAllJobsApplicationsLoadAction) => action.payload)
+		.switchMap((payload) => this.jobApplicationService.loadAllJobsApplications()
+			.map((res) => new application.AdminAllJobsApplicationLoadSuccessAction(res))
+		);
+
 	@Effect()
 	saveApplication$: Observable<Action> = this.actions
 		.ofType(application.ActionType.APPLICATION_FORM_SUBMIT)

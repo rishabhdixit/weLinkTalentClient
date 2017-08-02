@@ -63,6 +63,7 @@ import { JobAppliedPageComponent } from './containers/job-applied-page.component
 import { AdminHomePageComponent } from './containers/Admin/admin-home-page.component';
 import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
 import { AdminEditJobPageComponent } from './containers/Admin/admin-edit-job-page.component';
+import { AdminAllJobsApplicationsPageComponent } from './containers/Admin/admin-all-jobs-applications-page.component';
 
 
 // Pagination
@@ -90,7 +91,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobAppliedPageComponent,
 		AdminHomePageComponent,
 		AdminCreateJobPageComponent,
-		AdminEditJobPageComponent
+		AdminEditJobPageComponent,
+		AdminAllJobsApplicationsPageComponent,
 	],
 	imports: [
 		BrowserModule,

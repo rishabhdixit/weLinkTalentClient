@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { JobsApplied } from '../../models/jobs-applied.model';
 
@@ -10,8 +10,8 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 				{{((currentPage - 1) * 10) + counter + 1}}
 			</div>-->
 			<div class="col-md-4">
-				<h5 *ngIf="jobsApplied.title"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.title}}</a></h5>
-				<h6 *ngIf="jobsApplied.company" style="color: #6F7071;">{{jobsApplied.company.name}}</h6>
+				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.job.title}}</a></h5>
+				<h6 *ngIf="jobsApplied.job.company" style="color: #6F7071;">{{jobsApplied.job.company.name}}</h6>
 			</div>
 			<div class="col-md-2">
 				<div class="row">
@@ -25,6 +25,14 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 							<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 2)"></i>
 						</div>
 				</div>
+			</div>
+			<div class="col-md-1">
+				<button
+					*ngIf="jobsApplied.reference_status === 'replied'"
+					type="button" class="btn btn-primary btn-sm"
+					(click)="approveRefereeFeedback(jobsApplied)">
+					Approve
+				</button>
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-2">
@@ -40,7 +48,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<button
 					*ngIf="isAbleToSendRequestFeedback(jobsApplied.reference_status, jobsApplied.application_status)"
 					type="button"
@@ -67,9 +75,14 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 	`],
 })
 export class JobsAppliedViewComponent {
-	@Input() jobsApplied: JobsApplied;
+
+	@Output() OnApplyToJobEvent = new EventEmitter<JobsApplied>();
+	@Output() OnApproveRefereeFeedback = new EventEmitter<JobsApplied>();
+	@Output() OnSendRequestFeedbackFromRecruiterEvent = new EventEmitter<JobsApplied>();
+
 	@Input() counter: number;
 	@Input() currentPage: number;
+	@Input() jobsApplied: JobsApplied;
 
 	constructor() {
 	}
@@ -83,11 +96,15 @@ export class JobsAppliedViewComponent {
 	}
 
 	sendRequestFeedbackFromRecruiter(jobApplied: JobsApplied): void {
-		console.log('Sending request feedback to recruiter...');
+		this.OnSendRequestFeedbackFromRecruiterEvent.emit(jobApplied);
 	}
 
 	applyToJob(jobApplied: JobsApplied): void {
-		console.log('Applying to job...');
+		this.OnApplyToJobEvent.emit(jobApplied);
+	}
+
+	approveRefereeFeedback(jobApplied: JobsApplied): void {
+		this.OnApproveRefereeFeedback.emit(jobApplied);
 	}
 
 	getReferenceStatusClass(status: string, index: number): string {

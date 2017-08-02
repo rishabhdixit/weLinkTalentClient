@@ -3,11 +3,14 @@ import { Action } from '@ngrx/store';
 import { JobsApplied } from '../models/jobs-applied.model';
 
 export const ActionTypes = {
-	LOAD:               type('[JOBS_APPLIED] Candidate Jobs Applied Load'),
-	LOAD_SUCCESS:       type('[JOBS_APPLIED] Candidate Jobs Applied Load Success'),
-	LOAD_FAIL:          type('[JOBS_APPLIED] Candidate Jobs Applied Load Fail'),
-	SELECT:             type('[JOBS_APPLIED] Candidate Jobs Applied Select'),
-	LOAD_DETAIL:        type('[JOBS_APPLIED] Candidate Jobs Applied Load Detail'),
+	LOAD:                                         type('[JOBS_APPLIED] Candidate Jobs Applied Load'),
+	LOAD_SUCCESS:                                 type('[JOBS_APPLIED] Candidate Jobs Applied Load Success'),
+	LOAD_FAIL:                                    type('[JOBS_APPLIED] Candidate Jobs Applied Load Fail'),
+	SELECT:                                       type('[JOBS_APPLIED] Candidate Jobs Applied Select'),
+	LOAD_DETAIL:                                  type('[JOBS_APPLIED] Candidate Jobs Applied Load Detail'),
+	APPLICATION_APPLY:                            type('[APPLICATION] Application Apply'),
+	APPLICATION_APPLY_SUCCESS:                    type('[APPLICATION] Application Apply Success'),
+	APPLICATION_APPLY_FAIL:                       type('[APPLICATION] Application Apply Fail')
 };
 
 export class JobsAppliedLoadAction implements Action {
@@ -42,8 +45,27 @@ export class JobsAppliedLoadDetailAction implements Action {
 	}
 }
 
+export class ApplicationApplyAction implements Action {
+	type = ActionTypes.APPLICATION_APPLY;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationApplySuccessAction implements Action {
+	type = ActionTypes.APPLICATION_APPLY_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationApplyFailAction implements Action {
+	type = ActionTypes.APPLICATION_APPLY_FAIL;
+
+	constructor(public payload: any) {}
+}
+
 export type Actions = JobsAppliedLoadAction
 	| JobsAppliedLoadSuccessAction
 	| JobsAppliedLoadFailAction
 	| JobsAppliedSelectAction
-	| JobsAppliedLoadDetailAction;
+	| JobsAppliedLoadDetailAction
+	| ApplicationApplyAction
+	| ApplicationApplySuccessAction
+	| ApplicationApplyFailAction;
