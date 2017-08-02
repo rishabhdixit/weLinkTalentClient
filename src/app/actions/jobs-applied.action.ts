@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { JobsApplied } from '../models/jobs-applied.model';
 
 export const ActionTypes = {
-LOAD:                                           type('[JOBS_APPLIED] Candidate Jobs Applied Load'),
+	LOAD:                                         type('[JOBS_APPLIED] Candidate Jobs Applied Load'),
 	LOAD_SUCCESS:                                 type('[JOBS_APPLIED] Candidate Jobs Applied Load Success'),
 	LOAD_FAIL:                                    type('[JOBS_APPLIED] Candidate Jobs Applied Load Fail'),
 	SELECT:                                       type('[JOBS_APPLIED] Candidate Jobs Applied Select'),

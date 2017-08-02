@@ -1,11 +1,13 @@
 import { Company } from './company.model';
 import { Reference } from './reference.model';
 import { Skill } from './skill.model';
+import {Job} from './job.model';
 
 export class JobsApplied {
 	id: string;
 	user_id: string;
 	job_id: string;
+	job: Job;
 	form_status: string;
 	validation_status: string;
 	submission_status: string;
@@ -25,6 +27,8 @@ export class JobsApplied {
 	feedback: any;
 	reference_status: string;
 	application_status: string;
+	recruiter_feedback_requested: boolean;
+	referee_feedback_requested: boolean;
 }
 
 export class CandidateJobAppliedFormData {

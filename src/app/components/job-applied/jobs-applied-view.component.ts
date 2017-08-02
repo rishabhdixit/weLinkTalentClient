@@ -10,8 +10,8 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 				{{((currentPage - 1) * 10) + counter + 1}}
 			</div>-->
 			<div class="col-md-4">
-				<h5 *ngIf="jobsApplied.title"><a routerLink="/job-application/{{jobsApplied.id}}">{{jobsApplied.title}}</a></h5>
-				<h6 *ngIf="jobsApplied.company" style="color: #6F7071;">{{jobsApplied.company.name}}</h6>
+				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.job.title}}</a></h5>
+				<h6 *ngIf="jobsApplied.job.company" style="color: #6F7071;">{{jobsApplied.job.company.name}}</h6>
 			</div>
 			<div class="col-md-2">
 				<div class="row">

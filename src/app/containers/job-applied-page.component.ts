@@ -19,7 +19,7 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				</div>
 				<div class="col-md-12 text-center">
 					<h5 style="color: #57148D;" *ngIf="isViewable()">
-						{{selectedCandidateJobApplied.title}} - {{selectedCandidateJobApplied.company.name}}
+						{{selectedCandidateJobApplied.job.title}} - {{selectedCandidateJobApplied.company.name}}
 					</h5>
 				</div>
 			</div>
@@ -29,14 +29,12 @@ import { JobsApplied } from '../models/jobs-applied.model';
 					<br/>
 					<app-job-applied-detail-view
 						[jobApplied]="candidateJobApplied$ | async">
-						{{candidateJobApplied}}
 					</app-job-applied-detail-view>
 				</div>
 				<div class="col-md-6" style="background-color: #cfb5dd;">
 					<br/>
 					<app-job-applied-feedback-view
 						[jobApplied]="candidateJobApplied$ | async">
-						{{candidateJobApplied}}
 					</app-job-applied-feedback-view>
 				</div>
 			</div>
@@ -46,6 +44,7 @@ import { JobsApplied } from '../models/jobs-applied.model';
 })
 
 export class JobAppliedPageComponent implements OnInit {
+
 	candidateJobApplied$: Observable<JobsApplied>;
 	selectedCandidateJobApplied: JobsApplied;
 
