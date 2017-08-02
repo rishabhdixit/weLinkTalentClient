@@ -19,11 +19,10 @@ import { JobsApplied } from '../models/jobs-applied.model';
 					<h5 class="purple-color">References</h5>
 				</div>
 				<div class="col-md-1"></div>
-				<div class="col-md-1"></div>
 				<div class="col-md-2 text-center">
 					<h5 class="purple-color">Applications</h5>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-3"></div>
 			</div>
 			<br/>
 			<app-jobs-applied-view
@@ -33,7 +32,6 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				let counter = index"
 				(OnSendRequestFeedbackFromRecruiterEvent)="onSendRequestFeedbackFromRecruiterHandler($event)"
 				(OnApplyToJobEvent)="onApplyToJobHandler($event)"
-				(OnApproveRefereeFeedback)="onApproveRefereeFeedback($event)"
 				[jobsApplied]="candidateJobApplication"
 				[counter]="counter"
 				[currentPage]="currentPage">{{ candidateJobApplication }} {{counter}} {{ currentPage }}
@@ -79,11 +77,6 @@ export class CandidateHomePageComponent implements OnInit {
 
 	// TODO: implement apply to job
 	onApplyToJobHandler(jobApplied: JobsApplied): void {
-
-	}
-
-	// TODO: implement approving of referee feedback
-	onApproveRefereeFeedback(jobApplied: JobsApplied): void {
 
 	}
 }

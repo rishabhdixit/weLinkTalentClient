@@ -15,6 +15,8 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
+		<br/>
+		<br/>
 		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Reason for leaving current company:</h6>
@@ -60,7 +62,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 10px;">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Your Points of Development/Improvement:</h6>
 				<textarea
@@ -72,7 +74,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 10px;">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Your Main Achievements:</h6>
 				<textarea
@@ -84,7 +86,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 15px;">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Your Management Style:</h6>
 				<textarea

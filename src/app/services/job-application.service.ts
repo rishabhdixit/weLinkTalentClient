@@ -66,4 +66,12 @@ export class JobApplicationService {
 		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
+
+	approveRefereeFeedback(
+		applicationId: string,
+		body: any
+	): Observable<any> {
+		return this.http.put(`${this.api}/api/users/applications/${applicationId}`, body)
+			.map((res: Response) => { return res.json(); });
+	}
 }

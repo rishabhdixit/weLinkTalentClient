@@ -26,14 +26,6 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 						</div>
 				</div>
 			</div>
-			<div class="col-md-1">
-				<button
-					*ngIf="jobsApplied.reference_status === 'replied'"
-					type="button" class="btn btn-primary btn-sm"
-					(click)="approveRefereeFeedback(jobsApplied)">
-					Approve
-				</button>
-			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-2">
 				<div class="row">
@@ -48,7 +40,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<button
 					*ngIf="isAbleToSendRequestFeedback(jobsApplied.reference_status, jobsApplied.application_status)"
 					type="button"
@@ -77,7 +69,6 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 export class JobsAppliedViewComponent {
 
 	@Output() OnApplyToJobEvent = new EventEmitter<JobsApplied>();
-	@Output() OnApproveRefereeFeedback = new EventEmitter<JobsApplied>();
 	@Output() OnSendRequestFeedbackFromRecruiterEvent = new EventEmitter<JobsApplied>();
 
 	@Input() counter: number;
@@ -101,10 +92,6 @@ export class JobsAppliedViewComponent {
 
 	applyToJob(jobApplied: JobsApplied): void {
 		this.OnApplyToJobEvent.emit(jobApplied);
-	}
-
-	approveRefereeFeedback(jobApplied: JobsApplied): void {
-		this.OnApproveRefereeFeedback.emit(jobApplied);
 	}
 
 	getReferenceStatusClass(status: string, index: number): string {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
@@ -17,6 +17,16 @@ import { Skill } from '../../models/skill.model';
 		</div>
 		<br/>
 		<div class="row">
+			<div class="col-md-12 pull-right">
+				<button
+					type="button" class="btn btn-primary"
+					(click)="approveRefereeFeedback(selectedCandidateJobApplied)">
+					Approve
+				</button>
+			</div>
+		</div>
+		<br/>
+		<div class="row" style="padding-top: 10px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.reasonForLeavingFeedback}}" readonly></textarea>
 				<label class="form-inline">
@@ -27,7 +37,7 @@ import { Skill } from '../../models/skill.model';
 		<br/>
 		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<h6>Your personal scoring:</h6>
+				<!--<h6>Your personal scoring:</h6>-->
 				<div class="form-group" *ngFor="let skill of selectedFeedBack.skillRatings; let i=index;">
 					<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
 						<i [ngClass]="getClass(selectedFeedBack.skillRatings[i], counter)"
@@ -38,7 +48,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 20px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.strengthFeedback}}" readonly></textarea>
 				<label class="form-inline">
@@ -47,7 +57,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 3px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.improvementFeedback}}" readonly></textarea>
 				<label class="form-inline">
@@ -56,7 +66,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 3px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.achievementFeedback}}" readonly></textarea>
 				<label class="form-inline">
@@ -65,7 +75,7 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="row" style="padding-top: 8px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.managementStyleFeedback}}" readonly></textarea>
 				<label class="form-inline">
@@ -104,6 +114,7 @@ import { Skill } from '../../models/skill.model';
 	`]
 })
 export class JobAppliedFeedbackViewComponent implements OnInit {
+
 	@Input() jobApplied: JobsApplied;
 
 	jobAppliedFeedBacks: RefereeFeedback[] = [];
@@ -116,6 +127,10 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 	ngOnInit() {
 		this.constructFeedBacks();
 		this.initSelectedFeedBack();
+	}
+
+	approveRefereeFeedback(jobApplied: JobsApplied): void {
+
 	}
 
 	private initSelectedFeedBack() {

@@ -19,7 +19,7 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				</div>
 				<div class="col-md-12 text-center">
 					<h5 style="color: #57148D;" *ngIf="isViewable()">
-						{{selectedCandidateJobApplied.job.title}} - {{selectedCandidateJobApplied.company.name}}
+						{{selectedCandidateJobApplied.job.title}} - {{selectedCandidateJobApplied.job.company.name}}
 					</h5>
 				</div>
 			</div>
@@ -57,6 +57,6 @@ export class JobAppliedPageComponent implements OnInit {
 	}
 
 	isViewable() {
-		return (this.selectedCandidateJobApplied && this.selectedCandidateJobApplied.company);
+		return (this.selectedCandidateJobApplied && this.selectedCandidateJobApplied.job && this.selectedCandidateJobApplied.job.company);
 	}
 }
