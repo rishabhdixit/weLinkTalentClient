@@ -54,7 +54,7 @@ export class JobApplicationService {
 		applicationId: string,
 		body: any
 	): Observable<JobsApplied> {
-		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.authHttp.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 
@@ -63,15 +63,17 @@ export class JobApplicationService {
 		applicationId: string,
 		body: any
 	): Observable<JobsApplied> {
-		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.authHttp.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 
 	approveRefereeFeedback(
 		applicationId: string,
-		body: any
+		feedbackId: string,
+		approvedByCandidate: boolean
 	): Observable<any> {
-		return this.http.put(`${this.api}/api/users/applications/${applicationId}`, body)
+		return this.authHttp.
+			put(`${this.api}/api/applications/${applicationId}/feedback/${feedbackId}`, {approved_by_candidate: approvedByCandidate})
 			.map((res: Response) => { return res.json(); });
 	}
 }

@@ -20,7 +20,7 @@ import { Skill } from '../../models/skill.model';
 			<div class="col-md-12 pull-right">
 				<button
 					type="button" class="btn btn-primary"
-					(click)="approveRefereeFeedback(selectedCandidateJobApplied)">
+					(click)="approveRefereeFeedback(jobApplied, selectedFeedBack)">
 					Approve
 				</button>
 			</div>
@@ -115,6 +115,7 @@ import { Skill } from '../../models/skill.model';
 })
 export class JobAppliedFeedbackViewComponent implements OnInit {
 
+	@Output() OnApprovedFeedbackEvent = new EventEmitter<any>();
 	@Input() jobApplied: JobsApplied;
 
 	jobAppliedFeedBacks: RefereeFeedback[] = [];
@@ -129,36 +130,40 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 		this.initSelectedFeedBack();
 	}
 
-	approveRefereeFeedback(jobApplied: JobsApplied): void {
-
+	approveRefereeFeedback(jobApplied: JobsApplied, feedback: RefereeFeedback): void {
+		this.OnApprovedFeedbackEvent.emit({
+			applicationId: jobApplied.id,
+			feedbackId: feedback.id,
+			approved_by_candidate: true
+		});
 	}
 
-	private initSelectedFeedBack() {
+	private initSelectedFeedBack(): void {
 		this.maxIndex = this.jobAppliedFeedBacks.length;
 		if (this.jobAppliedFeedBacks.length > 0) {
 			this.selectedFeedBack = this.jobAppliedFeedBacks[this.index];
 		}
 	}
 
-	onBackClick() {
+	onBackClick(): void {
 		if (this.index > 0) {
 			this.selectedFeedBack = this.jobAppliedFeedBacks[this.index--];
 		}
 	}
 
-	onNextClick() {
+	onNextClick(): void {
 		if (this.index < this.maxIndex - 1) {
 			this.selectedFeedBack = this.jobAppliedFeedBacks[this.index++];
 		}
 	}
 
-	isChecked(value) {
+	isChecked(value): string {
 		if (value) {
 			return 'checked';
 		}
 	}
 
-	getClass(skill: Skill, index: number) {
+	getClass(skill: Skill, index: number): string {
 		if (index < skill.rate) {
 			return 'fa fa-star fa-2x color-yellow';
 		} else {
@@ -166,16 +171,34 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 		}
 	}
 
-	private constructFeedBacks() {
+	private constructFeedBacks(): void {
 		for (let id of this.getFeedBackKeys()) {
-			this.jobAppliedFeedBacks.push(this.jobApplied.feedback[id].feedback as RefereeFeedback);
+			this.jobAppliedFeedBacks.push(this.getConstructedFeedback(id, this.jobApplied.feedback[id]));
 		}
 	}
 
-	private getFeedBackKeys() {
+	private getFeedBackKeys(): string[] {
 		if (!this.jobApplied) {
 			return [];
 		}
 		return (this.jobApplied.feedback ? Object.keys(this.jobApplied.feedback) : []);
+	}
+
+	private getConstructedFeedback(id: string, value: any): RefereeFeedback {
+		let feedback = new RefereeFeedback();
+		feedback.id = id;
+		feedback.reasonForLeavingFeedback = value.reasonForLeavingFeedback;
+		feedback.reasonForLeavingApproved = value.reasonForLeavingApproved;
+		feedback.strengthFeedback = value.strengthFeedback;
+		feedback.strengthApproved = value.strengthApproved;
+		feedback.improvementFeedback = value.improvementFeedback;
+		feedback.improvementApproved = value.improvementApproved;
+		feedback.achievementFeedback = value.achievementFeedback;
+		feedback.achievementApproved = value.achievementApproved;
+		feedback.managementStyleFeedback = value.managementStyleFeedback;
+		feedback.managementStyleApproved = value.managementStyleApproved;
+		feedback.skillRatings = value.skillRatings;
+		feedback.referee_profile = value.referee_profile;
+		return feedback;
 	}
 }

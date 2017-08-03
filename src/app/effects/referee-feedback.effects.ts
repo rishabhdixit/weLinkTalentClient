@@ -17,6 +17,7 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
 import * as refereeFeedback from '../actions/referee-feedback.action';
+import * as jobsAppliedAction from '../actions/jobs-applied.action';
 import * as fromRoot from '../reducers';
 
 @Injectable()
@@ -59,11 +60,20 @@ export class RefereeFeedbackEffects {
 			.map((res) => new refereeFeedback.LoadJobApplicationSuccessAction(res))
 		);
 
+	@Effect()
+	approvedRefereeFeedback = this.actions
+		.ofType(jobsAppliedAction.ActionTypes.APPLICATION_APPROVE_FEEDBACK)
+		.map((action: jobsAppliedAction.ApplicationApproveFeedbackAction) => action.payload)
+		.switchMap((queryObject) => this.jobApplicationService
+			.approveRefereeFeedback(queryObject.applicationId, queryObject.feedbackId, queryObject.approvedByCandidate)
+			.map((res) => new jobsAppliedAction.ApplicationApproveFeedbackSuccessAction(res))
+			.catch(() => Observable.of(new jobsAppliedAction.ApplicationApproveFeedbackFailAction('')))
+		).do(() => this.router.navigate(['/home']));
+
 	constructor(private actions: Actions,
 		private jobService: JobService,
 		private jobApplicationService: JobApplicationService,
 		private router: Router,
 		private store: Store<fromRoot.State>) {
 	}
-
 }

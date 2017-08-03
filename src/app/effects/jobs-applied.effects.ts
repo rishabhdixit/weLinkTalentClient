@@ -44,16 +44,6 @@ export class JobsAppliedEffects {
 			.catch(() => Observable.of(new jobsAppliedAction.ApplicationRequestFeedbackRecruiterFailAction('')))
 		);
 
-	@Effect()
-	approvedRefereeFeedback = this.actions
-		.ofType(jobsAppliedAction.ActionTypes.APPLICATION_APPROVE_FEEDBACK)
-		.map((action: jobsAppliedAction.ApplicationApproveFeedbackAction) => action.payload)
-		.switchMap((queryObject) => this.applicationService
-			.approveRefereeFeedback(queryObject.applicationId, queryObject.body)
-			.map((res) => new jobsAppliedAction.ApplicationApproveFeedbackSuccessAction(res))
-			.catch(() => Observable.of(new jobsAppliedAction.ApplicationApproveFeedbackFailAction('')))
-		);
-
 	constructor(
 		private actions: Actions,
 		private profileService: ProfileService,

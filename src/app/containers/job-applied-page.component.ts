@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import * as jobsAppliedAction from '../actions/jobs-applied.action';
 import * as fromRoot from '../reducers';
 
 import { JobsApplied } from '../models/jobs-applied.model';
@@ -34,6 +35,7 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				<div class="col-md-6" style="background-color: #cfb5dd;">
 					<br/>
 					<app-job-applied-feedback-view
+						(OnApprovedFeedbackEvent)="onApprovedFeedbackHandler($event)"
 						[jobApplied]="candidateJobApplied$ | async">
 					</app-job-applied-feedback-view>
 				</div>
@@ -58,5 +60,9 @@ export class JobAppliedPageComponent implements OnInit {
 
 	isViewable() {
 		return (this.selectedCandidateJobApplied && this.selectedCandidateJobApplied.job && this.selectedCandidateJobApplied.job.company);
+	}
+
+	onApprovedFeedbackHandler(queryObject: any): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationApproveFeedbackAction(queryObject));
 	}
 }
