@@ -63,8 +63,15 @@ export class JobApplicationService {
 		applicationId: string,
 		body: any
 	): Observable<JobsApplied> {
-		return this.authHttp.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
-			.map((res: Response) => { return res.json(); });
+		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+			.map((res: Response) => {
+				return res.json();
+			});
+	}
+
+	updateJobsApplicationStatus(id: string, data: any): Observable<any> {
+		return this.http.put(`${this.api}/api/applications/${id}`, data)
+			.map((res: Response) => res.json());
 	}
 
 	approveRefereeFeedback(

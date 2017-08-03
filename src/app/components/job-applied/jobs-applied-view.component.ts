@@ -120,19 +120,19 @@ export class JobsAppliedViewComponent {
 
 	getApplicationStatusClass(status: string, index: number): string {
 		if (index === 0) {
-			if (status === 'completed' || status === 'submitted' || status === 'reviewed') {
+			if (status === 'completed' || status === 'submitted' || status === 'recruiter_reviewed') {
 				return this.getActiveClass();
 			} else {
 				return this.getInActiveClass();
 			}
 		} else if (index === 1) {
-			if (status === 'submitted' || status === 'reviewed') {
+			if (status === 'submitted' || status === 'recruiter_reviewed') {
 				return this.getActiveClass();
 			} else {
 				return this.getInActiveClass();
 			}
 		} else if (index === 2) {
-			if (status === 'reviewed') {
+			if (status === 'recruiter_reviewed') {
 				return this.getActiveClass();
 			} else {
 				return this.getInActiveClass();

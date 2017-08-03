@@ -29,13 +29,29 @@ export class ApplicationEffects {
 		.ofType(application.ActionType.APPLICATION_FORM_LOAD)
 		.do(() => this.router.navigate(['/application-form']));
 
-	@Effect({ dispatch: false })
+	@Effect()
 	allJobsApplications$: Observable<Action> = this.actions
 		.ofType(application.ActionType.ADMIN_ALL_JOBS_APPLICATIONS_LOAD)
 		.map((action: application.AdminAllJobsApplicationsLoadAction) => action.payload)
 		.switchMap((payload) => this.jobApplicationService.loadAllJobsApplications()
 			.map((res) => new application.AdminAllJobsApplicationLoadSuccessAction(res))
 		);
+
+	@Effect()
+	updateeJobsApplicationContacted$: Observable<Action> = this.actions
+		.ofType(application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_CONTACTED)
+		.map((action: application.AdminUpdateJobsApplicationContactedAction) => action.payload)
+		.switchMap((queryObject) =>
+			this.jobApplicationService.updateJobsApplicationStatus(queryObject.id, queryObject.data)
+			.map((data) => new application.AdminUpdateJobsApplicationContactedSuccessAction(data)));
+
+	@Effect()
+	updateJobsApplicationReviewed$: Observable<Action> = this.actions
+		.ofType(application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED)
+		.map((action: application.AdminUpdateJobsApplicationReviewedAction) => action.payload)
+		.switchMap((queryObject) =>
+			this.jobApplicationService.updateJobsApplicationStatus(queryObject.id, queryObject.data)
+			.map((data) => new application.AdminUpdateJobsApplicationReviewedSuccessAction(data)));
 
 	@Effect()
 	saveApplication$: Observable<Action> = this.actions

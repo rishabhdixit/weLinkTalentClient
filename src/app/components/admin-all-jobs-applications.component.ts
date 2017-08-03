@@ -1,97 +1,61 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
-import { Store } from '@ngrx/store';
-import * as fromRoot from '../reducers';
-import { User } from '../models/user.model';
-import { Job } from '../models/job.model';
 
 @Component({
 	selector: `app-admin-all-jobs-applications`,
 	template: `
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12" style="margin-bottom: 1rem;">
-				<div class="form-group">
+		<div class="row pull-right">
+			<div style="margin-bottom: 1rem;">
+				<div class="form-group pull-right">
 					<div class="input-group search">
 						<span class="input-group-addon"><i class="fa fa-search"></i></span>
 						<input type="text" class="form-control"/>
 					</div>
 				</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<table class="table table-bordered table-hover">
-						<thead>
-						<tr>
-							<th>
-								Candidate Name
-							</th>
-							<th>
-								Company
-							</th>
-							<th>
-								Job Title
-							</th>
-							<th>
-								Availability
-							</th>
-							<th>
-								Status
-							</th>
-							<th>
-								Contacted
-							</th>
-							<th>
-								Reviewed
-							</th>
-							<th>
-								Comment
-							</th>
-						</tr>
-						</thead>
-						<tbody *ngFor="let apply of jobApplication">
-						<tr>
-							<td>
-								{{ user.name }}
-							</td>
-							<td>
-								{{ job.company.name }}
-							</td>
-							<td>
-								{{ job.title }}
-							</td>
-							<td>
-								{{ apply.availability }}
-							</td>
-							<td>
-								{{ apply.status }}
-							</td>
-							<td>
-								<input type="checkbox" class="input-checkbox" value="{{ apply.contacted }}"/>
-							</td>
-							<td>
-								<input type="checkbox" class="input-checkbox" value="{{ apply.review }}"/>
-							</td>
-							<td>
-								{{ apply.comment }}
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
 			</div>
 		</div>
+		<table class="table table-bordered table-hover">
+			<thead>
+			<tr>
+				<th> Candidate Name </th>
+				<th> Company </th>
+				<th> Job Title </th>
+				<th> Availability </th>
+				<th> Status </th>
+				<th> Contacted </th>
+				<th> Reviewed </th>
+				<th> Comment </th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let application of jobApplications">
+					<td> {{ application.user.firstName }} {{ application.user.lastName }} </td>
+					<td> {{ application.job.company.name }} </td>
+					<td> {{ application.job.title }} </td>
+					<td> {{ application.availability }} </td>
+					<td> {{ application.status }} </td>
+					<td>
+						<input type="checkbox" class="input-checkbox"
+						       [ngModel]="application.contacted"
+						       [checked]="application.contacted"
+						       (change)="onClickedContacted(application, !$event.target.checked)"/>
+					</td>
+					<td>
+						<input type="checkbox" class="input-checkbox"
+						       [(ngModel)]="application.recruiter_reviewed"
+						       [checked]="application.recruiter_reviewed"
+						       (change)="onClickedReviewed(application, !$event.target.checked)"/>
+					</td>
+					<td> {{ application.comment }} </td>
+				</tr>
+			</tbody>
+		</table>
 	`,
 	styles: [`
 		.input-checkbox {
 			border-radius: 0.25em;
 			width: 1.7em;
 			height: 1.7em;
-		}
-		.search {
-			float: right;
-			width: 40%;
 		}
 		th {
 			text-align: center;
@@ -100,11 +64,27 @@ import { Job } from '../models/job.model';
 })
 
 export class AdminAllJobsApplicationsComponent {
-	@Input() jobApplication: JobApplication;
-	@Input() user: User;
-	@Input() job: Job;
+	@Input() jobApplications: [JobApplication];
+	@Output() isContactedEmitter = new EventEmitter<any>();
+	@Output() isReviewedEmitter = new EventEmitter<any>();
 
-	constructor(private store: Store<fromRoot.State>) {	}
+	constructor() {	}
 
+	onClickedContacted(application: JobApplication, contacted: boolean) {
+		this.isContactedEmitter.emit({
+			id: application.id,
+			data: {
+				contacted: ( contacted ) ? false : true
+			}
+		});
+	}
 
+	onClickedReviewed(application: JobApplication, review: boolean) {
+		this.isReviewedEmitter.emit({
+			id: application.id,
+			data: {
+				recruiter_reviewed: ( review ) ? false : true,
+			}
+		});
+	}
 }
