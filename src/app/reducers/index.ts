@@ -112,6 +112,7 @@ export const IsValidApplicationThankYouPage = createSelector(getApplicationState
 
 export const getJobApplicationReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJobApplication);
 export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJob);
+export const getRefereeFeedbackResponse = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getRefereeFeedbackResponse);
 
 export const getJobsApplied = createSelector(getJobsAppliedState, fromJobsApplied.getJobsApplied);
 export const getTotalJobsApplied = createSelector(getJobsAppliedState,

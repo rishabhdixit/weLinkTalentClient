@@ -6,7 +6,6 @@ import * as fromRoot from '../reducers';
 import * as refereeAction from '../actions/referee-feedback.action';
 import { JobApplication } from '../models/job-application.model';
 import { RefereeFeedback } from '../models/referee-feedback.model';
-import { Job } from '../models/job.model';
 
 @Component({
 	selector: 'app-referee-feedback-page',
