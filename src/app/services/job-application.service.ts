@@ -70,10 +70,10 @@ export class JobApplicationService {
 	approveRefereeFeedback(
 		applicationId: string,
 		feedbackId: string,
-		approvedByCandidate: boolean
+		body: any
 	): Observable<any> {
 		return this.authHttp.
-			put(`${this.api}/api/applications/${applicationId}/feedback/${feedbackId}`, {approved_by_candidate: approvedByCandidate})
+			put(`${this.api}/api/applications/${applicationId}/feedback/${feedbackId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 }

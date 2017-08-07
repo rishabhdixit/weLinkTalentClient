@@ -65,7 +65,7 @@ export class RefereeFeedbackEffects {
 		.ofType(jobsAppliedAction.ActionTypes.APPLICATION_APPROVE_FEEDBACK)
 		.map((action: jobsAppliedAction.ApplicationApproveFeedbackAction) => action.payload)
 		.switchMap((queryObject) => this.jobApplicationService
-			.approveRefereeFeedback(queryObject.applicationId, queryObject.feedbackId, queryObject.approvedByCandidate)
+			.approveRefereeFeedback(queryObject.applicationId, queryObject.feedbackId, queryObject.body)
 			.map((res) => new jobsAppliedAction.ApplicationApproveFeedbackSuccessAction(res))
 			.catch(() => Observable.of(new jobsAppliedAction.ApplicationApproveFeedbackFailAction('')))
 		).do(() => this.router.navigate(['/home']));

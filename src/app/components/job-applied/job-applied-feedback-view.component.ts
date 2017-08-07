@@ -134,7 +134,9 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 		this.OnApprovedFeedbackEvent.emit({
 			applicationId: jobApplied.id,
 			feedbackId: feedback.id,
-			approved_by_candidate: true
+			body: {
+				approved_by_candidate: true
+			}
 		});
 	}
 
