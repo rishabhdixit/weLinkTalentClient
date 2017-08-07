@@ -1,7 +1,7 @@
 import { Company } from './company.model';
 import { Reference } from './reference.model';
 import { Skill } from './skill.model';
-import {Job} from './job.model';
+import { Job } from './job.model';
 
 export class JobsApplied {
 	id: string;
