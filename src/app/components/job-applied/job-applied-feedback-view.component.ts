@@ -16,7 +16,8 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div class="col-md-12" *ngIf="jobApplied.approved_by_candidate" style="padding-bottom: 39px;"></div>
+		<div class="row" *ngIf="!jobApplied.approved_by_candidate">
 			<div class="col-md-12 pull-right">
 				<button
 					type="button" class="btn btn-primary"
