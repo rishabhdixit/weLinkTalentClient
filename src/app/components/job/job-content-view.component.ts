@@ -14,7 +14,7 @@ import { Job } from '../../models/job.model';
 				</tr>
 				<tr>
 					<td class="labelType">Location:</td>
-					<td>{{job.location}}</td>
+					<td>{{job?.company?.address}}</td>
 				</tr>
 				<tr>
 					<td class="labelType">Industry:</td>
@@ -34,15 +34,15 @@ import { Job } from '../../models/job.model';
 				</tr>
 				<tr>
 					<td class="labelType">Contact Name:</td>
-					<td>{{job.contact_name}}</td>
+					<td>{{job?.company?.name}}</td>
 				</tr>
 				<tr>
 					<td class="labelType">Phone Number:</td>
-					<td>{{job.contact_number}}</td>
+					<td>{{job?.company?.phone_numbers[0]}}</td>
 				</tr>
 				<tr>
 					<td class="labelType">Contact Email:</td>
-					<td>{{job.contact_email}}</td>
+					<td>{{job?.company?.email}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -52,11 +52,25 @@ import { Job } from '../../models/job.model';
 	<div class="row">
 		<div class="col-md-12 div-margin">
 			<dl>
+				<dt> Skills  </dt>
+				<dd>
+					<ul class="item">
+						<li *ngFor="let skill of job.skills">
+							{{skill}}
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 div-margin">
+			<dl>
 				<dt> Responsibility  </dt>
 				<dd>
 					<ul class="item">
-						<li *ngFor="let resa of job.responsibilities">
-						{{resa}}
+						<li *ngFor="let responsility of job.responsibilities">
+						{{responsility}}
 						</li>
 					</ul>
 				</dd>
@@ -85,8 +99,8 @@ import { Job } from '../../models/job.model';
 					<table class="table tableBorder">
 						<tbody>
 							<tr>
-								<td><img src="{{'http://' + job.company_logo }}" class="img-responsive logo"/></td>
-								<td>{{job.company.about}}</td>
+								<td><img src="{{'http://' + job?.company_logo }}" class="img-responsive logo"/></td>
+								<td>{{job?.company?.about}}</td>
 							</tr>
 						</tbody>
 					</table>
