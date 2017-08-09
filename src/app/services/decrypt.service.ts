@@ -12,7 +12,7 @@ export class DecryptService {
 	}
 
 	decryptFeedbackToken(token: String): Observable<any> {
-		return this.authHttp.post(`${this.api}/api/referee-feedback`, { token })
+		return this.authHttp.post(`${this.api}/referee-feedback`, { token })
 			.map((res: Response) => res.json());
 	}
 }
