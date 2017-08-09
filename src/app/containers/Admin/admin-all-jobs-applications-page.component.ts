@@ -11,7 +11,8 @@ import * as JobApplicationAction from '../../actions/job-application.action';
 		<div class="container">
 			<div class="container-fluid">
 				<app-admin-all-jobs-applications
-					[jobApplications]="jobApplication$ | async"
+					[jobApplications]="jobApplication$ | async | 
+					paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: jobsApplicationsTotalSize$ | async }"
 					[user]="user$"
 					(isContactedEmitter)="isContactedHandler($event)"
 					(isReviewedEmitter)="isReviewedHandler($event)">
