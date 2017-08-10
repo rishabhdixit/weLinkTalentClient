@@ -16,7 +16,6 @@ export class JobApplicationService {
 
 	saveApplication(data: any): Observable<JobApplication> {
 		let headers = new Headers();
-		// headers.append('Content-Type', 'multipart/form-data');
 		headers.append('Accept', 'application/json');
 		const options = new RequestOptions({ headers: headers });
 		return this.http.post(`${this.api}/api/applications`, data, options)
