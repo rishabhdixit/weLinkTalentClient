@@ -116,6 +116,7 @@ export const getTotalJobsApplications = createSelector(getApplicationState, from
 export const getJobApplicationReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJobApplication);
 export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJob);
 export const getRefereeFeedbackResponse = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getRefereeFeedbackResponse);
+export const getEncryptedToken = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getEncryptedToken);
 // export const getJobReferenceFeedback = createSelector(getRefereeFeedbackState, fromRefereeFeedback.getJob);
 
 export const getJobsApplied = createSelector(getJobsAppliedState, fromJobsApplied.getJobsApplied);

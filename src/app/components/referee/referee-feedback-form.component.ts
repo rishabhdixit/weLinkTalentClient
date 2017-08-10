@@ -5,9 +5,11 @@ import { JobApplication } from '../../models/job-application.model';
 
 @Component({
 	selector: `app-referee-feedback-form`,
-	template: `		
+	template: `
 		<form [formGroup]="refereeFeedbackForm">
 			<div class="col-md-12">
+				<br/>
+				<br/>
 				<h2>Referee Comments:</h2>
 				<p class="pStyle">This section contains what your referee has filled.</p>
 				<div class="form-group" style="margin-top: 45px; margin-bottom: .5rem;">
@@ -20,18 +22,15 @@ import { JobApplication } from '../../models/job-application.model';
 				<div class="col-md-12 div-padding">
 					<p class="skillStyle">Rate the candidate's skills accordingly.</p>
 					<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
-					
 					<div class="form-group star-margin" formArrayName="skillRatings" *ngFor="let skill of skillRatings.controls; let i=index;">
 						<div [formGroupName]="i">
 							<app-reactive-star
 								[skill]="skill.controls.name.value"
 								[listIndex]="i"
-								(newRating)="onClickNewRating($event)"
-								>
+								(newRating)="onClickNewRating($event)">
 							</app-reactive-star>
 						</div>
 					</div>
-					
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
 					<textarea class="form-control" rows="4" formControlName="strengthFeedback" required > </textarea>
@@ -61,15 +60,14 @@ import { JobApplication } from '../../models/job-application.model';
 						I APPROVE
 					</label>
 				</div>
-				<div>
-					<div class="col-md-2">
-					</div>
-					<div class="col-md-6 nextButton">
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-md-12 text-right nextButton">
 						<button class="btn btn-primary" (click)="submitButtonClicked()">Submit Feedback</button>
 					</div>
-					<div class="col-md-2">
-					</div>
 				</div>
+				<br/>
 			</div>
 		</form>
 	`,

@@ -11,7 +11,8 @@ export const ActionTypes = {
 	SUBMIT_FEEDBACK:                  type('[REFEREE FEEDBACK] Submit Referee Feedback'),
 	SUBMIT_FEEDBACK_SUCCESS:          type('[REFEREE FEEDBACK] Submit Referee Feedback Success'),
 	DECRYPT_TOKEN:                    type('[REFEREE FEEDBACK] Decrypt token'),
-	DECRYPT_TOKEN_SUCCESS:            type('[REFEREE FEEDBACK] Decrypt token Success')
+	DECRYPT_TOKEN_SUCCESS:            type('[REFEREE FEEDBACK] Decrypt token Success'),
+	SAVE_ENCRYPTED_TOKEN_SUCCESS:     type('[REFEREE FEEDBACK] Save Encrypted token Success')
 };
 
 export class LoadJobApplicationAction implements Action {
@@ -84,6 +85,13 @@ export class DecryptTokenSuccessAction implements Action {
 	}
 }
 
+export class SaveEncryptedTokenSuccess implements Action {
+	type = ActionTypes.SAVE_ENCRYPTED_TOKEN_SUCCESS;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type Actions = LoadJobApplicationAction
 	| LoadJobApplicationSuccessAction
 	| LoadJobApplicationFailAction
@@ -93,4 +101,5 @@ export type Actions = LoadJobApplicationAction
 	| SubmitFeedbackAction
 	| SubmitFeedbackSuccessAction
 	| DecryptTokenAction
-	| DecryptTokenSuccessAction;
+	| DecryptTokenSuccessAction
+	| SaveEncryptedTokenSuccess;

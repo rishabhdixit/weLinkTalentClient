@@ -39,11 +39,15 @@ export class RefereeFeedbackEffects {
 			return {
 				userId: state.login.user.id,
 				applicationId: state.refereeFeedback.jobApplication.id,
+				token: state.refereeFeedback.encryptedToken,
 				data: action.payload
 			};
 		})
 		.switchMap((payload: any) => {
-			const data = Object.assign({}, payload.data, { referee_id: payload.userId });
+			const data = Object.assign({}, payload.data, {
+				referee_id: payload.userId,
+				token: payload.token
+			});
 			return this.jobApplicationService.saveRefereeFeedback(payload.applicationId, data)
 				.mergeMap((response) => {
 					return Observable.from([

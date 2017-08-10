@@ -39,6 +39,12 @@ export class RefereeFeedbackGuard implements CanActivate {
 	}
 
 	canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+		this.store.dispatch({
+			type: refereeFeedback.ActionTypes.SAVE_ENCRYPTED_TOKEN_SUCCESS,
+			payload: {
+				encryptedToken: route.queryParams['token']
+			}
+		});
 		if (!this.loginService.isLoggedIn()) {
 			this.store.dispatch(new login.RegisterRedirectUrlAction(`/referee-feedback?token=${route.queryParams['token']}`));
 			this.router.navigate(['login']);
@@ -47,4 +53,3 @@ export class RefereeFeedbackGuard implements CanActivate {
 		return this.hasApplicationForm(route.queryParams['token']);
 	}
 }
-
