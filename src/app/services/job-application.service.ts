@@ -50,20 +50,26 @@ export class JobApplicationService {
 	}
 
 	applyJob(
-		userId: string,
 		applicationId: string,
 		body: any
 	): Observable<JobsApplied> {
-		return this.authHttp.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.authHttp.put(`${this.api}/api/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 
 	sendRequestFeedbackToRecruiter(
-		userId: string,
-		applicationId: string,
-		body: any
+		applicationId: string
 	): Observable<JobsApplied> {
-		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.http.post(`${this.api}/api/applications/${applicationId}/feedback?requested_for=recruiter`, {})
+			.map((res: Response) => {
+				return res.json();
+			});
+	}
+
+	sendRequestFeedbackToReferee(
+		applicationId: string
+	): Observable<JobsApplied> {
+		return this.http.post(`${this.api}/api/applications/${applicationId}/feedback?requested_for=referee`, {})
 			.map((res: Response) => {
 				return res.json();
 			});

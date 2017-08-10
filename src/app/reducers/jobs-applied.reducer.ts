@@ -71,6 +71,22 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 				loaded: true
 			});
 		}
+		case jobsAppliedAction.ActionTypes.APPLICATION_APPLY_SUCCESS: {
+			const payload = action.payload;
+			const selectedCandidateJobApplied = state.entities[payload.id];
+			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
+			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
+				'application_status': payload.application_status,
+				'applied_by_candidate': payload.resume_url,
+				'updatedAt': payload.updatedAt
+			});
+			return Object.assign({}, state, {
+				entities: Object.assign({}, state.entities, {
+					[payload.id]: newSelectedCandidateJobApplied
+				}),
+				loaded: true
+			});
+		}
 
 		default: {
 			return state;

@@ -30,7 +30,8 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				currentPage: currentPage,
 				totalItems: candidateJobApplicationsTotalSize$ | async }
 				let counter = index"
-				(OnSendRequestFeedbackFromRecruiterEvent)="onSendRequestFeedbackFromRecruiterHandler($event)"
+				(OnSendRequestFeedbackToRecruiterEvent)="onSendRequestFeedbackToRecruiterHandler($event)"
+				(OnSendRequestFeedbackToRefereeEvent)="onSendRequestFeedbackToRefereeHandler($event)"
 				(OnApplyToJobEvent)="onApplyToJobHandler($event)"
 				[jobsApplied]="candidateJobApplication"
 				[counter]="counter"
@@ -70,13 +71,25 @@ export class CandidateHomePageComponent implements OnInit {
 		}));
 	}
 
-	// TODO: implement send request feedback
-	onSendRequestFeedbackFromRecruiterHandler(jobApplied: JobsApplied): void {
-
+	onSendRequestFeedbackToRecruiterHandler(jobApplied: JobsApplied): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationRequestFeedbackRecruiterAction({
+			applicationId: jobApplied.id
+		}));
 	}
 
-	// TODO: implement apply to job
-	onApplyToJobHandler(jobApplied: JobsApplied): void {
+	onSendRequestFeedbackToRefereeHandler(jobApplied: JobsApplied): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationRequestFeedbackRefereeAction({
+			applicationId: jobApplied.id
+		}));
+	}
 
+	onApplyToJobHandler(jobApplied: JobsApplied): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationApplyAction({
+			applicationId: jobApplied.id,
+			body: {
+				applied_by_candidate: true,
+				application_status: 'submitted'
+			}
+		}));
 	}
 }

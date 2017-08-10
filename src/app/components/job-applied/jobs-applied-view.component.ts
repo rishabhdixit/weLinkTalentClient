@@ -10,20 +10,21 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 				{{((currentPage - 1) * 10) + counter + 1}}
 			</div>-->
 			<div class="col-md-4">
-				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.job.title}}</a></h5>
+				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.job.title}}</a>
+				</h5>
 				<h6 *ngIf="jobsApplied.job.company" style="color: #6F7071;">{{jobsApplied.job.company.name}}</h6>
 			</div>
 			<div class="col-md-2">
 				<div class="row">
-						<div class="col-md-4 text-center">
-							<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 0)"></i>
-						</div>
-						<div class="col-md-4 text-center">
-							<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 1)"></i>
-						</div>
-						<div class="col-md-4 text-center">
-							<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 2)"></i>
-						</div>
+					<div class="col-md-4 text-center">
+						<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 0)"></i>
+					</div>
+					<div class="col-md-4 text-center">
+						<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 1)"></i>
+					</div>
+					<div class="col-md-4 text-center">
+						<i [ngClass]="getReferenceStatusClass(jobsApplied.reference_status, 2)"></i>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-1"></div>
@@ -41,20 +42,29 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 				</div>
 			</div>
 			<div class="col-md-3">
-				<button
-					*ngIf="isAbleToSendRequestFeedback(jobsApplied.reference_status, jobsApplied.application_status)"
-					type="button"
-					class="btn btn-primary"
-					(click)="sendRequestFeedbackFromRecruiter(jobsApplied)">
-					Request feedback from recruiter
-				</button>
-				<button
-					*ngIf="isAbleToApply(jobsApplied.reference_status, jobsApplied.application_status)"
-					type="button"
-					class="btn btn-primary"
-					(click)="applyToJob(jobsApplied)">
-					Apply
-				</button>
+				<div class="row">
+					<button
+						*ngIf="isAbleToSendRequestFeedbackToReferee(jobsApplied.reference_status)"
+						type="button"
+						class="btn btn-primary form-control"
+						(click)="sendRequestFeedbackToReferee(jobsApplied)">
+						Request feedback to referee
+					</button>
+					<button
+						*ngIf="isAbleToSendRequestFeedbackToRecruiter(jobsApplied.reference_status, jobsApplied.application_status)"
+						type="button"
+						class="btn btn-primary form-control"
+						(click)="sendRequestFeedbackToRecruiter(jobsApplied)">
+						Request feedback to recruiter
+					</button>
+					<button
+						*ngIf="isAbleToApply(jobsApplied.reference_status, jobsApplied.application_status)"
+						type="button"
+						class="btn btn-primary form-control"
+						(click)="applyToJob(jobsApplied)">
+						Apply
+					</button>
+				</div>
 			</div>
 		</div>
 		<br/>
@@ -69,7 +79,8 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 export class JobsAppliedViewComponent {
 
 	@Output() OnApplyToJobEvent = new EventEmitter<JobsApplied>();
-	@Output() OnSendRequestFeedbackFromRecruiterEvent = new EventEmitter<JobsApplied>();
+	@Output() OnSendRequestFeedbackToRecruiterEvent = new EventEmitter<JobsApplied>();
+	@Output() OnSendRequestFeedbackToRefereeEvent = new EventEmitter<JobsApplied>();
 
 	@Input() counter: number;
 	@Input() currentPage: number;
@@ -78,16 +89,24 @@ export class JobsAppliedViewComponent {
 	constructor() {
 	}
 
-	isAbleToSendRequestFeedback(referenceStatus: string, applicationStatus: string): boolean {
+	isAbleToSendRequestFeedbackToRecruiter(referenceStatus: string, applicationStatus: string): boolean {
 		return referenceStatus === 'approved' && applicationStatus === 'submitted';
+	}
+
+	isAbleToSendRequestFeedbackToReferee(referenceStatus: string): boolean {
+		return referenceStatus === 'sent';
 	}
 
 	isAbleToApply(referenceStatus: string, applicationStatus: string): boolean {
 		return referenceStatus === 'approved' && applicationStatus === 'completed';
 	}
 
-	sendRequestFeedbackFromRecruiter(jobApplied: JobsApplied): void {
-		this.OnSendRequestFeedbackFromRecruiterEvent.emit(jobApplied);
+	sendRequestFeedbackToRecruiter(jobApplied: JobsApplied): void {
+		this.OnSendRequestFeedbackToRecruiterEvent.emit(jobApplied);
+	}
+
+	sendRequestFeedbackToReferee(jobApplied: JobsApplied): void {
+		this.OnSendRequestFeedbackToRefereeEvent.emit(jobApplied);
 	}
 
 	applyToJob(jobApplied: JobsApplied): void {

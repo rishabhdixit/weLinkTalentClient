@@ -16,7 +16,10 @@ export const ActionTypes = {
 	APPLICATION_APPROVE_FEEDBACK_FAIL:                      type('[JOBS_APPLIED] Application Approve Feedback Fail'),
 	APPLICATION_REQUEST_FEEDBACK_RECRUITER:                 type('[JOBS_APPLIED] Application Request Feedback To Recruiter'),
 	APPLICATION_REQUEST_FEEDBACK_RECRUITER_SUCCESS:         type('[JOBS_APPLIED] Application Request Feedback To Recruiter Success'),
-	APPLICATION_REQUEST_FEEDBACK_RECRUITER_FAIL:            type('[JOBS_APPLIED] Application Request Feedback To Recruiter Fail')
+	APPLICATION_REQUEST_FEEDBACK_RECRUITER_FAIL:            type('[JOBS_APPLIED] Application Request Feedback To Recruiter Fail'),
+	APPLICATION_REQUEST_FEEDBACK_REFEREE:                   type('[JOBS_APPLIED] Application Request Feedback To Referee'),
+	APPLICATION_REQUEST_FEEDBACK_REFEREE_SUCCESS:           type('[JOBS_APPLIED] Application Request Feedback To Referee Success'),
+	APPLICATION_REQUEST_FEEDBACK_REFEREE_FAIL:              type('[JOBS_APPLIED] Application Request Feedback To Referee Fail')
 };
 
 export class JobsAppliedLoadAction implements Action {
@@ -99,6 +102,22 @@ export class ApplicationRequestFeedbackRecruiterFailAction implements Action {
 	constructor(public payload: any) {}
 }
 
+export class ApplicationRequestFeedbackRefereeAction implements Action {
+	type = ActionTypes.APPLICATION_REQUEST_FEEDBACK_REFEREE;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationRequestFeedbackRefereeSuccessAction implements Action {
+	type = ActionTypes.APPLICATION_REQUEST_FEEDBACK_REFEREE_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationRequestFeedbackRefereeFailAction implements Action {
+	type = ActionTypes.APPLICATION_REQUEST_FEEDBACK_REFEREE_FAIL;
+
+	constructor(public payload: any) {}
+}
+
 export type Actions = JobsAppliedLoadAction
 	| JobsAppliedLoadSuccessAction
 	| JobsAppliedLoadFailAction
@@ -112,4 +131,7 @@ export type Actions = JobsAppliedLoadAction
 	| ApplicationApproveFeedbackFailAction
 	| ApplicationRequestFeedbackRecruiterAction
 	| ApplicationRequestFeedbackRecruiterSuccessAction
-	| ApplicationRequestFeedbackRecruiterFailAction;
+	| ApplicationRequestFeedbackRecruiterFailAction
+	| ApplicationRequestFeedbackRefereeAction
+	| ApplicationRequestFeedbackRefereeSuccessAction
+	| ApplicationRequestFeedbackRefereeFailAction;
