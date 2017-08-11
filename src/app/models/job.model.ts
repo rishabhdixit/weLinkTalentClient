@@ -31,4 +31,5 @@ export class Job {
 	company_logo: any;
 	employer_id: string;
 	status: string;
+	archived: boolean;
 }

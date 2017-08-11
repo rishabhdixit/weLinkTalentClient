@@ -77,7 +77,37 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
 			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
 				'application_status': payload.application_status,
-				'applied_by_candidate': payload.resume_url,
+				'applied_by_candidate': payload.applied_by_candidate,
+				'updatedAt': payload.updatedAt
+			});
+			return Object.assign({}, state, {
+				entities: Object.assign({}, state.entities, {
+					[payload.id]: newSelectedCandidateJobApplied
+				}),
+				loaded: true
+			});
+		}
+		case jobsAppliedAction.ActionTypes.APPLICATION_REQUEST_FEEDBACK_RECRUITER_SUCCESS: {
+			const payload = action.payload;
+			const selectedCandidateJobApplied = state.entities[payload.id];
+			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
+			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
+				'recruiter_feedback_requested': payload.recruiter_feedback_requested,
+				'updatedAt': payload.updatedAt
+			});
+			return Object.assign({}, state, {
+				entities: Object.assign({}, state.entities, {
+					[payload.id]: newSelectedCandidateJobApplied
+				}),
+				loaded: true
+			});
+		}
+		case jobsAppliedAction.ActionTypes.APPLICATION_REQUEST_FEEDBACK_REFEREE_SUCCESS: {
+			const payload = action.payload;
+			const selectedCandidateJobApplied = state.entities[payload.id];
+			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
+			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
+				'referee_feedback_requested': payload.referee_feedback_requested,
 				'updatedAt': payload.updatedAt
 			});
 			return Object.assign({}, state, {

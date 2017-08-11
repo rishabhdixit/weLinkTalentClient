@@ -115,7 +115,9 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 			const payload = action.payload;
 			const selectedJob = state.entities[payload.selectedJobId];
 			let newSelectedJob: Job = {} as Job;
-			Object.assign(newSelectedJob, selectedJob, { 'status': (payload.data.status ? payload.data.status : payload.data.error) });
+			Object.assign(newSelectedJob, selectedJob, {
+				'status': (payload.data.status ? payload.data.status : payload.data.error)
+			});
 			return Object.assign({}, state, {
 				entities: Object.assign({}, state.entities, {
 					[payload.selectedJobId]: newSelectedJob
