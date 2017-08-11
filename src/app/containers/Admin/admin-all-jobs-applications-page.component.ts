@@ -14,15 +14,18 @@ import * as JobApplicationAction from '../../actions/job-application.action';
 					[jobApplications]="jobApplication$ | async | 
 					paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: jobsApplicationsTotalSize$ | async }"
 					[user]="user$"
-					(isContactedEmitter)="isContactedHandler($event)"
-					(isReviewedEmitter)="isReviewedHandler($event)">
+					(isUpdatedEmitter)="isUpdatedHandler($event)">
 				</app-admin-all-jobs-applications>
 				<br/>
 				<pagination-controls (pageChange)="onChangePage($event)"></pagination-controls>
 			</div>
 		</div>
 	`,
-	styles: [``]
+	styles: [`
+		.container-fluid {
+			padding-left: 0;
+		}
+	`]
 })
 
 export class AdminAllJobsApplicationsPageComponent implements OnInit {
@@ -46,11 +49,15 @@ export class AdminAllJobsApplicationsPageComponent implements OnInit {
 	}
 
 	isContactedHandler(queryObject: any) {
-		// console.log('Application Value: ' , queryObject);
 		this.store.dispatch(new JobApplicationAction.AdminUpdateJobsApplicationContactedAction(queryObject));
 	}
 
 	isReviewedHandler(queryObject: any) {
 		this.store.dispatch(new JobApplicationAction.AdminUpdateJobsApplicationReviewedAction(queryObject));
+	}
+
+	isUpdatedHandler(queryObject: any) {
+		console.log('Here is the Object Queried: ', queryObject);
+		this.store.dispatch(new JobApplicationAction.AdminUpdateJobApplicationDetailsAction(queryObject));
 	}
 }

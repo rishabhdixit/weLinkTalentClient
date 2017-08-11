@@ -38,13 +38,23 @@ export class ApplicationEffects {
 		);
 
 	@Effect()
-	updateeJobsApplicationContacted$: Observable<Action> = this.actions
+	updateJobApplicationDetails$: Observable<Action> = this.actions
+		.ofType(application.ActionType.ADMIN_UPDATE_JOB_APPLICATION_DETAILS)
+		.map((action: application.AdminUpdateJobApplicationDetailsAction) => action.payload)
+		.switchMap((queryObject) =>
+			this.jobApplicationService.updateJobsApplicationStatus(queryObject.id, queryObject.data)
+				.map((data) => new application.AdminUpdateJobApplicationDetailsSuccessAction(data)));
+
+	// To be remove
+	@Effect()
+	updateJobsApplicationContacted$: Observable<Action> = this.actions
 		.ofType(application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_CONTACTED)
 		.map((action: application.AdminUpdateJobsApplicationContactedAction) => action.payload)
 		.switchMap((queryObject) =>
 			this.jobApplicationService.updateJobsApplicationStatus(queryObject.id, queryObject.data)
 			.map((data) => new application.AdminUpdateJobsApplicationContactedSuccessAction(data)));
 
+	// To be remove
 	@Effect()
 	updateJobsApplicationReviewed$: Observable<Action> = this.actions
 		.ofType(application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED)

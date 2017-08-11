@@ -10,7 +10,8 @@ export class JobApplication {
 	status: string;
 	contacted: boolean;
 	recruiter_reviewed: boolean;
-	comment: string;
+	recruiter_comment: string;
+	application_date: Date;
 
 	// TODO - to be removed
 	reasonForLeaving: string;

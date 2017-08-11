@@ -75,6 +75,7 @@ export class JobApplicationService {
 	}
 
 	updateJobsApplicationStatus(id: string, data: any): Observable<any> {
+		console.log('Data: ', data);
 		return this.http.put(`${this.api}/api/applications/${id}`, data)
 			.map((res: Response) => res.json());
 	}

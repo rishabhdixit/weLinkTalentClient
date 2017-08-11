@@ -83,29 +83,42 @@ export function reducer(state = initialState, action: application.Actions): Stat
 			};
 		}
 
-		case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_CONTACTED_SUCCESS: {
+		case application.ActionType.ADMIN_UPDATE_JOB_APPLICATION_DETAILS_SUCCESS: {
 			const jobApplication = action.payload;
 			const selectedJobApplication = state.entities[jobApplication.id];
 			let updateSelectedJobApplication: JobApplication = {} as JobApplication;
 			Object.assign(updateSelectedJobApplication, selectedJobApplication, {
 				'contacted': jobApplication.contacted,
-			});
-			return Object.assign({}, state, {
-				[jobApplication.id]: updateSelectedJobApplication
+				'recruiter_reviewed': jobApplication.recruiter_reviewed,
+				'recruiter_comment': jobApplication.recruiter_comment
 			});
 		}
 
-		case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED_SUCCESS: {
-			const jobApplication = action.payload;
-			const selectedJobApplication = state.entities[jobApplication.ids];
-			let updateSelectedJobApplication: JobApplication = {} as JobApplication;
-			Object.assign(updateSelectedJobApplication, selectedJobApplication, {
-				'reviewed': jobApplication.recruiter_reviewed,
-			});
-			return Object.assign({}, state, {
-				'reviewed': jobApplication.recruiter_reviewed,
-			});
-		}
+		// To be remove
+		// case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_CONTACTED_SUCCESS: {
+		// 	const jobApplication = action.payload;
+		// 	const selectedJobApplication = state.entities[jobApplication.id];
+		// 	let updateSelectedJobApplication: JobApplication = {} as JobApplication;
+		// 	Object.assign(updateSelectedJobApplication, selectedJobApplication, {
+		// 		'contacted': jobApplication.contacted,
+		// 	});
+		// 	return Object.assign({}, state, {
+		// 		[jobApplication.id]: updateSelectedJobApplication
+		// 	});
+		// }
+		//
+		// // To be remove
+		// case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED_SUCCESS: {
+		// 	const jobApplication = action.payload;
+		// 	const selectedJobApplication = state.entities[jobApplication.ids];
+		// 	let updateSelectedJobApplication: JobApplication = {} as JobApplication;
+		// 	Object.assign(updateSelectedJobApplication, selectedJobApplication, {
+		// 		'reviewed': jobApplication.recruiter_reviewed,
+		// 	});
+		// 	return Object.assign({}, state, {
+		// 		'reviewed': jobApplication.recruiter_reviewed,
+		// 	});
+		// }
 
 		default:
 			return state;
