@@ -19,11 +19,10 @@ import { JobsApplied } from '../models/jobs-applied.model';
 					<h5 class="purple-color">References</h5>
 				</div>
 				<div class="col-md-1"></div>
-				<div class="col-md-1"></div>
 				<div class="col-md-2 text-center">
 					<h5 class="purple-color">Applications</h5>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-3"></div>
 			</div>
 			<br/>
 			<app-jobs-applied-view
@@ -31,9 +30,9 @@ import { JobsApplied } from '../models/jobs-applied.model';
 				currentPage: currentPage,
 				totalItems: candidateJobApplicationsTotalSize$ | async }
 				let counter = index"
-				(OnSendRequestFeedbackFromRecruiterEvent)="onSendRequestFeedbackFromRecruiterHandler($event)"
+				(OnSendRequestFeedbackToRecruiterEvent)="onSendRequestFeedbackToRecruiterHandler($event)"
+				(OnSendRequestFeedbackToRefereeEvent)="onSendRequestFeedbackToRefereeHandler($event)"
 				(OnApplyToJobEvent)="onApplyToJobHandler($event)"
-				(OnApproveRefereeFeedback)="onApproveRefereeFeedback($event)"
 				[jobsApplied]="candidateJobApplication"
 				[counter]="counter"
 				[currentPage]="currentPage">{{ candidateJobApplication }} {{counter}} {{ currentPage }}
@@ -72,18 +71,25 @@ export class CandidateHomePageComponent implements OnInit {
 		}));
 	}
 
-	// TODO: implement send request feedback
-	onSendRequestFeedbackFromRecruiterHandler(jobApplied: JobsApplied): void {
-
+	onSendRequestFeedbackToRecruiterHandler(jobApplied: JobsApplied): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationRequestFeedbackRecruiterAction({
+			applicationId: jobApplied.id
+		}));
 	}
 
-	// TODO: implement apply to job
+	onSendRequestFeedbackToRefereeHandler(jobApplied: JobsApplied): void {
+		this.store.dispatch(new jobsAppliedAction.ApplicationRequestFeedbackRefereeAction({
+			applicationId: jobApplied.id
+		}));
+	}
+
 	onApplyToJobHandler(jobApplied: JobsApplied): void {
-
-	}
-
-	// TODO: implement approving of referee feedback
-	onApproveRefereeFeedback(jobApplied: JobsApplied): void {
-
+		this.store.dispatch(new jobsAppliedAction.ApplicationApplyAction({
+			applicationId: jobApplied.id,
+			body: {
+				applied_by_candidate: true,
+				application_status: 'submitted'
+			}
+		}));
 	}
 }

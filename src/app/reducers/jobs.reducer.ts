@@ -12,6 +12,7 @@ export interface State {
 	pageMetaData: PageMetaData;
 	isBookmarked: boolean;
 	jobCreated: Job;
+	jobUpdated: Job;
 }
 
 const initialState: State = {
@@ -22,7 +23,8 @@ const initialState: State = {
 	selectedJobId: null,
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
 	isBookmarked: false,
-	jobCreated: null
+	jobCreated: null,
+	jobUpdated: null
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -51,7 +53,8 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
-				jobCreated: null
+				jobCreated: null,
+				jobUpdated: null
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
@@ -75,7 +78,8 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: state.pageMetaData,
 				isBookmarked: false,
-				jobCreated: null
+				jobCreated: null,
+				jobUpdated: null
 			};
 		}
 		case jobs.ActionTypes.ADD_BOOKMARK: {
@@ -111,7 +115,9 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 			const payload = action.payload;
 			const selectedJob = state.entities[payload.selectedJobId];
 			let newSelectedJob: Job = {} as Job;
-			Object.assign(newSelectedJob, selectedJob, { 'status': (payload.data.status ? payload.data.status : payload.data.error) });
+			Object.assign(newSelectedJob, selectedJob, {
+				'status': (payload.data.status ? payload.data.status : payload.data.error)
+			});
 			return Object.assign({}, state, {
 				entities: Object.assign({}, state.entities, {
 					[payload.selectedJobId]: newSelectedJob
@@ -128,6 +134,17 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 		case jobs.ActionTypes.JOB_CREATION_SUCCESS: {
 			return Object.assign({}, state, {
 				jobCreated: action.payload,
+			});
+		}
+		case jobs.ActionTypes.JOB_EDITING: {
+			return Object.assign({}, state, {
+				loading: true,
+				loaded: true
+			});
+		}
+		case jobs.ActionTypes.JOB_EDITING_SUCCESS: {
+			return Object.assign({}, state, {
+				jobUpdated: action.payload,
 			});
 		}
 		case jobs.ActionTypes.LOAD_CREATED_JOBS: {
@@ -154,7 +171,8 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				selectedJobId: state.selectedJobId,
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
-				jobCreated: null
+				jobCreated: null,
+				jobUpdated: null
 			};
 		}
 		default: {
@@ -178,6 +196,8 @@ export const getTotalJobsSearch = (state: State) => state.pageMetaData.totalSize
 export const getTotalJobsCreated = (state: State) => state.pageMetaData.totalSize;
 
 export const getJobCreated = (state: State) => state.jobCreated;
+
+export const getJobUpdated = (state: State) => state.jobUpdated;
 
 //noinspection TypeScriptValidateTypes
 export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (entities, selectedId) => {

@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as jobAction from '../../actions/jobs.action';

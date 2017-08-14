@@ -35,7 +35,7 @@ export class AdminEditJobPageComponent {
 		this.store.select(fromRoot.getSelectedJobId).subscribe((jobId) => this.selectedJobId = jobId);
 	}
 
-	onEditJobHandler(job: Job) {
+	onEditJobHandler(job: Job): void {
 		let formData: FormData = new FormData();
 		let fileList: FileList = job.company_logo;
 		delete job.company_logo;
@@ -59,7 +59,7 @@ export class AdminEditJobPageComponent {
 		}));
 	}
 
-	onCancelEditJobHandler() {
+	onCancelEditJobHandler(): void {
 		this.router.navigate(['admin/home']);
 	}
 }

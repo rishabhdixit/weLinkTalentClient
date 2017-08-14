@@ -7,6 +7,8 @@ import { JobApplication } from '../../models/job-application.model';
 		<form #jobApplicationForm="ngForm">
 			<div class="row">
 				<div class="col-md-12">
+					<br/>
+					<br/>
 					<h2>Your jobApplication Details:</h2>
 					<p class="pStyle">This section contains what you have filled previously</p>
 					<div class="form-group">

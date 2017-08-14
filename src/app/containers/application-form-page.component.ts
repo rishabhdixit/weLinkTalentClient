@@ -36,11 +36,16 @@ import * as applicationAction from '../actions/job-application.action';
 export class ApplicationFormPageComponent {
 	job$: Observable<Job>;
 	jobId: string;
+	recruiterId: string;
+
 	user: User;
 
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getApplicationJob);
-		this.job$.subscribe((data: Job) => this.jobId = data._id);
+		this.job$.subscribe((data: Job) => {
+			this.jobId = data._id;
+			this.recruiterId = data.employer_id;
+		});
 		this.store.select(fromRoot.getUser).subscribe((data: User) => this.user = data);
 	}
 
@@ -62,6 +67,7 @@ export class ApplicationFormPageComponent {
 		}
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);
+		formData.append('recruiter_id', this.recruiterId);
 		this.store.dispatch(new applicationAction.ApplicationFormSubmitAction(formData));
 	}
 }

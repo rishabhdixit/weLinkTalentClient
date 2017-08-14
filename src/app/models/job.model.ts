@@ -29,5 +29,7 @@ export class Job {
 	remaining_slots: number;
 	application_slots: number;
 	company_logo: any;
+	employer_id: string;
 	status: string;
+	archived: boolean;
 }

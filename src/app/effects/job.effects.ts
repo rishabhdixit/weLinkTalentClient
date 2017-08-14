@@ -76,7 +76,7 @@ export class JobEffects {
 		.switchMap((query) => this.jobService.editJob(query.jobId, query.data)
 			.map((res) => new jobsAction.JobEditingSuccessAction(res))
 			.catch(() => Observable.of(new jobsAction.JobEditingFailAction('')))
-		);
+		).do(() => this.router.navigate(['admin/home']));
 
 	@Effect()
 	archiveJob = this.actions
@@ -85,7 +85,7 @@ export class JobEffects {
 		.switchMap((job) => this.jobService.archiveJob(job)
 			.map((res) => new jobsAction.JobArchiveSuccessAction(res))
 			.catch(() => Observable.of(new jobsAction.JobArchiveFailAction('')))
-		);
+		).do(() => this.router.navigate(['admin/home']));
 
 	constructor(private actions: Actions,
 		private jobService: JobService,

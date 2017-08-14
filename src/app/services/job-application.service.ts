@@ -16,7 +16,6 @@ export class JobApplicationService {
 
 	saveApplication(data: any): Observable<JobApplication> {
 		let headers = new Headers();
-		// headers.append('Content-Type', 'multipart/form-data');
 		headers.append('Accept', 'application/json');
 		const options = new RequestOptions({ headers: headers });
 		return this.http.post(`${this.api}/api/applications`, data, options)
@@ -50,20 +49,43 @@ export class JobApplicationService {
 	}
 
 	applyJob(
-		userId: string,
 		applicationId: string,
 		body: any
 	): Observable<JobsApplied> {
-		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.authHttp.put(`${this.api}/api/applications/${applicationId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 
 	sendRequestFeedbackToRecruiter(
-		userId: string,
-		applicationId: string,
-		body: any
+		applicationId: string
 	): Observable<JobsApplied> {
-		return this.http.post(`${this.api}/api/users/${userId}/applications/${applicationId}`, body)
+		return this.http.post(`${this.api}/api/applications/${applicationId}/feedback?requested_for=recruiter`, {})
+			.map((res: Response) => {
+				return res.json();
+			});
+	}
+
+	sendRequestFeedbackToReferee(
+		applicationId: string
+	): Observable<JobsApplied> {
+		return this.http.post(`${this.api}/api/applications/${applicationId}/feedback?requested_for=referee`, {})
+			.map((res: Response) => {
+				return res.json();
+			});
+	}
+
+	updateJobsApplicationStatus(id: string, data: any): Observable<any> {
+		return this.http.put(`${this.api}/api/applications/${id}`, data)
+			.map((res: Response) => res.json());
+	}
+
+	approveRefereeFeedback(
+		applicationId: string,
+		feedbackId: string,
+		body: any
+	): Observable<any> {
+		return this.authHttp.
+			put(`${this.api}/api/applications/${applicationId}/feedback/${feedbackId}`, body)
 			.map((res: Response) => { return res.json(); });
 	}
 }

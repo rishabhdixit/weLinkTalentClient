@@ -1,5 +1,6 @@
 export class JobApplication {
 	id: string;
+	_id: string;
 	user_id: string;
 	job_id: string;
 	files: any;
@@ -8,8 +9,9 @@ export class JobApplication {
 	availability: string;
 	status: string;
 	contacted: boolean;
-	review: boolean;
-	comment: string;
+	recruiter_reviewed: boolean;
+	recruiter_comment: string;
+	application_date: Date;
 
 	// TODO - to be removed
 	reasonForLeaving: string;

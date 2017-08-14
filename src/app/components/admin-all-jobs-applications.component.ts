@@ -1,86 +1,56 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
-import { Store } from '@ngrx/store';
-import * as fromRoot from '../reducers';
-import { User } from '../models/user.model';
-import { Job } from '../models/job.model';
 
 @Component({
 	selector: `app-admin-all-jobs-applications`,
 	template: `
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12" style="margin-bottom: 1rem;">
-				<div class="form-group">
+		<div class="row">
+			<div class="col-md-12 pull-right" style="margin-bottom: 1rem;">
+				<div class="form-group pull-right">
 					<div class="input-group search">
 						<span class="input-group-addon"><i class="fa fa-search"></i></span>
 						<input type="text" class="form-control"/>
 					</div>
 				</div>
-				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<table class="table table-bordered table-hover">
-						<thead>
-						<tr>
-							<th>
-								Candidate Name
-							</th>
-							<th>
-								Company
-							</th>
-							<th>
-								Job Title
-							</th>
-							<th>
-								Availability
-							</th>
-							<th>
-								Status
-							</th>
-							<th>
-								Contacted
-							</th>
-							<th>
-								Reviewed
-							</th>
-							<th>
-								Comment
-							</th>
-						</tr>
-						</thead>
-						<tbody *ngFor="let apply of jobApplication">
-						<tr>
-							<td>
-								{{ user.name }}
-							</td>
-							<td>
-								{{ job.company.name }}
-							</td>
-							<td>
-								{{ job.title }}
-							</td>
-							<td>
-								{{ apply.availability }}
-							</td>
-							<td>
-								{{ apply.status }}
-							</td>
-							<td>
-								<input type="checkbox" class="input-checkbox" value="{{ apply.contacted }}"/>
-							</td>
-							<td>
-								<input type="checkbox" class="input-checkbox" value="{{ apply.review }}"/>
-							</td>
-							<td>
-								{{ apply.comment }}
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+		</div>
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th> Candidate Name</th>
+					<th> Company</th>
+					<th> Job Title</th>
+					<th> Availability</th>
+					<th> Status</th>
+					<th> Contacted</th>
+					<th> Reviewed</th>
+					<th> Comment</th>
+					<th> Application Date</th>
+					<th> Update </th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let application of jobApplications; let i = index" class="text-center">
+						<td> {{ application.user.firstName }} {{ application.user.lastName }}</td>
+						<td> {{ application.job.company.name }}</td>
+						<td> {{ application.job.title }}</td>
+						<td> {{ application.availability }}</td>
+						<td> {{ application.status }}</td>
+						<td>
+							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantContacted[i]"/>
+						</td>
+						<td>
+							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantReviewed[i]"/>
+						</td>
+						<td><input type="text" class="form-control" [(ngModel)]="applicantComment[i]"/></td>
+						<td> Date</td>
+						<td>
+							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	`,
 	styles: [`
@@ -89,22 +59,45 @@ import { Job } from '../models/job.model';
 			width: 1.7em;
 			height: 1.7em;
 		}
-		.search {
-			float: right;
-			width: 40%;
-		}
 		th {
 			text-align: center;
 		}
 	`],
 })
 
-export class AdminAllJobsApplicationsComponent {
-	@Input() jobApplication: JobApplication;
-	@Input() user: User;
-	@Input() job: Job;
+export class AdminAllJobsApplicationsComponent implements OnChanges {
+	@Input() jobApplications: [JobApplication];
+	@Output() isUpdatedEmitter = new EventEmitter<any>();
 
-	constructor(private store: Store<fromRoot.State>) {	}
+	applicantContacted = [];
+	applicantReviewed = [];
+	applicantComment = [];
+	constructor() {	}
 
+	ngOnChanges() {
+		if (this.jobApplications) {
+			this.onLoadJobApplications();
+		}
+	}
 
+	onLoadJobApplications() {
+		let counter: number = 0;
+		for (let application of this.jobApplications) {
+			this.applicantContacted[counter] = application.contacted;
+			this.applicantReviewed[counter] = application.recruiter_reviewed;
+			this.applicantComment[counter] = application.recruiter_comment;
+			counter++;
+		}
+	}
+
+	onClickedUpdate(application: JobApplication, contacted: boolean, reviewed: boolean, comment: string) {
+		this.isUpdatedEmitter.emit({
+			id: application.id,
+			data: {
+				contacted: contacted,
+				recruiter_reviewed: reviewed,
+				recruiter_comment: comment
+			}
+		});
+	}
 }

@@ -3,7 +3,6 @@ import { User } from './user.model';
 import { Skill } from './skill.model';
 import { Reference } from './reference.model';
 
-
 export class RefereeFeedback {
 	id: string;
 	user: User;

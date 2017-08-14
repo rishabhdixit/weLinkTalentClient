@@ -1,7 +1,7 @@
 import { Company } from './company.model';
 import { Reference } from './reference.model';
 import { Skill } from './skill.model';
-import {Job} from './job.model';
+import { Job } from './job.model';
 
 export class JobsApplied {
 	id: string;
@@ -29,6 +29,8 @@ export class JobsApplied {
 	application_status: string;
 	recruiter_feedback_requested: boolean;
 	referee_feedback_requested: boolean;
+	applied_by_candidate: boolean;
+	approved_by_candidate: boolean;
 }
 
 export class CandidateJobAppliedFormData {
