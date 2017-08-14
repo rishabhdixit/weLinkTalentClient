@@ -94,32 +94,6 @@ export function reducer(state = initialState, action: application.Actions): Stat
 			});
 		}
 
-		// To be remove
-		// case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_CONTACTED_SUCCESS: {
-		// 	const jobApplication = action.payload;
-		// 	const selectedJobApplication = state.entities[jobApplication.id];
-		// 	let updateSelectedJobApplication: JobApplication = {} as JobApplication;
-		// 	Object.assign(updateSelectedJobApplication, selectedJobApplication, {
-		// 		'contacted': jobApplication.contacted,
-		// 	});
-		// 	return Object.assign({}, state, {
-		// 		[jobApplication.id]: updateSelectedJobApplication
-		// 	});
-		// }
-		//
-		// // To be remove
-		// case application.ActionType.ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED_SUCCESS: {
-		// 	const jobApplication = action.payload;
-		// 	const selectedJobApplication = state.entities[jobApplication.ids];
-		// 	let updateSelectedJobApplication: JobApplication = {} as JobApplication;
-		// 	Object.assign(updateSelectedJobApplication, selectedJobApplication, {
-		// 		'reviewed': jobApplication.recruiter_reviewed,
-		// 	});
-		// 	return Object.assign({}, state, {
-		// 		'reviewed': jobApplication.recruiter_reviewed,
-		// 	});
-		// }
-
 		default:
 			return state;
 	}
@@ -134,7 +108,6 @@ export const getLoginUser = (state: State) => state.user;
 export const getEntities = (state: State) => state.entities;
 export const getIds = (state: State) => state.ids;
 export const getTotalJobsApplications = (state: State) => state.pageMetaData.totalSize;
-export const getApplicationId = (state: State) => state.application.id;
 
 
 //noinspection TypeScriptValidateTypes
@@ -159,6 +132,3 @@ export const getAllJobsApplications = createSelector(getEntities, getIds, (entit
 	return ids.map(id => entities[id]);
 });
 
-// export const getJobApplicationById = createSelector(getApplicationId, getEntities, (application, entities) => {
-// 	return application.
-// })

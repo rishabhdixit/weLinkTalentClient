@@ -40,7 +40,6 @@ export class AdminAllJobsApplicationsPageComponent implements OnInit {
 		this.store.dispatch(new JobApplicationAction.AdminAllJobsApplicationsLoadAction({}));
 		this.jobApplication$ = this.store.select(fromRoot.getAllJobsApplication);
 		this.jobsApplicationsTotalSize$ = this.store.select(fromRoot.getTotalJobsApplications);
-		// this.job$ = this.store.select(fromRoot.)
 	}
 
 	onChangePage(event) {
@@ -48,16 +47,7 @@ export class AdminAllJobsApplicationsPageComponent implements OnInit {
 		this.store.dispatch(new JobApplicationAction.AdminAllJobsApplicationsLoadAction({}));
 	}
 
-	isContactedHandler(queryObject: any) {
-		this.store.dispatch(new JobApplicationAction.AdminUpdateJobsApplicationContactedAction(queryObject));
-	}
-
-	isReviewedHandler(queryObject: any) {
-		this.store.dispatch(new JobApplicationAction.AdminUpdateJobsApplicationReviewedAction(queryObject));
-	}
-
 	isUpdatedHandler(queryObject: any) {
-		console.log('Here is the Object Queried: ', queryObject);
 		this.store.dispatch(new JobApplicationAction.AdminUpdateJobApplicationDetailsAction(queryObject));
 	}
 }

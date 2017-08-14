@@ -26,7 +26,7 @@ export const ActionType = {
 	ADMIN_UPDATE_JOBS_APPLICATION_REVIEWED_FAIL:      type('[ADMIN] Admin Update Jobs Application Reviewed Fail'), // To be erased
 	ADMIN_UPDATE_JOB_APPLICATION_DETAILS:             type('[ADMIN] Admin Update Job Application Details'),
 	ADMIN_UPDATE_JOB_APPLICATION_DETAILS_SUCCESS:     type('[ADMIN] Admin Update Job Application Details Success'),
-	ADMIN_UPDATE_JOB_APPLICATION_DETAILS_FAIL:             type('[ADMIN] Admin Update Job Application Details Fail'),
+	ADMIN_UPDATE_JOB_APPLICATION_DETAILS_FAIL:        type('[ADMIN] Admin Update Job Application Details Fail'),
 };
 
 export class ApplicationConceptLoadAction implements Action {

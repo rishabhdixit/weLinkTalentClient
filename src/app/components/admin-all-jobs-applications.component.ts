@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
 
 @Component({
@@ -31,28 +31,22 @@ import { JobApplication } from '../models/job-application.model';
 				</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let application of jobApplications" class="text-center">
+					<tr *ngFor="let application of jobApplications; let i = index" class="text-center">
 						<td> {{ application.user.firstName }} {{ application.user.lastName }}</td>
 						<td> {{ application.job.company.name }}</td>
 						<td> {{ application.job.title }}</td>
 						<td> {{ application.availability }}</td>
 						<td> {{ application.status }}</td>
 						<td>
-							<input type="checkbox" class="input-checkbox"
-							       [ngModel]="application.contacted"
-							       [checked]="application.contacted"
-							       (change)="application.contacted = onClickedContacted($event.target.checked)"/>
+							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantContacted[i]"/>
 						</td>
 						<td>
-							<input type="checkbox" class="input-checkbox"
-							       (change)="application.recruiter_reviewed = onClickedReviewed($event.target.checked)"
-							       [ngModel]="application.recruiter_reviewed"
-							       [checked]="application.recruiter_reviewed"/>
+							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantReviewed[i]"/>
 						</td>
-						<td><input type="text" class="something" [ngModel]="recruiter_comment"/></td>
+						<td><input type="text" class="form-control" [(ngModel)]="applicantComment[i]"/></td>
 						<td> Date</td>
 						<td>
-							<button (click)="onClickedUpdate(application)">Update</button>
+							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
 						</td>
 					</tr>
 				</tbody>
@@ -68,38 +62,41 @@ import { JobApplication } from '../models/job-application.model';
 		th {
 			text-align: center;
 		}
-		.something {
-			width: 100%;
-			box-sizing: border-box;
-			-webkit-box-sizing:border-box;
-			-moz-box-sizing: border-box;
-		}
 	`],
 })
 
-export class AdminAllJobsApplicationsComponent {
+export class AdminAllJobsApplicationsComponent implements OnChanges {
 	@Input() jobApplications: [JobApplication];
 	@Output() isUpdatedEmitter = new EventEmitter<any>();
 
+	applicantContacted = [];
+	applicantReviewed = [];
+	applicantComment = [];
 	constructor() {	}
 
-	onClickedContacted(contacted: boolean) {
-		console.log('Contacted: ', contacted);
-		return ( contacted ) ? false : true;
+	ngOnChanges() {
+		if (this.jobApplications) {
+			this.onLoadJobApplications();
+		}
 	}
 
-	onClickedReviewed(review: boolean) {
-		console.log('Reviewed: ', review);
-		return ( review ) ? false : true;
+	onLoadJobApplications() {
+		let counter: number = 0;
+		for (let application of this.jobApplications) {
+			this.applicantContacted[counter] = application.contacted;
+			this.applicantReviewed[counter] = application.recruiter_reviewed;
+			this.applicantComment[counter] = application.recruiter_comment;
+			counter++;
+		}
 	}
 
-	onClickedUpdate(application: JobApplication) {
+	onClickedUpdate(application: JobApplication, contacted: boolean, reviewed: boolean, comment: string) {
 		this.isUpdatedEmitter.emit({
 			id: application.id,
 			data: {
-				contacted: application.contacted,
-				recruiter_reviewed: application.recruiter_reviewed,
-				recruiter_comment: application.recruiter_comment
+				contacted: contacted,
+				recruiter_reviewed: reviewed,
+				recruiter_comment: comment
 			}
 		});
 	}
