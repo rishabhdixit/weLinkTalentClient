@@ -19,4 +19,5 @@ export class RefereeFeedback {
 	managementStyleApproved: boolean;
 	skillRatings: Skill[];
 	referee_profile: Reference;
+	approved_by_candidate: boolean;
 }

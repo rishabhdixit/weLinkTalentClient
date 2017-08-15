@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
@@ -16,8 +16,8 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="col-md-12" *ngIf="jobApplied.approved_by_candidate" style="padding-bottom: 39px;"></div>
-		<div class="row" *ngIf="!jobApplied.approved_by_candidate">
+		<div class="col-md-12" *ngIf="feedback.approvedByCandidate" style="padding-bottom: 39px;"></div>
+		<div class="row" *ngIf="!feedback.approvedByCandidate">
 			<div class="col-md-12 pull-right">
 				<button
 					type="button" class="btn btn-primary"
@@ -29,21 +29,18 @@ import { Skill } from '../../models/skill.model';
 		<br/>
 		<div class="row" style="padding-top: 10px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.reasonForLeavingFeedback}}" readonly></textarea>
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonForLeaving.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" checked="{{isChecked(selectedFeedBack.reasonForLeavingApproved)}}" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.reasonForLeaving.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
 		<br/>
 		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<!--<h6>Your personal scoring:</h6>-->
-				<div class="form-group" *ngFor="let skill of selectedFeedBack.skillRatings; let i=index;">
+				<div class="form-group" *ngFor="let skill of feedback.skillRatings; let i=index;">
 					<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
-						<i [ngClass]="getClass(selectedFeedBack.skillRatings[i], counter)"
-						   aria-hidden="true">
-						</i>
+						<i [ngClass]="getClass(feedback.skillRatings[i], counter)"></i>
 					</ng-container>
 				</div>
 			</div>
@@ -51,41 +48,41 @@ import { Skill } from '../../models/skill.model';
 		<br/>
 		<div class="row" style="padding-top: 20px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.strengthFeedback}}" readonly></textarea>
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.strength.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" checked="{{isChecked(selectedFeedBack.strengthApproved)}}" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.strength.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
 		<br/>
 		<div class="row" style="padding-top: 3px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.improvementFeedback}}" readonly></textarea>
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.improvement.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" checked="{{isChecked(selectedFeedBack.improvementApproved)}}" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.improvement.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
 		<br/>
 		<div class="row" style="padding-top: 3px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.achievementFeedback}}" readonly></textarea>
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.achievement.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" checked="{{isChecked(selectedFeedBack.achievementApproved)}}" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.achievement.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
 		<br/>
 		<div class="row" style="padding-top: 8px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" value="{{selectedFeedBack.managementStyleFeedback}}" readonly></textarea>
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.managementStyle.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" checked="{{isChecked(selectedFeedBack.managementStyleApproved)}}" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.managementStyle.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
 		<br/>
-		<div class="row">
+		<div *ngIf="jobAppliedFeedBacks.length > 1" class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-4 text-center">
 				<button
@@ -114,8 +111,7 @@ import { Skill } from '../../models/skill.model';
 		}
 	`]
 })
-export class JobAppliedFeedbackViewComponent implements OnInit {
-
+export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 	@Output() OnApprovedFeedbackEvent = new EventEmitter<any>();
 	@Input() jobApplied: JobsApplied;
 
@@ -124,11 +120,41 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 	index: number = 0;
 	maxIndex: number;
 
+	feedback: any = {
+		approvedByCandidate: false,
+		skillRatings: [Skill],
+		reasonForLeaving: {
+			comment: '',
+			approved: false
+		},
+		strength: {
+			comment: '',
+			approved: false
+		},
+		improvement: {
+			comment: '',
+			approved: false
+		},
+		achievement: {
+			comment: '',
+			approved: false
+		},
+		managementStyle: {
+			comment: '',
+			approved: false
+		}
+	};
+
 	constructor(private store: Store<fromRoot.State>) { }
 
-	ngOnInit() {
-		this.constructFeedBacks();
-		this.initSelectedFeedBack();
+	ngOnInit() {}
+
+	ngOnChanges(changes: any): void {
+		if (this.jobApplied) {
+			this.constructFeedBacks();
+			this.initSelectedFeedBack();
+			this.populateFeedback(this.selectedFeedBack);
+		}
 	}
 
 	approveRefereeFeedback(jobApplied: JobsApplied, feedback: RefereeFeedback): void {
@@ -151,18 +177,14 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 	onBackClick(): void {
 		if (this.index > 0) {
 			this.selectedFeedBack = this.jobAppliedFeedBacks[this.index--];
+			this.populateFeedback(this.selectedFeedBack);
 		}
 	}
 
 	onNextClick(): void {
 		if (this.index < this.maxIndex - 1) {
 			this.selectedFeedBack = this.jobAppliedFeedBacks[this.index++];
-		}
-	}
-
-	isChecked(value): string {
-		if (value) {
-			return 'checked';
+			this.populateFeedback(this.selectedFeedBack);
 		}
 	}
 
@@ -187,6 +209,33 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 		return (this.jobApplied.feedback ? Object.keys(this.jobApplied.feedback) : []);
 	}
 
+	populateFeedback(paramFeedback: RefereeFeedback): void {
+		if (paramFeedback) {
+			this.feedback.approvedByCandidate = paramFeedback.approved_by_candidate;
+			this.feedback.skillRatings = paramFeedback.skillRatings;
+			this.feedback.reasonForLeaving = {
+				comment: paramFeedback.reasonForLeavingFeedback,
+				approved: paramFeedback.reasonForLeavingApproved
+			};
+			this.feedback.strength = {
+				comment: paramFeedback.strengthFeedback,
+				approved: paramFeedback.strengthApproved
+			};
+			this.feedback.improvement = {
+				comment: paramFeedback.improvementFeedback,
+				approved: paramFeedback.improvementApproved
+			};
+			this.feedback.achievement = {
+				comment: paramFeedback.achievementFeedback,
+				approved: paramFeedback.achievementApproved
+			};
+			this.feedback.managementStyle = {
+				comment: paramFeedback.managementStyleFeedback,
+				approved: paramFeedback.managementStyleApproved
+			};
+		}
+	}
+
 	private getConstructedFeedback(id: string, value: any): RefereeFeedback {
 		let feedback = new RefereeFeedback();
 		feedback.id = id;
@@ -202,6 +251,7 @@ export class JobAppliedFeedbackViewComponent implements OnInit {
 		feedback.managementStyleApproved = value.managementStyleApproved;
 		feedback.skillRatings = value.skillRatings;
 		feedback.referee_profile = value.referee_profile;
+		feedback.approved_by_candidate = value.approved_by_candidate;
 		return feedback;
 	}
 }
