@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Job } from '../../models/job.model';
 import { User } from '../../models/user.model';
@@ -37,6 +38,7 @@ export class CreateJobFormComponent implements OnInit {
 	@Output() OnCancelCreateJobEvent = new EventEmitter();
 	@Input() user: User;
 
+	isCreateJobFormValid: boolean = true;
 	createJobForm: FormGroup;
 
 	get phone_numbers() {
@@ -61,7 +63,7 @@ export class CreateJobFormComponent implements OnInit {
 		return <FormGroup>this.createJobForm.controls['company'];
 	}
 
-	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>) {}
+	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>, @Inject(DOCUMENT) private document: Document) {}
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
@@ -77,8 +79,8 @@ export class CreateJobFormComponent implements OnInit {
 				address: new FormControl('', [Validators.required]),
 				about: new FormControl('', [Validators.required]),
 				email: new FormControl('', [Validators.required]),
-				twitter_profile: new FormControl('', [Validators.required]),
-				linkedin_profile: new FormControl('', [Validators.required]),
+				twitter_profile: new FormControl(''),
+				linkedin_profile: new FormControl(''),
 				phone_numbers: this.fb.array([
 					this.initPhoneNumber(),
 				])
@@ -90,7 +92,7 @@ export class CreateJobFormComponent implements OnInit {
 			salary_from: new FormControl('', [Validators.required]),
 			salary_to: new FormControl('', [Validators.required]),
 			salary_currency: new FormControl('', [Validators.required]),
-			salary_negotiable: new FormControl(false, [Validators.required]),
+			salary_negotiable: new FormControl(false),
 			application_slots: new FormControl('', [Validators.required]),
 			skills: this.fb.array([
 				this.initSkill(),
@@ -101,10 +103,10 @@ export class CreateJobFormComponent implements OnInit {
 			ideal_talent: this.fb.array([
 				this.initIdealTalent(),
 			]),
-			location: new FormControl('', [Validators.required]),
-			contact_name: new FormControl('', [Validators.required]),
-			contact_email: new FormControl('', [Validators.required]),
-			contact_number: new FormControl('', [Validators.required])
+			location: new FormControl(''),
+			contact_name: new FormControl(''),
+			contact_email: new FormControl(''),
+			contact_number: new FormControl('')
 		});
 	}
 
@@ -179,10 +181,20 @@ export class CreateJobFormComponent implements OnInit {
 	onCancel() {
 		this.OnCancelCreateJobEvent.emit();
 	}
-	onSave() {
+
+	onSave(value: any) {
 		this.setEmployerId();
 		this.setCompanyName();
-		this.OnCreateJobEvent.emit(this.createJobForm.value);
+		this.setContactInfo();
+		if (!this.createJobForm.invalid) {
+			this.OnCreateJobEvent.emit(value);
+		} else {
+			this.document.body.scrollTop = 200;
+			this.isCreateJobFormValid = false;
+			setTimeout(() => {
+				this.isCreateJobFormValid = true;
+			}, 5000);
+		}
 	}
 
 	private setEmployerId(): void {
@@ -192,5 +204,20 @@ export class CreateJobFormComponent implements OnInit {
 	private setCompanyName(): void {
 		let company_name = this.company.controls['name'].value;
 		this.createJobForm.controls['company_name'].setValue(company_name);
+	}
+
+	private setContactInfo(): void {
+		let location = this.company.controls['address'].value;
+		this.createJobForm.controls['location'].setValue(location);
+
+		let contact_name = this.company.controls['name'].value;
+		this.createJobForm.controls['contact_name'].setValue(contact_name);
+
+		let contact_email = this.company.controls['email'].value;
+		this.createJobForm.controls['contact_email'].setValue(contact_email);
+	}
+
+	private validateFields(control: FormControl): boolean {
+		return control.touched && control.invalid;
 	}
 }
