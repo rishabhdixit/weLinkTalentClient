@@ -61,9 +61,11 @@ export class ApplicationFormPageComponent {
 			}
 		});
 
-		for (let i = 0; i < fileList.length && fileList.length <= 5; i++) {
-			let file: File = fileList[i];
-			formData.append('files', file, file.name);
+		if (fileList) {
+			for (let i = 0; i < fileList.length; i++) {
+				let file: File = fileList[i];
+				formData.append('files', file, file.name);
+			}
 		}
 		formData.append('job_id', this.jobId);
 		formData.append('user_id', this.user.id);
