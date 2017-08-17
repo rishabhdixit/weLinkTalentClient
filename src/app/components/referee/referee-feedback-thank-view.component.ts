@@ -7,9 +7,6 @@ import { RefereeFeedbackResponse } from '../../models/referee-feedback-response.
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
 					<p>Thank you for validating
-						<!--<strong class="text-primary" *ngIf="feedback && feedback.user && feedback.user.profile">
-							{{ feedback.user.profile.firstName }} {{ feedback.user.profile.lastName }}
-						</strong>-->
 						<strong>
 							{{ refereeFeedback?.candidate?.firstName }} {{ refereeFeedback?.candidate?.lastName }}
 						</strong>

@@ -6,11 +6,8 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 	selector: 'app-jobs-applied-view',
 	template: `
 		<div class="row">
-			<!--<div class="col-md-1">
-				{{((currentPage - 1) * 10) + counter + 1}}
-			</div>-->
 			<div class="col-md-4">
-				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}">{{jobsApplied.job.title}}</a>
+				<h5 *ngIf="jobsApplied.job"><a routerLink="/job-application/{{jobsApplied._id}}" class="purple-color">{{jobsApplied.job.title}}</a>
 				</h5>
 				<h6 *ngIf="jobsApplied.job.company" style="color: #6F7071;">{{jobsApplied.job.company.name}}</h6>
 			</div>
@@ -69,12 +66,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 		</div>
 		<br/>
 	`,
-	styles: [`
-		.background-grey {
-			padding: 10px;
-			background-color: #58595b;
-		}
-	`],
+	styles: [``],
 })
 export class JobsAppliedViewComponent {
 

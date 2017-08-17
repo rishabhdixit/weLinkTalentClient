@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Job } from '../models/job.model';
 import { Reference } from '../models/reference.model';
@@ -19,7 +19,7 @@ import { Router, NavigationEnd } from '@angular/router';
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Talent Application Form</h2>
-						<!--<p class="job-detail">{{ jobApplication.job.title }} - {{ jobApplication.job.company }}</p>-->
+						<p class="pHeader">{{ selectedJob.title }} - {{ selectedJob.company.name }}</p>
 						<p class="hLabel">This application is confidential. Please contact us at talent@welinktalent.com for any questions
 							1regarding this form.</p>
 						<p style="color: #4D308E; font-size: larger;">Please provide atleast two references:</p>
@@ -172,21 +172,31 @@ import { Router, NavigationEnd } from '@angular/router';
 			text-align: right;
 			padding-right: 0%;
 		}
+		.pHeader{
+			font-size: larger;
+			color: gray;
+			text-align: center;
+		}
 	`],
 })
 
-export class ApplicationReferenceFormPageComponent {
+export class ApplicationReferenceFormPageComponent implements OnInit {
 	jobApplication: JobApplication;
 	@Input() job: Job;
 	referenceList: Reference[] = [];
 	user$: Observable<User>;
 	route$: Observable<NavigationEnd>;
 	referee: Reference;
+	selectedJob: Job;
 
 	constructor(private store: Store<fromRoot.State>, private userStore: Store<fromRoot.State>, private router: Router) {
 		this.store.select(fromRoot.getApplicationForm).subscribe((data) => this.jobApplication = data);
 		this.user$ = this.userStore.select(fromRoot.getUser);
 		this.route$ = this.router.events.filter((event) => event instanceof NavigationEnd);
+	}
+
+	ngOnInit() {
+		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
 	}
 
 	addReferenceClickHandler(reference: Reference) {
