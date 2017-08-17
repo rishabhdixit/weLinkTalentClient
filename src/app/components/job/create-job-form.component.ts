@@ -15,9 +15,6 @@ import * as fromRoot from '../../reducers';
 			font-weight: bolder;
 			margin-top: 5px;
 		}
-		.color-red {
-			color: red;
-		}
 		.btn {
 			border-radius: 0%;
 		}
