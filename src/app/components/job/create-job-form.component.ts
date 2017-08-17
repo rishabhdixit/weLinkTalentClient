@@ -33,7 +33,6 @@ import * as fromRoot from '../../reducers';
 })
 
 export class CreateJobFormComponent implements OnInit {
-
 	@Output() OnCreateJobEvent = new EventEmitter<Job>();
 	@Output() OnCancelCreateJobEvent = new EventEmitter();
 	@Input() user: User;
@@ -182,12 +181,12 @@ export class CreateJobFormComponent implements OnInit {
 		this.OnCancelCreateJobEvent.emit();
 	}
 
-	onSave(value: any) {
+	onSave() {
 		this.setEmployerId();
 		this.setCompanyName();
 		this.setContactInfo();
 		if (!this.createJobForm.invalid) {
-			this.OnCreateJobEvent.emit(value);
+			this.OnCreateJobEvent.emit(this.createJobForm.value);
 		} else {
 			this.document.body.scrollTop = 200;
 			this.isCreateJobFormValid = false;
