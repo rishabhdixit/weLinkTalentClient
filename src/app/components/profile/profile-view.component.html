@@ -4,10 +4,6 @@
 			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
 			<div style="padding-top: 10px; padding-bottom: 20px;">
 				<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
-				<!--<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;">
-					<p *ngIf="i === 0">{{ position.value.title }}</p>
-					<p *ngIf="i === 0">{{ position.value.company?.name }}</p>
-				</div>-->
 			</div>
 		</div>
 		<div class="col-md-12">
@@ -79,8 +75,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="noOfchildren" class="labelWeight">Number of Children </label>
-						<input type="number" class="form-control" id="noOfchildren" formControlName="noOfchildren" />
+						<label for="noOfChildren" class="labelWeight">Number of Children </label>
+						<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" id="noOfChildren" formControlName="noOfChildren" />
 					</div>
 				</div>
 			</div>
@@ -164,7 +160,7 @@
 						<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
 						<div class="input-group">
 							<span class="input-group-addon" for="salaryPerMonth">SGD</span>
-							<input type="number" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
+							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
 						</div>
 					</div>
 				</div>
@@ -197,7 +193,7 @@
 						<label for="bonusAmount" class="labelWeight">Bonus:</label>
 						<div class="input-group">
 							<span class="input-group-addon" for="bonusAmount">SGD</span>
-							<input type="number" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
+							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
 						</div>
 					</div>
 				</div>
@@ -215,7 +211,7 @@
 						<label for="allowance" class="labelWeight">Allowances:</label>
 						<div class="input-group">
 							<span class="input-group-addon" for="allowance">SGD</span>
-							<input type="number" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
+							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
 						</div>
 					</div>
 				</div>
@@ -351,7 +347,6 @@
 										</span>
 									</div>
 								</td>
-
 								<div *ngIf="edit == 'skill'+i" class="form-group clearfix">
 									<label class="col-md-12 control-label" attr.for="{{ 'skill' + i }}">Skill Name</label>
 									<div class="col-md-12">

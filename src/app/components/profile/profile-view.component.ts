@@ -58,7 +58,7 @@ export class ProfileViewComponent implements OnInit {
 			maritalStatus: ['', Validators.required],
 			mobileNumber: ['', Validators.required],
 			NRIC: ['', Validators.required],
-			noOfchildren: ['', Validators.required],
+			noOfChildren: ['', Validators.required],
 			singaporeVisa: ['', Validators.required],
 			visaValidity: ['', Validators.required],
 			noticePeriod: ['', Validators.required],
@@ -87,7 +87,7 @@ export class ProfileViewComponent implements OnInit {
 			maritalStatus: this.profile.maritalStatus,
 			mobileNumber: this.profile.mobileNumber,
 			NRIC: this.profile.NRIC,
-			noOfchildren: this.profile.noOfchildren,
+			noOfChildren: this.profile.noOfChildren,
 			singaporeVisa: this.profile.singaporeVisa,
 			visaValidity: this.profile.visaValidity,
 			noticePeriod: this.profile.noticePeriod,
@@ -222,7 +222,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('maritalStatus').disable();
 		this.profileForm.get('mobileNumber').disable();
 		this.profileForm.get('NRIC').disable();
-		this.profileForm.get('noOfchildren').disable();
+		this.profileForm.get('noOfChildren').disable();
 		this.profileForm.get('singaporeVisa').disable();
 		this.profileForm.get('visaValidity').disable();
 		this.profileForm.get('noticePeriod').disable();
@@ -237,7 +237,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('maritalStatus').enable();
 		this.profileForm.get('mobileNumber').enable();
 		this.profileForm.get('NRIC').enable();
-		this.profileForm.get('noOfchildren').enable();
+		this.profileForm.get('noOfChildren').enable();
 		this.profileForm.get('singaporeVisa').enable();
 		this.profileForm.get('visaValidity').enable();
 		this.profileForm.get('noticePeriod').enable();
