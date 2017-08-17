@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import { Reference } from '../../models/reference.model';
-
 
 @Component({
 	selector: `app-reference-form`,
 	template: `
 		<form #Reference="ngForm">
-			<div class="row">
+			<div class="row" >
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="firstName" class="labelWeight">First Name:* </label>
@@ -145,17 +144,34 @@ import { Reference } from '../../models/reference.model';
 	`],
 })
 
-export class ReferenceFormComponent {
+export class ReferenceFormComponent implements OnChanges {
 	reference: Reference = new Reference();
+	@Input() modifiedReferee: Reference;
 	@Output() addReferenceEmitter = new EventEmitter<Reference>();
 	choices: Array<any> = [{id:0, value:'Yes'}, {id:1, value:'No'}];
 
 	constructor() {	}
 
+	ngOnChanges(): void {
+		if (this.modifiedReferee) {
+			this.reference = this.modifiedReferee;
+		}
+	}
+
 	addReferenceButtonClick() {
 		let referee = new Reference();
 		Object.assign(referee, this.reference);
 		this.addReferenceEmitter.emit(referee);
+		this.reference.firstName = null;
+		this.reference.lastName = null;
+		this.reference.company = null;
+		this.reference.title = null;
+		this.reference.phone = null;
+		this.reference.emailAddress = null;
+		this.reference.relationship = null;
+		this.reference.companyTogether = null;
+		this.reference.startYearOfWorking = null;
+		this.reference.endYearOfWorking = null;
+		this.reference.canContact = null;
 	}
-
 }
