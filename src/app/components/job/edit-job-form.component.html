@@ -13,12 +13,23 @@
 		<form [formGroup]="editJobForm">
 			<div class="row">
 				<div class="col-md-12">
+					<div *ngIf="!isEditJobFormValid" class="row">
+						<br/>
+						<div class="col-md-12">
+							<div class="form-group">
+								<p class="alert alert-danger form-control" autofocus>Please make sure all required fields are fill out!</p>
+							</div>
+						</div>
+						<br/>
+					</div>
 					<h4>Job Details:</h4>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="labelWeight">Job Title<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="title" placeholder="Job Title" required/>
+								<div *ngIf="editJobForm.get('title').touched && editJobForm.get('title').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -27,6 +38,8 @@
 							<div class="form-group">
 								<label class="labelWeight">Industry<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="industry" placeholder="Industry" required/>
+								<div *ngIf="editJobForm.get('industry').touched && editJobForm.get('industry').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -38,6 +51,8 @@
 									<option value="Permanent">Permanent</option>
 									<option value="Contractualization">Contractualization</option>
 								</select>
+								<div *ngIf="editJobForm.get('job_type').touched && editJobForm.get('job_type').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -47,12 +62,16 @@
 									<option value="Full Time">Full Time</option>
 									<option value="Part Time">Part Time</option>
 								</select>
+								<div *ngIf="editJobForm.get('employment_type').touched && editJobForm.get('employment_type').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label class="labelWeight">Years of Experience<i class="color-red"> * </i></label>
-								<input type="number" class="form-control" formControlName="years_experience" placeholder="Years of Experience" required/>
+								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="years_experience" placeholder="Years of Experience" required/>
+								<div *ngIf="editJobForm.get('years_experience').touched && editJobForm.get('years_experience').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -61,12 +80,16 @@
 							<div class="form-group">
 								<label class="labelWeight">Expertise<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="expertise" placeholder="Expertise" required/>
+								<div *ngIf="editJobForm.get('expertise').touched && editJobForm.get('expertise').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Vacant Slots<i class="color-red"> * </i></label>
-								<input type="number" class="form-control" formControlName="application_slots" placeholder="Vacant Slots" required/>
+								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="application_slots" placeholder="Vacant Slots" required/>
+								<div *ngIf="editJobForm.get('application_slots').touched && editJobForm.get('application_slots').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -83,18 +106,24 @@
 								<select class="form-control" formControlName="salary_currency">
 									<option value="SGD">SGD</option>
 								</select>
+								<div *ngIf="editJobForm.get('salary_currency').touched && editJobForm.get('salary_currency').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary From<i class="color-red"> * </i></label>
-								<input type="number" class="form-control" formControlName="salary_from" placeholder="Salary From" required/>
+								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="salary_from" placeholder="Salary From" required/>
+								<div *ngIf="editJobForm.get('salary_from').touched && editJobForm.get('salary_from').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary To<i class="color-red"> * </i></label>
-								<input type="number" class="form-control" formControlName="salary_to" placeholder="Salary To" required/>
+								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="salary_to" placeholder="Salary To" required/>
+								<div *ngIf="editJobForm.get('salary_to').touched && exportedDirectives.get('salary_to').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -118,6 +147,8 @@
 												       placeholder="Skill"
 												       [formControlName]="i"
 												       required/>
+												<div *ngIf="validateFields(skill)"
+												     class="alert alert-danger form-control">Please fill out this field!</div>
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -148,6 +179,8 @@
 												       placeholder="Responsibility"
 												       [formControlName]="i"
 												       required/>
+												<div *ngIf="validateFields(responsibility)"
+												     class="alert alert-danger form-control">Please fill out this field!</div>
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -178,6 +211,8 @@
 												       placeholder="Ideal Talent"
 												       [formControlName]="i"
 												       required/>
+												<div *ngIf="validateFields(idealTalent)"
+												     class="alert alert-danger form-control">Please fill out this field!</div>
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -185,6 +220,16 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="labelWeight">Job Description<i class="color-red"> * </i></label>
+								<textarea class="form-control" rows="10" formControlName="description" placeholder="Job Description"></textarea>
+								<div *ngIf="editJobForm.get('description').touched && editJobForm.get('description').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -202,6 +247,8 @@
 							<div class="form-group">
 								<label class="labelWeight">Company Name<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="name" placeholder="Company Name" required/>
+								<div *ngIf="editJobForm.controls['company'].get('name').touched && editJobForm.controls['company'].get('name').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -210,6 +257,8 @@
 							<div class="form-group">
 								<label class="labelWeight">Address<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="address" placeholder="Complete Address" required/>
+								<div *ngIf="editJobForm.controls['company'].get('address').touched && editJobForm.controls['company'].get('address').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -233,6 +282,8 @@
 												       placeholder="Phone Numbers"
 												       [formControlName]="i"
 												       required/>
+												<div *ngIf="validateFields(phoneNumber)"
+												     class="alert alert-danger form-control">Please fill out this field!</div>
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -248,12 +299,17 @@
 							<div class="form-group">
 								<label class="labelWeight">Email Address<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="email" placeholder="Email Address" required/>
+								<div *ngIf="editJobForm.controls['company'].get('email').touched && editJobForm.controls['company'].get('email').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="labelWeight">Company Logo<i class="color-red"> * </i></label>
 								<input type="file" class="form-control" (change)="onFileUpload($event)" required/>
+								<img src="{{'http://' + editJobForm.get('company_logo').value }}" class="img-responsive form-control"/>
+								<div *ngIf="editJobForm.get('company_logo').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>
@@ -278,6 +334,8 @@
 							<div class="form-group">
 								<label class="labelWeight">About the Company<i class="color-red"> * </i></label>
 								<textarea class="form-control" rows="10" formControlName="about" placeholder="About Company"></textarea>
+								<div *ngIf="editJobForm.controls['company'].get('about').touched && editJobForm.controls['company'].get('about').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 import * as _ from 'lodash';
 import { Store } from '@ngrx/store';
 import { Job } from '../../models/job.model';
@@ -36,6 +37,7 @@ export class EditJobFormComponent implements OnInit {
 	@Input() user: User;
 	@Input() selectedJob: Job;
 
+	isEditJobFormValid: boolean = true;
 	editJobForm: FormGroup;
 
 	get phone_numbers() {
@@ -60,7 +62,7 @@ export class EditJobFormComponent implements OnInit {
 		return <FormGroup>this.editJobForm.controls['company'];
 	}
 
-	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>) {}
+	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>, @Inject(DOCUMENT) private document: Document) {}
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
@@ -76,9 +78,10 @@ export class EditJobFormComponent implements OnInit {
 				address: new FormControl(this.selectedJob.company ? this.selectedJob.company.address : '', [Validators.required]),
 				about: new FormControl(this.selectedJob.company ? this.selectedJob.company.about : '', [Validators.required]),
 				email: new FormControl(this.selectedJob.company ? this.selectedJob.company.email : '', [Validators.required]),
-				twitter_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.twitter_profile : '', [Validators.required]),
-				linkedin_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.linkedin_profile : '', [Validators.required]),
-				phone_numbers: this.fb.array(this.initCompanyPhoneNumbers())
+				twitter_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.twitter_profile : ''),
+				linkedin_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.linkedin_profile : ''),
+				phone_numbers: this.fb.array(this.initCompanyPhoneNumbers()),
+				company_logo: new FormControl(this.selectedJob.company_logo, [Validators.required])
 			}),
 			company_logo: new FormControl(this.selectedJob.company_logo ? this.selectedJob.company_logo : '', [Validators.required]),
 			description: new FormControl(this.selectedJob.description ? this.selectedJob.description : '',  [Validators.required]),
@@ -87,15 +90,15 @@ export class EditJobFormComponent implements OnInit {
 			salary_from: new FormControl(this.selectedJob.salary_from ? this.selectedJob.salary_from : '', [Validators.required]),
 			salary_to: new FormControl(this.selectedJob.salary_to ? this.selectedJob.salary_to : '', [Validators.required]),
 			salary_currency: new FormControl(this.selectedJob.salary_currency ? this.selectedJob.salary_currency : '', [Validators.required]),
-			salary_negotiable: new FormControl(this.selectedJob.salary_negotiable, [Validators.required]),
+			salary_negotiable: new FormControl(this.selectedJob.salary_negotiable),
 			application_slots: new FormControl(this.selectedJob.application_slots, [Validators.required]),
 			skills: this.fb.array(this.initializeSkills()),
 			responsibilities: this.fb.array(this.initializeResponsibilities()),
 			ideal_talent: this.fb.array(this.initializeIdealTalents()),
 			location: new FormControl(this.selectedJob.location ? this.selectedJob.location : '', [Validators.required]),
-			contact_name: new FormControl(this.selectedJob.contact_name ? this.selectedJob.contact_name : '', [Validators.required]),
-			contact_email: new FormControl(this.selectedJob.contact_email ? this.selectedJob.contact_email : '', [Validators.required]),
-			contact_number: new FormControl(this.selectedJob.contact_number ? this.selectedJob.contact_number : '', [Validators.required])
+			contact_name: new FormControl(this.selectedJob.contact_name ? this.selectedJob.contact_name : ''),
+			contact_email: new FormControl(this.selectedJob.contact_email ? this.selectedJob.contact_email : ''),
+			contact_number: new FormControl(this.selectedJob.contact_number ? this.selectedJob.contact_number : '')
 		});
 	}
 
@@ -208,7 +211,16 @@ export class EditJobFormComponent implements OnInit {
 	onSave() {
 		this.setEmployerId();
 		this.setCompanyName();
-		this.OnEditJobEvent.emit(this.editJobForm.value);
+		this.setContactInfo();
+		if (!this.editJobForm.invalid) {
+			this.OnEditJobEvent.emit(this.editJobForm.value);
+		} else {
+			this.document.body.scrollTop = 200;
+			this.isEditJobFormValid = false;
+			setTimeout(() => {
+				this.isEditJobFormValid = true;
+			}, 5000);
+		}
 	}
 
 	private setEmployerId(): void {
@@ -218,5 +230,20 @@ export class EditJobFormComponent implements OnInit {
 	private setCompanyName(): void {
 		let company_name = this.company.controls['name'].value;
 		this.editJobForm.controls['company_name'].setValue(company_name);
+	}
+
+	private setContactInfo(): void {
+		let location = this.company.controls['address'].value;
+		this.editJobForm.controls['location'].setValue(location);
+
+		let contact_name = this.company.controls['name'].value;
+		this.editJobForm.controls['contact_name'].setValue(contact_name);
+
+		let contact_email = this.company.controls['email'].value;
+		this.editJobForm.controls['contact_email'].setValue(contact_email);
+	}
+
+	private validateFields(control: FormControl): boolean {
+		return control.touched && control.invalid;
 	}
 }

@@ -10,8 +10,7 @@ import * as jobsAction from '../../actions/jobs.action';
 	template: `
 		<div class='row col-md-12'>
 			<div class='col-md-10 div-padding text-center'>
-					<h3 class="job-title mb-0 text-primary">{{job.title}}</h3>
-					<p class="job-company mb-0">Job ID: {{job._id}}</p>
+					<h3 class="job-title mb-0 purple-color">{{job.title}}</h3>
 					<p class="date-posted mb-0">Posted: {{job.createdAt | date: 'yyyy-MM-dd'}}</p>
 			</div>
 			<div class='col-md-2 text-center'>

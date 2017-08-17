@@ -14,7 +14,7 @@ export class Profile {
 	skills?: Skill[];
 
 	birthDate: string;
-	NRIC: number;
+	NRIC: string;
 	singaporeVisa: string;
 	visaValidity: string;
 	noticePeriod: string;
@@ -22,7 +22,7 @@ export class Profile {
 
 	maritalStatus: string;
 	mobileNumber: string;
-	noOfchildren: string;
+	noOfChildren: number;
 
 	salaryPerMonth: number;
 	salaryBasis: any;

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Job } from '../models/job.model';
 import { Reference } from '../models/reference.model';
@@ -19,69 +19,78 @@ import { Router, NavigationEnd } from '@angular/router';
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Talent Application Form</h2>
-						<!--<p class="job-detail">{{ job.title }} - {{ job.company.name }}</p>-->
+						<p class="pHeader">{{ selectedJob.title }} - {{ selectedJob.company.name }}</p>
 						<p class="hLabel">This application is confidential. Please contact us at talent@welinktalent.com for any questions
 							1regarding this form.</p>
 						<p style="color: #4D308E; font-size: larger;">Please provide atleast two references:</p>
 					</div>
 					<div>
 						<p class="refereeStyle">Reference</p>
-						<app-reference-form (addReferenceEmitter)="addReferenceClickHandler($event)"></app-reference-form>
+						<app-reference-form (addReferenceEmitter)="addReferenceClickHandler($event)" [modifiedReferee]="referee"></app-reference-form>
 					</div>
 					<div class="col-md-12" style="background: lightgray;">
-						<div *ngFor="let i of referenceList">
+						<div *ngFor="let ref of referenceList; let i = index">
 							<form>
-								<p class="refereeStyle">Reference {{ referenceList.length }}</p>
+								<p class="refereeStyle">Reference</p>
 								<div class="col-md-6" style="margin-left: -15px;">
 									<div class="form-group">
 										<label class="labelWeight">First Name:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.firstName }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.firstName }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Current Company:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.company }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.company }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Mobile Phone:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.phone }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.phone }}"/>
 									</div>
 								</div>
 								<div class="col-md-6 div-style">
 									<div class="form-group">
 										<label class="labelWeight">Last Name:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.lastName }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.lastName }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Current Title:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.title }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.title }}"/>
 									</div>
 									<div class="form-group">
 										<label class="labelWeight">Email:* </label>
-										<input type="email" disabled class="form-control" value="{{ i.emailAddress }}"/>
+										<input type="email" disabled class="form-control" value="{{ ref.emailAddress }}"/>
 									</div>
 								</div>
 								<div class="col-md-6" style="margin-left: -15px;">
 									<div class="form-group">
 										<label class="labelWeight">Professional relationship with the referee:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.relationship }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.relationship }}"/>
 									</div>
 								</div>
 								<div class="col-md-6 company-div">
 									<div class="form-group">
 										<label class="labelWeight">In which company, did you work together:* </label>
-										<input type="text" disabled class="form-control" value="{{ i.companyTogether }}"/>
+										<input type="text" disabled class="form-control" value="{{ ref.companyTogether }}"/>
 									</div>
 								</div>
 								<div class="form-group col-md-12" style="padding-right: 0; padding-left: 0;">
 									<label class="labelWeight">When did you work together?*</label>
-									<input type="text" disabled class="form-control" value="{{ i.startYearOfWorking }} - {{ i.endYearOfWorking }}"/>
+									<input type="text" disabled class="form-control" value="{{ ref.startYearOfWorking }} - {{ ref.endYearOfWorking }}"/>
 								</div>
 								<div class="form-group">
 									<label class="labelWeight">Can we contact this reference?* </label>
-									<input type="text" disabled class="form-control" value="{{ i.canContact }}"/>
+									<input type="text" disabled class="form-control" value="{{ ref.canContact }}"/>
 								</div>
 							</form>
+							<div class="col-md-12 buttons">
+								<button class="btn btn-default" (click)="editReference(i)">Edit</button>&emsp;
+								<button class="btn btn-danger" (click)="removeReference(i)">Remove</button>
+							</div>
 							<hr>
+						</div>
+						<div class="pull-left">
+							<p class="refereeStyle" style="margin-top: .5rem">
+								Total Number of References: <strong style="color: red">{{ referenceList.length }}</strong>
+							</p>
 						</div>
 					</div>
 					<div class="col-md-12 div-margin">
@@ -101,7 +110,8 @@ import { Router, NavigationEnd } from '@angular/router';
 						</div>
 					</div>
 					<div class="col-md-12" style="text-align: center;">
-						<button class="btn btn-primary btn-lg btnSubmit" (click)="onSubmitReferenceButton()">Submit</button>
+						<button class="btn btn-primary btn-lg btnSubmit" [disabled]="referenceList < 2" 
+						        (click)="onSubmitReferenceButton()">Submit</button>
 					</div>
 				</div>
 			</div>
@@ -158,20 +168,35 @@ import { Router, NavigationEnd } from '@angular/router';
 			border-radius: 0;
 			background: #57148D;
 		}
+		.buttons {
+			text-align: right;
+			padding-right: 0%;
+		}
+		.pHeader{
+			font-size: larger;
+			color: gray;
+			text-align: center;
+		}
 	`],
 })
 
-export class ApplicationReferenceFormPageComponent {
-	application: JobApplication;
+export class ApplicationReferenceFormPageComponent implements OnInit {
+	jobApplication: JobApplication;
 	@Input() job: Job;
 	referenceList: Reference[] = [];
 	user$: Observable<User>;
 	route$: Observable<NavigationEnd>;
+	referee: Reference;
+	selectedJob: Job;
 
 	constructor(private store: Store<fromRoot.State>, private userStore: Store<fromRoot.State>, private router: Router) {
-		this.store.select(fromRoot.getApplicationForm).subscribe((data) => this.application = data);
+		this.store.select(fromRoot.getApplicationForm).subscribe((data) => this.jobApplication = data);
 		this.user$ = this.userStore.select(fromRoot.getUser);
 		this.route$ = this.router.events.filter((event) => event instanceof NavigationEnd);
+	}
+
+	ngOnInit() {
+		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
 	}
 
 	addReferenceClickHandler(reference: Reference) {
@@ -180,6 +205,15 @@ export class ApplicationReferenceFormPageComponent {
 
 	onSubmitReferenceButton() {
 		this.store.dispatch(new application.ApplicationReferenceFormSubmitAction({references_info : this.referenceList,
-			applicationId: this.application.id}));
+			applicationId: this.jobApplication.id}));
+	}
+
+	removeReference(i: number) {
+		this.referenceList.splice(i, 1);
+	}
+
+	editReference(i: number) {
+		this.referee = this.referenceList[i];
+		this.referenceList.splice(i, 1);
 	}
 }

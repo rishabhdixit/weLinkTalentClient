@@ -6,10 +6,10 @@ import { Job } from '../../models/job.model';
 	template: `
 	<div class="row">
 		<div class="col-md-9">
-			<h4><a routerLink="/jobs/{{job._id}}"> {{job.title}}</a></h4>
+			<h4><a routerLink="/jobs/{{job._id}}" class="purple-color"> {{job.title}}</a></h4>
 			<div class="div-padding">
-				<span class="job-company">{{job.company.name}}</span> |
-				<span class="job-location">{{job.location}}</span>
+				<span class="job-company purple-color">{{job.company.name}}</span> |
+				<span class="job-location purple-color">{{job.location}}</span>
 			</div>
 			<dl>
 				<dt> Description </dt>
@@ -35,12 +35,10 @@ import { Job } from '../../models/job.model';
 			outline: none;
 		}
 		.job-company {
-			color: #0275d8;
 			font-weight: 700;
 			text-decoration: underline;
 		}
 		.job-location {
-			color: #0275d8;
 			font-weight: 500;
 			font-style: italic;
 		}
@@ -52,6 +50,5 @@ import { Job } from '../../models/job.model';
 export class JobViewComponent {
 	@Input() job: Job;
 
-	constructor() {
-	}
+	constructor() {	}
 }
