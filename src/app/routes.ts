@@ -138,6 +138,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'applicants',
+		canActivate: [LoggedInGuard],
 		component: AdminAllJobsApplicationsPageComponent,
 	},
 	{
