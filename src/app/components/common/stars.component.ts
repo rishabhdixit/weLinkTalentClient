@@ -10,15 +10,15 @@ const emptyRating: number = -10;
 				<h5>{{ skill }}</h5>
 			</div>
 			<div [ngClass]="getClass(disableName)">
-				<ng-container *ngFor="let a of iterableStarArray">
+				<ng-container *ngFor="let a of iterateableStarArray">
 					<i (mouseover)="onMouseOver(a)"
-						 (mouseleave)="onMouseLeave(a)"
-						 (click)="isClicked(a, skill)"
-						 [class.highlight]="isHighlighted(a)"
-						 class="fa fa-star fa-2x"
-						 aria-hidden="true"
-						 [(ngModel)]="application.skills[skill]"
-						 ngDefaultControl></i>
+					   (mouseleave)="onMouseLeave(a)"
+					   (click)="isClicked(a, skill)"
+					   [class.highlight]="isHighlighted(a)"
+					   class="fa fa-star fa-2x"
+					   aria-hidden="true"
+					   [(ngModel)]="application.skills[skill]"
+					   ngDefaultControl></i>
 				</ng-container>
 			</div>
 		</div>
@@ -43,7 +43,7 @@ export class StarsComponent implements OnInit {
 	@Input() currRating: number = emptyRating;
 	@Output() newRating = new EventEmitter();
 
-	iterableStarArray: Array<any> = [];
+	iterateableStarArray: Array<any> = [];
 
 	rating: number = emptyRating;
 	clicked: boolean = false;
@@ -96,7 +96,7 @@ export class StarsComponent implements OnInit {
 
 	fillArray(numStars: number) {
 		for (let a = 0, len = numStars; a < len; a++) {
-			this.iterableStarArray.push(a);
+			this.iterateableStarArray.push(a);
 		}
 	}
 

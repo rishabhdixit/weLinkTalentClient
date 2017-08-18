@@ -72,7 +72,7 @@ import { JobApplication } from '../../models/job-application.model';
 											[(ngModel)]="application.management" required></textarea>
 					</div>
 					<div *ngIf="!forReference" class="button-class">
-						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply?</button>
+						<button type="submit" class="btn btn-primary btn-lg btnApply" (click)="onApplyClick()">Apply</button>
 						<!--<p class="bottom-style">Your information will be saved automatically</p>-->
 					</div>
 				</div>
