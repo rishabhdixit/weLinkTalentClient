@@ -21,7 +21,7 @@ import { Job } from '../../models/job.model';
 				<a routerLink="/jobs"><button class="btn btn-default btn-lg btnCancel" style="margin-right:10px;">Cancel</button></a>
 			</div>
 			<div class="col-md-6 nextButton">
-				<button class="btn btn-primary btn-lg applyBtn" (click)="applyButtonConcept()">Apply?</button>
+				<button class="btn btn-primary btn-lg applyBtn" (click)="applyButtonConcept()">Apply</button>
 			</div>
 		</div>
     `,

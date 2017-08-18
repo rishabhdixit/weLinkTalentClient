@@ -26,7 +26,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">Job Title<i class="color-red"> * </i></label>
+								<label class="labelWeight">Job Title<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="title" formControlName="title" placeholder="Job Title" required/>
 								<div *ngIf="createJobForm.get('title').touched && createJobForm.get('title').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">Industry<i class="color-red"> * </i></label>
+								<label class="labelWeight">Industry<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="industry" formControlName="industry" placeholder="Industry" required/>
 								<div *ngIf="createJobForm.get('industry').touched && createJobForm.get('industry').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label class="labelWeight">Job Type<i class="color-red"> * </i></label>
+								<label class="labelWeight">Job Type<i class="red-color"> * </i></label>
 								<select class="form-control" name="job_type" formControlName="job_type" required>
 									<option value="Permanent">Permanent</option>
 									<option value="Contractualization">Contractualization</option>
@@ -57,7 +57,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label class="labelWeight">Employment Type<i class="color-red"> * </i></label>
+								<label class="labelWeight">Employment Type<i class="red-color"> * </i></label>
 								<select class="form-control" name="employment_type" formControlName="employment_type" required>
 									<option value="Full Time">Full Time</option>
 									<option value="Part Time">Part Time</option>
@@ -68,7 +68,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label class="labelWeight">Years of Experience<i class="color-red"> * </i></label>
+								<label class="labelWeight">Years of Experience<i class="red-color"> * </i></label>
 								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="years_experience" formControlName="years_experience" placeholder="Years of Experience" required/>
 								<div *ngIf="createJobForm.get('years_experience').touched && createJobForm.get('years_experience').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -78,7 +78,7 @@
 					<div class="row">
 						<div class="col-md-9">
 							<div class="form-group">
-								<label class="labelWeight">Expertise<i class="color-red"> * </i></label>
+								<label class="labelWeight">Expertise<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="expertise" formControlName="expertise" placeholder="Expertise" required/>
 								<div *ngIf="createJobForm.get('expertise').touched && createJobForm.get('expertise').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -86,7 +86,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label class="labelWeight">Vacant Slots<i class="color-red"> * </i></label>
+								<label class="labelWeight">Vacant Slots<i class="red-color"> * </i></label>
 								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="application_slots" formControlName="application_slots" placeholder="Vacant Slots" required/>
 								<div *ngIf="createJobForm.get('application_slots').touched && createJobForm.get('application_slots').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -96,13 +96,13 @@
 					<div class="row">
 						<div class="col-md-3">
 							<div class="form-group">
-								<label class="labelWeight">Salary Negotiable<i class="color-red"> * </i></label>
+								<label class="labelWeight">Salary Negotiable<i class="red-color"> * </i></label>
 								<input type="checkbox" class="form-control" name="salary_negotiable" formControlName="salary_negotiable"/>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label class="labelWeight">Currency<i class="color-red"> * </i></label>
+								<label class="labelWeight">Currency<i class="red-color"> * </i></label>
 								<select class="form-control" name="salary_currency" formControlName="salary_currency">
 									<option value="SGD">SGD</option>
 								</select>
@@ -112,7 +112,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label class="labelWeight">Salary From<i class="color-red"> * </i></label>
+								<label class="labelWeight">Salary From<i class="red-color"> * </i></label>
 								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="salary_from" formControlName="salary_from" placeholder="Salary From" required/>
 								<div *ngIf="createJobForm.get('salary_from').touched && createJobForm.get('salary_from').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -120,7 +120,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label class="labelWeight">Salary To<i class="color-red"> * </i></label>
+								<label class="labelWeight">Salary To<i class="red-color"> * </i></label>
 								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="salary_to" formControlName="salary_to" placeholder="Salary To" required/>
 								<div *ngIf="createJobForm.get('salary_to').touched && createJobForm.get('salary_to').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -133,7 +133,7 @@
 								<div class="row" style="padding-bottom: 10px;">
 									<div class="col-md-12">
 										<div class="form-inline">
-											<label class="labelWeight">Required Skills<i class="color-red"> * </i></label>
+											<label class="labelWeight">Required Skills<i class="red-color"> * </i></label>
 											<i class="add-button fa fa-plus" (click)="addSkill()"></i>
 										</div>
 									</div>
@@ -166,7 +166,7 @@
 								<div class="row" style="padding-bottom: 10px;">
 									<div class="col-md-12">
 										<div class="form-inline">
-											<label class="labelWeight">Responsibilities<i class="color-red"> * </i></label>
+											<label class="labelWeight">Responsibilities<i class="red-color"> * </i></label>
 											<i class="add-button fa fa-plus" (click)="addResponsibility()"></i>
 										</div>
 									</div>
@@ -199,7 +199,7 @@
 								<div class="row" style="padding-bottom: 10px;">
 									<div class="col-md-12">
 										<div class="form-inline">
-											<label class="labelWeight">Ideal Talent<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<label class="labelWeight">Ideal Talent<i class="red-color"> * </i></label>&nbsp;&nbsp;&nbsp;
 											<i class="add-button fa fa-plus" (click)="addIdealTalent()"></i>
 										</div>
 									</div>
@@ -229,7 +229,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">Job Description<i class="color-red"> * </i></label>
+								<label class="labelWeight">Job Description<i class="red-color"> * </i></label>
 								<textarea class="form-control" rows="10" formControlName="description" placeholder="Job Description"></textarea>
 								<div *ngIf="createJobForm.get('description').touched && createJobForm.get('description').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -248,7 +248,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">Company Name<i class="color-red"> * </i></label>
+								<label class="labelWeight">Company Name<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="name" formControlName="name" placeholder="Company Name" required/>
 								<div *ngIf="createJobForm.controls['company'].get('name').touched && createJobForm.controls['company'].get('name').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -258,7 +258,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">Address<i class="color-red"> * </i></label>
+								<label class="labelWeight">Address<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="address" formControlName="address" placeholder="Complete Address" required/>
 								<div *ngIf="createJobForm.controls['company'].get('address').touched && createJobForm.controls['company'].get('address').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -271,7 +271,7 @@
 								<div class="row" style="padding-bottom: 10px;">
 									<div class="col-md-12">
 										<div class="form-inline">
-											<label class="labelWeight">Phone Numbers<i class="color-red"> * </i></label>&nbsp;&nbsp;&nbsp;
+											<label class="labelWeight">Phone Numbers<i class="red-color"> * </i></label>&nbsp;&nbsp;&nbsp;
 											<i class="add-button fa fa-plus" (click)="addPhoneNumber()"></i>
 										</div>
 									</div>
@@ -301,7 +301,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="labelWeight">Email Address<i class="color-red"> * </i></label>
+								<label class="labelWeight">Email Address<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" formControlName="email" placeholder="Email Address" required/>
 								<div *ngIf="createJobForm.controls['company'].get('email').touched && createJobForm.controls['company'].get('email').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -309,7 +309,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="labelWeight">Company Logo<i class="color-red"> * </i></label>
+								<label class="labelWeight">Company Logo<i class="red-color"> * </i></label>
 								<input type="file" class="form-control" (change)="onFileUpload($event)"/>
 								<div *ngIf="createJobForm.get('company_logo').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
@@ -335,7 +335,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="labelWeight">About the Company<i class="color-red"> * </i></label>
+								<label class="labelWeight">About the Company<i class="red-color"> * </i></label>
 								<textarea class="form-control" rows="10" formControlName="about" placeholder="About Company"></textarea>
 								<div *ngIf="createJobForm.controls['company'].get('about').touched && createJobForm.controls['company'].get('about').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>

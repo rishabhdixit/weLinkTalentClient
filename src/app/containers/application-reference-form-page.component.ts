@@ -22,7 +22,7 @@ import { Router, NavigationEnd } from '@angular/router';
 						<p class="pHeader">{{ selectedJob.title }} - {{ selectedJob.company.name }}</p>
 						<p class="hLabel">This application is confidential. Please contact us at talent@welinktalent.com for any questions
 							1regarding this form.</p>
-						<p style="color: #4D308E; font-size: larger;">Please provide atleast two references:</p>
+						<p style="color: #4D308E; font-size: larger;">Please provide at least two references:</p>
 					</div>
 					<div>
 						<p class="refereeStyle">Reference</p>
