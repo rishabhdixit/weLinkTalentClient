@@ -24,11 +24,23 @@ const emptyRating: number = -10;
 		</div>
 	`,
 	styles: [`
-		.highlight{
-			color:yellow;
+		.highlight {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
-		i:hover{
-			cursor:pointer;
+		i:hover {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		i {
+			color: white;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
 	`]
 })
@@ -47,6 +59,7 @@ export class StarsComponent implements OnInit {
 
 	rating: number = emptyRating;
 	clicked: boolean = false;
+	isHighlight: boolean;
 
 	constructor() { }
 
@@ -89,8 +102,10 @@ export class StarsComponent implements OnInit {
 
 	isHighlighted(index: number) {
 		if (this.rating > index - 1) {
+			this.isHighlight = true;
 			return true;
 		}
+		this.isHighlight = false;
 		return false;
 	}
 

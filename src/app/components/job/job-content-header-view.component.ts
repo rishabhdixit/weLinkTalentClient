@@ -15,7 +15,7 @@ import * as jobsAction from '../../actions/jobs.action';
 			</div>
 			<div class='col-md-2 text-center'>
 				<i class="fa fa-star fa-2x" [ngClass]="{'bookmark-selected': isBookmarked, 'bookmark-unselected': !isBookmarked}"
-				   (click)="removeBookmark()"></i>
+				   (click)="updateBookmark()"></i>
 				<p class="addBookmark">Add to Bookmarks</p>
 			</div>
 		</div>
@@ -49,7 +49,7 @@ import * as jobsAction from '../../actions/jobs.action';
 			-webkit-text-stroke-color: black;
 		}
 		.bookmark-unselected {
-			color: gray;
+			color: white;
 			cursor: pointer;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;

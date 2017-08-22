@@ -33,6 +33,7 @@ import { JobApplication } from '../../models/job-application.model';
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
+					
 					<textarea class="form-control" rows="4" formControlName="strengthFeedback" required > </textarea>
 					<label>
 						<input type="checkbox" formControlName="strengthApproved"/>
@@ -40,6 +41,7 @@ import { JobApplication } from '../../models/job-application.model';
 					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
+					
 					<textarea class="form-control" rows="4" formControlName="improvementFeedback" required > </textarea>
 					<label>
 						<input type="checkbox" formControlName="improvementApproved"/>
@@ -47,6 +49,7 @@ import { JobApplication } from '../../models/job-application.model';
 					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
+					
 					<textarea class="form-control" rows="4" formControlName="achievementFeedback" required > </textarea>
 					<label>
 						<input type="checkbox" formControlName="achievementApproved"/>					
@@ -54,6 +57,7 @@ import { JobApplication } from '../../models/job-application.model';
 					</label>
 				</div>
 				<div class="form-group" style="margin-top: 37px;">
+					
 					<textarea class="form-control" rows="4" formControlName="managementStyleFeedback" required > </textarea>
 					<label>
 						<input type="checkbox" formControlName="managementStyleApproved"/>						
