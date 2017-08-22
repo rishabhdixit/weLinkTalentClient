@@ -59,7 +59,6 @@ export class StarsComponent implements OnInit {
 
 	rating: number = emptyRating;
 	clicked: boolean = false;
-	isHighlight: boolean;
 
 	constructor() { }
 
@@ -102,10 +101,8 @@ export class StarsComponent implements OnInit {
 
 	isHighlighted(index: number) {
 		if (this.rating > index - 1) {
-			this.isHighlight = true;
 			return true;
 		}
-		this.isHighlight = false;
 		return false;
 	}
 
