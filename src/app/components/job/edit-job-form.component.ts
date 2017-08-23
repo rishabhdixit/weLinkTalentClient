@@ -243,7 +243,7 @@ export class EditJobFormComponent implements OnInit {
 		this.editJobForm.controls['contact_email'].setValue(contact_email);
 	}
 
-	private validateFields(control: FormControl): boolean {
+	validateFields(control: FormControl): boolean {
 		return control.touched && control.invalid;
 	}
 }

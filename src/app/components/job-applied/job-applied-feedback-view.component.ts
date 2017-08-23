@@ -197,6 +197,10 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		}
 	}
 
+	hasFeedBacks(): boolean {
+		return !isUndefined(this.jobAppliedFeedBacks) && this.jobAppliedFeedBacks.length > 0;
+	}
+
 	private constructFeedBacks(): void {
 		for (let id of this.getFeedBackKeys()) {
 			this.jobAppliedFeedBacks.push(this.getConstructedFeedback(id, this.jobApplied.feedback[id]));
@@ -208,10 +212,6 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 			return [];
 		}
 		return (this.jobApplied.feedback ? Object.keys(this.jobApplied.feedback) : []);
-	}
-
-	private hasFeedBacks(): boolean {
-		return !isUndefined(this.jobAppliedFeedBacks) && this.jobAppliedFeedBacks.length > 0;
 	}
 
 	populateFeedback(paramFeedback: RefereeFeedback): void {
