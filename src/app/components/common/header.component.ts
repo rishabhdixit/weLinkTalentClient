@@ -41,7 +41,7 @@ import { routePath } from '../../routes';
 							<li><a routerLink="/home"><h5>Home</h5></a></li>
 							<li><a routerLink="/about-us"><h5>About Us</h5></a></li>
 							<li><a routerLink="/jobs"><h5>All Job Offers</h5></a></li>
-							<li><a routerLink="#"><h5>Contact Us</h5></a></li>
+							<li><a routerLink="/contact-us"><h5>Contact Us</h5></a></li>
 							<li><a routerLink="/bookmarks"><h5>Bookmarks</h5></a></li>
 						</ul>
 					</nav>

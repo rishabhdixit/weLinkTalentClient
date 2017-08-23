@@ -65,8 +65,8 @@ export function reducer(state = initialState, action: login.Actions): State {
 
 export const isLoggedFail = (state: State) => state.loginFail;
 export const getUser = (state: State) => state.user;
-export const getUserEmail = (state: State) => state.user.email;
-export const getUserId = (state: State) => state.user.id;
+export const getUserEmail = (state: State) => state.user && state.user.email;
+export const getUserId = (state: State) => state.user && state.user.id;
 export const getLoaded = (state: State) => state.loaded;
 export const getLogInRedirectUrl = (state: State) => state.redirectUrl;
 
