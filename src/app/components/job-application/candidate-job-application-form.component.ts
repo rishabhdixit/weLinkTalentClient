@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, EventEmitter, Output, Pipe, Inject } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import { Job } from '../../models/job.model';
 import { JobApplication } from '../../models/job-application.model';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

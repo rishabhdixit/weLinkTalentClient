@@ -52,6 +52,10 @@ textarea {
 	color: #FFF;
 }
 
+.light-gray-background {
+	background: lightgray;
+}
+
 .btn {
 	cursor: pointer;
 	border-radius: 0;
