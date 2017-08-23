@@ -104,7 +104,7 @@ import * as jobsAction from '../actions/jobs.action';
 			-webkit-text-stroke-color: black;
 		}
 		.bookmark-unselected {
-			color: gray;
+			color: white;
 			cursor: pointer;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;

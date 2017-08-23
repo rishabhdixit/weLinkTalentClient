@@ -18,7 +18,7 @@ import { Job } from '../../models/job.model';
 		</div>
 		<div class="col-md-12" style="margin-top:40px;">
 			<div class="col-md-6 cancelButton">
-				<a routerLink="/jobs"><button class="btn btn-default btn-lg btnCancel" style="margin-right:10px;">Cancel</button></a>
+				<a routerLink="/jobs/{{job._id}}"><button class="btn btn-default btn-lg btnCancel" style="margin-right:10px;">Cancel</button></a>
 			</div>
 			<div class="col-md-6 nextButton">
 				<button class="btn btn-primary btn-lg applyBtn" (click)="applyButtonConcept()">Apply</button>
@@ -27,14 +27,14 @@ import { Job } from '../../models/job.model';
     `,
 
 	styles: [`
-		.cancelButton{
+		.cancelButton {
 			float: left;
 			text-align: right;
 		}
-		.nextButton{
+		.nextButton {
 			float: right;
 		}
-		.applyBtn{
+		.applyBtn {
 			width: 113px;
 			margin-left:10px;
 			border-radius: 0;

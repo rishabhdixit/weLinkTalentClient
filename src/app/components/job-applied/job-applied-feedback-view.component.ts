@@ -5,6 +5,7 @@ import * as fromRoot from '../../reducers';
 import { JobsApplied } from '../../models/jobs-applied.model';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { Skill } from '../../models/skill.model';
+import { isUndefined } from 'util';
 
 @Component({
 	selector: 'app-job-applied-feedback-view',
@@ -16,8 +17,8 @@ import { Skill } from '../../models/skill.model';
 			</div>
 		</div>
 		<br/>
-		<div class="col-md-12" *ngIf="feedback.approvedByCandidate" style="padding-bottom: 39px;"></div>
-		<div class="row" *ngIf="!feedback.approvedByCandidate">
+		<div class="col-md-12" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" style="padding-bottom: 39px;"></div>
+		<div class="row" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
 			<div class="col-md-12 pull-right">
 				<button
 					type="button" class="btn btn-primary"
@@ -194,6 +195,10 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		} else {
 			return 'fa fa-star fa-2x';
 		}
+	}
+
+	hasFeedBacks(): boolean {
+		return !isUndefined(this.jobAppliedFeedBacks) && this.jobAppliedFeedBacks.length > 0;
 	}
 
 	private constructFeedBacks(): void {

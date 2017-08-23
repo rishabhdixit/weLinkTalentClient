@@ -91,23 +91,19 @@ import { Job } from '../../models/job.model';
 			</dl>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12 div-margin">
-			 <dl class="dl-horizontal">
-				<dt> About The Company </dt>
-				<dd>
-					<table class="table tableBorder">
-						<tbody>
-							<tr>
-								<td><img src="{{'http://' + job?.company_logo }}" class="img-responsive logo"/></td>
-								<td>{{job?.company?.about}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</dd>
-			</dl>
+		<div class="row">
+			<div class="col-md-12">
+				<h5>About The Company</h5>
+				<div class="row">
+					<div class="col-md-3">
+						<img src="{{'http://' + job?.company_logo }}" class="img-responsive logo"/>
+					</div>
+					<div class="col-md-9">
+						<p>{{job?.company?.about}}</p>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
 	`,
 	styles: [`
 		.tableBorder td{

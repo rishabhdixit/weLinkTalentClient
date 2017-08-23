@@ -12,7 +12,9 @@ import * as JobApplicationAction from '../actions/job-application.action';
 	template: `
 	<div class="container">
 		<div class="row container-fluid">
-			<app-application-concept (ApplyButtonConceptEvent)="applyButtonConceptHandler($event)"></app-application-concept>
+			<app-application-concept [job]="job$ | async" 
+			                         (ApplyButtonConceptEvent)="applyButtonConceptHandler($event)">
+			</app-application-concept>
 		</div>
 	</div>
 	`,

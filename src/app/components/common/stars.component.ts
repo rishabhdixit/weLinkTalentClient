@@ -24,11 +24,23 @@ const emptyRating: number = -10;
 		</div>
 	`,
 	styles: [`
-		.highlight{
-			color:yellow;
+		.highlight {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
-		i:hover{
-			cursor:pointer;
+		i:hover {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		i {
+			color: white;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
 	`]
 })

@@ -4,6 +4,7 @@ import * as fromRoot from '../../reducers';
 import { Observable } from 'rxjs/Observable';
 import { JobApplication } from '../../models/job-application.model';
 import * as JobApplicationAction from '../../actions/job-application.action';
+import {User} from '../../models/user.model';
 
 @Component({
 	selector: 'app-admin-all-jobs-applications-page',
@@ -32,9 +33,9 @@ export class AdminAllJobsApplicationsPageComponent implements OnInit {
 	jobApplication$: Observable<JobApplication[]>;
 	currentPage = 1;
 	jobsApplicationsTotalSize$: Observable<number>;
+	user$: Observable<User>;
 
-
-	constructor(private store: Store<fromRoot.State>) {}
+	constructor(private store: Store<fromRoot.State>) {	}
 
 	ngOnInit() {
 		this.store.dispatch(new JobApplicationAction.AdminAllJobsApplicationsLoadAction({}));

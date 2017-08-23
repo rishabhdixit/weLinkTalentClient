@@ -14,7 +14,8 @@ import * as jobsAction from '../../actions/jobs.action';
 					<p class="date-posted mb-0">Posted: {{job.createdAt | date: 'yyyy-MM-dd'}}</p>
 			</div>
 			<div class='col-md-2 text-center'>
-				<i class="fa fa-star-o bookmark set-font" [ngClass]="{'bookmark-selected': isBookmarked}" (click)="updateBookmark()"></i>
+				<i class="fa fa-star fa-2x" [ngClass]="{'bookmark-selected': isBookmarked, 'bookmark-unselected': !isBookmarked}"
+				   (click)="updateBookmark()"></i>
 				<p class="addBookmark">Add to Bookmarks</p>
 			</div>
 		</div>
@@ -38,26 +39,20 @@ import * as jobsAction from '../../actions/jobs.action';
 		.addBookmark{
 			font-size: smaller;
 		}
-		.bookmark:hover {
-			color: yellow;
-			cursor: pointer;
-				-webkit-text-stroke-width: 1px;
-				-webkit-text-stroke-color: orange;
-		}
-		.set-font {
-			font-size: 25px;
-		}
 		h3 {
 			color: #57148D;
 		}
 		.bookmark-selected {
 			color: yellow;
 			cursor: pointer;
-    		-webkit-text-stroke-width: 1px;
-    		-webkit-text-stroke-color: orange;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
-		.set-font {
-			font-size: 25px;
+		.bookmark-unselected {
+			color: white;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
 	`]
 })
