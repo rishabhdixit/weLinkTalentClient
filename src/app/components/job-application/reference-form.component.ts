@@ -25,16 +25,20 @@ import { Reference } from '../../models/reference.model';
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<label for="firstName" class="labelWeight">First Name:<i class="red-color"> * </i></label>
-							<input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" required/>
-							<div *ngIf="refereeForm.get('firstName').touched && refereeForm.get('firstName').invalid"
-							     class="alert alert-danger form-control">Please fill out this field!</div>
+							<div class="form-group">
+								<label for="firstName" class="labelWeight">First Name:<i class="red-color"> * </i></label>
+								<input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" required/>
+								<div *ngIf="refereeForm.get('firstName').touched && refereeForm.get('firstName').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
+							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="lastName" class="label-style">Last Name:<i class="red-color"> * </i></label>
-							<input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName" required/>
-							<div *ngIf="refereeForm.get('lastName').touched && refereeForm.get('lastName').invalid"
-							     class="alert alert-danger form-control">Please fill out this field!</div>
+							<div class="form-group">
+								<label for="lastName" class="label-style">Last Name:<i class="red-color"> * </i></label>
+								<input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName" required/>
+								<div *ngIf="refereeForm.get('lastName').touched && refereeForm.get('lastName').invalid"
+								     class="alert alert-danger form-control">Please fill out this field!</div>
+							</div>
 						</div>
 					</div>
 					<div class="row">
@@ -116,7 +120,7 @@ import { Reference } from '../../models/reference.model';
 					<br/>
 					<div class="row">
 						<div class="col-md-12 listStyle">
-							<label for="canContact">Can we contact this reference?<i class="red-color"> * </i></label>
+							<label for="canContact"><b>Can we contact this reference?</b><i class="red-color"> * </i></label>
 							<ul class="list-unstyled">
 								<li *ngFor="let choice of choices">
 									<label class="labelWeight">&emsp;{{ choice.value }}</label>
