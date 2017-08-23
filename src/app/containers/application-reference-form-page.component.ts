@@ -110,7 +110,7 @@ import { Router, NavigationEnd } from '@angular/router';
 						</div>
 					</div>
 					<div class="col-md-12" style="text-align: center;">
-						<button class="btn btn-primary btn-lg btnSubmit" [disabled]="referenceList < 2" 
+						<button class="btn btn-primary btn-lg btnSubmit" [disabled]="referenceLength()" 
 						        (click)="onSubmitReferenceButton()">Submit</button>
 					</div>
 				</div>
@@ -197,6 +197,13 @@ export class ApplicationReferenceFormPageComponent implements OnInit {
 
 	ngOnInit() {
 		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
+	}
+
+	referenceLength() {
+		if (this.referenceList.length < 2) {
+			return true;
+		}
+		return false;
 	}
 
 	addReferenceClickHandler(reference: Reference) {

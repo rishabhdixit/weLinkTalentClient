@@ -25,7 +25,7 @@ import { DOCUMENT } from '@angular/common';
 						<br/>
 					</div>
 					<div class="form-group">
-						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required>
+						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required/>
 					</div>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
@@ -190,7 +190,7 @@ import { DOCUMENT } from '@angular/common';
 			margin-right: 40%;
 			margin-bottom: 0;
 		}
-		i:hover{
+		i:hover {
 			cursor:pointer;
 		}
 		.job-detail {

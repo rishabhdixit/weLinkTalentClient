@@ -5,25 +5,34 @@ import { User } from '../../models/user.model';
 @Component({
 	selector: 'app-job-buttons',
 	template: `
-	<div class="row col-md-12" *ngIf="!isLoggedInAsAdmin">
-		<div class="col-md-2"></div>
-		<div class="col-md-5">
+	<div class="row" *ngIf="!isLoggedInAsAdmin">
+		<div class="col-md-6">
 			<a routerLink="/jobs">
-				<button type="button" class="btn btn-basic btn-lg btnBack">Back</button>
+				<button type="button" class="btn btn-default btn-lg btnBack form-control">Back</button>
 			</a>
 		</div>
-		<div  *ngIf="job.status != 'Application found'" class="col-md-5">
-			<button type="button" class="btn btn-primary btn-lg btnApply" (click)="applyButtonClick()">Apply</button>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-primary btn-lg form-control" 
+			        [disabled]="alreadyApplied()" 
+			        (click)="applyButtonClick()" 
+			        [ngClass]="{'disable': alreadyApplied()}">Apply</button>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div *ngIf="alreadyApplied()" class="alert alert-warning text-center" role="alert" >
+				You have already applied to this job.
+			</div>
 		</div>
 	</div>
 	`,
 	styles: [`
-		.btnApply {
-			border-radius: 0;
-			background: #57148D;
+		.disable {
+			background: gray;
 		}
 		.btnBack {
-			border-radius: 0;
+			background: lightgray;
 		}
 	`]
 })
@@ -47,5 +56,12 @@ export class JobButtonsComponent {
 		}
 
 		return true;
+	}
+
+	alreadyApplied() {
+		if (this.job.status === 'Application found') {
+			return true;
+		}
+		return false;
 	}
 }

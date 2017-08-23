@@ -23,6 +23,7 @@ import { LoginService } from '../services/login.service';
 			<div class="col-md-8">
 				<app-job-content-header-view [job]="job$ | async" [user]="user"></app-job-content-header-view>
 				<app-job-content-view [job]="job$ | async"></app-job-content-view>
+				<br/>
 				<app-job-buttons
 					[job]="job$ | async"
 					[user]="user"
