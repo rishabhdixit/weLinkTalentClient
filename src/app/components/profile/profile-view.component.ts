@@ -1,11 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewContainerRef } from '@angular/core';
-import {
-	FormGroup,
-	FormBuilder,
-	Validators,
-	FormArray
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { isUndefined } from 'util';
 
 import { Profile } from '../../models/profile.model';
 
@@ -13,7 +9,7 @@ import { Profile } from '../../models/profile.model';
 	moduleId: module.id,
 	selector: 'app-profile-view',
 	templateUrl: 'profile-view.component.html',
-	styleUrls: ['profile-view.component.css'],
+	styleUrls: ['profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {
 	@Input() profile: Profile;
@@ -26,12 +22,15 @@ export class ProfileViewComponent implements OnInit {
 	@Output() removeSkillEvent = new EventEmitter<any>();
 
 	logicalValueList: Array<any> = ['Yes', 'No'];
-	bonusReceivable: Array<any> = ['12 month', '13 month'];
+	noticePeriodValueList: Array<any> = ['Immediately', '1 month', '3 months', '6 months'];
+	maritalStatuses: Array<String> = ['Single', 'Married', 'Divorce', 'Separated', 'Widowed'];
+	moneyCurrencies: Array<String> = ['SGD', 'USD'];
+	percentagesTravelAccepted: Array<String> = ['No travel', '25%', '50%', '75%'];
 
 	profileForm: FormGroup;
 
-	get positions(): FormArray {
-		return <FormArray>this.profileForm.get('positions');
+	get workExperiences(): FormArray {
+		return <FormArray>this.profileForm.get('workExperiences');
 	}
 
 	get skills(): FormArray {
@@ -43,34 +42,49 @@ export class ProfileViewComponent implements OnInit {
 		this.toastr.setRootViewContainerRef(vcr);
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.profileForm = this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
-			headline: ['', Validators.required],
-			pictureUrl: ['', Validators.required],
-			emailAddress: ['', Validators.required],
-			summary: ['', Validators.required],
-			positions: this.fb.array(this.profile.positions.map(() => this.positionFormGroup())),
-			skills: this.fb.array(this.profile.skills.map(() => this.skillsFormGroup())),
+			firstName: this.fb.control('', Validators.required),
+			lastName: this.fb.control('', Validators.required),
+			headline: this.fb.control('', Validators.required),
+			pictureUrl: this.fb.control('', Validators.required),
+			emailAddress: this.fb.control('', Validators.required),
+			summary: this.fb.control('', Validators.required),
 
-			birthDate: ['', Validators.required],
-			maritalStatus: ['', Validators.required],
-			mobileNumber: ['', Validators.required],
-			NRIC: ['', Validators.required],
-			noOfChildren: ['', Validators.required],
-			singaporeVisa: ['', Validators.required],
-			visaValidity: ['', Validators.required],
-			noticePeriod: ['', Validators.required],
-			noticePeriodNegotioble: ['', Validators.required],
-			salaryPerMonth: ['', Validators.required],
-			salaryBasis: ['', Validators.required],
-			bonusAmount: ['', Validators.required],
-			bonusCalc: ['', Validators.required],
-			allowance: ['', Validators.required],
-			allowanceDesc: ['', Validators.required],
-			incentives: ['', Validators.required],
-			vestingPeriod: ['', Validators.required],
+			birthDate: this.fb.control('', Validators.required),
+			maritalStatus: this.fb.control('', Validators.required),
+			mobileNumber: this.fb.control('', Validators.required),
+			NRIC: this.fb.control('', Validators.required),
+			singaporeVisa: this.fb.control('', Validators.required),
+			visaValidity: this.fb.control('', Validators.required),
+			noticePeriod: this.fb.control('', Validators.required),
+			noticePeriodNegotiable: this.fb.control('', Validators.required),
+			currentSalary: this.fb.group({
+				currency: this.fb.control(''),
+				annualSalary: this.fb.control(''),
+				annualBonus: this.fb.control(''),
+				allowance: this.fb.group({
+					transportation: this.fb.control(false),
+					housing: this.fb.control(false),
+					schooling: this.fb.control(false),
+					health: this.fb.control(false),
+					others: this.fb.control(false),
+					otherAllowanceName: this.fb.control(''),
+					totalAllowance: this.fb.control('')
+				}),
+				isOnExpatPackage: this.fb.control('')
+			}),
+			expectedSalary: this.fb.group({
+				currency: this.fb.control(''),
+				annualSalaryPackage: this.fb.control(''),
+				isOnExpatPackage: this.fb.control('')
+			}),
+			miscellaneous: this.fb.group({
+				percentageTravelAccepted: this.fb.control(''),
+				drivingLicense: this.fb.control('')
+			}),
+			workExperiences: this.fb.array([]),
+			skills: this.fb.array(this.profile.skills.map(() => this.initSkill()))
 		});
 
 		this.profileForm.patchValue({
@@ -80,141 +94,213 @@ export class ProfileViewComponent implements OnInit {
 			emailAddress: this.profile.emailAddress,
 			pictureUrl: this.profile.pictureUrl,
 			summary: this.profile.summary,
-			positions: this.profile.positions,
-			skills: this.profile.skills,
 
 			birthDate: this.profile.birthDate,
 			maritalStatus: this.profile.maritalStatus,
 			mobileNumber: this.profile.mobileNumber,
 			NRIC: this.profile.NRIC,
-			noOfChildren: this.profile.noOfChildren,
 			singaporeVisa: this.profile.singaporeVisa,
 			visaValidity: this.profile.visaValidity,
 			noticePeriod: this.profile.noticePeriod,
-			noticePeriodNegotioble: this.profile.noticePeriodNegotioble,
-			salaryPerMonth: this.profile.salaryPerMonth,
-			salaryBasis: this.profile.salaryBasis,
-			bonusAmount: this.profile.bonusAmount,
-			bonusCalc: this.profile.bonusCalc,
-			allowance: this.profile.allowance,
-			allowanceDesc: this.profile.allowanceDesc,
-			incentives: this.profile.incentives,
-			vestingPeriod: this.profile.vestingPeriod,
+			noticePeriodNegotiable: this.profile.noticePeriodNegotiable,
+			currentSalary: {
+				currency: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.currency : '',
+				annualSalary: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.annualSalary : '',
+				annualBonus: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.annualBonus : '',
+				allowance: {
+					transportation: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.transportation : false,
+					housing: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.housing : false,
+					schooling: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.schooling : false,
+					health: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.health : false,
+					others: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.others : false,
+					otherAllowanceName: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.otherAllowanceName : '',
+					totalAllowance: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.allowance.totalAllowance : ''
+				},
+				isOnExpatPackage: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.isOnExpatPackage : ''
+			},
+			expectedSalary: {
+				currency: !this.isValueUndefined(this.profile.expectedSalary) ? this.profile.expectedSalary.currency : '',
+				annualSalaryPackage: !this.isValueUndefined(this.profile.expectedSalary) ? this.profile.expectedSalary.annualSalaryPackage : '',
+				isOnExpatPackage: !this.isValueUndefined(this.profile.expectedSalary) ? this.profile.expectedSalary.isOnExpatPackage : ''
+			},
+			miscellaneous: {
+				percentageTravelAccepted: !this.isValueUndefined(this.profile.miscellaneous) ? this.profile.miscellaneous.percentageTravelAccepted : '',
+				drivingLicense: !this.isValueUndefined(this.profile.miscellaneous) ? this.profile.miscellaneous.drivingLicense : ''
+			},
+			// workExperiences: this.profile.workExperiences,
+			skills: this.profile.skills
 		});
 
 		this.profileFormDisable();
-		this.profileFormSalaryDisable();
+		this.profileFormCurrentSalaryDisable();
+		this.profileFormExpectedSalaryDisable();
+		this.profileFormMiscellaneousDisable();
 	}
 
-	positionFormGroup(): FormGroup {
+	initWorkExperience(): FormGroup {
 		return this.fb.group({
-			title: ['', Validators.required],
-			company: this.fb.group({ name: ['', Validators.required] }),
-			location: this.fb.group({ name: '' }),
-			responsibilities: ['', Validators.required],
-			startDate: ['', Validators.required],
-			endDate: ['', Validators.required],
+			title: this.fb.control('', Validators.required),
+			company: this.fb.group({
+				name: this.fb.control('', Validators.required)
+			}),
+			isCurrent: this.fb.control(false, Validators.required),
+			address: this.fb.control('', Validators.required),
+			startDate: this.fb.control('', Validators.required),
+			endDate: this.fb.control('', Validators.required),
+			responsibilities: this.fb.control('', Validators.required)
 		});
 	}
 
-	skillsFormGroup(): FormGroup {
+	initSkill(): FormGroup {
 		return this.fb.group({
-			name: ''
+			skill: this.fb.control('', Validators.required),
+			rate: this.fb.control('')
 		});
 	}
 
-	editMode(event, editId) {
+	addWorkExperience(): void {
+		this.workExperiences.push(this.initWorkExperience());
+	}
+
+	addSkill(): void {
+		this.skills.push(this.initSkill());
+	}
+
+	saveWorkExperiences(): void {
+		if (!this.workExperiences.invalid) {
+			const profile = this.profileForm.value;
+
+			delete profile.positions;
+			delete profile.skills;
+
+			this.saveProfileEvent.emit(profile);
+		} else {
+			// TODO: throw an error message on the ui.
+		}
+	}
+
+	saveSkills(): void {
+		if (!this.skills.invalid) {
+			const profile = this.profileForm.value;
+
+			delete profile.positions;
+			delete profile.workExperiences;
+
+			this.saveProfileEvent.emit(profile);
+		} else {
+			// TODO: throw an error message on the ui.
+		}
+	}
+
+	removeWorkExperience(i: number): void {
+		this.workExperiences.removeAt(i);
+	}
+
+	removeSkill(i: number): void {
+		this.skills.removeAt(i);
+	}
+
+	resetWorkExperiences(): void {
+		while (this.workExperiences.length > 0) {
+			this.workExperiences.removeAt(0);
+		}
+	}
+
+	resetSkills(): void {
+		while (this.skills.length > 0) {
+			this.skills.removeAt(0);
+		}
+	}
+
+	saveProfile(): void {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.workExperiences;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+		this.profileFormDisable();
+	}
+
+	saveCurrentSalary(): void {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.workExperiences;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+		this.profileFormCurrentSalaryDisable();
+	}
+
+	saveExpectedSalary(): void {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.workExperiences;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+		this.profileFormExpectedSalaryDisable();
+	}
+
+	saveMiscellaneous(): void {
+		const profile = this.profileForm.value;
+
+		delete profile.positions;
+		delete profile.workExperiences;
+		delete profile.skills;
+
+		this.saveProfileEvent.emit(profile);
+		this.profileFormMiscellaneousDisable();
+	}
+
+	cancelProfile(event): void {
+		this.editMode(event, '');
+	}
+
+	cancelCurrentSalary(): void {
+		this.editMode(event, '');
+	}
+
+	cancelExpectedSalary(): void {
+		this.editMode(event, '');
+	}
+
+	cancelMiscellaneous(): void {
+		this.editMode(event, '');
+	}
+
+	isValueUndefined(value: any): boolean {
+		return isUndefined(value);
+	}
+
+	isFormGroupFieldInValid(formGroup: FormGroup, fieldName: string): boolean {
+		return formGroup.get(fieldName).touched && formGroup.get(fieldName).invalid;
+	}
+
+	editMode(event, editId): void {
 		this.editEvent.emit(editId);
 		event.preventDefault();
 
 		if (editId && editId === 'basic') {
 			this.profileFormEnable();
-		} else if (editId && editId === 'salary') {
-			this.profileFormSalaryEnable();
+		} else if (editId && editId === 'currentSalary') {
+			this.profileFormCurrentSalaryEnable();
+		} else if (editId && editId === 'expectedSalary') {
+			this.profileFormExpectedSalaryEnable();
+		} else if (editId && editId === 'miscellaneous') {
+			this.profileFormMiscellaneousEnable();
 		} else {
 			this.profileFormDisable();
-			this.profileFormSalaryDisable();
+			this.profileFormCurrentSalaryDisable();
+			this.profileFormExpectedSalaryDisable();
+			this.profileFormMiscellaneousDisable();
 		}
 	}
 
-	saveProfile() {
-		const profile = this.profileForm.value;
-
-		delete profile.positions;
-		delete profile.skills;
-
-		this.saveProfileEvent.emit(profile);
-		this.profileFormDisable();
-	}
-
-	saveCurrentSalary() {
-		const profile = this.profileForm.value;
-
-		delete profile.positions;
-		delete profile.skills;
-
-		this.saveProfileEvent.emit(profile);
-		this.profileFormSalaryDisable();
-	}
-
-	cancelProfile(event) {
-		this.editMode(event, '');
-	}
-
-	cancelCurrentSalary() {
-		this.editMode(event, '');
-	}
-
-	savePosition(index) {
-		const profile = this.profileForm.value;
-		this.saveProfileEvent.emit(profile);
-	}
-
-	addPosition(event) {
-		this.positions.push(this.positionFormGroup());
-		this.editMode(event, 'position' + (this.positions.length - 1));
-	}
-
-	// Cancel editing position.
-	// If position is empty or has not been save yet to server remove form from formarray.
-	cancelPosition(event) {
-		// const position = this.profile.positions[index];
-
-		// if (!position || !position.id) {
-		// 	this.positions.removeAt(index);
-		// }
-
-		this.editMode(event, '');
-	}
-
-	saveSkill(index) {
-		const profile = this.profileForm.value;
-		this.saveProfileEvent.emit(profile);
-	}
-
-	addSkill(event) {
-		this.skills.push(this.skillsFormGroup());
-		this.editMode(event, 'skill' + (this.skills.length - 1));
-	}
-
-	cancelSkill(event, index) {
-		const skill = this.profile.skills[index];
-
-		if (!skill || !skill.id) {
-			this.skills.removeAt(index);
-		}
-
-		this.editMode(event, '');
-	}
-
-	removeSkill(index) {
-		this.removeSkillEvent.emit({ index });
-	}
-	removePosition(index) {
-		this.removePositionEvent.emit({ index });
-	}
-
-	profileFormDisable() {
+	profileFormDisable(): void {
 		this.profileForm.get('firstName').disable();
 		this.profileForm.get('lastName').disable();
 		this.profileForm.get('emailAddress').disable();
@@ -222,14 +308,13 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('maritalStatus').disable();
 		this.profileForm.get('mobileNumber').disable();
 		this.profileForm.get('NRIC').disable();
-		this.profileForm.get('noOfChildren').disable();
 		this.profileForm.get('singaporeVisa').disable();
 		this.profileForm.get('visaValidity').disable();
 		this.profileForm.get('noticePeriod').disable();
-		this.profileForm.get('noticePeriodNegotioble').disable();
+		this.profileForm.get('noticePeriodNegotiable').disable();
 	}
 
-	profileFormEnable() {
+	profileFormEnable(): void {
 		this.profileForm.get('firstName').enable();
 		this.profileForm.get('lastName').enable();
 		this.profileForm.get('emailAddress').enable();
@@ -237,32 +322,59 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('maritalStatus').enable();
 		this.profileForm.get('mobileNumber').enable();
 		this.profileForm.get('NRIC').enable();
-		this.profileForm.get('noOfChildren').enable();
 		this.profileForm.get('singaporeVisa').enable();
 		this.profileForm.get('visaValidity').enable();
 		this.profileForm.get('noticePeriod').enable();
-		this.profileForm.get('noticePeriodNegotioble').enable();
+		this.profileForm.get('noticePeriodNegotiable').enable();
 	}
 
-	profileFormSalaryDisable(): void {
-		this.profileForm.get('salaryPerMonth').disable();
-		this.profileForm.get('salaryBasis').disable();
-		this.profileForm.get('bonusAmount').disable();
-		this.profileForm.get('bonusCalc').disable();
-		this.profileForm.get('allowance').disable();
-		this.profileForm.get('allowanceDesc').disable();
-		this.profileForm.get('incentives').disable();
-		this.profileForm.get('vestingPeriod').disable();
+	profileFormCurrentSalaryDisable(): void {
+		this.profileForm.get('currentSalary.currency').disable();
+		this.profileForm.get('currentSalary.annualSalary').disable();
+		this.profileForm.get('currentSalary.annualBonus').disable();
+		this.profileForm.get('currentSalary.allowance.transportation').disable();
+		this.profileForm.get('currentSalary.allowance.housing').disable();
+		this.profileForm.get('currentSalary.allowance.schooling').disable();
+		this.profileForm.get('currentSalary.allowance.health').disable();
+		this.profileForm.get('currentSalary.allowance.others').disable();
+		this.profileForm.get('currentSalary.allowance.otherAllowanceName').disable();
+		this.profileForm.get('currentSalary.allowance.totalAllowance').disable();
+		this.profileForm.get('currentSalary.isOnExpatPackage').disable();
 	}
 
-	profileFormSalaryEnable(): void {
-		this.profileForm.get('salaryPerMonth').enable();
-		this.profileForm.get('salaryBasis').enable();
-		this.profileForm.get('bonusAmount').enable();
-		this.profileForm.get('bonusCalc').enable();
-		this.profileForm.get('allowance').enable();
-		this.profileForm.get('allowanceDesc').enable();
-		this.profileForm.get('incentives').enable();
-		this.profileForm.get('vestingPeriod').enable();
+	profileFormCurrentSalaryEnable(): void {
+		this.profileForm.get('currentSalary.currency').enable();
+		this.profileForm.get('currentSalary.annualSalary').enable();
+		this.profileForm.get('currentSalary.annualBonus').enable();
+		this.profileForm.get('currentSalary.allowance.transportation').enable();
+		this.profileForm.get('currentSalary.allowance.housing').enable();
+		this.profileForm.get('currentSalary.allowance.schooling').enable();
+		this.profileForm.get('currentSalary.allowance.health').enable();
+		this.profileForm.get('currentSalary.allowance.others').enable();
+		this.profileForm.get('currentSalary.allowance.otherAllowanceName').enable();
+		this.profileForm.get('currentSalary.allowance.totalAllowance').enable();
+		this.profileForm.get('currentSalary.isOnExpatPackage').enable();
+	}
+
+	profileFormExpectedSalaryDisable(): void {
+		this.profileForm.get('expectedSalary.currency').disable();
+		this.profileForm.get('expectedSalary.annualSalaryPackage').disable();
+		this.profileForm.get('expectedSalary.isOnExpatPackage').disable();
+	}
+
+	profileFormExpectedSalaryEnable(): void {
+		this.profileForm.get('expectedSalary.currency').enable();
+		this.profileForm.get('expectedSalary.annualSalaryPackage').enable();
+		this.profileForm.get('expectedSalary.isOnExpatPackage').enable();
+	}
+
+	profileFormMiscellaneousDisable(): void {
+		this.profileForm.get('miscellaneous.percentageTravelAccepted').disable();
+		this.profileForm.get('miscellaneous.drivingLicense').disable();
+	}
+
+	profileFormMiscellaneousEnable(): void {
+		this.profileForm.get('miscellaneous.percentageTravelAccepted').enable();
+		this.profileForm.get('miscellaneous.drivingLicense').enable();
 	}
 }

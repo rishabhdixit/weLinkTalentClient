@@ -1,8 +1,9 @@
 import { Skill } from './skill.model';
 import { Position } from './position.model';
+import { WorkExperience } from './work-experience.model';
 
 export class Profile {
-	linkedinId: string;
+	linkedInId: string;
 	emailAddress: string;
 	firstName: string;
 	lastName: string;
@@ -10,29 +11,52 @@ export class Profile {
 	headline: string;
 	summary: string;
 	id?: string;
-	positions?: Position[];
-	skills?: Skill[];
 
 	birthDate: string;
 	NRIC: string;
 	singaporeVisa: string;
 	visaValidity: string;
 	noticePeriod: string;
-	noticePeriodNegotioble: boolean;
+	noticePeriodNegotiable: boolean;
 
 	maritalStatus: string;
 	mobileNumber: string;
-	noOfChildren: number;
 
-	salaryPerMonth: number;
-	salaryBasis: any;
+	currentSalary: CurrentSalary;
+	expectedSalary: ExpectedSalary;
+	miscellaneous: Miscellaneous;
 
-	bonusAmount: number;
-	bonusCalc: string;
+	positions?: Position[];
+	workExperiences?: WorkExperience[];
+	skills?: Skill[];
+}
 
-	allowance: number;
-	allowanceDesc: string;
+export abstract class Salary {
+	currency: string;
+	isOnExpatPackage: string;
+}
 
-	incentives: any;
-	vestingPeriod: string;
+export class CurrentSalary extends Salary {
+	annualSalary: number;
+	annualBonus: number;
+	allowance: Allowance;
+}
+
+export class ExpectedSalary extends Salary {
+	annualSalaryPackage: number;
+}
+
+export class Allowance {
+	transportation: boolean;
+	housing: boolean;
+	schooling: boolean;
+	health: boolean;
+	others: boolean;
+	otherAllowanceName: string;
+	totalAllowance: number;
+}
+
+export class Miscellaneous {
+	percentageTravelAccepted: string;
+	drivingLicense: string;
 }

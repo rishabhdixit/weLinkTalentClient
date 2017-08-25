@@ -24,7 +24,7 @@ export function createProfile(payload: any): Profile {
 	const skills = payload.positions.skills || [];
 
 	const profile = new Profile();
-	profile.linkedinId = payload.id;
+	profile.linkedInId = payload.id;
 	profile.emailAddress = payload.emailAddress;
 	profile.firstName = payload.firstName;
 	profile.lastName = payload.lastName;
@@ -32,6 +32,7 @@ export function createProfile(payload: any): Profile {
 	profile.summary = payload.summary;
 	profile.positions = positions.map((position) => position);
 	profile.skills = skills.map((skill) => skill);
+	profile.workExperiences = positions.map((position) => position);
 	return profile;
 };
 

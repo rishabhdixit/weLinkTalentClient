@@ -1,7 +1,7 @@
 <form class="form-horizontal" novalidate [formGroup]="profileForm">
 	<div class="row" id="basic_profile">
 		<div id="avatar" class="col-md-12">
-			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl" />
+			<img *ngIf="profile.pictureUrl" [src]="profile.pictureUrl"/>
 			<div style="padding-top: 10px; padding-bottom: 20px;">
 				<p class="highlight-p">{{ profile.firstName }} {{ profile.lastName }}</p>
 			</div>
@@ -9,176 +9,306 @@
 		<div class="col-md-12">
 			<br/>
 			<br/>
+			<!-- About You -->
 			<div class="row">
 				<div class="col-md-12 text-left">
-					<h3>Personal Info</h3>
+					<h3 class="purple-color">About You</h3>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="labelWeight" for="firstName">First Name</label>
-						<input type="text" id="firstName" class="form-control" formControlName="firstName">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="labelWeight" for="lastName">Last Name</label>
-						<input type="text" id="lastName" class="form-control" formControlName="lastName" />
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="birthDate" class="labelWeight">Date of Birth </label>
-						<input type="Date" class="form-control" id="birthDate" formControlName="birthDate" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="maritalStatus" class="labelWeight">Marital Status </label>
-						<select type="text" class="form-control status-height" id="maritalStatus" formControlName="maritalStatus">
-							<option>Single</option>
-							<option>Married</option>
-							<option>Divorce</option>
-							<option>Separated</option>
-							<option>Widowed</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="email" class="labelWeight">Email Address </label>
-						<input type="email" class="form-control" id="email" formControlName="emailAddress" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="mobile" class="labelWeight">Mobile </label>
-						<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber" />
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="NRIC" class="labelWeight">NRIC / FIN Number </label>
-						<input type="text" class="form-control" id="NRIC" formControlName="NRIC" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="noOfChildren" class="labelWeight">Number of Children </label>
-						<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" id="noOfChildren" formControlName="noOfChildren" />
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="singaporeVisa" class="labelWeight">Visa for Singapore </label>
-						<select type="text" class="form-control" id="singaporeVisa" formControlName="singaporeVisa">
-							<option>Yes, I have one.</option>
-							<option>No, I don't have one.</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="visaValidity" class="labelWeight">End of validity </label>
-						<input type="Date" class="form-control" id="visaValidity" formControlName="visaValidity" />
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="noticePeriod" class="labelWeight">Notice Period </label>
-						<input type="Date" class="form-control" id="noticePeriod" formControlName="noticePeriod" />
-					</div>
-				</div>
-				<div class="col-md-6">
-						<div class="form-inline">
-							<label class="labelWeight">Negotiable?</label>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label class="labelWeight" for="firstName">First Name<i class="red-color"> * </i></label>
+							<input type="text" id="firstName" class="form-control" formControlName="firstName">
 						</div>
-						<div class="form-inline">
-							<div class="radio">
-								<ul>
-									<li *ngFor="let logicalValue of logicalValueList" class="form-inline">
-										<label class="labelWeight">
-											{{ logicalValue }} &nbsp;&nbsp;
-											<input
-												type="radio"
-												class="input-radio"
-												value="{{ logicalValue }}"
-												formControlName="noticePeriodNegotioble"/>
-										</label>
-									</li>
-								</ul>
+						<div class="col-md-5">
+							<label class="labelWeight" for="lastName">Last Name<i class="red-color"> * </i></label>
+							<input type="text" id="lastName" class="form-control" formControlName="lastName"/>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="birthDate" class="labelWeight">Date of Birth</label>
+							<input type="Date" class="form-control" id="birthDate" formControlName="birthDate"/>
+						</div>
+						<div class="col-md-7"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="maritalStatus" class="labelWeight">Marital Status</label>
+							<select type="text" class="form-control status-height" id="maritalStatus" formControlName="maritalStatus">
+								<option *ngFor="let civilStatus of maritalStatuses" value="{{civilStatus}}">{{civilStatus}}</option>
+							</select>
+						</div>
+						<div class="col-md-7"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="email" class="labelWeight">Email Address</label>
+							<input type="email" class="form-control" id="email" formControlName="emailAddress"/>
+						</div>
+						<div class="col-md-7"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="mobile" class="labelWeight">Phone</label>
+							<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber"/>
+						</div>
+						<div class="col-md-7"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="NRIC" class="labelWeight">NRIC / FIN Number / Passport</label>
+							<input type="text" class="form-control" id="NRIC" formControlName="NRIC"/>
+						</div>
+						<div class="col-md-7"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5">
+							<label for="singaporeVisa" class="labelWeight">Visa for Singapore</label>
+							<select type="text" class="form-control" id="singaporeVisa" formControlName="singaporeVisa">
+								<option>Yes, I have one.</option>
+								<option>No, I don't have one.</option>
+							</select>
+						</div>
+						<div class="col-md-5">
+							<label for="visaValidity" class="labelWeight">End of validity</label>
+							<input type="Date" class="form-control" id="visaValidity" formControlName="visaValidity"/>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-inline">
+								<label class="labelWeight">Availability</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let noticePeriod of noticePeriodValueList">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													class="input-radio"
+													value="{{ noticePeriod }}"
+													formControlName="noticePeriod"/>
+												&nbsp;
+												{{ noticePeriod }}
+												&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="form-inline">
+								<label class="labelWeight">Negotiable?</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let logicalValue of logicalValueList">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													class="input-radio"
+													value="{{ logicalValue }}"
+													formControlName="noticePeriodNegotiable"/>
+												&nbsp;
+												{{ logicalValue }}
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-
-			<div *ngIf="!edit" class="row" style="padding-top: 20px;">
-				<div class="col-md-12 text-right">
-					<button (click)="editMode($event, 'basic')" class="btn btn-primary">Edit</button>
+			<br/>
+			<div  class="row">
+				<div class="col-md-12 text-right" *ngIf="!edit">
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<button (click)="editMode($event, 'basic')" class="btn btn-primary form-control">Edit</button>
+						</div>
+					</div>
 				</div>
-			</div>
-
-			<div class="row">
-				<div *ngIf="edit == 'basic'" class="col-md-12">
-					<div class="position-action">
-						<button class="btn btn-primary" (click)="saveProfile()" [disabled]="loading">Save</button>
-						<button class="btn btn-primary" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
+				<div class="col-md-12" *ngIf="edit == 'basic'">
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-2">
+							<button class="btn btn-danger form-control" (click)="cancelProfile($event)" [disabled]="loading">Cancel</button>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="saveProfile()" [disabled]="loading">Save</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-12">
+		<!-- Current Salary -->
+		<div class="col-md-12" formGroupName="currentSalary">
 			<br>
 			<br>
 			<div class="row">
 				<div class="col-md-12 text-left">
-					<h3>Current Salary</h3>
+					<h3 class="purple-color">Current Salary</h3>
 				</div>
 			</div>
-
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="salaryPerMonth" class="labelWeight">Base per month:</label>
-						<div class="input-group">
-							<span class="input-group-addon" for="salaryPerMonth">SGD</span>
-							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="salaryPerMonth" formControlName="salaryPerMonth" />
+				<div class="col-md-2">
+					<label for="currentSalaryCurrency" class="labelWeight">Currency</label>
+					<select type="text" class="form-control" id="currentSalaryCurrency" formControlName="currency">
+						<option *ngFor="let currency of moneyCurrencies" value="{{currency}}">{{currency}}</option>
+					</select>
+				</div>
+				<div class="col-md-10"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<label for="annualSalary" class="labelWeight">Annual Salary</label>
+					<input type="number"
+					       min="0"
+					       onkeypress="return event.charCode >= 48"
+					       class="form-control currency"
+					       id="annualSalary"
+					       formControlName="annualSalary"/>
+				</div>
+				<div class="col-md-5">
+					<label for="annualBonus" class="labelWeight">Annual Bonus</label>
+					<input type="number"
+					       min="0"
+					       onkeypress="return event.charCode >= 48"
+					       class="form-control currency"
+					       id="annualBonus"
+					       formControlName="annualBonus"/>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+
+			<!-- Allowance -->
+			<div class="row" formGroupName="allowance">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-inline">
+								<label class="labelWeight">Allowance</label>
+							</div>
+							<div class="form-inline">
+								<div class="checkbox">
+									<ul>
+										<li>
+											<label class="labelWeight">
+												<input
+													type="checkbox"
+													class="input-checkbox"
+													formControlName="transportation"/>
+												&nbsp;
+												Transportation
+												&nbsp;&nbsp;&nbsp;
+											</label>
+											<label class="labelWeight">
+												<input
+													type="checkbox"
+													class="input-checkbox"
+													formControlName="housing"/>
+												&nbsp;
+												Housing
+												&nbsp;&nbsp;&nbsp;
+											</label>
+											<label class="labelWeight">
+												<input
+													type="checkbox"
+													class="input-checkbox"
+													formControlName="schooling"/>
+												&nbsp;
+												Schooling
+												&nbsp;&nbsp;&nbsp;
+											</label>
+											<label class="labelWeight">
+												<input
+													type="checkbox"
+													class="input-checkbox"
+													formControlName="health"/>
+												&nbsp;
+												Health
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+				<div class="col-md-12" style="padding-top: 15px;">
+					<div class="row">
+						<div class="col-md-2 form-inline">
+							<label class="labelWeight">
+								<input
+									type="checkbox"
+									class="input-checkbox"
+									formControlName="others"/>
+								&nbsp;
+								Others
+							</label>
+						</div>
+						<div class="col-md-8">
+							<input class="form-control" type="text" formControlName="otherAllowanceName"/>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="totalAllowance" class="labelWeight">Total value of your allowance</label>
+							<input type="number"
+							       min="0"
+							       onkeypress="return event.charCode >= 48"
+							       class="form-control currency"
+							       id="totalAllowance"
+							       formControlName="totalAllowance"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 					<div class="form-inline">
-						<label class="labelWeight">On</label>
+						<label class="labelWeight">Are you on an expat package?</label>
 					</div>
 					<div class="form-inline">
 						<div class="radio">
 							<ul>
-								<li *ngFor="let basis of bonusReceivable">
+								<li *ngFor="let logicalValue of logicalValueList">
 									<label class="labelWeight">
-										{{ basis }}&nbsp;&nbsp;
 										<input
 											type="radio"
 											class="input-radio"
-											value="{{ basis }}"
-											formControlName="salaryBasis"/>
+											value="{{ logicalValue }}"
+											formControlName="isOnExpatPackage"/>
+										&nbsp;
+										{{ logicalValue }}
+										&nbsp;&nbsp;&nbsp;&nbsp;
 									</label>
 								</li>
 							</ul>
@@ -186,184 +316,296 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="bonusAmount" class="labelWeight">Bonus:</label>
-						<div class="input-group">
-							<span class="input-group-addon" for="bonusAmount">SGD</span>
-							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="bonusAmount" formControlName="bonusAmount" />
+			<div  class="row">
+				<div class="col-md-12 text-right" *ngIf="!edit">
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="editMode($event, 'currentSalary')">Edit</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="bonusCalc" class="labelWeight">How is it calculated?</label>
-						<input type="text" class="form-control" id="bonusCalc" formControlName="bonusCalc" />
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="allowance" class="labelWeight">Allowances:</label>
-						<div class="input-group">
-							<span class="input-group-addon" for="allowance">SGD</span>
-							<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control currency" id="allowance" currencyMask formControlName="allowance" />
+				<div class="col-md-12" *ngIf="edit == 'currentSalary'">
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-2">
+							<button class="btn btn-danger form-control" (click)="cancelCurrentSalary($event)" [disabled]="loading">Cancel</button>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="saveCurrentSalary()" [disabled]="loading">Save</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="allowanceDesc" class="labelWeight">Please describe</label>
-						<input type="text" class="form-control" id="allowanceDesc" formControlName="allowanceDesc" />
-					</div>
+			</div>
+		</div>
+
+		<!-- Expected Salary -->
+		<div class="col-md-12" formGroupName="expectedSalary">
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="purple-color">Expected Salary</h3>
 				</div>
 			</div>
-
+			<div class="row">
+				<div class="col-md-2">
+					<label for="expectedSalaryCurrency" class="labelWeight">Currency</label>
+					<select type="text" class="form-control" id="expectedSalaryCurrency" formControlName="currency">
+						<option *ngFor="let currency of moneyCurrencies" value="{{currency}}">{{currency}}</option>
+					</select>
+				</div>
+				<div class="col-md-10"></div>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-group">
-						<label for="incentives" class="labelWeight">Any long term incentives</label>
-						<input type="text" class="form-control" id="incentives" name="incentives" formControlName="incentives" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="vestingPeriod" class="labelWeight">Vesting Period</label>
-						<input type="date" class="form-control" id="vestingPeriod" name="vestingPeriod" formControlName="vestingPeriod" />
-					</div>
+					<label for="annualSalaryPackage" class="labelWeight">Annual Package</label>
+					<input type="number"
+					       min="0"
+					       onkeypress="return event.charCode >= 48"
+					       class="form-control currency"
+					       id="annualSalaryPackage"
+					       formControlName="annualSalaryPackage"/>
 				</div>
 			</div>
-
-			<div *ngIf="!edit" class="row" style="padding-top: 20px;">
-				<div class="col-md-12 text-right">
-					<button (click)="editMode($event, 'salary')" class="btn btn-primary">Edit</button>
-				</div>
-			</div>
-
 			<div class="row">
-				<div *ngIf="edit == 'salary'" class="col-md-12">
-					<div class="position-action">
-						<button class="btn btn-primary" (click)="saveCurrentSalary()" [disabled]="loading">Save</button>
-						<button class="btn btn-primary" (click)="cancelCurrentSalary($event)" [disabled]="loading">Cancel</button>
+				<div class="col-md-12">
+					<div class="form-inline">
+						<label class="labelWeight">Are you on an expat package?</label>
+					</div>
+					<div class="form-inline">
+						<div class="radio">
+							<ul>
+								<li *ngFor="let logicalValue of logicalValueList">
+									<label class="labelWeight">
+										<input
+											type="radio"
+											class="input-radio"
+											value="{{ logicalValue }}"
+											formControlName="isOnExpatPackage"/>
+										&nbsp;
+										{{ logicalValue }}
+										&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div  class="row">
+				<div class="col-md-12 text-right" *ngIf="!edit">
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="editMode($event, 'expectedSalary')">Edit</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12" *ngIf="edit == 'expectedSalary'">
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-2">
+							<button class="btn btn-danger form-control" (click)="cancelExpectedSalary($event)" [disabled]="loading">Cancel</button>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="saveExpectedSalary()" [disabled]="loading">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Miscellaneous -->
+		<div class="col-md-12" formGroupName="miscellaneous">
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="purple-color">Misc</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-inline">
+						<label class="labelWeight">Percentage of travel accepted</label>
+					</div>
+					<div class="form-inline">
+						<div class="radio">
+							<ul>
+								<li *ngFor="let percentage of percentagesTravelAccepted">
+									<label class="labelWeight">
+										<input
+											type="radio"
+											class="input-radio"
+											value="{{ percentage }}"
+											formControlName="percentageTravelAccepted"/>
+										&nbsp;
+										{{ percentage }}
+										&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="padding-top: 15px;">
+				<div class="col-md-12">
+					<div class="form-inline">
+						<label class="labelWeight">Driving license</label>
+					</div>
+					<div class="form-inline">
+						<div class="radio">
+							<ul>
+								<li *ngFor="let logicalValue of logicalValueList">
+									<label class="labelWeight">
+										<input
+											type="radio"
+											class="input-radio"
+											value="{{ logicalValue }}"
+											formControlName="drivingLicense"/>
+										&nbsp;
+										{{ logicalValue }}
+										&nbsp;&nbsp;&nbsp;&nbsp;
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div  class="row">
+				<div class="col-md-12 text-right" *ngIf="!edit">
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="editMode($event, 'miscellaneous')">Edit</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12" *ngIf="edit == 'miscellaneous'">
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-2">
+							<button class="btn btn-danger form-control" (click)="cancelMiscellaneous($event)" [disabled]="loading">Cancel</button>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary form-control" (click)="saveMiscellaneous()" [disabled]="loading">Save</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!--Positions-->
-
-	<div class="row" style="padding-top: 60px;">
+	<br/>
+	<!-- Work Experience -->
+	<div class="row">
 		<div class="col-md-12">
-
-			<!--TODO - Implement for file upload-->
-			<!--<div class="col-md-12">
-				<label class="btn btn-primary btn-file inputPosition">Upload Resume
-					<input type="file" style="display: none;">
-				</label>
-			</div>
-			<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" required>-->
-			<!--<br>-->
-
-			<h3>Work Experience</h3>
-			<div class="add-btn-container">
-				<a href="#" *ngIf="!edit" (click)="addPosition($event)" class="add-btn-work">+</a>
-			</div>
+			<h3 class="purple-color">Work Experience</h3>
+			<a class="add-btn-work" (click)="addWorkExperience()">+</a>
 			<br>
-			<!--Work experience loop-->
-			<div formArrayName="positions" *ngFor="let position of positions.controls; let i=index;" class="position">
-				<div [formGroupName]="i">
-					<div *ngIf="edit != 'position'+i" class="view" style="padding-top: 10px;">
-						<input type="text" value="{{ position.value.title }}" class="position-display" placeholder="Position" readonly />
-						<input type="text" class="inputPlace" value="{{ position.value.startDate }} - {{ position.value.endDate }}" style="width:40%"
-						 placeholder="Time Period" readonly/>
-						<br>
-						<input type="text" value="{{position.value.company?.name}}" class="position-display" placeholder="Company" readonly />
-						<br>
-						<textarea class="form-control" rows="10" placeholder="Responsibilities and Achievements" readonly>{{ position.value.responsibilities }}</textarea>
-						<span style="float: right; margin-top: 10px">
-							<!--<a href="#" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</a>-->
-							<button class="btn btn-primary" *ngIf="!edit" (click)="editMode($event, 'position'+i)">Edit</button>
-								&nbsp; &nbsp;
-							<!--<a href="#" *ngIf="!edit" (click)="removePosition(i)">Remove</a>-->
-							<button class="btn btn-danger" *ngIf="!edit" (click)="removePosition(i)">Remove</button>
-						</span>
-					</div>
-
-					<div *ngIf="edit == 'position'+i" class="form-group clearfix">
-						<label class="col-md-12 control-label" attr.for="{{ 'title' + i }}">Title</label>
-						<div class="col-md-12">
-							<input type="text" id="{{ 'title' + i }}" class="form-control" placeholder="e.g. Software Engineer" formControlName="title">
+		</div>
+		<div class="col-md-12" formArrayName="workExperiences" *ngFor="let workExperience of workExperiences.controls; let i=index;">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<button class="btn btn-danger form-control" (click)="removeWorkExperience(i)">Remove</button>
+				</div>
+			</div>
+			<div class="row" [formGroupName]="i">
+				<div class="col-md-12">
+					<label class="labelWeight" for="title">Title<i class="red-color"> * </i></label>
+					<input type="text" class="form-control" id="title" formControlName="title" placeholder="e.g. Software Engineer"/>
+					<div *ngIf="isFormGroupFieldInValid(workExperience, 'title')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
+				</div>
+				<div class="col-md-12" formGroupName="company">
+					<label class="labelWeight" for="company">Company<i class="red-color"> * </i></label>
+					<input type="text" class="form-control" id="company" formControlName="name" placeholder="e.g. WeLink Talent"/>
+					<div *ngIf="isFormGroupFieldInValid(workExperience, 'company.name')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
+				</div>
+				<div class="col-md-12">
+					<label class="labelWeight" for="address">Address<i class="red-color"> * </i></label>
+					<input type="text" class="form-control" id="address" formControlName="address" placeholder="e.g. St. Joseph Avenue"/>
+					<div *ngIf="isFormGroupFieldInValid(workExperience, 'address')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
+				</div>
+				<div class="col-md-12">
+					<label class="labelWeight" for="timePeriod">Time Period<i class="red-color"> * </i></label>
+				</div>
+				<div class="col-md-12">
+					<div class="row" id="timePeriod">
+						<div class="col-md-5">
+							<input type="date" class="form-control" id="startDate" formControlName="startDate"/>
+							<div *ngIf="isFormGroupFieldInValid(workExperience, 'startDate')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
-
-						<label class="col-md-12 control-label" attr.for="{{ 'company' + i }}">Company</label>
-						<div formGroupName="company" class="col-md-12">
-							<input type="text" id="{{ 'company' + i }}" class="form-control" placeholder="e.g. WeLink Talent" formControlName="name">
-						</div>
-
-						<label class="col-md-12 control-label">Time Period</label>
-						<div class="col-md-12">
-							<input type="month" id="{{ 'startDate' + i }}" class="form-control sDate" formControlName="startDate">
-							<p class="to">TO</p>
-							<input type="month" id="{{ 'endDate' + i }}" class="form-control eDate" formControlName="endDate">
-						</div>
-
-						<label class="col-md-12 control-label">Responsibilities</label>
-						<div class="col-md-12">
-							<textarea rows="10" class="form-control" placeholder="Responsibilities and Achievements" formControlName="responsibilities"
-							 value="{{ position.value?.responsibilities }}"></textarea>
-						</div>
-
-						<div class="col-md-12">
-							<div class="position-action">
-								<button class="btn btn-primary" (click)="savePosition(i)" [disabled]="loading">Save</button>
-								<button class="btn btn-primary" (click)="cancelPosition($event, i)" [disabled]="loading">Cancel</button>
-							</div>
+						<div class="col-md-2 text-center"><strong>To</strong></div>
+						<div class="col-md-5">
+							<input type="date" class="form-control" id="endDate" formControlName="endDate"/>
+							<div *ngIf="isFormGroupFieldInValid(workExperience, 'endDate')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-12">
+					<label class="labelWeight" for="responsibilities">Responsibilities<i class="red-color"> * </i></label>
+					<textarea class="form-control"
+					          rows="10"
+					          id="responsibilities"
+					          formControlName="responsibilities"
+					          placeholder="Responsibilities" required></textarea>
+					<div *ngIf="isFormGroupFieldInValid(workExperience, 'responsibilities')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
+				</div>
+			</div>
+			<br/>
+		</div>
+		<div class="col-md-12" *ngIf="workExperiences.length > 0">
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-2">
+					<button class="btn btn-danger form-control" (click)="resetWorkExperiences()">Cancel</button>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-primary form-control" (click)="saveWorkExperiences()">Save</button>
+				</div>
 			</div>
 		</div>
-		<br>
+	</div>
+	<br>
+	<!-- Skills -->
+	<div class="row">
 		<div class="col-md-12">
-			<h3>Skills</h3>
-			<div class="add-btn-container">
-				<a href="#" *ngIf="!edit" (click)="addSkill($event)" class="add-btn">+</a>
-			</div>
+			<h3 class="purple-color">Skills</h3>
+			<a class="add-btn" (click)="addSkill()">+</a>
 			<br>
-			<table class="table tableBorder" border="1" style="border-color: lightgrey;">
-				<tbody>
-					<tr>
-						<div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;" class="skill">
-							<div [formGroupName]="i">
-								<td>
-									<div *ngIf="edit != 'skill'+i">
-										<span>{{skill.value.name}}
-											<a href="#" *ngIf="!edit"  class="" (click)="removeSkill(i)">Remove</a>
-										</span>
-									</div>
-								</td>
-								<div *ngIf="edit == 'skill'+i" class="form-group clearfix">
-									<label class="col-md-12 control-label" attr.for="{{ 'skill' + i }}">Skill Name</label>
-									<div class="col-md-12">
-										<input type="text" id="{{ 'skill' + i }}" class="form-control" formControlName="name">
-									</div>
-									<div class="col-md-12">
-										<div class="skill-action">
-											<button class="btn btn-primary" (click)="saveSkill(i)" [disabled]="loading">Add</button>
-											<button class="btn btn-primary" (click)="cancelSkill($event, i)" [disabled]="loading">Cancel</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</tr>
-				</tbody>
-			</table>
+		</div>
+		<div class="col-md-12" formArrayName="skills" *ngFor="let skill of skills.controls; let i=index;">
+			<div class="row" [formGroupName]="i">
+				<div class="col-md-10">
+					<input type="text" class="form-control" id="skill" formControlName="skill" placeholder="e.g. Spring MVC"/>
+					<div *ngIf="isFormGroupFieldInValid(skill, 'skill')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-danger form-control" (click)="removeSkill(i)">Remove</button>
+				</div>
+			</div>
+			<br/>
+		</div>
+		<div class="col-md-12" *ngIf="skills.length > 0">
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-2">
+					<button class="btn btn-danger form-control" (click)="resetSkills()">Cancel</button>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-primary form-control" (click)="saveSkills()">Save</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </form>
