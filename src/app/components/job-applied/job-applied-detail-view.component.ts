@@ -28,24 +28,23 @@ import { Skill } from '../../models/skill.model';
 					readonly></textarea>
 			</div>
 		</div>
-		<!--<br/>
-	  <div class="row">
-		  <div class="col-md-12">
-			  <h6>Expected Salary:</h6>
-			  <h6>Base per month: SGD {{jobApplied.form_data.basePerMonth}}</h6>
-			  <h6>Bonus: SGD {{jobApplied.form_data.bonus}}</h6>
-		  </div>
-	  </div>-->
 		<br/>
 		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Your personal scoring:</h6>
-				<div class="form-group" *ngFor="let skill of jobApplied.form_data.skills; let i=index;">
-					<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
-						<i [ngClass]="getClass(jobApplied.form_data.skills[i], counter)"
-						   aria-hidden="true">
-						</i>
-					</ng-container>
+				<div *ngFor="let skill of jobApplied.form_data.skills; let i=index;">
+					<div class="row">
+						<div class="col-md-6">
+						<p>{{ skill.name }}</p>
+						</div>
+						<div class="col-md-6">
+							<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
+								<i [ngClass]="getClass(jobApplied.form_data.skills[i], counter)"
+								   aria-hidden="true">
+								</i>
+							</ng-container>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -105,6 +104,13 @@ import { Skill } from '../../models/skill.model';
 		}
 		.color-yellow {
 			color: yellow;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		.color-white{
+			color: white;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
 		}
 	`]
 })
@@ -118,7 +124,7 @@ export class JobAppliedDetailViewComponent {
 		if (index < skill.rate) {
 			return 'fa fa-star fa-2x color-yellow';
 		} else {
-			return 'fa fa-star fa-2x';
+			return 'fa fa-star fa-2x color-white';
 		}
 	}
 }

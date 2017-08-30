@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angular/forms';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { JobApplication } from '../../models/job-application.model';
 
+const emptyRating: number = -10;
 @Component({
 	selector: `app-referee-feedback-form`,
 	template: `
@@ -10,9 +11,9 @@ import { JobApplication } from '../../models/job-application.model';
 			<div class="col-md-12">
 				<br/>
 				<br/>
-				<h2>Referee Comments:</h2>
-				<p class="pStyle">This section contains what your referee has filled.</p>
-				<div class="form-group" style="margin-top: 45px; margin-bottom: .5rem;">
+				<h1>Reference</h1>
+				<br/><br/>
+				<div class="form-group" style="margin-bottom: .5rem; margin-top: 9px;">
 					<textarea class="form-control" rows="4" formControlName="reasonForLeavingFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="reasonForLeavingApproved"/>
@@ -60,6 +61,50 @@ import { JobApplication } from '../../models/job-application.model';
 						I APPROVE
 					</label>
 				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<p>Do you agree that <strong>Candidate's First Name</strong> is qualified in skills and personality in doing this role?</p>
+						<ng-container *ngFor="let num of [0, 1, 2, 3, 4]">
+							<i (mouseover)="onMouseOver(num)" 
+							   (mouseleave)="onMouseLeave(num)"
+							   (click)="isClicked(num)"
+							   [class.highlight]="isHighlighted(num)"
+							   class="fa fa-star fa-2x"></i>
+						</ng-container>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-12">
+						<p>Would you rehire the candidate?</p>
+						<div class="form-inline">
+								<input type="checkbox" class="form-control input-radio" value="true" 
+											[checked]="rehireCandidate" 
+											formControlName="rehireCandidate"/>
+								<label class="labelWeight">&emsp;Yes&emsp;</label>
+								<input type="checkbox" class="form-control input-radio" value="false" 
+											[checked]="!rehireCandidate" 
+											(click)="isCheckedRehire()"/>
+								<label class="labelWeight">&emsp;No&emsp;</label>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-12">
+						<p>The hiring manager might need to contact you for additional questions. Please confirm your acceptance:</p>
+						<div class="form-inline">
+							<input type="checkbox" class="form-control input-radio" value="true"
+										[checked]="canBeRecontact"
+										formControlName="canBeRecontact"/>
+							<label class="labelWeight">&emsp;Yes&emsp;</label>
+							<input type="checkbox" class="form-control input-radio" value="false"
+										(click)="isCheckedRecontact()"
+										[checked]="!canBeRecontact"/>
+							<label class="labelWeight">&emsp;No&emsp;</label>
+						</div>
+					</div>
+				</div>
 				<br/>
 				<br/>
 				<div class="row">
@@ -76,14 +121,13 @@ import { JobApplication } from '../../models/job-application.model';
 			padding-left: 0;
 			padding-right: 0;
 		}
+		.labelWeight {
+			font-weight: bolder;
+			margin-top: 5px;
+		}
 		h2 {
 			text-align: center;
 			color: #4D308E;
-		}
-		.pStyle {
-			font-size: smaller;
-			text-align: center;
-			color: dimgray;
 		}
 		.skillStyle {
 			color: #4D308E;
@@ -98,6 +142,28 @@ import { JobApplication } from '../../models/job-application.model';
 			float: right;
 			margin-top: -38px;
 		}
+		i {
+			color: white;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		i:hover {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		.highlight {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		.input-radio {
+			width: 1.2em;
+			height: 1.2em;
+		}
 	`],
 })
 
@@ -107,23 +173,79 @@ export class RefereeFeedbackFormComponent implements OnInit {
 
 	refereeFeedbackForm: FormGroup;
 
-	constructor(public fb: FormBuilder) {
-	}
+	@Input() noOfStars: number = 5;
+	@Input() currRating: number = emptyRating;
+	@Output() newRating = new EventEmitter();
+	rating: number = emptyRating;
+	clicked: boolean = false;
+
+	constructor(public fb: FormBuilder) {	}
 
 	ngOnInit() {
 		this.refereeFeedbackForm = this.fb.group({
-			reasonForLeavingFeedback: '',
-			reasonForLeavingApproved: false,
-			strengthFeedback: '',
-			strengthApproved: false,
-			improvementFeedback: '',
-			improvementApproved: false,
-			achievementFeedback: '',
-			achievementApproved: false,
-			managementStyleFeedback: '',
-			managementStyleApproved: false,
+			reasonForLeavingFeedback: new FormControl('', [Validators.required]),
+			reasonForLeavingApproved: new FormControl(false, [Validators.required]),
+			strengthFeedback: new FormControl('', [Validators.required]),
+			strengthApproved: new FormControl(false, [Validators.required]),
+			improvementFeedback: new FormControl('', [Validators.required]),
+			improvementApproved: new FormControl(false, [Validators.required]),
+			achievementFeedback: new FormControl('', [Validators.required]),
+			achievementApproved: new FormControl(false, [Validators.required]),
+			managementStyleFeedback: new FormControl('', [Validators.required]),
+			managementStyleApproved: new FormControl(false, [Validators.required]),
 			skillRatings: this.fb.array(this.jobApplication.form_data.skills.map((skill) => this.skillRatingFormGroup(skill))),
+			candidateRate: new FormControl(null, [Validators.required]),
+			rehireCandidate: new FormControl('', [Validators.required]),
+			canBeRecontact: new FormControl('', [Validators.required]),
 		});
+
+		if (this.noOfStars > 0) {
+			if (this.currRating !== emptyRating) {
+				this.rating = this.currRating - 1;
+				this.clicked = true;
+			}
+		}
+	}
+
+	isCheckedRecontact() {
+		this.refereeFeedbackForm.get('canBeRecontact').setValue(true);
+	}
+
+	isCheckedRehire() {
+		this.refereeFeedbackForm.get('rehireCandidate').setValue(true);
+	}
+
+	onMouseOver(index: number) {
+		if (this.rating > emptyRating) {
+			return false;
+		}
+
+		this.rating = index;
+	}
+
+	onMouseLeave() {
+		if (!this.clicked) {
+			this.rating = emptyRating;
+		}
+	}
+
+	isHighlighted(index: number) {
+		if (this.rating > index - 1) {
+			return true;
+		}
+		return false;
+	}
+
+	isClicked(index: number) {
+		if (index === this.rating && this.clicked) {
+			this.rating = emptyRating;
+			this.clicked = false;
+			return false;
+		}
+		this.clicked = true;
+		this.rating = index;
+		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating);
+		// this.newRating.emit(this.rating);
 	}
 
 	get skillRatings(): FormArray {
@@ -140,11 +262,13 @@ export class RefereeFeedbackFormComponent implements OnInit {
 	}
 
 	submitButtonClicked() {
+		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating);
 		const refereeFeedback = this.refereeFeedbackForm.value;
 		this.submitRefereeFeedbackEvent.emit(refereeFeedback);
+		console.log('Values of the Form:', refereeFeedback);
 	}
 
 	onClickNewRating(rate: any) {
-		this.refereeFeedbackForm.controls.skillRatings.get(rate.index + '.rate').setValue(rate.value);
+		this.skillRatings.get(rate.index + '.rate').setValue(rate.value);
 	}
 }

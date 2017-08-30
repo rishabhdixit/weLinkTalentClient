@@ -17,16 +17,26 @@ const emptyRating: number = -10;
 		</ng-container>
 	</div>
 	`,
-	styles: [
-		`
-	   .highlight{
-		   color:yellow;
-	   }
-	   i:hover{
-		   cursor:pointer;
-	   }
-	   `
-	]
+	styles: [`
+		.highlight {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		i:hover {
+			color: yellow;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		i {
+			color: white;
+			cursor: pointer;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+	 `]
 })
 
 export class ReactiveStarsComponent implements OnInit {

@@ -20,4 +20,7 @@ export class RefereeFeedback {
 	skillRatings: Skill[];
 	referee_profile: Reference;
 	approved_by_candidate: boolean;
+	candidateRate: number;
+	rehireCandidate: boolean;
+	canBeRecontact: boolean;
 }

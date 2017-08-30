@@ -47,18 +47,18 @@ const emptyRating: number = -10;
 
 export class StarsComponent implements OnInit {
 
-	@Input() noOfStars: number = 5;
+	@Input() noOfStars: number = 5; //
 	@Input() application: JobApplication;
 	@Input() skill: any;
 	@Input() disableName: boolean = false;
 	@Input() index: number;
-	@Input() currRating: number = emptyRating;
-	@Output() newRating = new EventEmitter();
+	@Input() currRating: number = emptyRating; //
+	@Output() newRating = new EventEmitter(); //
 
 	iterateableStarArray: Array<any> = [];
 
-	rating: number = emptyRating;
-	clicked: boolean = false;
+	rating: number = emptyRating; //
+	clicked: boolean = false; //
 
 	constructor() { }
 
@@ -73,38 +73,38 @@ export class StarsComponent implements OnInit {
 		}
 	}
 
-	onMouseOver(index: number) {
-		if (this.rating > emptyRating) {
-			return false;
-		}
+	onMouseOver(index: number) { //
+		if (this.rating > emptyRating) { //
+			return false; //
+		} //
 
-		this.rating = index;
-	}
+		this.rating = index; //
+	} //
 
-	onMouseLeave() {
-		if (!this.clicked) {
-			this.rating = emptyRating;
-		}
-	}
+	onMouseLeave() { //
+		if (!this.clicked) { //
+			this.rating = emptyRating; //
+		} //
+	} //
 
-	isClicked(index: number, skill: string) {
-		if (index === this.rating && this.clicked) {
-			this.rating = emptyRating;
-			this.clicked = false;
-			return false;
-		}
-		this.clicked = true;
-		this.rating = index;
-		this.application.skills[skill] = this.rating;
-		this.newRating.emit(this.rating);
-	}
+	isClicked(index: number, skill: string) { //
+		if (index === this.rating && this.clicked) { //
+			this.rating = emptyRating; //
+			this.clicked = false; //
+			return false; //
+		} //
+		this.clicked = true; //
+		this.rating = index; //
+		this.application.skills[skill] = this.rating; //
+		this.newRating.emit(this.rating); //
+	} //
 
-	isHighlighted(index: number) {
-		if (this.rating > index - 1) {
-			return true;
-		}
-		return false;
-	}
+	isHighlighted(index: number) { //
+		if (this.rating > index - 1) { //
+			return true; //
+		} //
+		return false; //
+	} //
 
 	fillArray(numStars: number) {
 		for (let a = 0, len = numStars; a < len; a++) {
