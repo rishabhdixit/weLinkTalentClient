@@ -18,11 +18,15 @@
 					<div class="row">
 						<div class="col-md-5">
 							<label class="labelWeight" for="firstName">First Name<i class="red-color"> * </i></label>
-							<input type="text" id="firstName" class="form-control" formControlName="firstName">
+							<input type="text" id="firstName" class="form-control" formControlName="firstName" placeholder="First Name" required>
+							<div *ngIf="isFormControlInvalid('firstName')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-5">
 							<label class="labelWeight" for="lastName">Last Name<i class="red-color"> * </i></label>
-							<input type="text" id="lastName" class="form-control" formControlName="lastName"/>
+							<input type="text" id="lastName" class="form-control" formControlName="lastName" placeholder="Last Name" required/>
+							<div *ngIf="isFormControlInvalid('lastName')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-2"></div>
 					</div>
@@ -30,8 +34,10 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="birthDate" class="labelWeight">Date of Birth</label>
-							<input type="Date" class="form-control" id="birthDate" formControlName="birthDate"/>
+							<label for="birthDate" class="labelWeight">Date of Birth<i class="red-color"> * </i></label>
+							<input type="Date" class="form-control" id="birthDate" formControlName="birthDate" required/>
+							<div *ngIf="isFormControlInvalid('birthDate')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-7"></div>
 					</div>
@@ -39,10 +45,12 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="maritalStatus" class="labelWeight">Marital Status</label>
+							<label for="maritalStatus" class="labelWeight">Marital Status<i class="red-color"> * </i></label>
 							<select type="text" class="form-control status-height" id="maritalStatus" formControlName="maritalStatus">
 								<option *ngFor="let civilStatus of maritalStatuses" value="{{civilStatus}}">{{civilStatus}}</option>
 							</select>
+							<div *ngIf="isFormControlInvalid('maritalStatus')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-7"></div>
 					</div>
@@ -50,8 +58,10 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="email" class="labelWeight">Email Address</label>
-							<input type="email" class="form-control" id="email" formControlName="emailAddress"/>
+							<label for="email" class="labelWeight">Email Address<i class="red-color"> * </i></label>
+							<input type="email" class="form-control" id="email" formControlName="emailAddress" placeholder="e.g. youremail@domain.com"/>
+							<div *ngIf="isFormControlInvalid('emailAddress')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-7"></div>
 					</div>
@@ -59,8 +69,10 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="mobile" class="labelWeight">Phone</label>
-							<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber"/>
+							<label for="mobile" class="labelWeight">Phone<i class="red-color"> * </i></label>
+							<input type="tel" class="form-control" id="mobile" formControlName="mobileNumber" placeholder="+65 1234 5678"/>
+							<div *ngIf="isFormControlInvalid('mobileNumber')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-7"></div>
 					</div>
@@ -77,15 +89,19 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="singaporeVisa" class="labelWeight">Visa for Singapore</label>
+							<label for="singaporeVisa" class="labelWeight">Visa for Singapore<i class="red-color"> * </i></label>
 							<select type="text" class="form-control" id="singaporeVisa" formControlName="singaporeVisa">
 								<option>Yes, I have one.</option>
 								<option>No, I don't have one.</option>
 							</select>
+							<div *ngIf="isFormControlInvalid('singaporeVisa')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-5">
-							<label for="visaValidity" class="labelWeight">End of validity</label>
+							<label for="visaValidity" class="labelWeight">End of validity<i class="red-color"> * </i></label>
 							<input type="Date" class="form-control" id="visaValidity" formControlName="visaValidity"/>
+							<div *ngIf="isFormControlInvalid('visaValidity')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-2"></div>
 					</div>
@@ -94,7 +110,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-inline">
-								<label class="labelWeight">Availability</label>
+								<label class="labelWeight">Availability&nbsp;<i class="red-color"> * </i></label>
 							</div>
 							<div class="form-inline">
 								<div class="radio">
@@ -114,10 +130,12 @@
 									</ul>
 								</div>
 							</div>
+							<div *ngIf="isFormControlInvalid('noticePeriod')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-inline">
-								<label class="labelWeight">Negotiable?</label>
+								<label class="labelWeight">Negotiable?&nbsp;<i class="red-color"> * </i></label>
 							</div>
 							<div class="form-inline">
 								<div class="radio">
@@ -137,11 +155,28 @@
 									</ul>
 								</div>
 							</div>
+							<div *ngIf="isFormControlInvalid('noticePeriodNegotiable')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-10">
+							<label class="labelWeight">Summary&nbsp;<i class="red-color"> * </i></label>
+							<textarea class="form-control" rows="10" formControlName="summary" placeholder="Profile summary goes here!"></textarea>
+							<div *ngIf="isFormControlInvalid('summary')"
+									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<br/>
+			<div class="row" *ngIf="isAboutYouInvalid">
+				<div class="col-md-12">
+					<div class="alert alert-danger form-control">Please make sure all fields are fill out!!</div>
+				</div>
+			</div>
 			<div  class="row">
 				<div class="col-md-12 text-right" *ngIf="!edit">
 					<div class="row">
@@ -177,7 +212,7 @@
 			<div class="row">
 				<div class="col-md-2">
 					<label for="currentSalaryCurrency" class="labelWeight">Currency</label>
-					<select type="text" class="form-control" id="currentSalaryCurrency" formControlName="currency">
+					<select type="text" class="form-control" id="currentSalaryCurrency" formControlName="currency" (change)="onChangeCurrentSalary()">
 						<option *ngFor="let currency of moneyCurrencies" value="{{currency}}">{{currency}}</option>
 					</select>
 				</div>
@@ -267,6 +302,7 @@
 								<input
 									type="checkbox"
 									class="input-checkbox"
+									(change)="onChangeOthers()"
 									formControlName="others"/>
 								&nbsp;
 								Others
@@ -275,6 +311,7 @@
 						<div class="col-md-8">
 							<input class="form-control" type="text" formControlName="otherAllowanceName"/>
 						</div>
+						<div class="col-md-2"></div>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -348,10 +385,15 @@
 					<h3 class="purple-color">Expected Salary</h3>
 				</div>
 			</div>
+			<div class="row" *ngIf="isExpectedSalaryInvalid">
+				<div class="col-md-12">
+					<div class="alert alert-danger form-control">Please make sure all fields are fill out!!</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-2">
 					<label for="expectedSalaryCurrency" class="labelWeight">Currency</label>
-					<select type="text" class="form-control" id="expectedSalaryCurrency" formControlName="currency">
+					<select type="text" class="form-control" id="expectedSalaryCurrency" formControlName="currency" (change)="onChangeExpectedSalaryCurrency()">
 						<option *ngFor="let currency of moneyCurrencies" value="{{currency}}">{{currency}}</option>
 					</select>
 				</div>
@@ -425,10 +467,15 @@
 					<h3 class="purple-color">Misc</h3>
 				</div>
 			</div>
+			<div class="row" *ngIf="isMiscellaneousInvalid">
+				<div class="col-md-12">
+					<div class="alert alert-danger form-control">Please make sure all fields are fill out!!</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-inline">
-						<label class="labelWeight">Percentage of travel accepted</label>
+						<label class="labelWeight">Percentage of travel accepted&nbsp;<i class="red-color"> * </i></label>
 					</div>
 					<div class="form-inline">
 						<div class="radio">
@@ -448,12 +495,14 @@
 							</ul>
 						</div>
 					</div>
+					<div *ngIf="isFormControlInvalid('miscellaneous.percentageTravelAccepted')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
 				</div>
 			</div>
 			<div class="row" style="padding-top: 15px;">
 				<div class="col-md-12">
 					<div class="form-inline">
-						<label class="labelWeight">Driving license</label>
+						<label class="labelWeight">Driving license&nbsp;<i class="red-color"> * </i></label>
 					</div>
 					<div class="form-inline">
 						<div class="radio">
@@ -473,6 +522,8 @@
 							</ul>
 						</div>
 					</div>
+					<div *ngIf="isFormControlInvalid('miscellaneous.drivingLicense')"
+							 class="alert alert-danger form-control">Please fill out this field!</div>
 				</div>
 			</div>
 			<div  class="row">
@@ -564,6 +615,11 @@
 			<br/>
 		</div>
 		<div class="col-md-12" *ngIf="workExperiences.length > 0">
+			<div class="row" *ngIf="isWorkExperiencesInvalid">
+				<div class="col-md-12">
+					<div class="alert alert-danger form-control">Please make sure all fields are fill out!!</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-2">
@@ -597,6 +653,11 @@
 			<br/>
 		</div>
 		<div class="col-md-12" *ngIf="skills.length > 0">
+			<div class="row" *ngIf="isSkillsInvalid">
+				<div class="col-md-12">
+					<div class="alert alert-danger form-control">Please make sure all fields are fill out!!</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-8"></div>
 				<div class="col-md-2">
