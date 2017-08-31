@@ -26,6 +26,21 @@ export class ProfileViewComponent implements OnInit {
 	maritalStatuses: Array<String> = ['Single', 'Married', 'Divorce', 'Separated', 'Widowed'];
 	moneyCurrencies: Array<String> = ['SGD', 'USD'];
 	percentagesTravelAccepted: Array<String> = ['No travel', '25%', '50%', '75%'];
+	months: Array<String> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+	days: Array<String> = [];
+	years: Array<Number> = [];
+	periodYears: Array<Number> = [];
+
+	visaValidityMonth: number;
+	visaValidityDay: number;
+	visaValidityYear: number;
+	isVisaValidityDisable: boolean = true;
+
+	workExperienceTimePeriods: Array<any> = [];
+	timePeriod: any = {
+		startDate: { month: null, day: null, year: null },
+		endDate: { month: null, day: null, year: null }
+	};
 
 	isAboutYouInvalid: boolean = false;
 	isMiscellaneousInvalid: boolean = false;
@@ -49,6 +64,9 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.initializeDays();
+		this.initializeYears();
+
 		this.initializeProfileForm();
 		this.initializeProfileValue();
 
@@ -81,6 +99,7 @@ export class ProfileViewComponent implements OnInit {
 
 	addWorkExperience(): void {
 		this.workExperiences.push(this.initWorkExperience());
+		this.workExperienceTimePeriods.push(this.timePeriod);
 	}
 
 	addSkill(): void {
@@ -121,6 +140,7 @@ export class ProfileViewComponent implements OnInit {
 
 	removeWorkExperience(i: number): void {
 		this.workExperiences.removeAt(i);
+		this.workExperienceTimePeriods.splice(i, 1);
 	}
 
 	removeSkill(i: number): void {
@@ -130,6 +150,7 @@ export class ProfileViewComponent implements OnInit {
 	resetWorkExperiences(): void {
 		while (this.workExperiences.length > 0) {
 			this.workExperiences.removeAt(0);
+			this.workExperienceTimePeriods.splice(0, 1);
 		}
 	}
 
@@ -258,6 +279,46 @@ export class ProfileViewComponent implements OnInit {
 		}
 	}
 
+	onChangeVisaValidity(): void {
+		// new Date(Year, Month, Day)
+		// Month [0 - 11]
+		if (this.visaValidityMonth && this.visaValidityDay && this.visaValidityYear) {
+			this.profileForm.get('visaValidity').setValue(
+				new Date(this.visaValidityYear, this.visaValidityMonth, this.visaValidityDay)
+			);
+		}
+	}
+
+	onChangeTimePeriod(category: string, formGroup: FormGroup, i: number): void {
+		// new Date(Year, Month, Day)
+		// Month [0 - 11]
+		if (category === 'startDate') {
+			if (this.workExperienceTimePeriods[i].startDate.month &&
+				this.workExperienceTimePeriods[i].startDate.day &&
+				this.workExperienceTimePeriods[i].startDate.year) {
+				formGroup.get('startDate').setValue(
+					new Date(
+						this.workExperienceTimePeriods[i].startDate.year,
+						this.workExperienceTimePeriods[i].startDate.month,
+						this.workExperienceTimePeriods[i].startDate.day
+					)
+				);
+			}
+		} else {
+			if (this.workExperienceTimePeriods[i].endDate.month &&
+				this.workExperienceTimePeriods[i].endDate.day &&
+				this.workExperienceTimePeriods[i].endDate.year) {
+				formGroup.get('endDate').setValue(
+					new Date(
+						this.workExperienceTimePeriods[i].endDate.year,
+						this.workExperienceTimePeriods[i].endDate.month,
+						this.workExperienceTimePeriods[i].endDate.day
+					)
+				);
+			}
+		}
+	}
+
 	editMode(event, editId): void {
 		this.editEvent.emit(editId);
 		event.preventDefault();
@@ -291,6 +352,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('noticePeriod').disable();
 		this.profileForm.get('noticePeriodNegotiable').disable();
 		this.profileForm.get('summary').disable();
+		this.isVisaValidityDisable = true;
 	}
 
 	private profileFormEnable(): void {
@@ -306,6 +368,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('noticePeriod').enable();
 		this.profileForm.get('noticePeriodNegotiable').enable();
 		this.profileForm.get('summary').enable();
+		this.isVisaValidityDisable = false;
 	}
 
 	private profileFormCurrentSalaryDisable(): void {
@@ -388,6 +451,31 @@ export class ProfileViewComponent implements OnInit {
 			!this.profileForm.get('noticePeriod').invalid &&
 			!this.profileForm.get('noticePeriodNegotiable').invalid
 		);
+	}
+
+	private initializeDays(): void {
+		let day = 1;
+		while (day <= 31) {
+			if (day < 10) {
+				this.days.push('0' + day);
+			} else {
+				this.days.push('' + day);
+			}
+			day++;
+		}
+	}
+
+	private initializeYears(): void {
+		let currentYear = (new Date()).getFullYear();
+		let year = currentYear - 10;
+		let periodYear = currentYear - 30;
+		while (year <= currentYear + 10) {
+			this.years.push(year++);
+		}
+
+		while (periodYear <= currentYear) {
+			this.periodYears.push(periodYear++);
+		}
 	}
 
 	private initializeProfileForm(): void {
