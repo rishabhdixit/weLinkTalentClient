@@ -43,8 +43,8 @@ export class JobApplicationService {
 			.map((res: Response) => res.json());
 	}
 
-	loadAllJobsApplications(): Observable<any> {
-		return this.http.get(`${this.api}/api/applications`)
+	loadAllJobsApplications(searchQuery: string): Observable<any> {
+		return this.http.get(`${this.api}/api/applications?${searchQuery}`)
 			.map((res: Response) => res.json());
 	}
 
