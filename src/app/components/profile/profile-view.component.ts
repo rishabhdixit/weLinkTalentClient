@@ -92,8 +92,7 @@ export class ProfileViewComponent implements OnInit {
 
 	initSkill(): FormGroup {
 		return this.fb.group({
-			skill: this.fb.control('', Validators.required),
-			rate: this.fb.control('')
+			name: this.fb.control('', Validators.required)
 		});
 	}
 
@@ -115,6 +114,7 @@ export class ProfileViewComponent implements OnInit {
 		} else {
 			const profile = this.profileForm.value;
 
+			delete profile.pictureUrl;
 			delete profile.positions;
 			delete profile.skills;
 
@@ -131,6 +131,7 @@ export class ProfileViewComponent implements OnInit {
 		} else {
 			const profile = this.profileForm.value;
 
+			delete profile.pictureUrl;
 			delete profile.positions;
 			delete profile.workExperiences;
 
@@ -293,26 +294,27 @@ export class ProfileViewComponent implements OnInit {
 		// new Date(Year, Month, Day)
 		// Month [0 - 11]
 		if (category === 'startDate') {
-			if (this.workExperienceTimePeriods[i].startDate.month &&
-				this.workExperienceTimePeriods[i].startDate.day &&
-				this.workExperienceTimePeriods[i].startDate.year) {
+			if (this.workExperienceTimePeriods[i].startDate.month && this.workExperienceTimePeriods[i].startDate.year) {
 				formGroup.get('startDate').setValue(
 					new Date(
 						this.workExperienceTimePeriods[i].startDate.year,
 						this.workExperienceTimePeriods[i].startDate.month,
-						this.workExperienceTimePeriods[i].startDate.day
+						1
 					)
 				);
 			}
 		} else {
-			if (this.workExperienceTimePeriods[i].endDate.month &&
-				this.workExperienceTimePeriods[i].endDate.day &&
-				this.workExperienceTimePeriods[i].endDate.year) {
+			if (this.workExperienceTimePeriods[i].endDate.month && this.workExperienceTimePeriods[i].endDate.year) {
+				let tempDate = new Date(
+					this.workExperienceTimePeriods[i].endDate.year,
+					parseInt(this.workExperienceTimePeriods[i].endDate.month, 0) + 1,
+					0
+				);
 				formGroup.get('endDate').setValue(
 					new Date(
 						this.workExperienceTimePeriods[i].endDate.year,
 						this.workExperienceTimePeriods[i].endDate.month,
-						this.workExperienceTimePeriods[i].endDate.day
+						tempDate.getDate()
 					)
 				);
 			}
