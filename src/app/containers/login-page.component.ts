@@ -44,6 +44,6 @@ export class LoginPageComponent {
 	}
 
 	linkedinProfile(profile: any) {
-		this.store.dispatch(new profileAction.ProfileLinkedinAction(profile));
+		this.store.dispatch(new profileAction.ProfileLinkedInAction(profile));
 	}
 }

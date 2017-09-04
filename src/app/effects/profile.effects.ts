@@ -24,7 +24,7 @@ export class ProfileEffects {
 	@Effect()
 	linkedin$: Observable<Action> = this.actions
 		.ofType(profile.ActionTypes.LINKEDIN)
-		.map((action: profile.ProfileLinkedinAction) => createProfile(action.payload))
+		.map((action: profile.ProfileLinkedInAction) => createProfile(action.payload))
 		.switchMap(payload => {
 			return this.profileService.linkedinSignIn(payload)
 				.mergeMap((data) => {
@@ -32,10 +32,10 @@ export class ProfileEffects {
 
 					return Observable.from([
 						new login.LoginSuccessAction(data.user),
-						new profile.ProfileLinkedinSuccessAction(data.profile),
+						new profile.ProfileLinkedInSuccessAction(data.profile),
 					]);
 				})
-				.catch(() => Observable.of(new profile.ProfileLinkedinFailAction(false)));
+				.catch(() => Observable.of(new profile.ProfileLinkedInFailAction(false)));
 		});
 
 

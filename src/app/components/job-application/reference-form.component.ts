@@ -27,7 +27,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="firstName" class="labelWeight">First Name:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" required/>
+								<input type="text" class="form-control" id="firstName"
+									name="firstName"formControlName="firstName" placeholder="First Name" required/>
 								<div *ngIf="refereeForm.get('firstName').touched && refereeForm.get('firstName').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -35,7 +36,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="lastName" class="label-style">Last Name:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName" required/>
+								<input type="text" class="form-control" id="lastName"
+									name="lastName" formControlName="lastName" placeholder="Last Name" required/>
 								<div *ngIf="refereeForm.get('lastName').touched && refereeForm.get('lastName').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -45,7 +47,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="company" class="labelWeight">Current Company:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="company" name="company" formControlName="company" required/>
+								<input type="text" class="form-control" id="company"
+									name="company" formControlName="company" placeholder="Company Name" required/>
 								<div *ngIf="refereeForm.get('company').touched && refereeForm.get('company').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -53,7 +56,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="title" class="label-style">Current Title:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="title" name="title" formControlName="title" required/>
+								<input type="text" class="form-control" id="title"
+									name="title" formControlName="title" placeholder="Job Position" required/>
 								<div *ngIf="refereeForm.get('title').touched && refereeForm.get('title').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -63,7 +67,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="phone" class="labelWeight">Mobile Phone:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="phone" name="phone" formControlName="phone" required/>
+								<input type="text" class="form-control" id="phone"
+									name="phone" formControlName="phone" placeholder="+65 1234 5678" required/>
 								<div *ngIf="refereeForm.get('phone').touched && refereeForm.get('phone').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -71,7 +76,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="emailAddress" class="label-style">Email Address:<i class="red-color"> * </i></label>
-								<input type="email" class="form-control" id="emailAddress" name="emailAddress" formControlName="emailAddress" required/>
+								<input type="email" class="form-control" id="emailAddress"
+									name="emailAddress" formControlName="emailAddress" placeholder="youremail@domain.com" required/>
 								<div *ngIf="refereeForm.get('emailAddress').touched && refereeForm.get('emailAddress').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -81,7 +87,8 @@ import { Reference } from '../../models/reference.model';
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="relation" class="labelWeight">Professional relationship with the referee:<i class="red-color"> * </i></label>
-								<input type="text" class="form-control" id="relation" name="relation" formControlName="relationship" required/>
+								<input type="text" class="form-control" id="relation"
+									name="relation" formControlName="relationship" placeholder="e.g. Office mate" required/>
 								<div *ngIf="refereeForm.get('relationship').touched && refereeForm.get('relationship').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -90,7 +97,7 @@ import { Reference } from '../../models/reference.model';
 							<div class="form-group">
 								<label for="companyTogether" class="labelWeight">In which company, did you work together:<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" id="companyTogether" name="companyTogether"
-								       formControlName="companyTogether" required/>
+								       formControlName="companyTogether" placeholder="Company Name" required/>
 								<div *ngIf="refereeForm.get('companyTogether').touched && refereeForm.get('companyTogether').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>

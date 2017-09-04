@@ -5,16 +5,6 @@ import { JobApplication } from '../models/job-application.model';
 	selector: `app-admin-all-jobs-applications`,
 	template: `
 		<div class="row">
-			<div class="col-md-12 pull-right" style="margin-bottom: 1rem;">
-				<div class="form-group pull-right">
-					<div class="input-group search">
-						<span class="input-group-addon"><i class="fa fa-search"></i></span>
-						<input type="text" class="form-control"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<table class="table table-bordered">
 				<thead>
 				<tr>

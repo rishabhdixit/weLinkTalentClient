@@ -193,6 +193,10 @@ export class CreateJobFormComponent implements OnInit {
 		}
 	}
 
+	validateFields(control: FormControl): boolean {
+		return control.touched && control.invalid;
+	}
+
 	private setEmployerId(): void {
 		this.createJobForm.controls['employer_id'].setValue(this.user.id);
 	}
@@ -211,9 +215,5 @@ export class CreateJobFormComponent implements OnInit {
 
 		let contact_email = this.company.controls['email'].value;
 		this.createJobForm.controls['contact_email'].setValue(contact_email);
-	}
-
-	private validateFields(control: FormControl): boolean {
-		return control.touched && control.invalid;
 	}
 }

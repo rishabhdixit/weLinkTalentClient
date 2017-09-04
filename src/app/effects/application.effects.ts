@@ -33,7 +33,7 @@ export class ApplicationEffects {
 	allJobsApplications$: Observable<Action> = this.actions
 		.ofType(application.ActionType.ADMIN_ALL_JOBS_APPLICATIONS_LOAD)
 		.map((action: application.AdminAllJobsApplicationsLoadAction) => action.payload)
-		.switchMap((payload) => this.jobApplicationService.loadAllJobsApplications()
+		.switchMap((searchQuery) => this.jobApplicationService.loadAllJobsApplications(searchQuery)
 			.map((res) => new application.AdminAllJobsApplicationLoadSuccessAction(res))
 		);
 
