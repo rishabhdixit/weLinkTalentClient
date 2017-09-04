@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { JobApplication } from '../../models/job-application.model';
 
@@ -78,13 +78,16 @@ const emptyRating: number = -10;
 					<div class="col-md-12">
 						<p>Would you rehire the candidate?</p>
 						<div class="form-inline">
-								<input type="checkbox" class="form-control input-radio" value="true" 
-											[checked]="rehireCandidate" 
-											formControlName="rehireCandidate"/>
+								<input type="checkbox"
+									class="form-control input-checkbox"
+									(change)="checkHireCandidate('Yes')"
+									formControlName="hireCandidate"/>
 								<label class="labelWeight">&emsp;Yes&emsp;</label>
-								<input type="checkbox" class="form-control input-radio" value="false" 
-											[checked]="!rehireCandidate" 
-											(click)="isCheckedRehire()"/>
+								<input type="checkbox"
+									[(ngModel)]="unHireCandidate"
+									[ngModelOptions]="{standalone: true}"
+									class="form-control input-checkbox"
+									(change)="checkHireCandidate('No')"/>
 								<label class="labelWeight">&emsp;No&emsp;</label>
 						</div>
 					</div>
@@ -94,13 +97,16 @@ const emptyRating: number = -10;
 					<div class="col-md-12">
 						<p>The hiring manager might need to contact you for additional questions. Please confirm your acceptance:</p>
 						<div class="form-inline">
-							<input type="checkbox" class="form-control input-radio" value="true"
-										[checked]="canBeRecontact"
-										formControlName="canBeRecontact"/>
+							<input type="checkbox"
+								class="form-control input-checkbox"
+								(change)="checkCanBeContact('Yes')"
+								formControlName="canBeContact"/>
 							<label class="labelWeight">&emsp;Yes&emsp;</label>
-							<input type="checkbox" class="form-control input-radio" value="false"
-										(click)="isCheckedRecontact()"
-										[checked]="!canBeRecontact"/>
+							<input type="checkbox"
+								class="form-control input-checkbox"
+								[(ngModel)]="cannotBeContact"
+								[ngModelOptions]="{standalone: true}"
+								(change)="checkCanBeContact('No')"/>
 							<label class="labelWeight">&emsp;No&emsp;</label>
 						</div>
 					</div>
@@ -160,7 +166,7 @@ const emptyRating: number = -10;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;
 		}
-		.input-radio {
+		.input-checkbox {
 			width: 1.2em;
 			height: 1.2em;
 		}
@@ -179,6 +185,9 @@ export class RefereeFeedbackFormComponent implements OnInit {
 	rating: number = emptyRating;
 	clicked: boolean = false;
 
+	unHireCandidate: boolean;
+	cannotBeContact: boolean;
+
 	constructor(public fb: FormBuilder) {	}
 
 	ngOnInit() {
@@ -195,8 +204,8 @@ export class RefereeFeedbackFormComponent implements OnInit {
 			managementStyleApproved: new FormControl(false, [Validators.required]),
 			skillRatings: this.fb.array(this.jobApplication.form_data.skills.map((skill) => this.skillRatingFormGroup(skill))),
 			candidateRate: new FormControl(null, [Validators.required]),
-			rehireCandidate: new FormControl('', [Validators.required]),
-			canBeRecontact: new FormControl('', [Validators.required]),
+			hireCandidate: new FormControl(false, [Validators.required]),
+			canBeContact: new FormControl(false, [Validators.required]),
 		});
 
 		if (this.noOfStars > 0) {
@@ -207,12 +216,36 @@ export class RefereeFeedbackFormComponent implements OnInit {
 		}
 	}
 
-	isCheckedRecontact() {
-		this.refereeFeedbackForm.get('canBeRecontact').setValue(true);
+	checkHireCandidate(value: string): void {
+		if (value === 'Yes') {
+			if (this.refereeFeedbackForm.get('hireCandidate').value) {
+				this.unHireCandidate = false;
+			} else {
+				this.unHireCandidate = true;
+			}
+		} else {
+			if (this.unHireCandidate) {
+				this.refereeFeedbackForm.get('hireCandidate').setValue(false);
+			} else {
+				this.refereeFeedbackForm.get('hireCandidate').setValue(true);
+			}
+		}
 	}
 
-	isCheckedRehire() {
-		this.refereeFeedbackForm.get('rehireCandidate').setValue(true);
+	checkCanBeContact(value: string): void {
+		if (value === 'Yes') {
+			if (this.refereeFeedbackForm.get('canBeContact').value) {
+				this.cannotBeContact = false;
+			} else {
+				this.cannotBeContact = true;
+			}
+		} else {
+			if (this.cannotBeContact) {
+				this.refereeFeedbackForm.get('canBeContact').setValue(false);
+			} else {
+				this.refereeFeedbackForm.get('canBeContact').setValue(true);
+			}
+		}
 	}
 
 	onMouseOver(index: number) {
@@ -265,7 +298,6 @@ export class RefereeFeedbackFormComponent implements OnInit {
 		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating);
 		const refereeFeedback = this.refereeFeedbackForm.value;
 		this.submitRefereeFeedbackEvent.emit(refereeFeedback);
-		console.log('Values of the Form:', refereeFeedback);
 	}
 
 	onClickNewRating(rate: any) {

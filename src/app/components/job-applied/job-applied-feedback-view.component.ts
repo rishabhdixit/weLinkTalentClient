@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
@@ -103,11 +103,13 @@ import { isUndefined } from 'util';
 			<div class="col-md-12">
 				<p>Would you rehire the candidate?</p>
 				<div class="form-inline">
-					<input type="checkbox" class="form-control input-radio"
-								[checked]="feedback.rehireCandidate" disabled/>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="feedback.rehireCandidate" disabled/>
 					<label class="labelWeight">&emsp;Yes&emsp;</label>
-					<input type="checkbox" class="form-control input-radio"
-								[checked]="!feedback.rehireCandidate" disabled/>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="!feedback.rehireCandidate" disabled/>
 					<label class="labelWeight">&emsp;No&emsp;</label>
 				</div>
 			</div>
@@ -117,11 +119,13 @@ import { isUndefined } from 'util';
 			<div class="col-md-12">
 				<p>The hiring manager might need to contact you for additional questions. Please confirm your acceptance:</p>
 				<div class="form-inline">
-					<input type="checkbox" class="form-control input-radio"
-								[checked]="feedback.canBeRecontact" disabled/>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="feedback.canBeRecontact" disabled/>
 					<label class="labelWeight">&emsp;Yes&emsp;</label>
-					<input type="checkbox" class="form-control input-radio"
-								[checked]="!feedback.canBeRecontact" disabled/>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="!feedback.canBeRecontact" disabled/>
 					<label class="labelWeight">&emsp;No&emsp;</label>
 				</div>
 			</div>
@@ -129,10 +133,10 @@ import { isUndefined } from 'util';
 		<br/>
 		<div class="row" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" ></div>
 		<div class="col-md-12" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
-		<hr>
+			<hr>
 			<div class="form-inline text-center">
-				<input type="checkbox" class="form-control input-radio" 
-				(change)="approveRefereeFeedback(jobApplied, selectedFeedBack)"/>
+				<input type="checkbox" class="form-control input-checkbox" 
+					(change)="approveRefereeFeedback(jobApplied, selectedFeedBack)"/>
 				<label>&emsp;Attach this reference to your application?</label>
 			</div>
 		</div>
@@ -166,12 +170,12 @@ import { isUndefined } from 'util';
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;
 		}
-		.color-white{
+		.color-white {
 			color: white;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;
 		}
-		.input-radio {
+		.input-checkbox {
 			width: 1.2em;
 			height: 1.2em;
 		}
