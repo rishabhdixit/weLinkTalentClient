@@ -17,16 +17,6 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
-		<!--<div class="col-md-12" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" style="padding-bottom: 39px;"></div>-->
-		<!--<div class="row" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">-->
-			<!--<div class="col-md-12 pull-right">-->
-				<!--<button-->
-					<!--type="button" class="btn btn-primary"-->
-					<!--(click)="approveRefereeFeedback(jobApplied, selectedFeedBack)">-->
-					<!--Approve-->
-				<!--</button>-->
-			<!--</div>-->
-		<!--</div>-->
 		<br/><br/><br/>
 		<div class="row" style="padding-top: 2px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
@@ -92,7 +82,7 @@ import { isUndefined } from 'util';
 		<br/>
 		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<p>Do you agree that <strong>Candidate's Name</strong> is qualified in skills and personality in doing this role?</p>
+				<p>Do you agree that the candidate is qualified in skills and personality in doing this role?</p>
 				<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
 					<i [ngClass]="getCandidateRate(feedback.candidateRate, counter)"></i>
 				</ng-container>
@@ -100,12 +90,12 @@ import { isUndefined } from 'util';
 		</div>
 		<br/>
 		<div class="row">
-			<div class="col-md-12">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<p>Would you rehire the candidate?</p>
 				<div class="form-inline">
 					<input type="checkbox"
 						class="form-control input-checkbox"
-						[checked]="feedback.hireCandidate" disabled/>
+						[checked]="feedback.hireCandidate"  disabled/>
 					<label class="labelWeight">&emsp;Yes&emsp;</label>
 					<input type="checkbox"
 						class="form-control input-checkbox"
@@ -116,7 +106,7 @@ import { isUndefined } from 'util';
 		</div>
 		<br/>
 		<div class="row">
-			<div class="col-md-12">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<p>The hiring manager might need to contact you for additional questions. Please confirm your acceptance:</p>
 				<div class="form-inline">
 					<input type="checkbox"
@@ -220,7 +210,7 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 
 	constructor(private store: Store<fromRoot.State>) {	}
 
-	ngOnInit() { }
+	ngOnInit() {	}
 
 	ngOnChanges(changes: any): void {
 		if (this.jobApplied) {

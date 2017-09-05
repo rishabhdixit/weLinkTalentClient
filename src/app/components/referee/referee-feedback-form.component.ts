@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { JobApplication } from '../../models/job-application.model';
+import {User} from '../../models/user.model';
 
 const emptyRating: number = -10;
 @Component({
@@ -63,7 +64,7 @@ const emptyRating: number = -10;
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<p>Do you agree that <strong>{{ jobApplication.user_id }}</strong> is qualified in skills and personality in doing this role?</p>
+						<p>Do you agree that the candidate is qualified in skills and personality in doing this role?</p>
 						<ng-container *ngFor="let num of [0, 1, 2, 3, 4]">
 							<i (mouseover)="onMouseOver(num)" 
 							   (mouseleave)="onMouseLeave(num)"
@@ -173,7 +174,7 @@ const emptyRating: number = -10;
 	`],
 })
 
-export class RefereeFeedbackFormComponent implements OnInit {
+export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
 	@Input() jobApplication: JobApplication;
 	@Output() submitRefereeFeedbackEvent = new EventEmitter<RefereeFeedback>();
 
@@ -181,12 +182,12 @@ export class RefereeFeedbackFormComponent implements OnInit {
 
 	@Input() noOfStars: number = 5;
 	@Input() currRating: number = emptyRating;
-	@Output() newRating = new EventEmitter();
 	rating: number = emptyRating;
 	clicked: boolean = false;
 
 	unHireCandidate: boolean;
 	canBeContact: boolean;
+	user: User;
 
 	constructor(public fb: FormBuilder) {	}
 
@@ -215,6 +216,8 @@ export class RefereeFeedbackFormComponent implements OnInit {
 			}
 		}
 	}
+
+	ngOnChanges(): void {	}
 
 	checkHireCandidate(value: string): void {
 		if (value === 'Yes') {
