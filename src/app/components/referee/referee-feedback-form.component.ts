@@ -63,7 +63,7 @@ const emptyRating: number = -10;
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<p>Do you agree that <strong>Candidate's First Name</strong> is qualified in skills and personality in doing this role?</p>
+						<p>Do you agree that <strong>{{ jobApplication.user_id }}</strong> is qualified in skills and personality in doing this role?</p>
 						<ng-container *ngFor="let num of [0, 1, 2, 3, 4]">
 							<i (mouseover)="onMouseOver(num)" 
 							   (mouseleave)="onMouseLeave(num)"
@@ -104,7 +104,7 @@ const emptyRating: number = -10;
 							<label class="labelWeight">&emsp;Yes&emsp;</label>
 							<input type="checkbox"
 								class="form-control input-checkbox"
-								[(ngModel)]="cannotBeContact"
+								[(ngModel)]="canBeContact"
 								[ngModelOptions]="{standalone: true}"
 								(change)="checkCanBeContact('No')"/>
 							<label class="labelWeight">&emsp;No&emsp;</label>
@@ -186,7 +186,7 @@ export class RefereeFeedbackFormComponent implements OnInit {
 	clicked: boolean = false;
 
 	unHireCandidate: boolean;
-	cannotBeContact: boolean;
+	canBeContact: boolean;
 
 	constructor(public fb: FormBuilder) {	}
 
@@ -235,12 +235,12 @@ export class RefereeFeedbackFormComponent implements OnInit {
 	checkCanBeContact(value: string): void {
 		if (value === 'Yes') {
 			if (this.refereeFeedbackForm.get('canBeContact').value) {
-				this.cannotBeContact = false;
+				this.canBeContact = false;
 			} else {
-				this.cannotBeContact = true;
+				this.canBeContact = true;
 			}
 		} else {
-			if (this.cannotBeContact) {
+			if (this.canBeContact) {
 				this.refereeFeedbackForm.get('canBeContact').setValue(false);
 			} else {
 				this.refereeFeedbackForm.get('canBeContact').setValue(true);
@@ -277,7 +277,6 @@ export class RefereeFeedbackFormComponent implements OnInit {
 		}
 		this.clicked = true;
 		this.rating = index;
-		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating);
 		// this.newRating.emit(this.rating);
 	}
 
@@ -295,7 +294,7 @@ export class RefereeFeedbackFormComponent implements OnInit {
 	}
 
 	submitButtonClicked() {
-		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating);
+		this.refereeFeedbackForm.get('candidateRate').setValue(this.rating + 1);
 		const refereeFeedback = this.refereeFeedbackForm.value;
 		this.submitRefereeFeedbackEvent.emit(refereeFeedback);
 	}

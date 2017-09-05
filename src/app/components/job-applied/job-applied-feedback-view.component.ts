@@ -105,11 +105,11 @@ import { isUndefined } from 'util';
 				<div class="form-inline">
 					<input type="checkbox"
 						class="form-control input-checkbox"
-						[checked]="feedback.rehireCandidate" disabled/>
+						[checked]="feedback.hireCandidate" disabled/>
 					<label class="labelWeight">&emsp;Yes&emsp;</label>
 					<input type="checkbox"
 						class="form-control input-checkbox"
-						[checked]="!feedback.rehireCandidate" disabled/>
+						[checked]="!feedback.hireCandidate" disabled/>
 					<label class="labelWeight">&emsp;No&emsp;</label>
 				</div>
 			</div>
@@ -121,11 +121,11 @@ import { isUndefined } from 'util';
 				<div class="form-inline">
 					<input type="checkbox"
 						class="form-control input-checkbox"
-						[checked]="feedback.canBeRecontact" disabled/>
+						[checked]="feedback.cannotBeContact" disabled/>
 					<label class="labelWeight">&emsp;Yes&emsp;</label>
 					<input type="checkbox"
 						class="form-control input-checkbox"
-						[checked]="!feedback.canBeRecontact" disabled/>
+						[checked]="!feedback.cannotBeContact" disabled/>
 					<label class="labelWeight">&emsp;No&emsp;</label>
 				</div>
 			</div>
@@ -213,15 +213,14 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 			comment: '',
 			approved: false
 		},
-		rehireCandidate: false,
-		canBeRecontact: false,
+		candidateRate: null,
+		hireCandidate: false,
+		cannotBeContact: false,
 	};
 
 	constructor(private store: Store<fromRoot.State>) {	}
 
-	ngOnInit() {
-		console.log('Application Feedback', this.selectedFeedBack);
-	}
+	ngOnInit() { }
 
 	ngOnChanges(changes: any): void {
 		if (this.jobApplied) {
@@ -319,8 +318,9 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 				comment: paramFeedback.managementStyleFeedback,
 				approved: paramFeedback.managementStyleApproved
 			};
-			this.feedback.rehireCandidate = paramFeedback.rehireCandidate;
-			this.feedback.rehireCandidate = paramFeedback.canBeRecontact;
+			this.feedback.candidateRate = paramFeedback.candidateRate;
+			this.feedback.hireCandidate = paramFeedback.rehireCandidate;
+			this.feedback.cannotBeContact = paramFeedback.canBeContact;
 		}
 	}
 
@@ -340,8 +340,9 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		feedback.skillRatings = value.skillRatings;
 		feedback.referee_profile = value.referee_profile;
 		feedback.approved_by_candidate = value.approved_by_candidate;
-		feedback.rehireCandidate = value.rehireCandidate;
-		feedback.canBeRecontact = value.canBeRecontact;
+		feedback.candidateRate = value.candidateRate;
+		feedback.rehireCandidate = value.hireCandidate;
+		feedback.canBeContact = value.canBeContact;
 		return feedback;
 	}
 }

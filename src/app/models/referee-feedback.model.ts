@@ -22,5 +22,5 @@ export class RefereeFeedback {
 	approved_by_candidate: boolean;
 	candidateRate: number;
 	rehireCandidate: boolean;
-	canBeRecontact: boolean;
+	canBeContact: boolean;
 }
