@@ -3,7 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { isUndefined } from 'util';
 
+import { Skill } from '../../models/skill.model';
 import { Profile } from '../../models/profile.model';
+import { WorkExperience } from '../../models/work-experience.model';
 
 @Component({
 	moduleId: module.id,
@@ -29,7 +31,13 @@ export class ProfileViewComponent implements OnInit {
 	months: Array<String> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 	days: Array<String> = [];
 	years: Array<Number> = [];
+	birthYears: Array<Number> = [];
 	periodYears: Array<Number> = [];
+
+	birthDateMonth: number;
+	birthDateDay: number;
+	birthDateYear: number;
+	birthDateDisable: boolean = true;
 
 	visaValidityMonth: number;
 	visaValidityDay: number;
@@ -96,13 +104,41 @@ export class ProfileViewComponent implements OnInit {
 		});
 	}
 
-	addWorkExperience(): void {
-		this.workExperiences.push(this.initWorkExperience());
-		this.workExperienceTimePeriods.push(this.timePeriod);
+	addWorkExperience(experience: WorkExperience = null): void {
+		if (experience === null) {
+			this.workExperiences.push(this.initWorkExperience());
+			this.workExperienceTimePeriods.push(this.timePeriod);
+		} else {
+			let workExperienceGroup = this.initWorkExperience();
+			let period = this.timePeriod;
+			workExperienceGroup.get('title').setValue(experience.title);
+			workExperienceGroup.get('company.name').setValue(experience.company.name);
+			workExperienceGroup.get('address').setValue(experience.address);
+			workExperienceGroup.get('startDate').setValue(experience.startDate);
+			workExperienceGroup.get('endDate').setValue(experience.endDate);
+			workExperienceGroup.get('responsibilities').setValue(experience.responsibilities);
+
+			let startDate = new Date(experience.startDate);
+			let endDate = new Date(experience.endDate);
+
+			period.startDate.month = startDate.getMonth();
+			period.startDate.year = startDate.getFullYear();
+			period.endDate.month = endDate.getMonth();
+			period.endDate.year = endDate.getFullYear();
+
+			this.workExperiences.push(workExperienceGroup);
+			this.workExperienceTimePeriods.push(period);
+		}
 	}
 
-	addSkill(): void {
-		this.skills.push(this.initSkill());
+	addSkill(skill: Skill = null): void {
+		if (skill === null) {
+			this.skills.push(this.initSkill());
+		} else {
+			let skillGroup = this.initSkill();
+			skillGroup.get('name').setValue(skill.name);
+			this.skills.push(skillGroup);
+		}
 	}
 
 	saveWorkExperiences(): void {
@@ -149,16 +185,11 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	resetWorkExperiences(): void {
-		while (this.workExperiences.length > 0) {
-			this.workExperiences.removeAt(0);
-			this.workExperienceTimePeriods.splice(0, 1);
-		}
+		this.initWorkExperiences();
 	}
 
 	resetSkills(): void {
-		while (this.skills.length > 0) {
-			this.skills.removeAt(0);
-		}
+		this.initSkills();
 	}
 
 	saveProfile(): void {
@@ -280,6 +311,16 @@ export class ProfileViewComponent implements OnInit {
 		}
 	}
 
+	onChangeBirthDate(): void {
+		// new Date(Year, Month, Day)
+		// Month [0 - 11]
+		if (this.birthDateMonth && this.birthDateDay && this.birthDateYear) {
+			this.profileForm.get('birthDate').setValue(
+				new Date(this.birthDateYear, this.birthDateMonth, this.birthDateDay)
+			);
+		}
+	}
+
 	onChangeVisaValidity(): void {
 		// new Date(Year, Month, Day)
 		// Month [0 - 11]
@@ -355,6 +396,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('noticePeriodNegotiable').disable();
 		this.profileForm.get('summary').disable();
 		this.isVisaValidityDisable = true;
+		this.birthDateDisable = true;
 	}
 
 	private profileFormEnable(): void {
@@ -371,6 +413,7 @@ export class ProfileViewComponent implements OnInit {
 		this.profileForm.get('noticePeriodNegotiable').enable();
 		this.profileForm.get('summary').enable();
 		this.isVisaValidityDisable = false;
+		this.birthDateDisable = false;
 	}
 
 	private profileFormCurrentSalaryDisable(): void {
@@ -471,12 +514,17 @@ export class ProfileViewComponent implements OnInit {
 		let currentYear = (new Date()).getFullYear();
 		let year = currentYear - 10;
 		let periodYear = currentYear - 30;
+		let birthDateYear = 1900;
 		while (year <= currentYear + 10) {
 			this.years.push(year++);
 		}
 
 		while (periodYear <= currentYear) {
 			this.periodYears.push(periodYear++);
+		}
+
+		while (birthDateYear <= currentYear) {
+			this.birthYears.push(birthDateYear++);
 		}
 	}
 
@@ -566,8 +614,26 @@ export class ProfileViewComponent implements OnInit {
 				percentageTravelAccepted: !this.isValueUndefined(this.profile.miscellaneous) ? this.profile.miscellaneous.percentageTravelAccepted : '',
 				drivingLicense: !this.isValueUndefined(this.profile.miscellaneous) ? this.profile.miscellaneous.drivingLicense : ''
 			},
-			// workExperiences: this.profile.workExperiences,
 			skills: this.profile.skills
 		});
+		this.initWorkExperiences();
+	}
+
+	private initSkills(): void {
+		while (this.skills.length > 0) {
+			this.skills.removeAt(0);
+		}
+		for (let skill of this.profile.skills) {
+			this.addSkill(skill);
+		}
+	}
+
+	private initWorkExperiences(): void {
+		while (this.workExperiences.length > 0) {
+			this.workExperiences.removeAt(0);
+		}
+		for (let workExperience of this.profile.workExperiences) {
+			this.addWorkExperience(workExperience);
+		}
 	}
 }

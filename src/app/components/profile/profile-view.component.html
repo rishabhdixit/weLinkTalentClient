@@ -34,9 +34,21 @@
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-5">
-							<label for="birthDate" class="labelWeight">Date of Birth<i class="red-color"> * </i></label>
-							<input type="Date" class="form-control" id="birthDate" formControlName="birthDate" required/>
-							<div *ngIf="isFormControlInvalid('birthDate')"
+							<div class="form-inline">
+								<label class="labelWeight">Date of Birth<i class="red-color"> * </i></label>
+							</div>
+							<div class="form-inline" style="padding-top: 8px;">
+								<select style="width: 30.5%;" class="form-control" [disabled]="birthDateDisable" [(ngModel)]="birthDateMonth" [ngModelOptions]="{standalone: true}" (change)="onChangeBirthDate()">
+									<option style="width: 30.5%;" *ngFor="let month of months; let i=index;" value="{{i}}">{{month}}</option>
+								</select>&nbsp;<b>:</b>&nbsp;
+								<select style="width: 30.5%;" class="form-control" [disabled]="birthDateDisable"  [(ngModel)]="birthDateDay" [ngModelOptions]="{standalone: true}" (change)="onChangeBirthDate()">
+									<option style="width: 30.5%;" *ngFor="let day of days; let i=index;" value="{{i+1}}">{{day}}</option>
+								</select>&nbsp;<b>:</b>&nbsp;
+								<select style="width: 30.5%;" class="form-control" [disabled]="birthDateDisable"  [(ngModel)]="birthDateYear" [ngModelOptions]="{standalone: true}" (change)="onChangeBirthDate()">
+									<option style="width: 30.5%;" *ngFor="let year of birthYears; let i=index;" value="{{year}}">{{year}}</option>
+								</select>
+							</div>
+							<div *ngIf="profileForm.get('birthDate').invalid"
 									 class="alert alert-danger form-control">Please fill out this field!</div>
 						</div>
 						<div class="col-md-7"></div>
@@ -102,14 +114,14 @@
 								<label class="labelWeight">End of validity<i class="red-color"> * </i></label>
 							</div>
 							<div class="form-inline" style="padding-top: 8px;">
-								<select style="width: 30%;" class="form-control" [disabled]="isVisaValidityDisable" [(ngModel)]="visaValidityMonth" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
-									<option style="width: 30%;" *ngFor="let month of months; let i=index;" value="{{i}}">{{month}}</option>
+								<select style="width: 30.5%;" class="form-control" [disabled]="isVisaValidityDisable" [(ngModel)]="visaValidityMonth" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
+									<option style="width: 30.5%;" *ngFor="let month of months; let i=index;" value="{{i}}">{{month}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<select style="width: 30%;" class="form-control" [disabled]="isVisaValidityDisable"  [(ngModel)]="visaValidityDay" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
-									<option style="width: 30%;" *ngFor="let day of days; let i=index;" value="{{i+1}}">{{day}}</option>
+								<select style="width: 30.5%;" class="form-control" [disabled]="isVisaValidityDisable"  [(ngModel)]="visaValidityDay" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
+									<option style="width: 30.5%;" *ngFor="let day of days; let i=index;" value="{{i+1}}">{{day}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<select style="width: 30%;" class="form-control" [disabled]="isVisaValidityDisable"  [(ngModel)]="visaValidityYear" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
-									<option style="width: 30%;" *ngFor="let year of years; let i=index;" value="{{year}}">{{year}}</option>
+								<select style="width: 30.5%;" class="form-control" [disabled]="isVisaValidityDisable"  [(ngModel)]="visaValidityYear" [ngModelOptions]="{standalone: true}" (change)="onChangeVisaValidity()">
+									<option style="width: 30.5%;" *ngFor="let year of years; let i=index;" value="{{year}}">{{year}}</option>
 								</select>
 							</div>
 							<div *ngIf="profileForm.get('visaValidity').invalid"
