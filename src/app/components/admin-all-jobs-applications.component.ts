@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
 
 @Component({
@@ -7,34 +7,32 @@ import { JobApplication } from '../models/job-application.model';
 		<div class="row">
 			<table class="table table-bordered">
 				<thead>
-				<tr>
-					<th> Candidate Name</th>
-					<th> Company</th>
-					<th> Job Title</th>
-					<th> Availability</th>
-					<th> Status</th>
-					<th> Contacted</th>
-					<th> Reviewed</th>
-					<th> Comment</th>
-					<th> Application Date</th>
-					<th> Update </th>
-				</tr>
+					<tr class="text-center">
+						<th class="text-center width_100">Company</th>
+						<th class="text-center width_100">Job Title</th>
+						<th class="text-center width_100">Candidate Name</th>
+						<th class="text-center width_20">Contacted</th>
+						<th class="text-center width_20">Reviewed</th>
+						<th class="text-center width_250">Comment</th>
+						<th class="text-center width_40">Creation Date</th>
+						<th class="text-center width_20">Action</th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let application of jobApplications; let i = index" class="text-center">
-						<td> {{ application.user.firstName }} {{ application.user.lastName }}</td>
-						<td> {{ application.job.company.name }}</td>
-						<td> {{ application.job.title }}</td>
-						<td> {{ application.availability }}</td>
-						<td> {{ application.status }}</td>
+						<td class="word-wrap">{{ application.job.company.name }}</td>
+						<td class="word-wrap">{{ application.job.title }}</td>
+						<td class="word-wrap">{{ application.user.firstName }} {{ application.user.lastName }}</td>
 						<td>
 							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantContacted[i]"/>
 						</td>
 						<td>
 							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantReviewed[i]"/>
 						</td>
-						<td><input type="text" class="form-control" [(ngModel)]="applicantComment[i]"/></td>
-						<td> Date</td>
+						<td class="word-wrap">
+							<input type="text" class="form-control" [(ngModel)]="applicantComment[i]"/>
+						</td>
+						<td class="word-wrap">{{ application.createdAt | date: 'yyyy-mm-dd' }}</td>
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
 						</td>
@@ -45,12 +43,8 @@ import { JobApplication } from '../models/job-application.model';
 	`,
 	styles: [`
 		.input-checkbox {
-			border-radius: 0.25em;
-			width: 1.7em;
-			height: 1.7em;
-		}
-		th {
-			text-align: center;
+			width: 1.2em;
+			height: 1.2em;
 		}
 	`],
 })
