@@ -38,7 +38,8 @@ import { JobApplication } from '../../models/job-application.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let manage of management">
 								<input type="radio" class="input-radio" value="{{ manage.value }}" 
-											[(ngModel)]="jobApplied.form_data.management" disabled/>
+												[(ngModel)]="jobApplication.form_data.management" 
+												[ngModelOptions]="{standalone: true}" disabled/>
 								<label>&emsp;{{ manage.value }}</label>
 							</li>
 						</ul>
@@ -49,7 +50,8 @@ import { JobApplication } from '../../models/job-application.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let lead of leadership">
 								<input type="radio" class="input-radio" value="{{ lead.value }}" 
-												[(ngModel)]="jobApplied.form_data.leadership" disabled/>
+												[(ngModel)]="jobApplication.form_data.leadership" 
+												[ngModelOptions]="{standalone: true}" disabled/>
 								<label>&emsp;{{ lead.value }}</label>
 							</li>
 						</ul>
@@ -60,7 +62,8 @@ import { JobApplication } from '../../models/job-application.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let selfManage of self_management">
 								<input type="radio" class="input-radio" value="{{ selfManage.value }}" 
-											[(ngModel)]="jobApplied.form_data.selfManagement" disabled/>
+											[(ngModel)]="jobApplication.form_data.selfManagement" 
+											[ngModelOptions]="{standalone: true}" disabled/>
 								<label>&emsp;{{ selfManage.value }}</label>
 							</li>
 						</ul>
@@ -71,8 +74,9 @@ import { JobApplication } from '../../models/job-application.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let relation of relationship">
 								<input type="radio" class="input-radio" value="{{ relation.value }}" 
-											[(ngModel)]="jobApplied.form_data.relationship" disabled/>
-								<label>&emsp;{{ relation.value }}</label>
+												[(ngModel)]="jobApplication.form_data.relationship" 
+												[ngModelOptions]="{standalone: true}" disabled/>
+								<label>&emsp;{{ relation.value }} Pakyu</label>
 							</li>
 						</ul>
 					</div>
@@ -82,7 +86,8 @@ import { JobApplication } from '../../models/job-application.model';
 						<ul class="list-unstyled">
 							<li *ngFor="let analytic of analytics">
 								<input type="radio" class="input-radio" value="{{ analytic.value }}" 
-											[(ngModel)]="jobApplied.form_data.analytical" disabled/>
+											[(ngModel)]="jobApplication.form_data.analytical" 
+											[ngModelOptions]="{standalone: true}" disabled/>
 								<label>&emsp;{{ analytic.value }}</label>
 							</li>
 						</ul>
@@ -91,13 +96,13 @@ import { JobApplication } from '../../models/job-application.model';
 					<div class="form-group">
 						<h6 style="color: #57148D;">Why are you best fit for this job</h6>
 						<textarea class="form-control" id="fitToJobReason" name="fitToJobReason" rows="5" 
-											[(ngModel)]="jobApplication.form_data.fitToJobReason" required readonly></textarea>
+											[(ngModel)]="jobApplication.form_data.fitToJobReason" readonly></textarea>
 					</div>
 					<br/>
 					<div class="form-group">
 						<h6 style="color: #57148D;">What are the achievements related to this job you are the proudest of?</h6>
 						<textarea class="form-control" id="jobRelatedAchievements" name="jobRelatedAchievements" rows="5" 
-											[(ngModel)]="jobApplication.form_data.jobRelatedAchievements" required readonly></textarea>
+											[(ngModel)]="jobApplication.form_data.jobRelatedAchievements" readonly></textarea>
 					</div>
 				</div>
 			</div>
