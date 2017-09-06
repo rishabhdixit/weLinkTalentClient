@@ -57,7 +57,7 @@ const emptyRating: number = -10;
 						I APPROVE
 					</label>
 				</div>
-				<br/>
+				<br/><br/>
 				<div class="form-group" style="margin-top: 12px;">
 					<textarea class="form-control" rows="5" formControlName="relationshipFeedback" required > </textarea>
 					<label>
@@ -73,7 +73,7 @@ const emptyRating: number = -10;
 						I APPROVE
 					</label>
 				</div>
-				<br/>
+				<br/><br/><br/>
 				<div class="form-group" style="margin-top: 10px;">
 					<textarea class="form-control" rows="5" formControlName="fitToJobReasonFeedback" required > </textarea>
 					<label>
