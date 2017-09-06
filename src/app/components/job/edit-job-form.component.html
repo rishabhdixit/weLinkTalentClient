@@ -113,7 +113,13 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary From<i class="color-red"> * </i></label>
-								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="salary_from" placeholder="Salary From" required/>
+								<input type="text"
+											 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+											 class="form-control"
+											 formControlName="salary_from"
+											 (focus)="onFocusThousandSeparator('salary_from')"
+											 (blur)="onBlurThousandSeparator('salary_from')"
+											 placeholder="Salary From" required/>
 								<div *ngIf="editJobForm.get('salary_from').touched && editJobForm.get('salary_from').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -121,7 +127,13 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary To<i class="color-red"> * </i></label>
-								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" formControlName="salary_to" placeholder="Salary To" required/>
+								<input type="text"
+											 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+											 class="form-control"
+											 formControlName="salary_to"
+											 (focus)="onFocusThousandSeparator('salary_to')"
+											 (blur)="onBlurThousandSeparator('salary_to')"
+											 placeholder="Salary To" required/>
 								<div *ngIf="editJobForm.get('salary_to').touched && editJobForm.get('salary_to').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -247,7 +259,7 @@
 							<div class="form-group">
 								<label class="labelWeight">Company Name<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="name" placeholder="Company Name" required/>
-								<div *ngIf="editJobForm.controls['company'].get('name').touched && editJobForm.controls['company'].get('name').invalid"
+								<div *ngIf="editJobForm.get('company.name').touched && editJobForm.get('company.name').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
@@ -257,7 +269,7 @@
 							<div class="form-group">
 								<label class="labelWeight">Address<i class="color-red"> * </i></label>
 								<input type="text" class="form-control" formControlName="address" placeholder="Complete Address" required/>
-								<div *ngIf="editJobForm.controls['company'].get('address').touched && editJobForm.controls['company'].get('address').invalid"
+								<div *ngIf="editJobForm.get('company.address').touched && editJobForm.get('company.address').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
@@ -298,9 +310,11 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="labelWeight">Email Address<i class="color-red"> * </i></label>
-								<input type="text" class="form-control" formControlName="email" placeholder="Email Address" required/>
-								<div *ngIf="editJobForm.controls['company'].get('email').touched && editJobForm.controls['company'].get('email').invalid"
-								     class="alert alert-danger form-control">Please fill out this field!</div>
+								<input type="email" class="form-control" formControlName="email" placeholder="Email Address" required/>
+								<div *ngIf="editJobForm.get('company.email').touched && editJobForm.get('company.email').invalid">
+									<p class="alert alert-danger form-control" *ngIf="editJobForm.get('company.email').errors?.required">Please fill out this field!</p>
+									<p class="alert alert-danger form-control" *ngIf="editJobForm.get('company.email').errors?.incorrectMailFormat">Email format is invalid!</p>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -334,7 +348,7 @@
 							<div class="form-group">
 								<label class="labelWeight">About the Company<i class="color-red"> * </i></label>
 								<textarea class="form-control" rows="10" formControlName="about" placeholder="About Company"></textarea>
-								<div *ngIf="editJobForm.controls['company'].get('about').touched && editJobForm.controls['company'].get('about').invalid"
+								<div *ngIf="editJobForm.get('company.about').touched && editJobForm.get('company.about').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>

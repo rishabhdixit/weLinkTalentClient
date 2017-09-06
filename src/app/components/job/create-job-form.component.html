@@ -113,7 +113,14 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary From<i class="red-color"> * </i></label>
-								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="salary_from" formControlName="salary_from" placeholder="Salary From" required/>
+								<input type="text"
+											 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+											 class="form-control"
+											 name="salary_from"
+											 formControlName="salary_from"
+											 (focus)="onFocusThousandSeparator('salary_from')"
+											 (blur)="onBlurThousandSeparator('salary_from')"
+											 placeholder="Salary From" required/>
 								<div *ngIf="createJobForm.get('salary_from').touched && createJobForm.get('salary_from').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -121,7 +128,14 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="labelWeight">Salary To<i class="red-color"> * </i></label>
-								<input type="number" min="0" onkeypress="return event.charCode >= 48" class="form-control" name="salary_to" formControlName="salary_to" placeholder="Salary To" required/>
+								<input type="text"
+											 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+											 class="form-control"
+											 name="salary_to"
+											 formControlName="salary_to"
+											 (focus)="onFocusThousandSeparator('salary_to')"
+											 (blur)="onBlurThousandSeparator('salary_to')"
+											 placeholder="Salary To" required/>
 								<div *ngIf="createJobForm.get('salary_to').touched && createJobForm.get('salary_to').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
@@ -250,7 +264,7 @@
 							<div class="form-group">
 								<label class="labelWeight">Company Name<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="name" formControlName="name" placeholder="Company Name" required/>
-								<div *ngIf="createJobForm.controls['company'].get('name').touched && createJobForm.controls['company'].get('name').invalid"
+								<div *ngIf="createJobForm.get('company.name').touched && createJobForm.get('company.name').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
@@ -260,7 +274,7 @@
 							<div class="form-group">
 								<label class="labelWeight">Address<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" name="address" formControlName="address" placeholder="Complete Address" required/>
-								<div *ngIf="createJobForm.controls['company'].get('address').touched && createJobForm.controls['company'].get('address').invalid"
+								<div *ngIf="createJobForm.get('company.address').touched && createJobForm.get('company.address').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>
@@ -303,8 +317,10 @@
 							<div class="form-group">
 								<label class="labelWeight">Email Address<i class="red-color"> * </i></label>
 								<input type="text" class="form-control" formControlName="email" placeholder="Email Address" required/>
-								<div *ngIf="createJobForm.controls['company'].get('email').touched && createJobForm.controls['company'].get('email').invalid"
-								     class="alert alert-danger form-control">Please fill out this field!</div>
+								<div *ngIf="createJobForm.get('company.email').touched && createJobForm.get('company.email').invalid">
+									<p class="alert alert-danger form-control" *ngIf="createJobForm.get('company.email').errors?.required">Please fill out this field!</p>
+									<p class="alert alert-danger form-control" *ngIf="createJobForm.get('company.email').errors?.incorrectMailFormat">Email format is invalid!</p>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -337,7 +353,7 @@
 							<div class="form-group">
 								<label class="labelWeight">About the Company<i class="red-color"> * </i></label>
 								<textarea class="form-control" rows="10" formControlName="about" placeholder="About Company"></textarea>
-								<div *ngIf="createJobForm.controls['company'].get('about').touched && createJobForm.controls['company'].get('about').invalid"
+								<div *ngIf="createJobForm.get('company.about').touched && createJobForm.get('company.about').invalid"
 								     class="alert alert-danger form-control">Please fill out this field!</div>
 							</div>
 						</div>

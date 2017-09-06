@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThousandSeparatorPipe } from '../../pipe/thousand-separator.pipe';
+import { GlobalValidator } from '../../validator/global.validator';
 import { DOCUMENT } from '@angular/common';
 import * as _ from 'lodash';
 import { Store } from '@ngrx/store';
@@ -15,12 +17,6 @@ import * as fromRoot from '../../reducers';
 		.labelWeight {
 			font-weight: bolder;
 			margin-top: 5px;
-		}
-		.color-red {
-			color: red;
-		}
-		.btn {
-			border-radius: 0%;
 		}
 		.add-button {
 			color: blue;
@@ -62,7 +58,11 @@ export class EditJobFormComponent implements OnInit {
 		return <FormGroup>this.editJobForm.controls['company'];
 	}
 
-	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>, @Inject(DOCUMENT) private document: Document) {}
+	constructor(
+		public fb: FormBuilder,
+		private store: Store<fromRoot.State>,
+		@Inject(DOCUMENT) private document: Document,
+		private thousandSeparator: ThousandSeparatorPipe) {}
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
@@ -77,7 +77,9 @@ export class EditJobFormComponent implements OnInit {
 				name: new FormControl(this.selectedJob.company ? this.selectedJob.company.name : '', [Validators.required]),
 				address: new FormControl(this.selectedJob.company ? this.selectedJob.company.address : '', [Validators.required]),
 				about: new FormControl(this.selectedJob.company ? this.selectedJob.company.about : '', [Validators.required]),
-				email: new FormControl(this.selectedJob.company ? this.selectedJob.company.email : '', [Validators.required]),
+				email: new FormControl(
+					this.selectedJob.company ? this.selectedJob.company.email : '', [Validators.required, GlobalValidator.mailFormat]
+				),
 				twitter_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.twitter_profile : ''),
 				linkedin_profile: new FormControl(this.selectedJob.company ? this.selectedJob.company.linkedin_profile : ''),
 				phone_numbers: this.fb.array(this.initCompanyPhoneNumbers()),
@@ -223,6 +225,18 @@ export class EditJobFormComponent implements OnInit {
 		}
 	}
 
+	onFocusThousandSeparator(controlName: string): void {
+		this.editJobForm.get(controlName).setValue(
+			this.parseAmount(this.editJobForm.get(controlName).value)
+		);
+	}
+
+	onBlurThousandSeparator(controlName: string): void {
+		this.editJobForm.get(controlName).setValue(
+			this.transformAmount(this.editJobForm.get(controlName).value)
+		);
+	}
+
 	private setEmployerId(): void {
 		this.editJobForm.controls['employer_id'].setValue(this.user.id);
 	}
@@ -245,5 +259,13 @@ export class EditJobFormComponent implements OnInit {
 
 	validateFields(control: FormControl): boolean {
 		return control.touched && control.invalid;
+	}
+
+	private parseAmount(amount: string): string {
+		return this.thousandSeparator.parse(amount);
+	}
+
+	private transformAmount(amount: string): string {
+		return this.thousandSeparator.transform(amount);
 	}
 }

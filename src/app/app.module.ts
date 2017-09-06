@@ -70,6 +70,8 @@ import { AdminAllJobsApplicationsPageComponent } from './containers/Admin/admin-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+// Custom Pipe
+import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 
 @NgModule({
 	declarations: [
@@ -93,6 +95,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		AdminCreateJobPageComponent,
 		AdminEditJobPageComponent,
 		AdminAllJobsApplicationsPageComponent,
+		ThousandSeparatorPipe
 	],
 	imports: [
 		BrowserModule,
@@ -147,6 +150,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 		JobApplicationFormSuccessGuard,
 		RefereeFeedbackGuard,
 		JobAppliedExistsGuard,
+		ThousandSeparatorPipe
 	],
 	bootstrap: [
 		AppComponent

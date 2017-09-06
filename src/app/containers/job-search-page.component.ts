@@ -1,12 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Store, State } from '@ngrx/store';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Job } from '../models/job.model';
 import * as _ from 'lodash';
-import { PageMetaData } from '../models/page-metadata.model';
 import * as jobsAction from '../actions/jobs.action';
 import * as fromRoot from '../reducers';
-import { JobService } from 'app/services/job.service';
 
 @Component({
 	selector: 'app-job-search-page',

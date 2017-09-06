@@ -72,8 +72,10 @@
 						<div class="col-md-5">
 							<label for="email" class="labelWeight">Email Address<i class="red-color"> * </i></label>
 							<input type="email" class="form-control" id="email" formControlName="emailAddress" placeholder="e.g. youremail@domain.com"/>
-							<div *ngIf="isFormControlInvalid('emailAddress')"
-									 class="alert alert-danger form-control">Please fill out this field!</div>
+							<div *ngIf="isFormControlInvalid('emailAddress')">
+								<p class="alert alert-danger form-control" *ngIf="profileForm.get('emailAddress').errors?.required">Please fill out this field!</p>
+								<p class="alert alert-danger form-control" *ngIf="profileForm.get('emailAddress').errors?.incorrectMailFormat">Email format is invalid!</p>
+							</div>
 						</div>
 						<div class="col-md-7"></div>
 					</div>
@@ -245,19 +247,21 @@
 			<div class="row">
 				<div class="col-md-5">
 					<label for="annualSalary" class="labelWeight">Annual Salary</label>
-					<input type="number"
-					       min="0"
-					       onkeypress="return event.charCode >= 48"
+					<input type="text"
+					       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 					       class="form-control currency"
+								 (focus)="onFocusThousandSeparator('currentSalary.annualSalary')"
+								 (blur)="onBlurThousandSeparator('currentSalary.annualSalary')"
 					       id="annualSalary"
 					       formControlName="annualSalary"/>
 				</div>
 				<div class="col-md-5">
 					<label for="annualBonus" class="labelWeight">Annual Bonus</label>
-					<input type="number"
-					       min="0"
-					       onkeypress="return event.charCode >= 48"
+					<input type="text"
+					       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 					       class="form-control currency"
+								 (focus)="onFocusThousandSeparator('currentSalary.annualBonus')"
+								 (blur)="onBlurThousandSeparator('currentSalary.annualBonus')"
 					       id="annualBonus"
 					       formControlName="annualBonus"/>
 				</div>
@@ -342,10 +346,11 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label for="totalAllowance" class="labelWeight">Total value of your allowance</label>
-							<input type="number"
-							       min="0"
-							       onkeypress="return event.charCode >= 48"
+							<input type="text"
+							       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 							       class="form-control currency"
+										 (focus)="onFocusThousandSeparator('currentSalary.allowance.totalAllowance')"
+										 (blur)="onBlurThousandSeparator('currentSalary.allowance.totalAllowance')"
 							       id="totalAllowance"
 							       formControlName="totalAllowance"/>
 						</div>
@@ -416,7 +421,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<label for="expectedSalaryCurrency" class="labelWeight">Currency</label>
+					<label for="expectedSalaryCurrency" class="labelWeight">Currency<i class="red-color"> * </i></label>
 					<select type="text" class="form-control" id="expectedSalaryCurrency" formControlName="currency" (change)="onChangeExpectedSalaryCurrency()">
 						<option *ngFor="let currency of moneyCurrencies" value="{{currency}}">{{currency}}</option>
 					</select>
@@ -425,11 +430,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<label for="annualSalaryPackage" class="labelWeight">Annual Package</label>
-					<input type="number"
-					       min="0"
-					       onkeypress="return event.charCode >= 48"
+					<label for="annualSalaryPackage" class="labelWeight">Annual Package<i class="red-color"> * </i></label>
+					<input type="text"
+					       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 					       class="form-control currency"
+								 (focus)="onFocusThousandSeparator('expectedSalary.annualSalaryPackage')"
+								 (blur)="onBlurThousandSeparator('expectedSalary.annualSalaryPackage')"
 					       id="annualSalaryPackage"
 					       formControlName="annualSalaryPackage"/>
 				</div>
@@ -437,7 +443,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-inline">
-						<label class="labelWeight">Are you on an expat package?</label>
+						<label class="labelWeight">Are you on an expat package?<i class="red-color"> * </i></label>
 					</div>
 					<div class="form-inline">
 						<div class="radio">
@@ -573,9 +579,9 @@
 			</div>
 		</div>
 	</div>
-	<br/>
+	<!--<br/>-->
 	<!-- Work Experience -->
-	<div class="row">
+	<!--<div class="row">
 		<div class="col-md-12">
 			<h3 class="purple-color">Work Experience</h3>
 			<a class="add-btn-work" (click)="addWorkExperience()">+</a>
@@ -617,9 +623,9 @@
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.month" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let month of months; let counter=index;" value="{{counter}}">{{month}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<!--<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">-->
-									<!--<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>-->
-								<!--</select>&nbsp;<b>:</b>&nbsp;-->
+								&lt;!&ndash;<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">&ndash;&gt;
+									&lt;!&ndash;<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>&ndash;&gt;
+								&lt;!&ndash;</select>&nbsp;<b>:</b>&nbsp;&ndash;&gt;
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.year" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let year of periodYears;" value="{{year}}">{{year}}</option>
 								</select>
@@ -633,9 +639,9 @@
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.month" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let month of months; let counter=index;" value="{{counter}}">{{month}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<!--<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">-->
-									<!--<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>-->
-								<!--</select>&nbsp;<b>:</b>&nbsp;-->
+								&lt;!&ndash;<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">&ndash;&gt;
+									&lt;!&ndash;<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>&ndash;&gt;
+								&lt;!&ndash;</select>&nbsp;<b>:</b>&nbsp;&ndash;&gt;
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.year" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let year of periodYears;" value="{{year}}">{{year}}</option>
 								</select>
@@ -675,9 +681,9 @@
 			</div>
 		</div>
 	</div>
-	<br>
+	<br>-->
 	<!-- Skills -->
-	<div class="row">
+	<!--<div class="row">
 		<div class="col-md-12">
 			<h3 class="purple-color">Skills</h3>
 			<a class="add-btn" (click)="addSkill()">+</a>
@@ -712,5 +718,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </form>

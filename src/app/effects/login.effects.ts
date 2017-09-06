@@ -63,8 +63,6 @@ export class LogInEffects {
 			} else {
 				if (this.logInService.isLoggedInAsAdmin(payload.currentUser)) {
 					this.router.navigate(['/admin/home']);
-				} else {
-					this.router.navigate(['/profile']);
 				}
 			}
 		});
