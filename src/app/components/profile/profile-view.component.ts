@@ -641,6 +641,22 @@ export class ProfileViewComponent implements OnInit {
 			skills: this.profile.skills
 		});
 		this.initWorkExperiences();
+		this.initBirthDateValues();
+		this.initVisaValidityValues();
+	}
+
+	private initBirthDateValues(): void {
+		let birthDate = new Date(this.profile.birthDate);
+		this.birthDateMonth = birthDate.getMonth();
+		this.birthDateDay = birthDate.getDate();
+		this.birthDateYear = birthDate.getFullYear();
+	}
+
+	private initVisaValidityValues(): void {
+		let visaValidity = new Date(this.profile.visaValidity);
+		this.visaValidityMonth = visaValidity.getMonth();
+		this.visaValidityDay = visaValidity.getDate();
+		this.visaValidityYear = visaValidity.getFullYear();
 	}
 
 	private initSkills(): void {
