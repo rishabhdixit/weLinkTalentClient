@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThousandSeparatorPipe } from '../../pipe/thousand-separator.pipe';
+import { GlobalValidator } from '../../validator/global.validator';
 import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Job } from '../../models/job.model';
@@ -59,7 +61,11 @@ export class CreateJobFormComponent implements OnInit {
 		return <FormGroup>this.createJobForm.controls['company'];
 	}
 
-	constructor(public fb: FormBuilder, private store: Store<fromRoot.State>, @Inject(DOCUMENT) private document: Document) {}
+	constructor(
+		public fb: FormBuilder,
+		private store: Store<fromRoot.State>,
+		@Inject(DOCUMENT) private document: Document,
+		private thousandSeparator: ThousandSeparatorPipe) {}
 
 	ngOnInit() {
 		this.store.select(fromRoot.getUser).subscribe((user) => this.user = user);
@@ -74,7 +80,7 @@ export class CreateJobFormComponent implements OnInit {
 				name: new FormControl('', [Validators.required]),
 				address: new FormControl('', [Validators.required]),
 				about: new FormControl('', [Validators.required]),
-				email: new FormControl('', [Validators.required]),
+				email: new FormControl('', [Validators.required, GlobalValidator.mailFormat]),
 				twitter_profile: new FormControl(''),
 				linkedin_profile: new FormControl(''),
 				phone_numbers: this.fb.array([
@@ -197,6 +203,18 @@ export class CreateJobFormComponent implements OnInit {
 		return control.touched && control.invalid;
 	}
 
+	onFocusThousandSeparator(controlName: string): void {
+		this.createJobForm.get(controlName).setValue(
+			this.parseAmount(this.createJobForm.get(controlName).value)
+		);
+	}
+
+	onBlurThousandSeparator(controlName: string): void {
+		this.createJobForm.get(controlName).setValue(
+			this.transformAmount(this.createJobForm.get(controlName).value)
+		);
+	}
+
 	private setEmployerId(): void {
 		this.createJobForm.controls['employer_id'].setValue(this.user.id);
 	}
@@ -215,5 +233,13 @@ export class CreateJobFormComponent implements OnInit {
 
 		let contact_email = this.company.controls['email'].value;
 		this.createJobForm.controls['contact_email'].setValue(contact_email);
+	}
+
+	private parseAmount(amount: string): string {
+		return this.thousandSeparator.parse(amount);
+	}
+
+	private transformAmount(amount: string): string {
+		return this.thousandSeparator.transform(amount);
 	}
 }

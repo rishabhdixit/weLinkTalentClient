@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { GlobalValidator } from '../../validator/global.validator';
 import { DOCUMENT } from '@angular/common';
 import { Reference } from '../../models/reference.model';
 
@@ -78,8 +79,12 @@ import { Reference } from '../../models/reference.model';
 								<label for="emailAddress" class="label-style">Email Address:<i class="red-color"> * </i></label>
 								<input type="email" class="form-control" id="emailAddress"
 									name="emailAddress" formControlName="emailAddress" placeholder="youremail@domain.com" required/>
-								<div *ngIf="refereeForm.get('emailAddress').touched && refereeForm.get('emailAddress').invalid"
-								     class="alert alert-danger form-control">Please fill out this field!</div>
+								<div *ngIf="refereeForm.get('emailAddress').touched && refereeForm.get('emailAddress').invalid">
+									<p class="alert alert-danger form-control"
+										*ngIf="refereeForm.get('emailAddress').errors?.required">Please fill out this field!</p>
+									<p class="alert alert-danger form-control"
+										*ngIf="refereeForm.get('emailAddress').errors?.incorrectMailFormat">Email format is invalid!</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -197,7 +202,7 @@ export class ReferenceFormComponent implements OnInit, OnChanges {
 			company: new FormControl('', [Validators.required]),
 			title: new FormControl('', [Validators.required]),
 			phone: new FormControl('', [Validators.required]),
-			emailAddress: new FormControl('', [Validators.required]),
+			emailAddress: new FormControl('', [Validators.required, GlobalValidator.mailFormat]),
 			relationship: new FormControl('', [Validators.required]),
 			companyTogether: new FormControl('', [Validators.required]),
 			startYearOfWorking: new FormControl('', [Validators.required]),

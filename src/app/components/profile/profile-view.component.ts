@@ -1,5 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ThousandSeparatorPipe } from '../../pipe/thousand-separator.pipe';
+import { GlobalValidator } from '../../validator/global.validator';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { isUndefined } from 'util';
 
@@ -70,7 +72,11 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	// TODO - Enable ToastManager.
-	constructor(private fb: FormBuilder, private toastr: ToastsManager, vcr: ViewContainerRef) {
+	constructor(
+		private fb: FormBuilder,
+		private toastr: ToastsManager,
+		vcr: ViewContainerRef,
+		private thousandSeparator: ThousandSeparatorPipe) {
 		this.toastr.setRootViewContainerRef(vcr);
 	}
 
@@ -216,6 +222,7 @@ export class ProfileViewComponent implements OnInit {
 	saveCurrentSalary(): void {
 		const profile = this.profileForm.value;
 
+		delete profile.pictureUrl;
 		delete profile.positions;
 		delete profile.workExperiences;
 		delete profile.skills;
@@ -233,6 +240,7 @@ export class ProfileViewComponent implements OnInit {
 		} else {
 			const profile = this.profileForm.value;
 
+			delete profile.pictureUrl;
 			delete profile.positions;
 			delete profile.workExperiences;
 			delete profile.skills;
@@ -251,6 +259,7 @@ export class ProfileViewComponent implements OnInit {
 		} else {
 			const profile = this.profileForm.value;
 
+			delete profile.pictureUrl;
 			delete profile.positions;
 			delete profile.workExperiences;
 			delete profile.skills;
@@ -363,6 +372,18 @@ export class ProfileViewComponent implements OnInit {
 				);
 			}
 		}
+	}
+
+	onFocusThousandSeparator(controlName: string): void {
+		this.profileForm.get(controlName).setValue(
+			this.parseAmount(this.profileForm.get(controlName).value)
+		);
+	}
+
+	onBlurThousandSeparator(controlName: string): void {
+		this.profileForm.get(controlName).setValue(
+			this.transformAmount(this.profileForm.get(controlName).value)
+		);
 	}
 
 	editMode(event, editId): void {
@@ -537,7 +558,7 @@ export class ProfileViewComponent implements OnInit {
 			lastName: this.fb.control('', Validators.required),
 			headline: this.fb.control(''),
 			pictureUrl: this.fb.control(''),
-			emailAddress: this.fb.control('', Validators.required),
+			emailAddress: this.fb.control('', [Validators.required, GlobalValidator.mailFormat]),
 			summary: this.fb.control('', Validators.required),
 			birthDate: this.fb.control('', Validators.required),
 			maritalStatus: this.fb.control('', Validators.required),
@@ -638,5 +659,13 @@ export class ProfileViewComponent implements OnInit {
 		for (let workExperience of this.profile.workExperiences) {
 			this.addWorkExperience(workExperience);
 		}
+	}
+
+	private parseAmount(amount: string): string {
+		return this.thousandSeparator.parse(amount);
+	}
+
+	private transformAmount(amount: string): string {
+		return this.thousandSeparator.transform(amount);
 	}
 }

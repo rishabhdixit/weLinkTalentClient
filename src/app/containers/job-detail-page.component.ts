@@ -11,9 +11,6 @@ import * as jobsApplicationAction from '../actions/job-application.action';
 import * as jobAction from '../actions/jobs.action';
 import * as loginAction from '../actions/login.action';
 
-import { LoginService } from '../services/login.service';
-
-
 @Component({
 	selector: 'app-job-detail-page',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,9 +44,7 @@ export class JobDetailPageComponent implements OnInit {
 	selectedJob: Job;
 	user: User;
 
-	constructor(private store: Store<fromRoot.State>,
-		private router: Router,
-		private loginService: LoginService) {
+	constructor(private store: Store<fromRoot.State>, private router: Router) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}
 
