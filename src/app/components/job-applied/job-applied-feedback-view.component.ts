@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
@@ -17,18 +17,8 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
-		<div class="col-md-12" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" style="padding-bottom: 39px;"></div>
-		<div class="row" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
-			<div class="col-md-12 pull-right">
-				<button
-					type="button" class="btn btn-primary"
-					(click)="approveRefereeFeedback(jobApplied, selectedFeedBack)">
-					Approve
-				</button>
-			</div>
-		</div>
-		<br/>
-		<div class="row" style="padding-top: 10px;">
+		<br/><br/><br/>
+		<div class="row" style="padding-top: 2px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonForLeaving.comment" readonly></textarea>
 				<label class="form-inline">
@@ -39,10 +29,17 @@ import { isUndefined } from 'util';
 		<br/>
 		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<div class="form-group" *ngFor="let skill of feedback.skillRatings; let i=index;">
-					<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
-						<i [ngClass]="getClass(feedback.skillRatings[i], counter)"></i>
-					</ng-container>
+				<div *ngFor="let skill of feedback.skillRatings; let i=index;">
+					<div class="row">
+						<div class="col-md-6">
+							<p>{{ skill.name }}</p>
+						</div>
+						<div class="col-md-6">
+							<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
+								<i [ngClass]="getClass(feedback.skillRatings[i], counter)"></i>
+							</ng-container>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -83,6 +80,57 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
+		<div class="row">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<p>Do you agree that the candidate is qualified in skills and personality in doing this role?</p>
+				<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
+					<i [ngClass]="getCandidateRate(feedback.candidateRate, counter)"></i>
+				</ng-container>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<p>Would you rehire the candidate?</p>
+				<div class="form-inline">
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="feedback.hireCandidate"  disabled/>
+					<label class="labelWeight">&emsp;Yes&emsp;</label>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="!feedback.hireCandidate" disabled/>
+					<label class="labelWeight">&emsp;No&emsp;</label>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<p>The hiring manager might need to contact you for additional questions. Please confirm your acceptance:</p>
+				<div class="form-inline">
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="feedback.cannotBeContact" disabled/>
+					<label class="labelWeight">&emsp;Yes&emsp;</label>
+					<input type="checkbox"
+						class="form-control input-checkbox"
+						[checked]="!feedback.cannotBeContact" disabled/>
+					<label class="labelWeight">&emsp;No&emsp;</label>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" ></div>
+		<div class="col-md-12" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
+			<hr>
+			<div class="form-inline text-center">
+				<input type="checkbox" class="form-control input-checkbox" 
+					(change)="approveRefereeFeedback(jobApplied, selectedFeedBack)"/>
+				<label>&emsp;Attach this reference to your application?</label>
+			</div>
+		</div>
+		<br/>
 		<div *ngIf="jobAppliedFeedBacks.length > 1" class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-4 text-center">
@@ -109,6 +157,17 @@ import { isUndefined } from 'util';
 		}
 		.color-yellow {
 			color: yellow;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		.color-white {
+			color: white;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
+		.input-checkbox {
+			width: 1.2em;
+			height: 1.2em;
 		}
 	`]
 })
@@ -143,12 +202,15 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		managementStyle: {
 			comment: '',
 			approved: false
-		}
+		},
+		candidateRate: null,
+		hireCandidate: false,
+		cannotBeContact: false,
 	};
 
-	constructor(private store: Store<fromRoot.State>) { }
+	constructor(private store: Store<fromRoot.State>) {	}
 
-	ngOnInit() {}
+	ngOnInit() {	}
 
 	ngOnChanges(changes: any): void {
 		if (this.jobApplied) {
@@ -193,7 +255,15 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		if (index < skill.rate) {
 			return 'fa fa-star fa-2x color-yellow';
 		} else {
-			return 'fa fa-star fa-2x';
+			return 'fa fa-star fa-2x color-white';
+		}
+	}
+
+	getCandidateRate(rate: number, index: number): string {
+		if (index < rate) {
+			return 'fa fa-star fa-2x color-yellow';
+		} else {
+			return 'fa fa-star fa-2x color-white';
 		}
 	}
 
@@ -238,6 +308,9 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 				comment: paramFeedback.managementStyleFeedback,
 				approved: paramFeedback.managementStyleApproved
 			};
+			this.feedback.candidateRate = paramFeedback.candidateRate;
+			this.feedback.hireCandidate = paramFeedback.rehireCandidate;
+			this.feedback.cannotBeContact = paramFeedback.canBeContact;
 		}
 	}
 
@@ -257,6 +330,9 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		feedback.skillRatings = value.skillRatings;
 		feedback.referee_profile = value.referee_profile;
 		feedback.approved_by_candidate = value.approved_by_candidate;
+		feedback.candidateRate = value.candidateRate;
+		feedback.rehireCandidate = value.hireCandidate;
+		feedback.canBeContact = value.canBeContact;
 		return feedback;
 	}
 }

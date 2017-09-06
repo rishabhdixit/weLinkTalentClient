@@ -9,8 +9,8 @@ import { JobApplication } from '../../models/job-application.model';
 				<div class="col-md-12">
 					<br/>
 					<br/>
-					<h2>Your jobApplication Details:</h2>
-					<p class="pStyle">This section contains what you have filled previously</p>
+					<h1>Applicant</h1>
+					<br/>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
 						<textarea class="form-control" id="reasonForLeaving" name="reasonForLeaving" rows="5" 
@@ -77,6 +77,12 @@ import { JobApplication } from '../../models/job-application.model';
 		i:hover{
 			cursor:pointer;
 		}
+		i {
+			cursor:pointer;
+			color: white;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: black;
+		}
 		.pStyle {
 			font-size: smaller;
 			text-align: center;
@@ -97,7 +103,7 @@ export class RefereeFeedbackApplicationViewComponent {
 		if (count < rate) {
 			return 'fa fa-star fa-2x color-yellow';
 		} else {
-			return 'fa fa-star fa-2x';
+			return 'fa fa-star fa-2x ';
 		}
 	}
 }
