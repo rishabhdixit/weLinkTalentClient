@@ -9,14 +9,20 @@ export class RefereeFeedback {
 	jobApplication: JobApplication;
 	reasonForLeavingFeedback: string;
 	reasonForLeavingApproved: boolean;
-	strengthFeedback: string;
-	strengthApproved: boolean;
-	improvementFeedback: string;
-	improvementApproved: boolean;
-	achievementFeedback: string;
-	achievementApproved: boolean;
-	managementStyleFeedback: string;
-	managementStyleApproved: boolean;
+	managementFeedback: string; // change into managementFeedback
+	managementApproved: boolean; // change into managementApproved
+	leadershipFeedback: string; // change into leadershipFeedback
+	leadershipApproved: boolean; // change into leadershipApproved
+	selfManagementFeedback: string; // change into selfManagementFeedback
+	selfManagementApproved: boolean; // change into selfManagementApproved
+	relationshipFeedback: string; // newly added
+	relationshipApproved: boolean; // newly added
+	analyticalFeedback: string; // newly added
+	analyticalApproved: boolean; // newly added
+	fitToJobReasonFeedback: string; // newly added
+	firToJobReasonApproved: string; // newly added
+	relatedAchievementFeedback: string; // change into relatedAchievementFeedback
+	relatedAchievementApproved: boolean; // change into relatedAchievementApproved
 	skillRatings: Skill[];
 	referee_profile: Reference;
 	approved_by_candidate: boolean;

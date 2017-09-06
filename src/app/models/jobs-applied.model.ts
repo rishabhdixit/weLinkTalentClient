@@ -35,11 +35,12 @@ export class JobsApplied {
 
 export class CandidateJobAppliedFormData {
 	reasonForLeaving: string;
-	basePerMonth: number;
-	bonus: number;
-	strength: string;
-	improvements: string;
-	achievements: string;
-	management: string;
 	skills: Skill[];
+	management: string;
+	leadership: string;
+	selfManagement: string;
+	relationship: string;
+	analytical: string;
+	fitToJobReason: string;
+	jobRelatedAchievements: string;
 }

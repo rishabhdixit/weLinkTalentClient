@@ -13,9 +13,6 @@ import { RefereeFeedback } from '../models/referee-feedback.model';
 		<div class="container">
 			<div class="container-fluid">
 				<br/>
-				<div	class="row" style="text-align: center;">
-					<h2>Application for:</h2>
-				</div>
 				<br/>
 				<div class="row">
 					<div class="col-md-6" style="background: lightgray;">

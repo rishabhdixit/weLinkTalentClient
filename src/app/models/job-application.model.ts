@@ -16,21 +16,23 @@ export class JobApplication {
 
 	// TODO - to be removed
 	reasonForLeaving: string;
-	strength: string;
-	improvements: string;
-	achievements: string;
-	management: string;
-	basePerMonth: number;
-	bonus: number;
+	management: string; // new
+	leadership: string; // new
+	selfManagement: string; // new
+	relationship: string; // new
+	analytical: string; // new
+	fitToJobReason: string; // new
+	jobRelatedAchievements: string; // new
 }
 
 export class ApplicationDetails {
 	reasonForLeaving: string;
-	strength: string;
-	improvements: string;
-	achievements: string;
 	management: string;
+	leadership: string;
+	selfManagement: string;
+	relationship: string;
 	skills: any;
-	basePerMonth: number;
-	bonus: number;
+	analytical: string;
+	fitToJobReason: string;
+	jobRelatedAchievements: string;
 }

@@ -35,33 +35,61 @@ const emptyRating: number = -10;
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
-					<textarea class="form-control" rows="4" formControlName="strengthFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="managementFeedback" required > </textarea>
 					<label>
-						<input type="checkbox" formControlName="strengthApproved"/>
+						<input type="checkbox" formControlName="managementApproved"/>
 					 	I APPROVE
 					</label>
 				</div>
-				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="improvementFeedback" required > </textarea>
+				<br/><br/>
+				<div class="form-group" style="margin-top: 5px;">
+					<textarea class="form-control" rows="5" formControlName="leadershipFeedback" required > </textarea>
 					<label>
-						<input type="checkbox" formControlName="improvementApproved"/>
+						<input type="checkbox" formControlName="leadershipApproved"/>
 						I APPROVE
 					</label>
 				</div>
-				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="achievementFeedback" required > </textarea>
+				<br/><br/>
+				<div class="form-group" style="margin-top: 8px;">
+					<textarea class="form-control" rows="5" formControlName="selfManagementFeedback" required > </textarea>
 					<label>
-						<input type="checkbox" formControlName="achievementApproved"/>					
+						<input type="checkbox" formControlName="selfManagementApproved"/>					
 						I APPROVE
 					</label>
 				</div>
-				<div class="form-group" style="margin-top: 37px;">
-					<textarea class="form-control" rows="4" formControlName="managementStyleFeedback" required > </textarea>
+				<br/>
+				<div class="form-group" style="margin-top: 12px;">
+					<textarea class="form-control" rows="5" formControlName="relationshipFeedback" required > </textarea>
 					<label>
-						<input type="checkbox" formControlName="managementStyleApproved"/>						
+						<input type="checkbox" formControlName="relationshipApproved"/>						
 						I APPROVE
 					</label>
 				</div>
+				<br/><br/>
+				<div class="form-group" style="margin-top: 8px;">
+					<textarea class="form-control" rows="5" formControlName="analyticalFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="analyticalApproved"/>						
+						I APPROVE
+					</label>
+				</div>
+				<br/>
+				<div class="form-group" style="margin-top: 10px;">
+					<textarea class="form-control" rows="5" formControlName="fitToJobReasonFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="firToJobReasonApproved"/>						
+						I APPROVE
+					</label>
+				</div>
+				<br/>
+				<div class="form-group" style="margin-top: 15px;">
+					<textarea class="form-control" rows="5" formControlName="relatedAchievementFeedback" required > </textarea>
+					<label>
+						<input type="checkbox" formControlName="relatedAchievementApproved"/>						
+						I APPROVE
+					</label>
+				</div>
+				<br/><br/>
 				<div class="row">
 					<div class="col-md-12">
 						<p>Do you agree that the candidate is qualified in skills and personality in doing this role?</p>
@@ -79,17 +107,17 @@ const emptyRating: number = -10;
 					<div class="col-md-12">
 						<p>Would you rehire the candidate?</p>
 						<div class="form-inline">
-								<input type="checkbox"
-									class="form-control input-checkbox"
-									(change)="checkHireCandidate('Yes')"
-									formControlName="hireCandidate"/>
-								<label class="labelWeight">&emsp;Yes&emsp;</label>
-								<input type="checkbox"
-									[(ngModel)]="unHireCandidate"
-									[ngModelOptions]="{standalone: true}"
-									class="form-control input-checkbox"
-									(change)="checkHireCandidate('No')"/>
-								<label class="labelWeight">&emsp;No&emsp;</label>
+							<input type="checkbox"
+								class="form-control input-checkbox"
+								(change)="checkHireCandidate('Yes')"
+								formControlName="hireCandidate"/>
+							<label class="labelWeight">&emsp;Yes&emsp;</label>
+							<input type="checkbox"
+								[(ngModel)]="unHireCandidate"
+								[ngModelOptions]="{standalone: true}"
+								class="form-control input-checkbox"
+								(change)="checkHireCandidate('No')"/>
+							<label class="labelWeight">&emsp;No&emsp;</label>
 						</div>
 					</div>
 				</div>
@@ -195,14 +223,20 @@ export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
 		this.refereeFeedbackForm = this.fb.group({
 			reasonForLeavingFeedback: new FormControl('', [Validators.required]),
 			reasonForLeavingApproved: new FormControl(false, [Validators.required]),
-			strengthFeedback: new FormControl('', [Validators.required]),
-			strengthApproved: new FormControl(false, [Validators.required]),
-			improvementFeedback: new FormControl('', [Validators.required]),
-			improvementApproved: new FormControl(false, [Validators.required]),
-			achievementFeedback: new FormControl('', [Validators.required]),
-			achievementApproved: new FormControl(false, [Validators.required]),
-			managementStyleFeedback: new FormControl('', [Validators.required]),
-			managementStyleApproved: new FormControl(false, [Validators.required]),
+			managementFeedback: new FormControl('', [Validators.required]),
+			managementApproved: new FormControl(false, [Validators.required]),
+			leadershipFeedback: new FormControl('', [Validators.required]),
+			leadershipApproved: new FormControl(false, [Validators.required]),
+			selfManagementFeedback: new FormControl('', [Validators.required]),
+			selfManagementApproved: new FormControl(false, [Validators.required]),
+			relationshipFeedback: new FormControl('', [Validators.required]),
+			relationshipApproved: new FormControl(false, [Validators.required]),
+			analyticalFeedback: new FormControl('', [Validators.required]),
+			analyticalApproved: new FormControl(false, [Validators.required]),
+			fitToJobReasonFeedback: new FormControl('', [Validators.required]),
+			firToJobReasonApproved: new FormControl(false, [Validators.required]),
+			relatedAchievementFeedback: new FormControl('', [Validators.required]),
+			relatedAchievementApproved: new FormControl(false, [Validators.required]),
 			skillRatings: this.fb.array(this.jobApplication.form_data.skills.map((skill) => this.skillRatingFormGroup(skill))),
 			candidateRate: new FormControl(null, [Validators.required]),
 			hireCandidate: new FormControl(false, [Validators.required]),
