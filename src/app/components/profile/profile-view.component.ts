@@ -23,7 +23,10 @@ export class ProfileViewComponent implements OnInit {
 	@Output() removePositionEvent = new EventEmitter<any>();
 	@Output() removeSkillEvent = new EventEmitter<any>();
 
-	logicalValueList: Array<any> = ['Yes', 'No'];
+	logicalValueList: Array<any> = [
+		{ name: 'Yes', value: true },
+		{ name: 'No', value: false }
+	];
 	noticePeriodValueList: Array<any> = ['Immediately', '1 month', '3 months', '6 months'];
 	maritalStatuses: Array<String> = ['Single', 'Married', 'Divorce', 'Separated', 'Widowed'];
 	moneyCurrencies: Array<String> = ['SGD', 'USD'];
