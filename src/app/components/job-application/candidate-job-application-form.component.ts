@@ -27,8 +27,16 @@ import { DOCUMENT } from '@angular/common';
 					<div class="form-group">
 						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required/>
 					</div>
+					<!--<div class="row">-->
+						<!--<button class="btn btn-primary form-control" >Upload Resume</button>-->
+					<!--</div>-->
+					<br/>
+					<div class="row">
+						<h3>What do you bring to this role?</h3>
+					</div>
+					<br/>
 					<div class="form-group">
-						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
+						<label for="reasonForLeaving"><b>Reason of interest (What are your Push and Pull Factors) ?</b><i class="red-color"> * </i></label>
 						<textarea class="form-control"
 						          id="reasonForLeaving"
 						          name="reasonForLeaving"
@@ -38,55 +46,6 @@ import { DOCUMENT } from '@angular/common';
 						</textarea>
 						<div *ngIf="applicationForm.get('reasonForLeaving').touched && applicationForm.get('reasonForLeaving').invalid"
 						     class="alert alert-danger form-control">Please fill out this field!</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<p class="labelStyle">Expected Salary:</p>
-							<div class="row">
-								<div class="col-md-6">
-									<label for="basePerMonth">Base per month:<i class="red-color"> * </i></label>
-									<div class="row">
-										<div class="col-md-4">
-											<select class="form-control" name="basePerMonthCurrency" formControlName="basePerMonthCurrency">
-												<option *ngFor="let currency of currencies" value="{{currency}}">{{currency}}</option>
-											</select>
-										</div>
-										<div class="col-md-8">
-											<input type="number"
-											       min="0"
-											       onkeypress="return event.charCode >= 48"
-											       class="form-control"
-											       id="basePerMonth"
-											       placeholder="Base Pay / Month"
-											       formControlName="basePerMonth" required/>
-											<div *ngIf="applicationForm.get('basePerMonth').touched && applicationForm.get('basePerMonth').invalid"
-											     class="alert alert-danger form-control">Please fill out this field!</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<label for="bonus">Bonus:<i class="red-color"> * </i></label>
-									<div class="row">
-										<div class="col-md-4">
-											<select class="form-control" name="basePerMonthCurrency" formControlName="bonusCurrency">
-												<option *ngFor="let currency of currencies" value="{{currency}}">{{currency}}</option>
-											</select>
-										</div>
-										<div class="col-md-8">
-											<input type="number"
-											       min="0"
-											       onkeypress="return event.charCode >= 48"
-											       class="form-control"
-											       id="bonus"
-											       placeholder="Bonus"
-											       formControlName="bonus" required/>
-											<div *ngIf="applicationForm.get('bonus').touched && applicationForm.get('bonus').invalid"
-											     class="alert alert-danger form-control">Please fill out this field!</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<br/>
 					<div class="col-md-12 div-padding">
@@ -100,51 +59,84 @@ import { DOCUMENT } from '@angular/common';
 							</app-stars>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="strengths" class="labelStyle">What are your strengths?<i class="red-color"> * </i></label>
-						<textarea class="form-control"
-						          rows="5" id="strengths"
-						          name="strengths"
-						          placeholder="What are your strengths?"
-						          formControlName="strength" required>
-						</textarea>
-						<div *ngIf="applicationForm.get('strength').touched && applicationForm.get('strength').invalid"
-						     class="alert alert-danger form-control">Please fill out this field!</div>
+					<br/>
+					<div class="row">
+						<p><b>Select the competencies which describe you best in the 5 areas below:</b></p>
 					</div>
 					<div class="form-group">
-						<label for="points" class="labelStyle">What are your points for development/improvement?<i class="red-color"> * </i></label>
-						<textarea class="form-control"
-						          rows="5"
-						          id="points"
-						          name="points"
-						          placeholder="What are your points for development/improvement?"
-						          formControlName="improvements" required>
-						</textarea>
-						<div *ngIf="applicationForm.get('improvements').touched && applicationForm.get('improvements').invalid"
-						     class="alert alert-danger form-control">Please fill out this field!</div>
-					</div>
-					<div class="form-group">
-						<label for="achievements" class="labelStyle">What are your main achievements?<i class="red-color"> * </i></label>
-						<textarea class="form-control"
-						          rows="5"
-						          id="achievements"
-						          name="achievements"
-						          placeholder="What are your main achievements?"
-						          formControlName="achievements" required>
-						</textarea>
-						<div *ngIf="applicationForm.get('achievements').touched && applicationForm.get('achievements').invalid"
-						     class="alert alert-danger form-control">Please fill out this field!</div>
-					</div>
-					<div class="form-group">
-						<label for="management" class="labelStyle">What is your management style?<i class="red-color"> * </i></label>
-						<textarea class="form-control"
-						          rows="5"
-						          id="management"
-						          name="managements"
-						          placeholder="What is your management style?"
-						          formControlName="management" required>
-						</textarea>
+						<label for="management"><b>Management</b><i class="red-color"> * </i></label>
+						<ul class="list-unstyled">
+							<li *ngFor="let manage of management">
+								<input type="radio" class="input-radio" value="{{ manage.value }}" formControlName="management"/>
+								<label class="labelWeight">&emsp;{{ manage.value }}</label>
+							</li>
+						</ul>
 						<div *ngIf="applicationForm.get('management').touched && applicationForm.get('management').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="leadership"><b>Leadership</b><i class="red-color"> * </i></label>
+						<ul class="list-unstyled">
+							<li *ngFor="let lead of leadership">
+								<input type="radio" class="input-radio" value="{{ lead.value }}" formControlName="leadership"/>
+								<label class="labelWeight">&emsp;{{ lead.value }}</label>
+							</li>
+						</ul>
+						<div *ngIf="applicationForm.get('leadership').touched && applicationForm.get('leadership').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="selfManagement"><b>Self-Management</b><i class="red-color"> * </i></label>
+						<ul class="list-unstyled">
+							<li *ngFor="let selfManage of self_management">
+								<input type="radio" class="input-radio" value="{{ selfManage.value }}" formControlName="selfManagement"/>
+								<label class="labelWeight">&emsp;{{ selfManage.value }}</label>
+							</li>
+						</ul>
+						<div *ngIf="applicationForm.get('selfManagement').touched && applicationForm.get('selfManagement').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="relationship"><b>Relationships</b><i class="red-color"> * </i></label>
+						<ul class="list-unstyled">
+							<li *ngFor="let relation of relationship">
+								<input type="radio" class="input-radio" value="{{ relation.value }}" formControlName="relationship"/>
+								<label class="labelWeight">&emsp;{{ relation.value }}</label>
+							</li>
+						</ul>
+						<div *ngIf="applicationForm.get('relationship').touched && applicationForm.get('relationship').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="analytical"><b>Analytical</b><i class="red-color"> * </i></label>
+						<ul class="list-unstyled">
+							<li *ngFor="let analytic of analytics">
+								<input type="radio" class="input-radio" value="{{ analytic.value }}" formControlName="analytical"/>
+								<label class="labelWeight">&emsp;{{ analytic.value }}</label>
+							</li>
+						</ul>
+						<div *ngIf="applicationForm.get('analytical').touched && applicationForm.get('analytical').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="fitToJobReason"><b>Why are you best fit for this job</b><i class="red-color"> * </i></label>
+						<textarea class="form-control"
+						          rows="5" id="fitToJobReason"
+						          name="fitToJobReason"
+						          formControlName="fitToJobReason" required>
+						</textarea>
+						<div *ngIf="applicationForm.get('fitToJobReason').touched && applicationForm.get('fitToJobReason').invalid"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
+					</div>
+					<div class="form-group">
+						<label for="jobRelatedAchievements"><b>What are the achievements related to this job you are the proudest of?
+								</b><i class="red-color"> * </i></label>
+						<textarea class="form-control"
+						          rows="5" id="jobRelatedAchievements"
+						          name="jobRelatedAchievements"
+						          formControlName="jobRelatedAchievements" required>
+						</textarea>
+						<div *ngIf="applicationForm.get('jobRelatedAchievements').touched && applicationForm.get('jobRelatedAchievements').invalid"
 						     class="alert alert-danger form-control">Please fill out this field!</div>
 					</div>
 					<div *ngIf="!forReference" class="button-class">
@@ -163,31 +155,12 @@ import { DOCUMENT } from '@angular/common';
 			padding-left: 0;
 			padding-right: 0;
 		}
-		.label-margin {
-			margin-top: 6px;
-			font-weight: bolder;
-		}
-		.bonusLabel {
-			float: right;
-			margin-top: -48px;
-			margin-right: 265px;
-			font-weight: bolder;
-		}
 		.button-class {
 			text-align: center;
-		}
-		.labelStyle {
-			color: #57148D;
-			font-weight: 700;
 		}
 		.skillStyle {
 			color: #57148D;
 			font-weight: 700;
-			margin-bottom: 0;
-		}
-		.ulStyle {
-			float: right;
-			margin-right: 40%;
 			margin-bottom: 0;
 		}
 		i:hover {
@@ -204,11 +177,6 @@ import { DOCUMENT } from '@angular/common';
 			float: right;
 			margin-top: -54px;
 		}
-		.inputBase {
-			width: 260px;
-			float: right;
-			margin-right: 460px
-		}
 		input.currency {
 			text-align: right;
 			padding-right: 15px;
@@ -224,7 +192,41 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 	@Input() job: Job;
 	@Output() applicationEventEmitter = new EventEmitter<JobApplication>();
 	@Input() forReference: Boolean;
-	currencies = [`SGD`, `PHP`, `USD`, `EUR`, `EGP`, `HKD`, `AUD`, `BRL`, `JPY`];
+	management: Array<any> = [
+		{ id: 0, value: 'Delegation & Performance Management' },
+		{ id: 1, value: 'Project/Process Management' },
+		{ id: 2, value: 'Managing Execution' },
+		{ id: 3, value: 'Coaching & Developing Talent' },
+		{ id: 4, value: 'Managing Difference/Conflict'}
+	];
+	leadership: Array<any> = [
+		{ id: 0, value: 'Strategic Thinking' },
+		{ id: 1, value: 'Business Acumen' },
+		{ id: 2, value: 'Leading Courageously' },
+		{ id: 3, value: 'Inspiring Others' },
+		{ id: 4, value: 'Integrity, Trust & Credibility' }
+	];
+	self_management: Array<any> = [
+		{ id: 0, value: 'Learning Agility / Development' },
+		{ id: 1, value: 'Initiative & Risk Taking' },
+		{ id: 2, value: 'Drive for Results' },
+		{ id: 3, value: 'Adaptability Management' },
+		{ id: 4, value: 'Emotional Resilience' }
+	];
+	relationship: Array<any> = [
+		{ id: 0, value: 'Communication & Influencing' },
+		{ id: 1, value: 'Interpersonal Skills' },
+		{ id: 2, value: 'Teamwork & Team Building' },
+		{ id: 3, value: 'Customer Focus' },
+		{ id: 4, value: 'Cross-Cultural Agility' }
+	];
+	analytics: Array<any> = [
+		{ id: 0, value: 'Problem Solving' },
+		{ id: 1, value: 'Critical Thinking' },
+		{ id: 2, value: 'Decision Making' },
+		{ id: 3, value: 'Innovation' },
+		{ id: 4, value: 'Professional Expertise' }
+	];
 
 	application: JobApplication= new JobApplication();
 
@@ -245,6 +247,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 		this.application.skills = skills;
 		if (!this.applicationForm.invalid) {
 			this.applicationEventEmitter.emit(candidateApplication);
+			console.log('Data: ', candidateApplication);
 		} else {
 			this.document.body.scrollTop = 200;
 			this.isApplicationFormValid = false;
@@ -269,15 +272,15 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 		this.formGroupSkills = this.fb.array([]);
 		this.applicationForm = this.fb.group({
 			reasonForLeaving: new FormControl('', [Validators.required]),
-			basePerMonthCurrency: new FormControl('', [Validators.required]),
-			basePerMonth: new FormControl('', [Validators.required]),
-			bonusCurrency: new FormControl('', [Validators.required]),
-			bonus: new FormControl('', [Validators.required]),
 			skills: this.fb.array([]),
-			strength: new FormControl('', [Validators.required]),
-			improvements: new FormControl('', [Validators.required]),
-			achievements: new FormControl('', [Validators.required]),
-			management: new FormControl('', [Validators.required])
+			management: new FormControl('', [Validators.required]),
+			leadership: new FormControl('', [Validators.required]),
+			selfManagement: new FormControl('', [Validators.required]),
+			relationship: new FormControl('', [Validators.required]),
+			analytical: new FormControl('', [Validators.required]),
+			fitToJobReason: new FormControl('', [Validators.required]),
+			jobRelatedAchievements: new FormControl('', [Validators.required]),
 		});
 	}
+
 }

@@ -5,7 +5,7 @@ const emptyRating: number = -10;
 	template: `
 	<div class="row">
 		<div *ngIf="!disableName" class="col-md-6">
-			<h5>{{skill}}</h5>
+			<p class="labelWeight">{{skill}}</p>
 		</div>
 		<ng-container *ngFor="let a of iterableStarArray">
 		<i (mouseover)="onMouseOver(a)" 
@@ -23,6 +23,10 @@ const emptyRating: number = -10;
 			cursor: pointer;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;
+		}
+		.labelWeight {
+			font-weight: bolder;
+			margin-top: 5px;
 		}
 		i:hover {
 			color: yellow;

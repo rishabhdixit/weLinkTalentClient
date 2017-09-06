@@ -12,8 +12,8 @@ import { isUndefined } from 'util';
 	template: `
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<h5>Your Applications Details:</h5>
-				<p>This section contains what you have filled previously.</p>
+				<h5>Referee Feedback Details:</h5>
+				<p>This section contains what your referee have filled.</p>
 			</div>
 		</div>
 		<br/>
@@ -46,36 +46,63 @@ import { isUndefined } from 'util';
 		<br/>
 		<div class="row" style="padding-top: 20px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.strength.comment" readonly></textarea>
+				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.management.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" [(ngModel)]="feedback.strength.approved" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.management.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 3px;">
+		<br/><br/>
+		<div class="row" style="padding-top: 5px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.improvement.comment" readonly></textarea>
+				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.leadership.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" [(ngModel)]="feedback.improvement.approved" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.leadership.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 3px;">
-			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.achievement.comment" readonly></textarea>
-				<label class="form-inline">
-					<input type="checkbox" [(ngModel)]="feedback.achievement.approved" disabled> APPROVE
-				</label>
-			</div>
-		</div>
-		<br/>
+		<br/><br/>
 		<div class="row" style="padding-top: 8px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
-				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.managementStyle.comment" readonly></textarea>
+				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.selfManagement.comment" readonly></textarea>
 				<label class="form-inline">
-					<input type="checkbox" [(ngModel)]="feedback.managementStyle.approved" disabled> APPROVE
+					<input type="checkbox" [(ngModel)]="feedback.selfManagement.approved" disabled> APPROVE
+				</label>
+			</div>
+		</div>
+		<br/><br/>
+		<div class="row" style="padding-top: 22px;">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.relationship.comment" readonly></textarea>
+				<label class="form-inline">
+					<input type="checkbox" [(ngModel)]="feedback.relationship.approved" disabled> APPROVE
+				</label>
+			</div>
+		</div>
+		<br/><br/>
+		<div class="row" style="padding-top: 25px;">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.analytical.comment" readonly></textarea>
+				<label class="form-inline">
+					<input type="checkbox" [(ngModel)]="feedback.analytical.approved" disabled> APPROVE
+				</label>
+			</div>
+		</div>
+		<br/><br/>
+		<div class="row" style="padding-top: 35px;">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonFitToJob.comment" readonly></textarea>
+				<label class="form-inline">
+					<input type="checkbox" [(ngModel)]="feedback.reasonFitToJob.approved" disabled> APPROVE
+				</label>
+			</div>
+		</div>
+		<br/>
+		<div class="row" style="padding-top: 15px;">
+			<div *ngIf="selectedFeedBack" class="col-md-12">
+				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.relatedAchievement.comment" readonly></textarea>
+				<label class="form-inline">
+					<input type="checkbox" [(ngModel)]="feedback.relatedAchievement.approved" disabled> APPROVE
 				</label>
 			</div>
 		</div>
@@ -187,21 +214,33 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 			comment: '',
 			approved: false
 		},
-		strength: {
+		management: {
 			comment: '',
 			approved: false
 		},
-		improvement: {
+		leadership: {
 			comment: '',
 			approved: false
 		},
-		achievement: {
+		selfManagement: {
 			comment: '',
 			approved: false
 		},
-		managementStyle: {
+		relationship: {
 			comment: '',
 			approved: false
+		},
+		analytical: {
+			comment: '',
+			approved: false,
+		},
+		reasonFitToJob: {
+			comment: '',
+			approved: false,
+		},
+		relatedAchievement: {
+			comment: '',
+			approved: false,
 		},
 		candidateRate: null,
 		hireCandidate: false,
@@ -217,6 +256,7 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 			this.constructFeedBacks();
 			this.initSelectedFeedBack();
 			this.populateFeedback(this.selectedFeedBack);
+			console.log(this.jobApplied);
 		}
 	}
 
@@ -292,21 +332,33 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 				comment: paramFeedback.reasonForLeavingFeedback,
 				approved: paramFeedback.reasonForLeavingApproved
 			};
-			this.feedback.strength = {
-				comment: paramFeedback.strengthFeedback,
-				approved: paramFeedback.strengthApproved
+			this.feedback.management = {
+				comment: paramFeedback.managementFeedback,
+				approved: paramFeedback.managementApproved
 			};
-			this.feedback.improvement = {
-				comment: paramFeedback.improvementFeedback,
-				approved: paramFeedback.improvementApproved
+			this.feedback.leadership = {
+				comment: paramFeedback.leadershipFeedback,
+				approved: paramFeedback.leadershipApproved
 			};
-			this.feedback.achievement = {
-				comment: paramFeedback.achievementFeedback,
-				approved: paramFeedback.achievementApproved
+			this.feedback.selfManagement = {
+				comment: paramFeedback.selfManagementFeedback,
+				approved: paramFeedback.selfManagementApproved
 			};
-			this.feedback.managementStyle = {
-				comment: paramFeedback.managementStyleFeedback,
-				approved: paramFeedback.managementStyleApproved
+			this.feedback.relationship = {
+				comment: paramFeedback.relationshipFeedback,
+				approved: paramFeedback.relationshipApproved
+			};
+			this.feedback.analytical = {
+				comment: paramFeedback.analyticalFeedback,
+				approved: paramFeedback.analyticalApproved
+			};
+			this.feedback.reasonFitToJob = {
+				comment: paramFeedback.fitToJobReasonFeedback,
+				approved: paramFeedback.firToJobReasonApproved
+			};
+			this.feedback.relatedAchievement = {
+				comment: paramFeedback.relatedAchievementFeedback,
+				approved: paramFeedback.relatedAchievementApproved
 			};
 			this.feedback.candidateRate = paramFeedback.candidateRate;
 			this.feedback.hireCandidate = paramFeedback.rehireCandidate;
@@ -319,14 +371,20 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		feedback.id = id;
 		feedback.reasonForLeavingFeedback = value.reasonForLeavingFeedback;
 		feedback.reasonForLeavingApproved = value.reasonForLeavingApproved;
-		feedback.strengthFeedback = value.strengthFeedback;
-		feedback.strengthApproved = value.strengthApproved;
-		feedback.improvementFeedback = value.improvementFeedback;
-		feedback.improvementApproved = value.improvementApproved;
-		feedback.achievementFeedback = value.achievementFeedback;
-		feedback.achievementApproved = value.achievementApproved;
-		feedback.managementStyleFeedback = value.managementStyleFeedback;
-		feedback.managementStyleApproved = value.managementStyleApproved;
+		feedback.managementFeedback = value.managementFeedback;
+		feedback.managementApproved = value.managementApproved;
+		feedback.leadershipFeedback = value.leadershipFeedback;
+		feedback.leadershipApproved = value.leadershipApproved;
+		feedback.selfManagementFeedback = value.selfManagementFeedback;
+		feedback.selfManagementApproved = value.selfManagementApproved;
+		feedback.relationshipFeedback = value.relationshipFeedback;
+		feedback.relationshipApproved = value.relationshipApproved;
+		feedback.analyticalFeedback = value.analyticalFeedback;
+		feedback.analyticalApproved = value.analyticalApproved;
+		feedback.fitToJobReasonFeedback = value.fitToJobReasonFeedback;
+		feedback.firToJobReasonApproved = value.fitToJobReasonFeedback;
+		feedback.relatedAchievementFeedback = value.relatedAchievementFeedback;
+		feedback.relatedAchievementApproved = value.relatedAchievementApproved;
 		feedback.skillRatings = value.skillRatings;
 		feedback.referee_profile = value.referee_profile;
 		feedback.approved_by_candidate = value.approved_by_candidate;

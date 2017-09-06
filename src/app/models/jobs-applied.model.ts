@@ -20,7 +20,7 @@ export class JobsApplied {
 	application_slots: number;
 	remaining_slots: number;
 	form_data: CandidateJobAppliedFormData;
-	resume_url: string;
+	resume_urls: string[];
 	createdAt: Date;
 	updatedAt: Date;
 	references_info: Reference[];
@@ -35,11 +35,12 @@ export class JobsApplied {
 
 export class CandidateJobAppliedFormData {
 	reasonForLeaving: string;
-	basePerMonth: number;
-	bonus: number;
-	strength: string;
-	improvements: string;
-	achievements: string;
-	management: string;
 	skills: Skill[];
+	management: string;
+	leadership: string;
+	selfManagement: string;
+	relationship: string;
+	analytical: string;
+	fitToJobReason: string;
+	jobRelatedAchievements: string;
 }
