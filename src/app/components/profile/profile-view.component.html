@@ -579,9 +579,9 @@
 			</div>
 		</div>
 	</div>
-	<br/>
+	<!--<br/>-->
 	<!-- Work Experience -->
-	<div class="row">
+	<!--<div class="row">
 		<div class="col-md-12">
 			<h3 class="purple-color">Work Experience</h3>
 			<a class="add-btn-work" (click)="addWorkExperience()">+</a>
@@ -623,9 +623,9 @@
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.month" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let month of months; let counter=index;" value="{{counter}}">{{month}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<!--<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">-->
-									<!--<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>-->
-								<!--</select>&nbsp;<b>:</b>&nbsp;-->
+								&lt;!&ndash;<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">&ndash;&gt;
+									&lt;!&ndash;<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>&ndash;&gt;
+								&lt;!&ndash;</select>&nbsp;<b>:</b>&nbsp;&ndash;&gt;
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].startDate.year" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('startDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let year of periodYears;" value="{{year}}">{{year}}</option>
 								</select>
@@ -639,9 +639,9 @@
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.month" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let month of months; let counter=index;" value="{{counter}}">{{month}}</option>
 								</select>&nbsp;<b>:</b>&nbsp;
-								<!--<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">-->
-									<!--<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>-->
-								<!--</select>&nbsp;<b>:</b>&nbsp;-->
+								&lt;!&ndash;<select style="width: 30%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.day" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">&ndash;&gt;
+									&lt;!&ndash;<option style="width: 30%;" *ngFor="let day of days; let counter=index;" value="{{counter+1}}">{{day}}</option>&ndash;&gt;
+								&lt;!&ndash;</select>&nbsp;<b>:</b>&nbsp;&ndash;&gt;
 								<select style="width: 47.5%;" class="form-control" [(ngModel)]="workExperienceTimePeriods[i].endDate.year" [ngModelOptions]="{standalone: true}" (change)="onChangeTimePeriod('endDate', workExperience, i)">
 									<option style="width: 47.5%;" *ngFor="let year of periodYears;" value="{{year}}">{{year}}</option>
 								</select>
@@ -681,9 +681,9 @@
 			</div>
 		</div>
 	</div>
-	<br>
+	<br>-->
 	<!-- Skills -->
-	<div class="row">
+	<!--<div class="row">
 		<div class="col-md-12">
 			<h3 class="purple-color">Skills</h3>
 			<a class="add-btn" (click)="addSkill()">+</a>
@@ -718,5 +718,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </form>

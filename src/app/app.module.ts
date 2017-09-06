@@ -71,7 +71,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 // Custom Pipe
-import { ThousandSeparatorPipe} from './pipe/thousand-separator.pipe';
+import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 
 @NgModule({
 	declarations: [

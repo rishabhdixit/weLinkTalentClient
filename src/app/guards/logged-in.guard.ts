@@ -56,4 +56,3 @@ export class LoggedInGuard implements CanActivate {
 		return this.hasUser();
 	}
 }
-

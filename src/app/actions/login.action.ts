@@ -1,15 +1,14 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
 
 export const ActionTypes = {
-	LOGIN:         			type('[USER] Login'),
-	LOGOUT:        			type('[USER] Logout'),
-	LOGIN_SUCCESS: 			type('[USER] Login Success'),
-	LOGIN_FAIL:   			type('[USER] Login Fail'),
-	REGISTER_REDIRECT_URL:	type('[USER] Register redirect url'),
-	LOGIN_FILL_USER: 		type('[USER] Login Fill User')
+	LOGIN:                      type('[USER] Login'),
+	LOGOUT:                     type('[USER] Logout'),
+	LOGIN_SUCCESS:              type('[USER] Login Success'),
+	LOGIN_FAIL:                 type('[USER] Login Fail'),
+	REGISTER_REDIRECT_URL:      type('[USER] Register redirect url'),
+	LOGIN_FILL_USER:            type('[USER] Login Fill User')
 };
 
 export class LoginAction implements Action {

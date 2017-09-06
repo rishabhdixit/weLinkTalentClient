@@ -22,7 +22,11 @@ import { JobApplication } from '../models/job-application.model';
 					<tr *ngFor="let application of jobApplications; let i = index" class="text-center">
 						<td class="word-wrap">{{ application.job.company.name }}</td>
 						<td class="word-wrap">{{ application.job.title }}</td>
-						<td class="word-wrap">{{ application.user.firstName }} {{ application.user.lastName }}</td>
+						<td class="word-wrap">
+							<a routerLink="/job-application/{{application._id}}" class="purple-color">
+								{{ application.user.firstName }} {{ application.user.lastName }}
+							</a>
+						</td>
 						<td>
 							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantContacted[i]"/>
 						</td>

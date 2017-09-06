@@ -14,7 +14,7 @@ import { Job } from '../../models/job.model';
 				</div>  
 			</div>
 		</div>
-		<div>
+		<!--<div>
 			<div class="card" style="margin-top: 20px;">
 				<div class="card-block" style="padding: 17px;">
 					<h4 class="card-title">Share This Page</h4>
@@ -47,7 +47,7 @@ import { Job } from '../../models/job.model';
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div>
 			<div class="card" style="margin-top: 20px;">
 				<div class="card-block">

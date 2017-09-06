@@ -8,18 +8,18 @@ import { Component } from '@angular/core';
 				<div class="col-md-8" style="margin-top: 20%;">
 					<img alt="We Link Talent" src="./assets/images/W.png" class="img-rounded"/>
 					<div class="socialButton">
-						<a href="https://plus.google.com/share.php?" target="_blank">
+						<!--<a href="https://plus.google.com/share.php?" target="_blank">
 							<img alt="We Link Talent" src="./assets/images/google-plus-logo-button.png" 
 								class="img-responsive socialButton"/>
 						</a>
 						<a href="https://www.facebook.com/share.php?" target="_blank">
 							<img alt="We Link Talent" src="./assets/images/facebook-logo-button.png" 
 								class="img-responsive socialButton betweenSpaces"/>
-						</a>
-						<a href="https://twitter.com/share.php?" target="_blank">
+						</a>-->
+						<a href="https://twitter.com/welinktalent" target="_blank">
 							<img alt="We Link Talent" src="./assets/images/twitter.png" class="img-responsive socialButton betweenSpaces"/>
 						</a>
-						<a href="https://www.linkedin.com/share.php?" target="_blank">
+						<a href="https://www.linkedin.com/company/3566012/" target="_blank">
 							<img alt="We Link Talent" src="./assets/images/linkedin-logo.png" 
 								class="img-responsive socialButton betweenSpaces"/>
 						</a>
