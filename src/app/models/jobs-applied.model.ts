@@ -20,7 +20,7 @@ export class JobsApplied {
 	application_slots: number;
 	remaining_slots: number;
 	form_data: CandidateJobAppliedFormData;
-	resume_url: string;
+	resume_urls: string[];
 	createdAt: Date;
 	updatedAt: Date;
 	references_info: Reference[];

@@ -16,6 +16,7 @@ import { JobApplication } from '../models/job-application.model';
 						<th class="text-center width_250">Comment</th>
 						<th class="text-center width_40">Creation Date</th>
 						<th class="text-center width_20">Action</th>
+						<th class="text-center width_20">Download</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,6 +40,10 @@ import { JobApplication } from '../models/job-application.model';
 						<td class="word-wrap">{{ application.createdAt | date: 'yyyy-mm-dd' }}</td>
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
+						</td>
+						<td>
+							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
+							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
 						</td>
 					</tr>
 				</tbody>

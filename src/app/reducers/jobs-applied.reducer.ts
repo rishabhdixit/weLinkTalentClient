@@ -58,7 +58,7 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
 			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
 				'form_data': payload.form_data,
-				'resume_url': payload.resume_url,
+				'resume_urls': payload.resume_urls,
 				'createdAt': payload.createdAt,
 				'updatedAt': payload.updatedAt,
 				'references_info': payload.references_info,
