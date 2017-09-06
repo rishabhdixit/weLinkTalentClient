@@ -41,10 +41,10 @@ import { JobApplication } from '../models/job-application.model';
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
 						</td>
-						<td *ngIf="application.resume_urls && application.resume_urls[0]">
+						<!--<td *ngIf="application.resume_urls && application.resume_urls[0]">
 							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
-							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
-						</td>
+							&lt;!&ndash;<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>&ndash;&gt;
+						</td>-->
 					</tr>
 				</tbody>
 			</table>
