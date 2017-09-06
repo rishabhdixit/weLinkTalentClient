@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
 
 @Component({
@@ -7,24 +7,24 @@ import { JobApplication } from '../models/job-application.model';
 		<div class="row">
 			<table class="table table-bordered">
 				<thead>
-				<tr>
-					<th> Candidate Name</th>
-					<th> Company</th>
-					<th> Job Title</th>
-					<th> Availability</th>
-					<th> Status</th>
-					<th> Contacted</th>
-					<th> Reviewed</th>
-					<th> Comment</th>
-					<th> Application Date</th>
-					<th> Update </th>
-				</tr>
+					<tr>
+						<th> Company</th>
+						<th> Job Title</th>
+						<th> Candidate Name</th>
+						<th> Availability</th>
+						<th> Status</th>
+						<th> Contacted</th>
+						<th> Reviewed</th>
+						<th> Comment</th>
+						<th> Application Date</th>
+						<th> Update </th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let application of jobApplications; let i = index" class="text-center">
-						<td> {{ application.user.firstName }} {{ application.user.lastName }}</td>
 						<td> {{ application.job.company.name }}</td>
 						<td> {{ application.job.title }}</td>
+						<td> {{ application.user.firstName }} {{ application.user.lastName }}</td>
 						<td> {{ application.availability }}</td>
 						<td> {{ application.status }}</td>
 						<td>
