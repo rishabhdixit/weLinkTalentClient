@@ -25,6 +25,7 @@ import { DOCUMENT } from '@angular/common';
 						<br/>
 					</div>
 					<div class="form-group">
+					<label for="file">Upload Resume</label>
 						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required/>
 					</div>
 					<!--<div class="row">-->
