@@ -26,6 +26,8 @@ import { DOCUMENT } from '@angular/common';
 					</div>
 					<div class="form-group">
 						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required/>
+						<div *ngIf="!application.files || !hasFiles"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
 					</div>
 					<br/>
 					<div class="row">
@@ -236,6 +238,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 	formGroupSkills: FormArray;
 
 	isApplicationFormValid: boolean = true;
+	hasFiles = false;
 
 	constructor(public fb: FormBuilder, @Inject(DOCUMENT) private document: Document) {	}
 
@@ -247,7 +250,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 		}
 		candidateApplication.skills = skills;
 		this.application.skills = skills;
-		if (!this.applicationForm.invalid) {
+		if (!this.applicationForm.invalid && this.hasFiles) {
 			this.applicationEventEmitter.emit(candidateApplication);
 		} else {
 			this.document.body.scrollTop = 200;
@@ -263,8 +266,10 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 		if (files.length > 5) {
 			alert('Maximum of 5 files can only be uploaded');
 			this.application.files = null;
+			this.hasFiles = false;
 		} else {
 			this.application.files = files;
+			this.hasFiles = true;
 		}
 	}
 
