@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import * as fromRoot from '../../reducers';
+import { Component, Input } from '@angular/core';
 import { JobsApplied } from '../../models/jobs-applied.model';
 import { Skill } from '../../models/skill.model';
 
@@ -190,8 +187,6 @@ export class JobAppliedDetailViewComponent {
 		{ id: 3, value: 'Innovation' },
 		{ id: 4, value: 'Professional Expertise' }
 	];
-
-	manageModel: string;
 
 	constructor() {	}
 

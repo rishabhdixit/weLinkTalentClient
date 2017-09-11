@@ -256,7 +256,6 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 			this.constructFeedBacks();
 			this.initSelectedFeedBack();
 			this.populateFeedback(this.selectedFeedBack);
-			console.log(this.jobApplied);
 		}
 	}
 

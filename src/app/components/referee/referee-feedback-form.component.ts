@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angu
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { JobApplication } from '../../models/job-application.model';
-import {User} from '../../models/user.model';
+import { User } from '../../models/user.model';
 
 const emptyRating: number = -10;
 @Component({
@@ -35,7 +35,7 @@ const emptyRating: number = -10;
 					</div>
 				</div>
 				<div class="form-group" style="margin-top: 50px;">
-					<textarea class="form-control" rows="5" formControlName="managementFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="managementFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="managementApproved"/>
 					 	I APPROVE
@@ -43,7 +43,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/><br/>
 				<div class="form-group" style="margin-top: 5px;">
-					<textarea class="form-control" rows="5" formControlName="leadershipFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="leadershipFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="leadershipApproved"/>
 						I APPROVE
@@ -51,7 +51,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/><br/>
 				<div class="form-group" style="margin-top: 8px;">
-					<textarea class="form-control" rows="5" formControlName="selfManagementFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="selfManagementFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="selfManagementApproved"/>					
 						I APPROVE
@@ -59,7 +59,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/><br/>
 				<div class="form-group" style="margin-top: 12px;">
-					<textarea class="form-control" rows="5" formControlName="relationshipFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="relationshipFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="relationshipApproved"/>						
 						I APPROVE
@@ -67,7 +67,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/><br/>
 				<div class="form-group" style="margin-top: 8px;">
-					<textarea class="form-control" rows="5" formControlName="analyticalFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="analyticalFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="analyticalApproved"/>						
 						I APPROVE
@@ -75,7 +75,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/><br/><br/>
 				<div class="form-group" style="margin-top: 10px;">
-					<textarea class="form-control" rows="5" formControlName="fitToJobReasonFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="fitToJobReasonFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="firToJobReasonApproved"/>						
 						I APPROVE
@@ -83,7 +83,7 @@ const emptyRating: number = -10;
 				</div>
 				<br/>
 				<div class="form-group" style="margin-top: 15px;">
-					<textarea class="form-control" rows="5" formControlName="relatedAchievementFeedback" required > </textarea>
+					<textarea class="form-control" rows="5" formControlName="relatedAchievementFeedback" required> </textarea>
 					<label>
 						<input type="checkbox" formControlName="relatedAchievementApproved"/>						
 						I APPROVE
