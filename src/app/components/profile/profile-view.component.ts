@@ -665,8 +665,10 @@ export class ProfileViewComponent implements OnInit {
 				this.skills.removeAt(0);
 			}
 		}
-		for (let skill of this.profile.skills) {
-			this.addSkill(skill);
+		if (this.profile.skills) {
+			for (let skill of this.profile.skills) {
+				this.addSkill(skill);
+			}
 		}
 	}
 
@@ -676,8 +678,10 @@ export class ProfileViewComponent implements OnInit {
 				this.workExperiences.removeAt(0);
 			}
 		}
-		for (let workExperience of this.profile.workExperiences) {
-			this.addWorkExperience(workExperience);
+		if (this.profile.workExperiences) {
+			for (let workExperience of this.profile.workExperiences) {
+				this.addWorkExperience(workExperience);
+			}
 		}
 	}
 
