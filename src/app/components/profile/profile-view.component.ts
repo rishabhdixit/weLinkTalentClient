@@ -660,8 +660,10 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	private initSkills(): void {
-		while (this.skills.length > 0) {
-			this.skills.removeAt(0);
+		if (this.skills) {
+			while (this.skills.length > 0) {
+				this.skills.removeAt(0);
+			}
 		}
 		for (let skill of this.profile.skills) {
 			this.addSkill(skill);
@@ -669,8 +671,10 @@ export class ProfileViewComponent implements OnInit {
 	}
 
 	private initWorkExperiences(): void {
-		while (this.workExperiences.length > 0) {
-			this.workExperiences.removeAt(0);
+		if (this.workExperiences) {
+			while (this.workExperiences.length > 0) {
+				this.workExperiences.removeAt(0);
+			}
 		}
 		for (let workExperience of this.profile.workExperiences) {
 			this.addWorkExperience(workExperience);
