@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { JobApplication } from '../models/job-application.model';
+// import { Response } from '@angular/http'; // commented not used
+import 'rxjs/Rx';
 
 @Component({
 	selector: `app-admin-all-jobs-applications`,
@@ -41,10 +43,11 @@ import { JobApplication } from '../models/job-application.model';
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
 						</td>
-						<!--<td *ngIf="application.resume_urls && application.resume_urls[0]">
+						<td *ngIf="application.resume_urls && application.resume_urls[0]">
 							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
-							&lt;!&ndash;<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>&ndash;&gt;
-						</td>-->
+							<!--<button class="btn-primary" (click)="onDownloadFile(application.resume_urls)">Download</button>-->
+							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -65,7 +68,8 @@ export class AdminAllJobsApplicationsComponent implements OnChanges {
 	applicantContacted = [];
 	applicantReviewed = [];
 	applicantComment = [];
-	constructor() {	}
+
+	constructor() {}
 
 	ngOnChanges() {
 		if (this.jobApplications) {
@@ -82,6 +86,12 @@ export class AdminAllJobsApplicationsComponent implements OnChanges {
 			counter++;
 		}
 	}
+
+	// onDownloadFile(data: string) {
+	// 	var blob = new Blob([data], { type: 'text/csv/pdf/docx'});
+	// 	var url = window.URL.createObjectURL(blob);
+	// 	window.open(url);
+	// }
 
 	onClickedUpdate(application: JobApplication, contacted: boolean, reviewed: boolean, comment: string) {
 		this.isUpdatedEmitter.emit({

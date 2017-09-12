@@ -14,16 +14,16 @@ import { JobsApplied } from '../models/jobs-applied.model';
 	template: `
 		<br/>
 		<div class="container">
-			<!--<div class="row">-->
-				<!--<div class="col-md-12 text-center">-->
-					<!--<h5>Application for:</h5>-->
-				<!--</div>-->
-				<!--<div class="col-md-12 text-center">-->
-					<!--<h5 style="color: #57148D;" *ngIf="isViewable()">-->
-						<!--{{selectedCandidateJobApplied.job.title}} - {{selectedCandidateJobApplied.job.company.name}}-->
-					<!--</h5>-->
-				<!--</div>-->
-			<!--</div>-->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h5>Application for:</h5>
+				</div>
+				<div class="col-md-12 text-center">
+					<h5 style="color: #57148D;" *ngIf="isViewable()">
+						{{selectedCandidateJobApplied.job.title}} - {{selectedCandidateJobApplied.job.company.name}}
+					</h5>
+				</div>
+			</div>
 			<br/>
 			<div *ngIf="selectedCandidateJobApplied" class="row">
 				<div class="col-md-6" style="background-color: #cdcdcd;">
@@ -50,7 +50,7 @@ export class JobAppliedPageComponent implements OnInit {
 	candidateJobApplied$: Observable<JobsApplied>;
 	selectedCandidateJobApplied: JobsApplied;
 
-	constructor(private store: Store<fromRoot.State>, private router: Router) {
+	constructor(private store: Store<fromRoot.State>) {
 		this.candidateJobApplied$ = this.store.select(fromRoot.getSelectedJobApplied);
 	}
 

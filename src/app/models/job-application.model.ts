@@ -1,3 +1,5 @@
+import { Job } from './job.model';
+
 export class JobApplication {
 	id: string;
 	_id: string;
@@ -17,13 +19,13 @@ export class JobApplication {
 
 	// TODO - to be removed
 	reasonForLeaving: string;
-	management: string; // new
-	leadership: string; // new
-	selfManagement: string; // new
-	relationship: string; // new
-	analytical: string; // new
-	fitToJobReason: string; // new
-	jobRelatedAchievements: string; // new
+	management: string;
+	leadership: string;
+	selfManagement: string;
+	relationship: string;
+	analytical: string;
+	fitToJobReason: string;
+	jobRelatedAchievements: string;
 }
 
 export class ApplicationDetails {

@@ -4,8 +4,8 @@ const emptyRating: number = -10;
 	selector: 'app-reactive-star',
 	template: `
 	<div class="row">
-		<div *ngIf="!disableName" class="col-md-6">
-			<p class="labelWeight">{{skill}}</p>
+		<div *ngIf="!disableName" class="col-md-5">
+			<p>{{skill}}</p>
 		</div>
 		<ng-container *ngFor="let a of iterableStarArray">
 		<i (mouseover)="onMouseOver(a)" 
@@ -23,10 +23,6 @@ const emptyRating: number = -10;
 			cursor: pointer;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color: black;
-		}
-		.labelWeight {
-			font-weight: bolder;
-			margin-top: 5px;
 		}
 		i:hover {
 			color: yellow;

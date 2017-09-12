@@ -1,7 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import * as fromRoot from '../../reducers';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { JobsApplied } from '../../models/jobs-applied.model';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { Skill } from '../../models/skill.model';
@@ -31,10 +28,10 @@ import { isUndefined } from 'util';
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<div *ngFor="let skill of feedback.skillRatings; let i=index;">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-5">
 							<p>{{ skill.name }}</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-7">
 							<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
 								<i [ngClass]="getClass(feedback.skillRatings[i], counter)"></i>
 							</ng-container>
@@ -44,7 +41,7 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
-		<div class="row" style="padding-top: 20px;">
+		<div class="row" style="padding-top: 25px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.management.comment" readonly></textarea>
 				<label class="form-inline">
@@ -53,7 +50,7 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/><br/>
-		<div class="row" style="padding-top: 5px;">
+		<div class="row" style="padding-top: 25px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.leadership.comment" readonly></textarea>
 				<label class="form-inline">
@@ -89,7 +86,7 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/><br/>
-		<div class="row" style="padding-top: 35px;">
+		<div class="row" style="padding-top: 22px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonFitToJob.comment" readonly></textarea>
 				<label class="form-inline">
@@ -149,12 +146,12 @@ import { isUndefined } from 'util';
 		</div>
 		<br/>
 		<div class="row" *ngIf="hasFeedBacks() && feedback.approvedByCandidate" ></div>
-		<div class="col-md-12" *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
+		<div *ngIf="hasFeedBacks() && !feedback.approvedByCandidate">
 			<hr>
-			<div class="form-inline text-center">
+			<div class="col-md-12 form-inline text-center">
 				<input type="checkbox" class="form-control input-checkbox" 
 					(change)="approveRefereeFeedback(jobApplied, selectedFeedBack)"/>
-				<label>&emsp;Attach this reference to your application?</label>
+				<p>&emsp;Attach this reference to your application?</p>
 			</div>
 		</div>
 		<br/>
@@ -198,7 +195,7 @@ import { isUndefined } from 'util';
 		}
 	`]
 })
-export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
+export class JobAppliedFeedbackViewComponent implements OnChanges {
 	@Output() OnApprovedFeedbackEvent = new EventEmitter<any>();
 	@Input() jobApplied: JobsApplied;
 
@@ -247,9 +244,7 @@ export class JobAppliedFeedbackViewComponent implements OnInit, OnChanges {
 		cannotBeContact: false,
 	};
 
-	constructor(private store: Store<fromRoot.State>) {	}
-
-	ngOnInit() {	}
+	constructor() {	}
 
 	ngOnChanges(changes: any): void {
 		if (this.jobApplied) {

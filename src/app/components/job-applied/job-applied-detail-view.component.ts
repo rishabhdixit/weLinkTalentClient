@@ -31,10 +31,10 @@ import { Skill } from '../../models/skill.model';
 				<h6 style="color: #57148D;">Your personal scoring:</h6>
 				<div *ngFor="let skill of jobApplied.form_data.skills; let i=index;">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-5">
 						<p>{{ skill.name }}</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-7">
 							<ng-container *ngFor="let num of [0, 1, 2, 3, 4]; let counter=index">
 								<i [ngClass]="getClass(jobApplied.form_data.skills[i], counter)"
 								   aria-hidden="true">

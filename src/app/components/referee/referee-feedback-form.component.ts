@@ -12,7 +12,12 @@ const emptyRating: number = -10;
 			<div class="col-md-12">
 				<br/>
 				<br/>
-				<h1>Reference</h1>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h5>Referee Feedback Details:</h5><br/>
+						<p>This section will contain your feedback to the applicant.</p>
+					</div>
+				</div>
 				<br/><br/>
 				<div class="form-group" style="margin-bottom: .5rem; margin-top: 9px;">
 					<textarea class="form-control" rows="4" formControlName="reasonForLeavingFeedback" required> </textarea>
@@ -73,7 +78,7 @@ const emptyRating: number = -10;
 						I APPROVE
 					</label>
 				</div>
-				<br/><br/><br/>
+				<br/><br/>
 				<div class="form-group" style="margin-top: 10px;">
 					<textarea class="form-control" rows="5" formControlName="fitToJobReasonFeedback" required> </textarea>
 					<label>
@@ -89,7 +94,7 @@ const emptyRating: number = -10;
 						I APPROVE
 					</label>
 				</div>
-				<br/><br/>
+				<br/>
 				<div class="row">
 					<div class="col-md-12">
 						<p>Do you agree that the candidate is qualified in skills and personality in doing this role?</p>
