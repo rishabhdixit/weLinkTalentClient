@@ -11,6 +11,7 @@ export class JobApplication {
 	contacted: boolean;
 	recruiter_reviewed: boolean;
 	recruiter_comment: string;
+	resume_urls: string[];
 	createdAt: Date;
 	updatedAt: Date;
 

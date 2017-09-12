@@ -249,6 +249,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 			skills.push({name: skill, rate: (this.application.skills[skill] + 1)});
 		}
 		candidateApplication.skills = skills;
+		candidateApplication.files = this.application.files;
 		this.application.skills = skills;
 		if (!this.applicationForm.invalid && this.hasFiles) {
 			this.applicationEventEmitter.emit(candidateApplication);
@@ -285,7 +286,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 			relationship: new FormControl('', [Validators.required]),
 			analytical: new FormControl('', [Validators.required]),
 			fitToJobReason: new FormControl('', [Validators.required]),
-			jobRelatedAchievements: new FormControl('', [Validators.required]),
+			jobRelatedAchievements: new FormControl('', [Validators.required])
 		});
 	}
 }
