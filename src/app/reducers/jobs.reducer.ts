@@ -13,6 +13,7 @@ export interface State {
 	isBookmarked: boolean;
 	jobCreated: Job;
 	jobUpdated: Job;
+	jobFromApplication: Job;
 }
 
 const initialState: State = {
@@ -24,7 +25,8 @@ const initialState: State = {
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 },
 	isBookmarked: false,
 	jobCreated: null,
-	jobUpdated: null
+	jobUpdated: null,
+	jobFromApplication: null
 };
 
 export function reducer(state = initialState, action: jobs.Actions): State {
@@ -54,7 +56,8 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
 				jobCreated: null,
-				jobUpdated: null
+				jobUpdated: null,
+				jobFromApplication: null
 			};
 		}
 		case jobs.ActionTypes.SELECT: {
@@ -79,7 +82,8 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				pageMetaData: state.pageMetaData,
 				isBookmarked: false,
 				jobCreated: null,
-				jobUpdated: null
+				jobUpdated: null,
+				jobFromApplication: null
 			};
 		}
 		case jobs.ActionTypes.ADD_BOOKMARK: {
@@ -172,8 +176,19 @@ export function reducer(state = initialState, action: jobs.Actions): State {
 				pageMetaData: jobs.pageMetaData,
 				isBookmarked: false,
 				jobCreated: null,
-				jobUpdated: null
+				jobUpdated: null,
+				jobFromApplication: null
 			};
+		}
+		case jobs.ActionTypes.LOAD_JOB_FROM_APPLICATION: {
+			return Object.assign({}, state, {
+				jobFromApplication: null
+			});
+		}
+		case jobs.ActionTypes.LOAD_JOB_FROM_APPLICATION_SUCCESS: {
+			return Object.assign({}, state, {
+				jobFromApplication: action.payload
+			});
 		}
 		default: {
 			return state;
@@ -198,6 +213,8 @@ export const getTotalJobsCreated = (state: State) => state.pageMetaData.totalSiz
 export const getJobCreated = (state: State) => state.jobCreated;
 
 export const getJobUpdated = (state: State) => state.jobUpdated;
+
+export const getJobFromApplication = (state: State) => state.jobFromApplication;
 
 //noinspection TypeScriptValidateTypes
 export const getSelectedJob = createSelector(getEntities, getSelectedJobId, (entities, selectedId) => {

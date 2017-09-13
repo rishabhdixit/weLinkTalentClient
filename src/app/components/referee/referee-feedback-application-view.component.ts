@@ -9,22 +9,25 @@ import { JobApplication } from '../../models/job-application.model';
 				<div class="col-md-12">
 					<br/>
 					<br/>
-					<h1>Applicant</h1>
+					<div class="col-md-12 text-center">
+						<h5>Applicant's Applications Details:</h5>
+						<p>This section contains what the applicant have filled previously.</p>
+					</div>
 					<br/>
 					<div class="form-group">
 						<label for="reasonForLeaving" class="labelStyle">Reason for leaving the current company:</label>
 						<textarea class="form-control" id="reasonForLeaving" name="reasonForLeaving" rows="5" 
 											[(ngModel)]="jobApplication.form_data.reasonForLeaving" required readonly></textarea>
 					</div>
-					<div class="col-md-12 div-padding">
-						<p class="skillStyle">Your Personal Scoring:</p>
+					<div class="col-md-12 div-padding" style="margin-top: 25px;">
+						<p class="skillStyle">Applicant's Personal Scoring to his/her skills:</p>
 						<p style="margin-bottom: 10px;color: gray;">(5 star= Excellent; 1 star= poor)</p>
 						<div class="form-group" *ngFor="let skill of jobApplication.form_data.skills">
 							<div class="row">
-								<div class="col-md-6">
-									<p class="labelWeight">{{ skill.name }}</p>
+								<div class="col-md-5">
+									<p>{{ skill.name }}</p>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-7">
 									<ng-container *ngFor="let count of [0,1,2,3,4]">
 										<i [ngClass]="getClass(count, skill.rate)"></i>
 									</ng-container>
@@ -76,7 +79,7 @@ import { JobApplication } from '../../models/job-application.model';
 								<input type="radio" class="input-radio" value="{{ relation.value }}" 
 												[(ngModel)]="jobApplication.form_data.relationship" 
 												[ngModelOptions]="{standalone: true}" disabled/>
-								<label>&emsp;{{ relation.value }} Pakyu</label>
+								<label>&emsp;{{ relation.value }}</label>
 							</li>
 						</ul>
 					</div>

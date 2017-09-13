@@ -26,10 +26,9 @@ import { DOCUMENT } from '@angular/common';
 					</div>
 					<div class="form-group">
 						<input type="file" class="form-control" id="file" name="file" (change)="onFileUpload($event)" multiple required/>
+						<div *ngIf="!application.files || !hasFiles"
+						     class="alert alert-danger form-control">Please fill out this field!</div>
 					</div>
-					<!--<div class="row">-->
-						<!--<button class="btn btn-primary form-control" >Upload Resume</button>-->
-					<!--</div>-->
 					<br/>
 					<div class="row">
 						<h3>What do you bring to this role?</h3>
@@ -67,8 +66,9 @@ import { DOCUMENT } from '@angular/common';
 						<label for="management"><b>Management</b><i class="red-color"> * </i></label>
 						<ul class="list-unstyled">
 							<li *ngFor="let manage of management">
-								<input type="radio" class="input-radio" value="{{ manage.value }}" formControlName="management"/>
-								<label class="labelWeight">&emsp;{{ manage.value }}</label>
+								<label class="labelWeight">
+									<input type="radio" value="{{ manage.value }}" formControlName="management"/> &emsp;{{ manage.value }}
+								</label>
 							</li>
 						</ul>
 						<div *ngIf="applicationForm.get('management').touched && applicationForm.get('management').invalid"
@@ -78,8 +78,9 @@ import { DOCUMENT } from '@angular/common';
 						<label for="leadership"><b>Leadership</b><i class="red-color"> * </i></label>
 						<ul class="list-unstyled">
 							<li *ngFor="let lead of leadership">
-								<input type="radio" class="input-radio" value="{{ lead.value }}" formControlName="leadership"/>
-								<label class="labelWeight">&emsp;{{ lead.value }}</label>
+								<label class="labelWeight">
+									<input type="radio" value="{{ lead.value }}" formControlName="leadership"/> &emsp;{{ lead.value }}
+								</label>
 							</li>
 						</ul>
 						<div *ngIf="applicationForm.get('leadership').touched && applicationForm.get('leadership').invalid"
@@ -89,8 +90,9 @@ import { DOCUMENT } from '@angular/common';
 						<label for="selfManagement"><b>Self-Management</b><i class="red-color"> * </i></label>
 						<ul class="list-unstyled">
 							<li *ngFor="let selfManage of self_management">
-								<input type="radio" class="input-radio" value="{{ selfManage.value }}" formControlName="selfManagement"/>
-								<label class="labelWeight">&emsp;{{ selfManage.value }}</label>
+								<label class="labelWeight">
+									<input type="radio" value="{{ selfManage.value }}" formControlName="selfManagement"/> &emsp;{{ selfManage.value }}
+								</label>
 							</li>
 						</ul>
 						<div *ngIf="applicationForm.get('selfManagement').touched && applicationForm.get('selfManagement').invalid"
@@ -100,8 +102,9 @@ import { DOCUMENT } from '@angular/common';
 						<label for="relationship"><b>Relationships</b><i class="red-color"> * </i></label>
 						<ul class="list-unstyled">
 							<li *ngFor="let relation of relationship">
-								<input type="radio" class="input-radio" value="{{ relation.value }}" formControlName="relationship"/>
-								<label class="labelWeight">&emsp;{{ relation.value }}</label>
+								<label class="labelWeight">
+									<input type="radio" value="{{ relation.value }}" formControlName="relationship"/> &emsp;{{ relation.value }}
+								</label>
 							</li>
 						</ul>
 						<div *ngIf="applicationForm.get('relationship').touched && applicationForm.get('relationship').invalid"
@@ -111,8 +114,9 @@ import { DOCUMENT } from '@angular/common';
 						<label for="analytical"><b>Analytical</b><i class="red-color"> * </i></label>
 						<ul class="list-unstyled">
 							<li *ngFor="let analytic of analytics">
-								<input type="radio" class="input-radio" value="{{ analytic.value }}" formControlName="analytical"/>
-								<label class="labelWeight">&emsp;{{ analytic.value }}</label>
+								<label class="labelWeight">
+									<input type="radio" value="{{ analytic.value }}" formControlName="analytical"/> &emsp;{{ analytic.value }}
+								</label>
 							</li>
 						</ul>
 						<div *ngIf="applicationForm.get('analytical').touched && applicationForm.get('analytical').invalid"
@@ -234,6 +238,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 	formGroupSkills: FormArray;
 
 	isApplicationFormValid: boolean = true;
+	hasFiles = false;
 
 	constructor(public fb: FormBuilder, @Inject(DOCUMENT) private document: Document) {	}
 
@@ -244,10 +249,10 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 			skills.push({name: skill, rate: (this.application.skills[skill] + 1)});
 		}
 		candidateApplication.skills = skills;
+		candidateApplication.files = this.application.files;
 		this.application.skills = skills;
-		if (!this.applicationForm.invalid) {
+		if (!this.applicationForm.invalid && this.hasFiles) {
 			this.applicationEventEmitter.emit(candidateApplication);
-			console.log('Data: ', candidateApplication);
 		} else {
 			this.document.body.scrollTop = 200;
 			this.isApplicationFormValid = false;
@@ -262,8 +267,10 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 		if (files.length > 5) {
 			alert('Maximum of 5 files can only be uploaded');
 			this.application.files = null;
+			this.hasFiles = false;
 		} else {
 			this.application.files = files;
+			this.hasFiles = true;
 		}
 	}
 
@@ -279,8 +286,7 @@ export class CandidateJobApplicationFormComponent  implements OnInit {
 			relationship: new FormControl('', [Validators.required]),
 			analytical: new FormControl('', [Validators.required]),
 			fitToJobReason: new FormControl('', [Validators.required]),
-			jobRelatedAchievements: new FormControl('', [Validators.required]),
+			jobRelatedAchievements: new FormControl('', [Validators.required])
 		});
 	}
-
 }

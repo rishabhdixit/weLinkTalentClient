@@ -92,3 +92,28 @@ textarea {
 .word-wrap {
 	word-wrap: break-word;
 }
+input[type=date] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
+input[type=number] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
+input[type=email] {
+	height: 39px;
+	margin: 0 auto;
+	width: 100%;
+}
+input[type=radio] {
+	cursor: pointer;
+	width: 1.2em;
+	height: 1.2em;
+}
+input[type=checkbox] {
+	cursor: pointer;
+	width: 1.2em;
+	height: 1.2em;
+}

@@ -49,7 +49,7 @@ import { RefereeFeedbackResponse } from '../../models/referee-feedback-response.
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
-					<button class="btn btn-primary btn-lg">Done</button>
+					<a routerLink="/jobs"><button class="btn btn-primary btn-lg">Done</button></a>
 				</div>
 			</div>
 	`,
