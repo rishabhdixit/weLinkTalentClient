@@ -87,6 +87,15 @@ export class JobEffects {
 			.catch(() => Observable.of(new jobsAction.JobArchiveFailAction('')))
 		).do(() => this.router.navigate(['admin/home']));
 
+	@Effect()
+	loadJobFromApplication = this.actions
+		.ofType(jobsAction.ActionTypes.LOAD_JOB_FROM_APPLICATION)
+		.map((action: jobsAction.LoadJobFromApplication) => action.payload)
+		.switchMap((jobId) => this.jobService.get(jobId)
+			.map((res) => new jobsAction.LoadJobFromApplicationSucess(res))
+			.catch(() => Observable.of(new jobsAction.LoadJobFromApplicationFail('')))
+		);
+
 	constructor(private actions: Actions,
 		private jobService: JobService,
 		private bookmarkService: BookmarkService,
