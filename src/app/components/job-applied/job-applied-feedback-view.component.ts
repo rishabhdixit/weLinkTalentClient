@@ -41,7 +41,7 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
-		<div class="row" style="padding-top: 25px;">
+		<div class="row" style="padding-top: 15px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.management.comment" readonly></textarea>
 				<label class="form-inline">
@@ -49,8 +49,8 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/><br/>
-		<div class="row" style="padding-top: 25px;">
+		<br/>
+		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.leadership.comment" readonly></textarea>
 				<label class="form-inline">
@@ -58,7 +58,7 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/><br/>
+		<br/>
 		<div class="row" style="padding-top: 8px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.selfManagement.comment" readonly></textarea>
@@ -67,8 +67,8 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/><br/>
-		<div class="row" style="padding-top: 22px;">
+		<br/>
+		<div class="row" style="padding-top: 5px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.relationship.comment" readonly></textarea>
 				<label class="form-inline">
@@ -76,8 +76,8 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/><br/>
-		<div class="row" style="padding-top: 25px;">
+		<br/>
+		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.analytical.comment" readonly></textarea>
 				<label class="form-inline">
@@ -85,8 +85,8 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/><br/>
-		<div class="row" style="padding-top: 22px;">
+		<br/>
+		<div class="row" style="padding-top: 25px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonFitToJob.comment" readonly></textarea>
 				<label class="form-inline">
@@ -94,8 +94,7 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 15px;">
+		<div class="row" style="padding-top: 17px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.relatedAchievement.comment" readonly></textarea>
 				<label class="form-inline">

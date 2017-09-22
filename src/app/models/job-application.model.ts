@@ -1,5 +1,3 @@
-import { Job } from './job.model';
-
 export class JobApplication {
 	id: string;
 	_id: string;

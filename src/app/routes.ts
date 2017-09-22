@@ -12,6 +12,8 @@ import { JobApplicationFormReferenceGuard } from './guards/job-application-form-
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
 import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
+import { UserExistsGuard } from './guards/user-exist-guard';
+import { ApplicationExistsGuard } from './guards/application-exist-guard';
 
 import { ApplicationConceptPageComponent } from './containers/application-concept-page.component';
 import { ApplicationFormPageComponent } from './containers/application-form-page.component';
@@ -32,6 +34,7 @@ import { JobAppliedPageComponent } from './containers/job-applied-page.component
 import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
 import { AdminEditJobPageComponent } from './containers/Admin/admin-edit-job-page.component';
 import { AdminAllJobsApplicationsPageComponent } from './containers/Admin/admin-all-jobs-applications-page.component';
+import { AdminApplicantApplicationPageComponent } from './containers/Admin/admin-applicant-application-page.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -53,7 +56,6 @@ export const routes: Routes = [
 	{
 		path: 'jobs',
 		component: JobSearchPageComponent,
-		// resolve: { loaded: UserResolve }
 	},
 	{
 		path: 'jobs/:id',
@@ -140,6 +142,15 @@ export const routes: Routes = [
 		path: 'applicants',
 		canActivate: [LoggedInGuard],
 		component: AdminAllJobsApplicationsPageComponent,
+	},
+	{
+		path: 'applicants/:userId/application/:id',
+		canActivate: [
+			LoggedInGuard,
+			UserExistsGuard,
+			ApplicationExistsGuard
+		],
+		component: AdminApplicantApplicationPageComponent,
 	},
 	{
 		path: '**',
