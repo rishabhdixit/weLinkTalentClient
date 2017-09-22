@@ -1,6 +1,5 @@
 export class Reference {
 	id: string;
-	referenceID: number;
 	firstName: string;
 	lastName: string;
 	company: string;

@@ -35,6 +35,10 @@ import { JobCreatedViewComponent } from './job/job-created-view.component';
 import { RecordNotFoundViewComponent } from './common/record-not-found-view.component';
 import { AdminAllJobsApplicationsComponent } from './admin-all-jobs-applications.component';
 import { ApplicationForHeaderComponent } from './common/application-for-header.component';
+import { CandidateProfileViewComponent } from './admin/candidate-profile-view.component';
+import { CandidateApplicationFormViewComponent } from './admin/candidate-application-form-view.component';
+import { RefereesFeedbackViewComponent } from './admin/referee-feedback-view.component';
+import { ReferencesInfoViewComponent } from './admin/references-info-view.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -68,7 +72,11 @@ export const COMPONENTS = [
 	JobCreatedViewComponent,
 	RecordNotFoundViewComponent,
 	AdminAllJobsApplicationsComponent,
-	ApplicationForHeaderComponent
+	ApplicationForHeaderComponent,
+	CandidateProfileViewComponent,
+	CandidateApplicationFormViewComponent,
+	RefereesFeedbackViewComponent,
+	ReferencesInfoViewComponent,
 ];
 
 @NgModule({

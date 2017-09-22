@@ -33,6 +33,7 @@ import * as fromApplication from './job-application.reducer';
 import * as fromRefereeFeedback from './referee-feedback.reducer';
 import * as fromJobsApplied from './jobs-applied.reducer';
 import * as fromBookmarkedJobs from './bookmarked-jobs.reducer';
+import * as fromUsers from './user.reducer';
 
 export interface State {
 	login: fromLogin.State;
@@ -43,6 +44,7 @@ export interface State {
 	refereeFeedback: fromRefereeFeedback.State;
 	jobsApplied: fromJobsApplied.State;
 	bookmarkedJobs: fromBookmarkedJobs.State;
+	users: fromUsers.State;
 }
 
 /**
@@ -57,7 +59,8 @@ const reducers = {
 	application: fromApplication.reducer,
 	refereeFeedback: fromRefereeFeedback.reducer,
 	jobsApplied: fromJobsApplied.reducer,
-	bookmarkedJobs: fromBookmarkedJobs.reducer
+	bookmarkedJobs: fromBookmarkedJobs.reducer,
+	users: fromUsers.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -79,6 +82,7 @@ export const getApplicationState = (state: State) => state.application;
 export const getRefereeFeedbackState = (state: State) => state.refereeFeedback;
 export const getJobsAppliedState = (state: State) => state.jobsApplied;
 export const getBookmarkedJobsState = (state: State) => state.bookmarkedJobs;
+export const getUsersState = (state: State) => state.users;
 
 export const isLoggedFail = createSelector(getLoginState, fromLogin.isLoggedFail);
 
@@ -125,6 +129,8 @@ export const getTotalJobsApplied = createSelector(getJobsAppliedState,
 	fromJobsApplied.getTotalJobsApplied);
 export const getSelectedJobApplied = createSelector(getJobsAppliedState,
 	fromJobsApplied.getSelectedJobsApplied);
+export const getJobApplication = createSelector(getJobsAppliedState,
+	fromJobsApplied.getJobApplication);
 
 export const getAllBookmarkedJobs = createSelector(getBookmarkedJobsState,
 	fromBookmarkedJobs.getAllBookmarkedJobs);
@@ -134,3 +140,5 @@ export const getAllBookmarkedJobs = createSelector(getBookmarkedJobsState,
 // 	fromBookmarkedJobs.getBookmarkedJobEntities);
 export const getTotalBookmarkedJobs = createSelector(getBookmarkedJobsState,
 	fromBookmarkedJobs.getTotalBookmarkedJobs);
+
+export const getUserById = createSelector(getUsersState, fromUsers.getUserById);

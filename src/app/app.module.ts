@@ -29,6 +29,8 @@ import { JobApplicationFormReferenceGuard } from './guards/job-application-form-
 import { JobApplicationFormSuccessGuard } from './guards/job-application-form-success.guard';
 import { RefereeFeedbackGuard } from './guards/referee-feedback.guard';
 import { JobAppliedExistsGuard } from './guards/job-applied-exist-guard';
+import { ApplicationExistsGuard } from './guards/application-exist-guard';
+import { UserExistsGuard } from './guards/user-exist-guard';
 
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
@@ -36,6 +38,7 @@ import { JobService } from './services/job.service';
 import { BookmarkService } from './services/bookmark.service';
 import { JobApplicationService } from './services/job-application.service';
 import { DecryptService } from './services/decrypt.service';
+import { UserService } from './services/user.service';
 
 import { ProfileEffects } from './effects/profile.effects';
 import { LogInEffects } from './effects/login.effects';
@@ -64,7 +67,7 @@ import { AdminHomePageComponent } from './containers/Admin/admin-home-page.compo
 import { AdminCreateJobPageComponent } from './containers/Admin/admin-create-job-page.component';
 import { AdminEditJobPageComponent } from './containers/Admin/admin-edit-job-page.component';
 import { AdminAllJobsApplicationsPageComponent } from './containers/Admin/admin-all-jobs-applications-page.component';
-
+import { AdminApplicantApplicationPageComponent } from './containers/Admin/admin-applicant-application-page.component';
 
 // Pagination
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -95,6 +98,7 @@ import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 		AdminCreateJobPageComponent,
 		AdminEditJobPageComponent,
 		AdminAllJobsApplicationsPageComponent,
+		AdminApplicantApplicationPageComponent,
 		ThousandSeparatorPipe
 	],
 	imports: [
@@ -138,6 +142,7 @@ import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 		BookmarkService,
 		JobApplicationService,
 		DecryptService,
+		UserService,
 		ProfileResolve,
 		UserResolve,
 		LoggedInGuard,
@@ -150,6 +155,8 @@ import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 		JobApplicationFormSuccessGuard,
 		RefereeFeedbackGuard,
 		JobAppliedExistsGuard,
+		ApplicationExistsGuard,
+		UserExistsGuard,
 		ThousandSeparatorPipe
 	],
 	bootstrap: [

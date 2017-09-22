@@ -19,6 +19,7 @@ import 'rxjs/Rx';
 						<th class="text-center width_40">Creation Date</th>
 						<th class="text-center width_20">Action</th>
 						<th class="text-center width_20">Download</th>
+						<th class="text-center width_20">More</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,6 +48,9 @@ import 'rxjs/Rx';
 							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
 							<!--<button class="btn-primary" (click)="onDownloadFile(application.resume_urls)">Download</button>-->
 							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
+						</td>
+						<td class="word-wrap">
+							<a routerLink="/applicants/{{application.user._id}}/application/{{application.id}}" class="purple-color">read more</a>
 						</td>
 					</tr>
 				</tbody>

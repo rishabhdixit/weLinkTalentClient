@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import * as jobsAppliedAction from '../actions/jobs-applied.action';

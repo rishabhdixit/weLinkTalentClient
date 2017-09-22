@@ -57,8 +57,7 @@ import { Skill } from '../../models/skill.model';
 				</ul>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 10px;">
+		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Leadership</h6>
 				<ul class="list-unstyled">
@@ -69,8 +68,7 @@ import { Skill } from '../../models/skill.model';
 				</ul>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 10px;">
+		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Self-Management</h6>
 				<ul class="list-unstyled">
@@ -82,8 +80,7 @@ import { Skill } from '../../models/skill.model';
 				</ul>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 15px;">
+		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Relationships</h6>
 				<ul class="list-unstyled">
@@ -95,8 +92,7 @@ import { Skill } from '../../models/skill.model';
 				</ul>
 			</div>
 		</div>
-		<br/>
-		<div class="row" style="padding-top: 15px;">
+		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Analytical</h6>
 				<ul class="list-unstyled">
@@ -108,7 +104,6 @@ import { Skill } from '../../models/skill.model';
 				</ul>
 			</div>
 		</div>
-		<br/>
 		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Why are you best fit for this job</h6>

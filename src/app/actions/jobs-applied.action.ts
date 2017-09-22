@@ -19,7 +19,10 @@ export const ActionTypes = {
 	APPLICATION_REQUEST_FEEDBACK_RECRUITER_FAIL:            type('[JOBS_APPLIED] Application Request Feedback To Recruiter Fail'),
 	APPLICATION_REQUEST_FEEDBACK_REFEREE:                   type('[JOBS_APPLIED] Application Request Feedback To Referee'),
 	APPLICATION_REQUEST_FEEDBACK_REFEREE_SUCCESS:           type('[JOBS_APPLIED] Application Request Feedback To Referee Success'),
-	APPLICATION_REQUEST_FEEDBACK_REFEREE_FAIL:              type('[JOBS_APPLIED] Application Request Feedback To Referee Fail')
+	APPLICATION_REQUEST_FEEDBACK_REFEREE_FAIL:              type('[JOBS_APPLIED] Application Request Feedback To Referee Fail'),
+	LOAD_APPLICATION_BY_ID:                                 type('[JOBS_APPLIED] Candidate Jobs Applied By Id Load'),
+	LOAD_APPLICATION_BY_ID_SUCCESS:                         type('[JOBS_APPLIED] Candidate Jobs Applied By Id Load Success'),
+	LOAD_APPLICATION_BY_ID_FAIL:                            type('[JOBS_APPLIED] Candidate Jobs Applied By Id Load Fail')
 };
 
 export class JobsAppliedLoadAction implements Action {
@@ -118,6 +121,22 @@ export class ApplicationRequestFeedbackRefereeFailAction implements Action {
 	constructor(public payload: any) {}
 }
 
+export class ApplicationByIdLoadAction implements Action {
+	type = ActionTypes.LOAD_APPLICATION_BY_ID;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationByIdLoadSuccessAction implements Action {
+	type = ActionTypes.LOAD_APPLICATION_BY_ID_SUCCESS;
+
+	constructor(public payload: any) {}
+}
+export class ApplicationByIdLoadFailAction implements Action {
+	type = ActionTypes.LOAD_APPLICATION_BY_ID_FAIL;
+
+	constructor(public payload: any) {}
+}
+
 export type Actions = JobsAppliedLoadAction
 	| JobsAppliedLoadSuccessAction
 	| JobsAppliedLoadFailAction
@@ -134,4 +153,7 @@ export type Actions = JobsAppliedLoadAction
 	| ApplicationRequestFeedbackRecruiterFailAction
 	| ApplicationRequestFeedbackRefereeAction
 	| ApplicationRequestFeedbackRefereeSuccessAction
-	| ApplicationRequestFeedbackRefereeFailAction;
+	| ApplicationRequestFeedbackRefereeFailAction
+	| ApplicationByIdLoadAction
+	| ApplicationByIdLoadSuccessAction
+	| ApplicationByIdLoadFailAction;

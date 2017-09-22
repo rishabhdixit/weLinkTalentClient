@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { RefereeFeedback } from '../../models/referee-feedback.model';
 import { JobApplication } from '../../models/job-application.model';
@@ -207,7 +207,7 @@ const emptyRating: number = -10;
 	`],
 })
 
-export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
+export class RefereeFeedbackFormComponent implements OnInit {
 	@Input() jobApplication: JobApplication;
 	@Output() submitRefereeFeedbackEvent = new EventEmitter<RefereeFeedback>();
 
@@ -256,8 +256,6 @@ export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
 		}
 	}
 
-	ngOnChanges(): void {	}
-
 	checkHireCandidate(value: string): void {
 		if (value === 'Yes') {
 			if (this.refereeFeedbackForm.get('hireCandidate').value) {
@@ -294,7 +292,6 @@ export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
 		if (this.rating > emptyRating) {
 			return false;
 		}
-
 		this.rating = index;
 	}
 
@@ -319,7 +316,6 @@ export class RefereeFeedbackFormComponent implements OnInit, OnChanges {
 		}
 		this.clicked = true;
 		this.rating = index;
-		// this.newRating.emit(this.rating);
 	}
 
 	get skillRatings(): FormArray {

@@ -8,6 +8,7 @@ export interface State {
 	loading: boolean;
 	entities: { [id: string]: JobsApplied };
 	selectedJobAppliedId: string;
+	jobApplication: JobsApplied;
 	ids: string[];
 	pageMetaData: PageMetaData;
 }
@@ -18,6 +19,7 @@ const initialState: State = {
 	ids: [],
 	entities: {},
 	selectedJobAppliedId: null,
+	jobApplication: null,
 	pageMetaData: { size: 0, pageNumber: 0, totalPages: 0, totalSize: 0 }
 };
 
@@ -43,6 +45,7 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 				loading: false,
 				ids: [...newApplicationIds],
 				entities: Object.assign({}, {}, newApplicationEntities),
+				jobApplication: state.jobApplication,
 				selectedJobAppliedId: state.selectedJobAppliedId,
 				pageMetaData: applications.pageMetaData
 			};
@@ -117,6 +120,11 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 				loaded: true
 			});
 		}
+		case jobsAppliedAction.ActionTypes.LOAD_APPLICATION_BY_ID_SUCCESS: {
+			return Object.assign({}, state, {
+				jobApplication: action.payload,
+			});
+		}
 
 		default: {
 			return state;
@@ -128,6 +136,7 @@ export const getEntities = (state: State) => state.entities;
 export const getSelectedJobsAppliedId = (state: State) => state.selectedJobAppliedId;
 export const getIds = (state: State) => state.ids;
 export const getTotalJobsApplied = (state: State) => state.pageMetaData.totalSize;
+export const getJobApplication = (state: State) => state.jobApplication;
 
 export const getSelectedJobsApplied = createSelector(
 	getEntities, getSelectedJobsAppliedId, (entities, selectedJobAppliedId) => {

@@ -613,7 +613,7 @@ export class ProfileViewComponent implements OnInit {
 			singaporeVisa: this.profile.singaporeVisa,
 			visaValidity: this.profile.visaValidity,
 			noticePeriod: this.profile.noticePeriod,
-			noticePeriodNegotiable: this.profile.noticePeriodNegotiable,
+			noticePeriodNegotiable: '' + this.profile.noticePeriodNegotiable,
 			currentSalary: {
 				currency: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.currency : '',
 				annualSalary: !this.isValueUndefined(this.profile.currentSalary) ? this.profile.currentSalary.annualSalary : '',
