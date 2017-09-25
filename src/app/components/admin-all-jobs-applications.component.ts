@@ -44,10 +44,10 @@ import 'rxjs/Rx';
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
 						</td>
-						<td *ngIf="application.resume_urls && application.resume_urls[0]">
-							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
-							<!--<button class="btn-primary" (click)="onDownloadFile(application.resume_urls)">Download</button>-->
-							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
+						<td>
+							<a *ngIf="application.resume_urls && application.resume_urls[0]"
+								href="{{application.resume_urls[0]}}"
+								download="{{application.resume_urls[0]}}"><button>Download</button></a>
 						</td>
 						<td class="word-wrap">
 							<a routerLink="/applicants/{{application.user._id}}/application/{{application.id}}" class="purple-color">read more</a>

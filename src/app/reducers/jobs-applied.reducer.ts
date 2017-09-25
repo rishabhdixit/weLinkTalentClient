@@ -60,12 +60,23 @@ export function reducer(state = initialState, action: jobsAppliedAction.Actions)
 			const selectedCandidateJobApplied = state.entities[payload.id];
 			let newSelectedCandidateJobApplied: JobsApplied = {} as JobsApplied;
 			Object.assign(newSelectedCandidateJobApplied, selectedCandidateJobApplied, {
+				'id': payload.id,
+				'job_id': payload.job_id,
+				'user_id': payload.user_id,
 				'form_data': payload.form_data,
 				'resume_urls': payload.resume_urls,
 				'createdAt': payload.createdAt,
 				'updatedAt': payload.updatedAt,
 				'references_info': payload.references_info,
-				'feedback': payload.feedback
+				'feedback': payload.feedback,
+				'contacted': payload.contacted,
+				'recruiter_id': payload.recruiter_id,
+				'recruiter_reviewed': payload.recruiter_reviewed,
+				'form_status': payload.form_status,
+				'applied_by_candidate': payload.applied_by_candidate,
+				'approved_by_candidate': payload.approved_by_candidate,
+				'recruiter_feedback_requested': payload.recruiter_feedback_requested,
+				'reference_status': payload.reference_status
 			});
 			return Object.assign({}, state, {
 				entities: Object.assign({}, state.entities, {
