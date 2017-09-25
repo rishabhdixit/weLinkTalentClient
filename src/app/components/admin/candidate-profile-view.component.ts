@@ -1,11 +1,34 @@
 import { Component, Input, OnInit } from '@angular/core';
+// import * as JSZip from 'jszip';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from '../../models/user.model';
+import { JobsApplied } from '../../models/jobs-applied.model';
 
 @Component({
 	selector: 'app-candidate-profile-view',
 	template: `
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12 text-left">
+						<h3 class="purple-color">Candidate Resume's</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" *ngFor="let resumeUrl of application.resume_urls">
+			<div class="col-md-9 form-inline">
+				<h5>{{getFileName(resumeUrl)}}</h5>
+			</div>
+			<div class="col-md-3 form-inline text-right">
+				<a href="{{resumeUrl}}" download="{{getFileName(resumeUrl)}}">
+					<button class="btn btn-primary form-control">Download File</button>
+				</a>
+			</div>
+		</div>
+		<br/>
 		<form class="form-horizontal" novalidate [formGroup]="candidateProfileForm">
+			<hr/>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
@@ -164,6 +187,7 @@ import { User } from '../../models/user.model';
 })
 export class CandidateProfileViewComponent implements OnInit {
 	@Input() user: User;
+	@Input() application: JobsApplied;
 
 	logicalValueList: Array<any> = [
 		{ name: 'Yes', value: true },
@@ -193,6 +217,47 @@ export class CandidateProfileViewComponent implements OnInit {
 		});
 
 		this.profileFormDisable();
+	}
+
+	/*downloadResumes(): void {
+		this.compressResumesToZip([
+			'https://s3-ap-southeast-1.amazonaws.com/jaylex-develop/applicant/Larry+M.+Borrero/pdf/9fb6/Larry+M.+Borrero.pdf',
+			'https://s3-ap-southeast-1.amazonaws.com/jaylex-develop/applicant/Larry+M.+Borrero/pdf/9fb6/Larry+M.+Borrero.pdf'
+		]);
+	}*/
+
+	/*private compressResumesToZip(files: string[]) {
+		let zipFile: JSZip = new JSZip();
+		let xmlHTTP = new XMLHttpRequest();
+
+		let dataResponse = {
+			base64: null,
+			status: null
+		};
+
+		xmlHTTP.open('GET', files[0], true);
+		xmlHTTP.responseType = 'arraybuffer';
+		xmlHTTP.onload = function(e) {
+			if (xmlHTTP.statusText == 'OK') {
+				var arr = new Uint8Array(xmlHTTP.response);
+				var base64 = btoa(Array.prototype.map.call(arr, function (ch) {
+					return String.fromCharCode(ch);
+				}).join(''));
+				console.log('base64:', base64);
+				// callback(base64, xmlHTTP.statusText);
+			} else {
+				// callback(null, xmlHTTP.statusText);
+			}
+		};
+
+		xmlHTTP.send(null);
+
+		console.log(zipFile);
+		console.log(xmlHTTP);
+	}*/
+
+	getFileName(url: string): string {
+		return url.substr(url.lastIndexOf('/') + 1);
 	}
 
 	private profileFormDisable(): void {
