@@ -11,9 +11,7 @@ import { Skill } from '../../models/skill.model';
 				<p>This section contains what you have filled previously.</p>
 			</div>
 		</div>
-		<br/>
-		<br/>
-		<br/>
+		<br/><br/>
 		<div class="row">
 			<div class="col-md-12">
 				<h6 style="color: #57148D;">Reason of interest (What are your Push and Pull Factors) ?</h6>

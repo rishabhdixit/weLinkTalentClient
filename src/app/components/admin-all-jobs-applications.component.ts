@@ -18,7 +18,6 @@ import 'rxjs/Rx';
 						<th class="text-center width_250">Comment</th>
 						<th class="text-center width_40">Creation Date</th>
 						<th class="text-center width_20">Action</th>
-						<th class="text-center width_20">Download</th>
 						<th class="text-center width_20">More</th>
 					</tr>
 				</thead>
@@ -32,10 +31,10 @@ import 'rxjs/Rx';
 							</a>
 						</td>
 						<td>
-							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantContacted[i]"/>
+							<input type="checkbox" [(ngModel)]="applicantContacted[i]"/>
 						</td>
 						<td>
-							<input type="checkbox" class="input-checkbox" [(ngModel)]="applicantReviewed[i]"/>
+							<input type="checkbox" [(ngModel)]="applicantReviewed[i]"/>
 						</td>
 						<td class="word-wrap">
 							<input type="text" class="form-control" [(ngModel)]="applicantComment[i]"/>
@@ -43,11 +42,6 @@ import 'rxjs/Rx';
 						<td class="word-wrap">{{ application.createdAt | date: 'yyyy-mm-dd' }}</td>
 						<td>
 							<button (click)="onClickedUpdate(application, applicantContacted[i], applicantReviewed[i], applicantComment[i])">Update</button>
-						</td>
-						<td *ngIf="application.resume_urls && application.resume_urls[0]">
-							<a href="{{application.resume_urls[0]}}" download="{{application.resume_urls[0]}}"><button>Download</button></a>
-							<!--<button class="btn-primary" (click)="onDownloadFile(application.resume_urls)">Download</button>-->
-							<!--<button type="submit" (click)="window.open(application.resume_urls[0])">Download!</button>-->
 						</td>
 						<td class="word-wrap">
 							<a routerLink="/applicants/{{application.user._id}}/application/{{application.id}}" class="purple-color">read more</a>
@@ -57,12 +51,7 @@ import 'rxjs/Rx';
 			</table>
 		</div>
 	`,
-	styles: [`
-		.input-checkbox {
-			width: 1.2em;
-			height: 1.2em;
-		}
-	`],
+	styles: [``],
 })
 
 export class AdminAllJobsApplicationsComponent implements OnChanges {
@@ -90,12 +79,6 @@ export class AdminAllJobsApplicationsComponent implements OnChanges {
 			counter++;
 		}
 	}
-
-	// onDownloadFile(data: string) {
-	// 	var blob = new Blob([data], { type: 'text/csv/pdf/docx'});
-	// 	var url = window.URL.createObjectURL(blob);
-	// 	window.open(url);
-	// }
 
 	onClickedUpdate(application: JobApplication, contacted: boolean, reviewed: boolean, comment: string) {
 		this.isUpdatedEmitter.emit({

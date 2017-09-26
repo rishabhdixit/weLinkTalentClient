@@ -13,9 +13,8 @@ import { isUndefined } from 'util';
 				<p>This section contains what your referee have filled.</p>
 			</div>
 		</div>
-		<br/>
-		<br/><br/><br/>
-		<div class="row" style="padding-top: 2px;">
+		<br/><br/>
+		<div class="row" style="padding-top: 25px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonForLeaving.comment" readonly></textarea>
 				<label class="form-inline">
@@ -76,7 +75,7 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<br/>
+		<br/><br/>
 		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="6" type="text" class="form-control" [(ngModel)]="feedback.analytical.comment" readonly></textarea>
@@ -86,7 +85,7 @@ import { isUndefined } from 'util';
 			</div>
 		</div>
 		<br/>
-		<div class="row" style="padding-top: 25px;">
+		<div class="row">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.reasonFitToJob.comment" readonly></textarea>
 				<label class="form-inline">
@@ -94,7 +93,7 @@ import { isUndefined } from 'util';
 				</label>
 			</div>
 		</div>
-		<div class="row" style="padding-top: 17px;">
+		<div class="row" style="padding-top: 18px;">
 			<div *ngIf="selectedFeedBack" class="col-md-12">
 				<textarea rows="5" type="text" class="form-control" [(ngModel)]="feedback.relatedAchievement.comment" readonly></textarea>
 				<label class="form-inline">

@@ -10,7 +10,9 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 	template: `
 		<div class="container">
 			<div class="container-fluid">
-				<app-candidate-profile-view [user]="user$ | async"></app-candidate-profile-view>
+				<app-candidate-profile-view
+					[user]="user$ | async"
+					[application]="application$ | async"></app-candidate-profile-view>
 				<br/>
 				<div class="row">
 					<div class="col-md-10"><hr/></div>
