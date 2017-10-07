@@ -7,6 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthHttp } from 'angular2-jwt';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -103,6 +104,7 @@ import { ThousandSeparatorPipe } from './pipe/thousand-separator.pipe';
 	],
 	imports: [
 		BrowserModule,
+		MyDatePickerModule,
 		FormsModule,
 		ComponentsModule,
 		HttpModule,

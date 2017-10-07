@@ -4,8 +4,9 @@ import { ThousandSeparatorPipe } from '../../pipe/thousand-separator.pipe';
 import { GlobalValidator } from '../../validator/global.validator';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { isUndefined } from 'util';
+import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
-import { Skill } from '../../models/skill.model';
+// import { Skill } from '../../models/skill.model';
 import { Profile } from '../../models/profile.model';
 import { WorkExperience } from '../../models/work-experience.model';
 
@@ -58,8 +59,19 @@ export class ProfileViewComponent implements OnInit {
 	isAboutYouInvalid: boolean = false;
 	isMiscellaneousInvalid: boolean = false;
 	isExpectedSalaryInvalid: boolean = false;
-	isWorkExperiencesInvalid: boolean = false;
-	isSkillsInvalid: boolean = false;
+	// isWorkExperiencesInvalid: boolean = false;
+	// isSkillsInvalid: boolean = false;
+
+	myDatePickerOptions: IMyDpOptions = {
+		todayBtnTxt: 'Today',
+		dateFormat: 'yyyy-mm-dd',
+		firstDayOfWeek: 'mo',
+		sunHighlight: true,
+		inline: false,
+		disableUntil: {
+			year: 2016, month: 8, day: 10
+		}
+	};
 
 	profileForm: FormGroup;
 
@@ -107,6 +119,10 @@ export class ProfileViewComponent implements OnInit {
 		});
 	}
 
+	onDateChanged(event: IMyDateModel): void {
+		console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+	}
+
 	initSkill(): FormGroup {
 		return this.fb.group({
 			name: this.fb.control('', Validators.required)
@@ -140,7 +156,7 @@ export class ProfileViewComponent implements OnInit {
 		}
 	}
 
-	addSkill(skill: Skill = null): void {
+	/*addSkill(skill: Skill = null): void {
 		if (skill === null) {
 			this.skills.push(this.initSkill());
 		} else {
@@ -199,7 +215,7 @@ export class ProfileViewComponent implements OnInit {
 
 	resetSkills(): void {
 		this.initSkills();
-	}
+	}*/
 
 	saveProfile(): void {
 		if (!this.isAboutYouValid()) {
@@ -293,9 +309,9 @@ export class ProfileViewComponent implements OnInit {
 		return this.profileForm.get(fieldName).touched && this.profileForm.get(fieldName).invalid;
 	}
 
-	isFormGroupFieldInValid(formGroup: FormGroup, fieldName: string): boolean {
+	/*isFormGroupFieldInValid(formGroup: FormGroup, fieldName: string): boolean {
 		return formGroup.get(fieldName).touched && formGroup.get(fieldName).invalid;
-	}
+	}*/
 
 	onChangeCurrentSalary(): void {
 		if (this.profileForm.get('currentSalary.currency').value) {
@@ -659,7 +675,7 @@ export class ProfileViewComponent implements OnInit {
 		this.visaValidityYear = visaValidity.getFullYear();
 	}
 
-	private initSkills(): void {
+	/*private initSkills(): void {
 		if (this.skills) {
 			while (this.skills.length > 0) {
 				this.skills.removeAt(0);
@@ -670,7 +686,7 @@ export class ProfileViewComponent implements OnInit {
 				this.addSkill(skill);
 			}
 		}
-	}
+	}*/
 
 	private initWorkExperiences(): void {
 		if (this.workExperiences) {

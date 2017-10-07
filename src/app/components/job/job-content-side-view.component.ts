@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { Job } from '../../models/job.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { Job } from '../../models/job.model';
 		<div>
 			<div class="card" style="margin-top: 20px;">
 				<div class="card-block">
-					<p style="font-size: xx-large;font-weight: 900;margin-left: 150px;margin-bottom: -47px;">?</p>
+					<!--<p style="font-size: xx-large;font-weight: 900;margin-left: 150px;margin-bottom: -47px;">?</p>-->
 					<h1 class="card-title">{{job.remaining_slots || job.application_slots-1}}</h1>
 					<h5 class="slots">Application Slots Left</h5>
 				</div>  
@@ -48,61 +48,65 @@ import { Job } from '../../models/job.model';
 				</div>
 			</div>
 		</div>-->
-		<div>
+		<!--<div>
 			<div class="card" style="margin-top: 20px;">
 				<div class="card-block">
 					<h3 class="card-title"> Similar Jobs</h3>
 					<hr style="background: darkgray;">
 					<h5 class="jobTitle"><a routerLink="/jobs/{{job._id}}">{{job.title}}</a></h5>
-					<div>
-						<table class="table table-condensed tableBorder">
-							<tbody>
-								<tr>
-									<td class="labelType">Location:<td>
-									<td>{{job.location}}</td>
-								</tr >
-								<tr>
-									<td class="labelType">Job Type:<td>
-									<td>Permanent</td>
-								</tr>
-								<tr>
-									<td class="labelType">Employment Type:<td>
-									<td>{{job.employment_type}}</td>
-								</tr>
-								<tr>
-									<td class="labelType">Salary:<td>
-									<td>Negotiable</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Location:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.location}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Job Type:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.job_type}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Emp Type:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.employment_type}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Salary:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.salary_negotiable ? 'Negotiable' : 'Not Negotiable'}}</div>
 					</div>
 					<hr style="background: darkgray;">
 					<h5 class="jobTitle"><a routerLink="/jobs/{{job._id}}">{{job.title}}</a></h5>
-					<div>
-						<table class="table tableBorder">
-							<tbody>
-								<tr>
-									<td class="labelType">Location:<td>
-									<td>{{job.location}}</td>
-								</tr>
-								<tr>
-									<td class="labelType">Job Type:<td>
-									<td>Permanent</td>
-								</tr>
-								<tr>
-									<td class="labelType">Emp Type:<td>
-									<td>{{job.employment_type}}</td>
-								</tr>
-								<tr>
-									<td class="labelType">Salary:<td>
-									<td>Negotiable</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Location:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.location}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Job Type:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.job_type}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Emp Type:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.employment_type}}</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Salary:</label>
+						</div>
+						<div class="col-md-7 text-wrap">{{job.salary_negotiable ? 'Negotiable' : 'Not Negotiable'}}</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 	`,
 	styles: [`
@@ -113,10 +117,6 @@ import { Job } from '../../models/job.model';
 			padding-top: 2px;
 			padding-bottom: 0px;
 			border: none;
-		}
-		.labelType {
-			font-weight: 700;
-			line-height: 2;
 		}
 		h1 {
 			font-size: 115px;
@@ -136,6 +136,10 @@ import { Job } from '../../models/job.model';
 		h5 {
 			text-align: center;
 			font-weight: 700;
+		}
+		label {
+			font-weight: 700;
+			line-height: 2;
 		}
 		.slotsLeft {
 			float: right;
