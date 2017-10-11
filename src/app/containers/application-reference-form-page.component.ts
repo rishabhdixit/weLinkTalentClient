@@ -19,7 +19,7 @@ import { Router, NavigationEnd } from '@angular/router';
 					<h2>Talent Application Form</h2>
 					<p class="pHeader">{{ selectedJob.title }} - {{ selectedJob.company.name }}</p>
 					<p class="hLabel">This application is confidential. Please contact us at talent@welinktalent.com for any questions
-						1regarding this form.</p>
+						regarding this form.</p>
 					<p style="color: #4D308E; font-size: larger;">Please provide at least two references:</p>
 				</div>
 				<div class="col-md-12">

@@ -70,7 +70,7 @@ import { routePath } from '../../routes';
 		}
 		.nav-list li {
 			display: inline-block;
-			width: 19%;
+			width: 20%; /*19%*/
 			text-align: center;
 		}
 		.groupButton{
