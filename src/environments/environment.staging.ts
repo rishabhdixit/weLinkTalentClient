@@ -5,5 +5,5 @@
 export const environment = {
 	production: false,
 	api: 'http://13.229.69.226',
-	encodedUrl: 'http://54.255.141.251',
+	encodedUrl: 'http://52.221.195.196',
 };
