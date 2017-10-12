@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
-RUN npm run build
+RUN npm run build --env=staging
 
 COPY default.conf /etc/nginx/conf.d/
 
