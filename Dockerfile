@@ -1,4 +1,5 @@
 FROM registry.gitlab.com/viseo-digital-squads/docker-nginx-node
+MAINTAINER Larry Borrero <redwolfgang20@gmail.com>
 
 RUN npm install -g angular-cli
 WORKDIR /usr/src/app

@@ -22,7 +22,7 @@ import * as fromRoot from '../reducers';
 					<p>For any queries, feel free to contact us on at talent@welinktalent.com.</p><br>
 					<hr>
 				</div>
-				<div class="col-md-12" style="margin-top: 10px; font-size: smaller;">
+				<!--<div class="col-md-12" style="margin-top: 10px; font-size: smaller;">
 					<p style="font-size: initial;">You may also wish to apply for the following jobs:</p>
 					<div class="col-md-6 div-style">
 						<div class="card" style="width: 20rem; height: 13rem;">
@@ -57,7 +57,7 @@ import * as fromRoot from '../reducers';
 							</div>  
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	`,
@@ -98,9 +98,11 @@ export class ThankYouPageComponent implements OnInit {
 	job$: Observable<Job>;
 	@Input() job: Job;
 	selectedJob: Job;
+
 	constructor(private store: Store<fromRoot.State>) {
 		this.job$ = this.store.select(fromRoot.getSelectedJob);
 	}
+
 	ngOnInit() {
 		this.store.select(fromRoot.getSelectedJob).subscribe((job) => this.selectedJob = job);
 	}

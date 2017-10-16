@@ -36,7 +36,7 @@ import * as jobsAction from '../actions/jobs.action';
 					<div class='col-md-12 text-center'>
 						<i class="fa fa-star fa-2x" [ngClass]="{'bookmark-selected': isBookmarked, 'bookmark-unselected': !isBookmarked}"
 							 (click)="removeBookmark()"></i>
-						<p class="addBookmark">{{isBookmarked? "Remove Bookmarks" : "Add Bookmarks"}}</p>
+						<p class="addBookmark">{{isBookmarked? "Remove from bookmarks" : "Add bookmarks"}}</p>
 					</div>
 				</div>
 				<div class="row">

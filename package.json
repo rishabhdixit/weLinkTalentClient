@@ -41,6 +41,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "lodash": "4.17.4",
+    "mydatepicker": "^2.0.31",
     "ng2-toastr": "^4.1.2",
     "ngrx-store-freeze": "^0.1.6",
     "ngx-pagination": "^3.0.0",

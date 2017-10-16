@@ -8,7 +8,6 @@ import * as login from '../../actions/login.action';
 import { LoginService } from 'app/services/login.service';
 import { routePath } from '../../routes';
 
-
 @Component({
 	selector: 'app-header',
 	template: `
@@ -41,12 +40,11 @@ import { routePath } from '../../routes';
 							<li><a routerLink="/home"><h5>Home</h5></a></li>
 							<li><a routerLink="/about-us"><h5>About Us</h5></a></li>
 							<li><a routerLink="/jobs"><h5>All Job Offers</h5></a></li>
-							<li><a routerLink="/contact-us"><h5>Contact Us</h5></a></li>
+							<!--<li><a routerLink="/contact-us"><h5>Contact Us</h5></a></li>-->
 							<li><a routerLink="/bookmarks"><h5>Bookmarks</h5></a></li>
 						</ul>
 					</nav>
 				</div>
-
 				<div *ngIf="isLoggedInAsAdmin" class="row">
 					<nav class="col-md-12" style="font-size:large;">
 						<ul class="nav-list">
@@ -57,7 +55,6 @@ import { routePath } from '../../routes';
 						</ul>
 					</nav>
 				</div>
-
 				<hr>
 			</div>
 		</header>
@@ -73,7 +70,7 @@ import { routePath } from '../../routes';
 		}
 		.nav-list li {
 			display: inline-block;
-			width: 19%;
+			width: 20%; /*19%*/
 			text-align: center;
 		}
 		.groupButton{
