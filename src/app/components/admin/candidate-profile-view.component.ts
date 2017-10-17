@@ -212,7 +212,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 													<label class="labelWeight">
 														<input
 															type="checkbox"
-															formControlName="transportation" readonly/>
+															formControlName="transportation" disabled/>
 														&nbsp;
 														Transportation
 														&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,7 +222,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 													<label class="labelWeight">
 														<input
 															type="checkbox"
-															formControlName="housing" readonly/>
+															formControlName="housing" disabled/>
 														&nbsp;
 														Housing
 														&nbsp;&nbsp;&nbsp;&nbsp;
@@ -232,7 +232,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 													<label class="labelWeight">
 														<input
 															type="checkbox"
-															formControlName="schooling" readonly/>
+															formControlName="schooling" disabled/>
 														&nbsp;
 														Schooling
 														&nbsp;&nbsp;&nbsp;&nbsp;
@@ -242,7 +242,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 													<label class="labelWeight">
 														<input
 															type="checkbox"
-															formControlName="health" readonly/>
+															formControlName="health" disabled/>
 														&nbsp;
 														Health
 													</label>
@@ -260,7 +260,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 									<label class="labelWeight">
 										<input
 											type="checkbox"
-											formControlName="others" readonly/>
+											formControlName="others" disabled/>
 										&nbsp;
 										Others
 									</label>
@@ -278,8 +278,6 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 									<input type="text"
 												 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 												 class="form-control currency"
-												 (focus)="onFocusThousandSeparator('currentSalary.allowance.totalAllowance')"
-												 (blur)="onBlurThousandSeparator('currentSalary.allowance.totalAllowance')"
 												 id="totalAllowance"
 												 formControlName="totalAllowance" readonly/>
 								</div>
@@ -301,7 +299,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 												<input
 													type="radio"
 													value="{{ logicalValue.value }}"
-													formControlName="isOnExpatPackage" readonly/>
+													formControlName="isOnExpatPackage" disabled/>
 												&nbsp;
 												{{ logicalValue.name }}
 												&nbsp;&nbsp;&nbsp;&nbsp;
@@ -350,7 +348,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 												<input
 													type="radio"
 													value="{{ logicalValue.value }}"
-													formControlName="isOnExpatPackage"/>
+													formControlName="isOnExpatPackage" disabled/>
 												&nbsp;
 												{{ logicalValue.name }}
 												&nbsp;&nbsp;&nbsp;&nbsp;
@@ -386,7 +384,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 												<input
 													type="radio"
 													value="{{ percentage }}"
-													formControlName="percentageTravelAccepted"/>
+													formControlName="percentageTravelAccepted" disabled/>
 												&nbsp;
 												{{ percentage }}
 												&nbsp;&nbsp;&nbsp;&nbsp;
@@ -412,7 +410,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 												<input
 													type="radio"
 													value="{{ logicalValue.value }}"
-													formControlName="drivingLicense"/>
+													formControlName="drivingLicense" disabled/>
 												&nbsp;
 												{{ logicalValue.name }}
 												&nbsp;&nbsp;&nbsp;&nbsp;
