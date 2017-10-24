@@ -148,9 +148,7 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 													value="{{ logicalValue.value }}"
 													formControlName="noticePeriodNegotiable"
 													readonly/>
-												&nbsp;
 												{{ logicalValue.name }}
-												&nbsp;&nbsp;&nbsp;&nbsp;
 											</label>
 										</li>
 									</ul>
@@ -166,6 +164,262 @@ import { JobsApplied } from '../../models/jobs-applied.model';
 							<textarea class="form-control" rows="10" formControlName="summary" placeholder="Profile summary goes here!" readonly></textarea>
 						</div>
 						<div class="col-md-2"></div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12 text-left">
+							<h3 class="purple-color">Current Salary</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-3 form-group">
+							<label for="currency">Currency</label>
+							<input type="text" class="form-control" id="currency" formControlName="currency" readonly/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-5 form-group">
+							<label for="annualSalary">Annual Salary</label>
+							<input type="text" class="form-control" id="annualSalary" formControlName="annualSalary" readonly/>
+						</div>
+						<div class="col-md-5 form-group">
+							<label for="annualBonus">Annual Bonus</label>
+							<input type="text" class="form-control" id="annualBonus" formControlName="annualBonus" readonly/>
+						</div>
+						<div class="col-md-2 form-group"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-8">
+									<div class="form-inline">
+										<label class="labelWeight">Allowance</label>
+									</div>
+									<div class="form-inline">
+										<div class="checkbox">
+											<ul>
+												<li>
+													<label class="labelWeight">
+														<input
+															type="checkbox"
+															formControlName="transportation" disabled/>
+														&nbsp;
+														Transportation
+														&nbsp;&nbsp;&nbsp;&nbsp;
+													</label>
+												</li>
+												<li>
+													<label class="labelWeight">
+														<input
+															type="checkbox"
+															formControlName="housing" disabled/>
+														&nbsp;
+														Housing
+														&nbsp;&nbsp;&nbsp;&nbsp;
+													</label>
+												</li>
+												<li>
+													<label class="labelWeight">
+														<input
+															type="checkbox"
+															formControlName="schooling" disabled/>
+														&nbsp;
+														Schooling
+														&nbsp;&nbsp;&nbsp;&nbsp;
+													</label>
+												</li>
+												<li>
+													<label class="labelWeight">
+														<input
+															type="checkbox"
+															formControlName="health" disabled/>
+														&nbsp;
+														Health
+													</label>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+						</div>
+						<div class="col-md-12" style="padding-top: 15px;">
+							<div class="row">
+								<div class="col-md-2 form-inline">
+									<label class="labelWeight">
+										<input
+											type="checkbox"
+											formControlName="others" disabled/>
+										&nbsp;
+										Others
+									</label>
+								</div>
+								<div class="col-md-8">
+									<input class="form-control" type="text" formControlName="otherAllowanceName" readonly/>
+								</div>
+								<div class="col-md-2"></div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="totalAllowance" class="labelWeight">Total value of your allowance</label>
+									<input type="text"
+												 onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+												 class="form-control currency"
+												 id="totalAllowance"
+												 formControlName="totalAllowance" readonly/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-inline">
+								<label class="labelWeight">Are you on an expat package?</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let logicalValue of logicalValueList">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													value="{{ logicalValue.value }}"
+													formControlName="isOnExpatPackage" disabled/>
+												&nbsp;
+												{{ logicalValue.name }}
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12 text-left">
+							<h3 class="purple-color">Expected Salary</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-3 form-group">
+							<label for="expectedSalaryCurrency">Currency</label>
+							<input type="text" class="form-control" id="expectedSalaryCurrency" formControlName="currency" readonly/>
+						</div>
+						<div class="col-md-7 form-group">
+							<label for="annualSalaryPackage">Annual Package</label>
+							<input type="text" class="form-control currency" id="annualSalaryPackage" formControlName="annualSalaryPackage" readonly/>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-inline">
+								<label class="labelWeight">Are you on an expat package?</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let logicalValue of logicalValueList">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													value="{{ logicalValue.value }}"
+													formControlName="isOnExpatPackage" disabled/>
+												&nbsp;
+												{{ logicalValue.name }}
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12 text-left">
+							<h3 class="purple-color">Misc</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-inline">
+								<label class="labelWeight">Percentage of travel accepted</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let percentage of percentagesTravelAccepted">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													value="{{ percentage }}"
+													formControlName="percentageTravelAccepted" disabled/>
+												&nbsp;
+												{{ percentage }}
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-inline">
+								<label class="labelWeight">Driving license</label>
+							</div>
+							<div class="form-inline">
+								<div class="radio">
+									<ul>
+										<li *ngFor="let logicalValue of logicalValueList">
+											<label class="labelWeight">
+												<input
+													type="radio"
+													value="{{ logicalValue.value }}"
+													formControlName="drivingLicense" disabled/>
+												&nbsp;
+												{{ logicalValue.name }}
+												&nbsp;&nbsp;&nbsp;&nbsp;
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -194,6 +448,7 @@ export class CandidateProfileViewComponent implements OnInit {
 		{ name: 'No', value: false }
 	];
 	noticePeriodValueList: Array<any> = ['Immediately', '1 month', '3 months', '6 months'];
+	percentagesTravelAccepted: Array<String> = ['No travel', '25%', '50%', '75%'];
 
 	candidateProfileForm: FormGroup;
 
@@ -213,8 +468,23 @@ export class CandidateProfileViewComponent implements OnInit {
 			singaporeVisa: this.fb.control(this.user.profile.singaporeVisa),
 			visaValidity: this.fb.control(this.user.profile.visaValidity),
 			noticePeriod: this.fb.control(this.user.profile.noticePeriod),
-			noticePeriodNegotiable: this.fb.control(this.user.profile.noticePeriodNegotiable + '')
+			noticePeriodNegotiable: this.fb.control(this.user.profile.noticePeriodNegotiable + ''),
+			currency: this.fb.control(this.user.profile.currentSalary.currency),
+			annualSalary: this.fb.control(this.user.profile.currentSalary.annualSalary),
+			annualBonus: this.fb.control(this.user.profile.currentSalary.annualBonus),
+			transportation: this.fb.control(this.user.profile.currentSalary.allowance.transportation),
+			housing: this.fb.control(this.user.profile.currentSalary.allowance.housing),
+			schooling: this.fb.control(this.user.profile.currentSalary.allowance.schooling),
+			health: this.fb.control(this.user.profile.currentSalary.allowance.health),
+			others: this.fb.control(this.user.profile.currentSalary.allowance.others),
+			otherAllowanceName: this.fb.control(this.user.profile.currentSalary.allowance.otherAllowanceName),
+			totalAllowance: this.fb.control(this.user.profile.currentSalary.allowance.totalAllowance),
+			isOnExpatPackage: this.fb.control(this.user.profile.currentSalary.isOnExpatPackage),
+			annualSalaryPackage: this.fb.control(this.user.profile.expectedSalary.annualSalaryPackage),
+			percentageTravelAccepted: this.fb.control(this.user.profile.miscellaneous.percentageTravelAccepted),
+			drivingLicense: this.fb.control(this.user.profile.miscellaneous.drivingLicense),
 		});
+		console.log('Annual Salary Package: ', this.user.profile.expectedSalary.annualSalaryPackage);
 
 		this.profileFormDisable();
 	}
