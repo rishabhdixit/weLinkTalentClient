@@ -18,9 +18,7 @@ import { JobButtonsComponent } from './job/job-buttons.component';
 import { JobContentSideViewComponent } from './job/job-content-side-view.component';
 import { ApplicationConceptComponent } from './job-application/application-concept.component';
 import { StarsComponent } from './common/stars.component';
-import { RefereeFeedbackFormComponent } from './referee/referee-feedback-form.component';
 import { ReferenceFormComponent } from './job-application/reference-form.component';
-import { RefereeFeedbackApplicationViewComponent } from './referee/referee-feedback-application-view.component';
 import { CandidateJobApplicationFormComponent } from './job-application/candidate-job-application-form.component';
 import { RefereeFeedbackThankViewComponent } from './referee/referee-feedback-thank-view.component';
 import { JobsAppliedViewComponent } from './job-applied/jobs-applied-view.component';
@@ -39,6 +37,7 @@ import { CandidateProfileViewComponent } from './admin/candidate-profile-view.co
 import { CandidateApplicationFormViewComponent } from './admin/candidate-application-form-view.component';
 import { RefereesFeedbackViewComponent } from './admin/referee-feedback-view.component';
 import { ReferencesInfoViewComponent } from './admin/references-info-view.component';
+import { RefereeFeedbackComponent } from './referee/referee-feedback.component';
 
 export const COMPONENTS = [
 	HeaderComponent,
@@ -55,10 +54,8 @@ export const COMPONENTS = [
 	JobContentSideViewComponent,
 	ApplicationConceptComponent,
 	StarsComponent,
-	RefereeFeedbackFormComponent,
 	ReferenceFormComponent,
 	ThankYouViewComponent,
-	RefereeFeedbackApplicationViewComponent,
 	CandidateJobApplicationFormComponent,
 	RefereeFeedbackThankViewComponent,
 	JobsAppliedViewComponent,
@@ -77,6 +74,7 @@ export const COMPONENTS = [
 	CandidateApplicationFormViewComponent,
 	RefereesFeedbackViewComponent,
 	ReferencesInfoViewComponent,
+	RefereeFeedbackComponent,
 ];
 
 @NgModule({
