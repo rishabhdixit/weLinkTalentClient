@@ -7,7 +7,7 @@ import { Job } from '../../models/job.model';
 @Component({
 	selector: 'app-thank-you-view',
 	template: `
-	<div class="col-md-12">
+	<div class="col-md-12 text-center">
 		<div class="card cardStyle">
 			<div class="card-block">
 				<h1 class="card-title">{{ job.remaining_slots || job.application_slots}}</h1>
