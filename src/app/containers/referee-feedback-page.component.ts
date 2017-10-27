@@ -22,16 +22,11 @@ import { Job } from '../models/job.model';
 				</div>
 				<br/>
 				<div class="row">
-					<div class="col-md-6" style="background: lightgray;">
-						<app-referee-feedback-application-view
-                        [jobApplication]="jobApplicationForm$ | async">
-							</app-referee-feedback-application-view>
-					</div>
-					<div class="col-md-6" style="float: right; background: #e6c5ff;">
-						<app-referee-feedback-form
-							[jobApplication]="jobApplicationForm$ | async"
-							(submitRefereeFeedbackEvent)="submitRefereeFeedbackHandler($event)">
-						</app-referee-feedback-form>
+					<div class="col-md-12">
+						<app-referee-feedback [jobApplication]="jobApplicationForm$ | async"
+								[applicationDetail]="jobApplicationForm$ | async"
+								(submitRefereeFeedbackEvent)="submitRefereeFeedbackHandler($event)">
+						</app-referee-feedback>
 					</div>
 				</div>
 			</div>

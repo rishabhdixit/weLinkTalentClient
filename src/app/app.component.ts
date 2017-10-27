@@ -11,6 +11,7 @@ import * as fromRoot from './reducers';
 	template: `
 		<app-header [user]="user$ | async" [route]="route$ | async"></app-header>
 		<router-outlet></router-outlet>
+		<br/><br/><br/><br/>
 		<app-footer></app-footer>
 	`,
 	styleUrls: ['./app.component.css']
