@@ -7,17 +7,13 @@ import { Job } from '../../models/job.model';
 @Component({
 	selector: 'app-thank-you-view',
 	template: `
-	<div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4 text-center">
-			<div class="card cardStyle">
-				<div class="card-block">
-					<h1 class="card-title">{{ job.remaining_slots || job.application_slots}}</h1>
-					<p class="card-text fontStyle">Application Slots Left</p>
-				</div>
+	<div class="col-md-12">
+		<div class="card cardStyle">
+			<div class="card-block">
+				<h1 class="card-title">{{ job.remaining_slots || job.application_slots}}</h1>
+				<p class="card-text fontStyle">Application Slots Left</p>
 			</div>
 		</div>
-		<div class="col-md-4"></div>
 	</div>
 `,
 	styles: [`
